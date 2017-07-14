@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/For_tests.iml" filepath="$PROJECT_DIR$/For_tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bitmapread/bitmapread.iml" filepath="$PROJECT_DIR$/bitmapread/bitmapread.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bluetooth_megaled/bluetooth_megaled.iml" filepath="$PROJECT_DIR$/bluetooth_megaled/bluetooth_megaled.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bluetooth_newmoonlight/bluetooth_newmoonlight.iml" filepath="$PROJECT_DIR$/bluetooth_newmoonlight/bluetooth_newmoonlight.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bluetooth_newmoonlight_test/bluetooth_newmoonlight_test.iml" filepath="$PROJECT_DIR$/bluetooth_newmoonlight_test/bluetooth_newmoonlight_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camerascreen/camerascreen.iml" filepath="$PROJECT_DIR$/camerascreen/camerascreen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dynamiclayout3/dynamiclayout3.iml" filepath="$PROJECT_DIR$/dynamiclayout3/dynamiclayout3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/location/location.iml" filepath="$PROJECT_DIR$/location/location.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multitouch/multitouch.iml" filepath="$PROJECT_DIR$/multitouch/multitouch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oneactivitystate/oneactivitystate.iml" filepath="$PROJECT_DIR$/oneactivitystate/oneactivitystate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/running_processes/running_processes.iml" filepath="$PROJECT_DIR$/running_processes/running_processes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sharedpreferences/sharedpreferences.iml" filepath="$PROJECT_DIR$/sharedpreferences/sharedpreferences.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simplesqlite/simplesqlite.iml" filepath="$PROJECT_DIR$/simplesqlite/simplesqlite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tab/tab.iml" filepath="$PROJECT_DIR$/tab/tab.iml" />
+      <module fileurl="file://$PROJECT_DIR$/task/task.iml" filepath="$PROJECT_DIR$/task/task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test_navigation_drawer/test_navigation_drawer.iml" filepath="$PROJECT_DIR$/test_navigation_drawer/test_navigation_drawer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test_vr_case/test_vr_case.iml" filepath="$PROJECT_DIR$/test_vr_case/test_vr_case.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test_wifi/test_wifi.iml" filepath="$PROJECT_DIR$/test_wifi/test_wifi.iml" />
+    </modules>
+  </component>
+</project>

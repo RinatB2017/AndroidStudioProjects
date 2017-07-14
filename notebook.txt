@@ -1,0 +1,9 @@
+https://github.com/IanDarwin/Android-Cookbook-Examples
+https://github.com/hmartiro/android-arduino-wifi
+https://habrahabr.ru/post/255597/
+https://github.com/Relius969/OrthodoxLife
+git clone https://github.com/gshevtsov/TroikaDumper.git
+https://github.com/alexey-pimenov/TroikaDumper
+
+https://habrahabr.ru/company/intel/blog/194344/
+https://github.com/securenetwork/NFCulT

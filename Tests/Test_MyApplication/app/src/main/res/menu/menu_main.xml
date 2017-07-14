@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.tux.myapplication.MainActivity">
+    <item
+        android:id="@+id/page_1"
+        android:orderInCategory="100"
+        android:title="@string/page_1"
+        android:onClick="f1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/page_2"
+        android:orderInCategory="100"
+        android:title="@string/page_2"
+        android:onClick="f2"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/close_app"
+        android:orderInCategory="100"
+        android:title="@string/close_app"
+        android:onClick="close_app"
+        app:showAsAction="never" />
+</menu>

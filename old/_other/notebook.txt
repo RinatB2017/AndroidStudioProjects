@@ -1,0 +1,16 @@
+Alexey Mineev <ledeus@gmail.com>
+
+http://www.tutorialspoint.com/android/index.htm
+http://www.programering.com/a/MDM3cjNwATU.html
+http://hessan.annahid.com/
+https://habrahabr.ru/post/180245/
+http://custom-android-dn.blogspot.ru/
+http://developer.alexanderklimov.ru/android/layout/linearlayout.php
+http://www.tutorialspoint.com/android/android_imageswitcher.htm
+https://habrahabr.ru/post/136802/
+http://dajver.blogspot.ru/2012/01/android-1-surfaceview.html
+http://startandroid.ru/ru/uroki/vse-uroki-spiskom
+
+http://stackoverflow.com/questions/20053913/on-android-canvas-polygons-click
+
+http://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html

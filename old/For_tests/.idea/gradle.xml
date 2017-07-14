@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/bitmapread" />
+            <option value="$PROJECT_DIR$/bluetooth_megaled" />
+            <option value="$PROJECT_DIR$/bluetooth_newmoonlight" />
+            <option value="$PROJECT_DIR$/bluetooth_newmoonlight_test" />
+            <option value="$PROJECT_DIR$/camerascreen" />
+            <option value="$PROJECT_DIR$/dynamiclayout3" />
+            <option value="$PROJECT_DIR$/location" />
+            <option value="$PROJECT_DIR$/multitouch" />
+            <option value="$PROJECT_DIR$/oneactivitystate" />
+            <option value="$PROJECT_DIR$/running_processes" />
+            <option value="$PROJECT_DIR$/sharedpreferences" />
+            <option value="$PROJECT_DIR$/simplesqlite" />
+            <option value="$PROJECT_DIR$/tab" />
+            <option value="$PROJECT_DIR$/task" />
+            <option value="$PROJECT_DIR$/test_navigation_drawer" />
+            <option value="$PROJECT_DIR$/test_vr_case" />
+            <option value="$PROJECT_DIR$/test_wifi" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

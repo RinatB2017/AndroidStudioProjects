@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Моя супер прога</string>
+    <string name="record">Запись</string>
+    <string name="play">Играть</string>
+    <string name="start">Старт</string>
+    <string name="stop">Стоп</string>
+</resources>
