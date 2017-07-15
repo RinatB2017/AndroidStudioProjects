@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_AsyncTask" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_AsyncTask/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
