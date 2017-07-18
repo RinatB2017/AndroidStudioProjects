@@ -61,34 +61,39 @@ public class MainActivity extends AppCompatActivity {
         logView.append("MainActivity\n");
     }
 
+    void logging(String text) {
+        Log.v(TAG, text);
+        logView.append(text);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        Log.v(TAG, "MainActivity: onStart()");
+        logging("MainActivity: onStart()");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.v(TAG, "MainActivity: onRestart()");
+        logging("MainActivity: onRestart()");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.v(TAG, "MainActivity: onResume()");
+        logging("MainActivity: onResume()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.v(TAG, "MainActivity: onPause()");
+        logging("MainActivity: onPause()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.v(TAG, "MainActivity: onStop()");
+        logging("MainActivity: onStop()");
 
         state_save();
     }
@@ -96,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(TAG, "MainActivity: onDestroy()");
+        logging("MainActivity: onDestroy()");
     }
 
     public void onClick(View view) {
@@ -110,6 +115,6 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         Test_class t_class = new Test_class();
         t_class.test();
-        Log.v(TAG, String.valueOf(t_class.get_count()));
+        logging(String.valueOf(t_class.get_count()));
     }
 }
