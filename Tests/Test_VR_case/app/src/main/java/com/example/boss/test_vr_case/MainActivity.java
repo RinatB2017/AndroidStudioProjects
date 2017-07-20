@@ -30,9 +30,9 @@ public class MainActivity extends Activity {
         }
 
         OpenGLRenderer renderer_1 = new OpenGLRenderer(this);
+        //renderer_1.set_begin_angle(15.0f);
 
         OpenGLRenderer renderer_2 = new OpenGLRenderer(this);
-        //renderer_2.set_begin_angle(5.0f);
 
         glSurfaceView_1 = new GLSurfaceView(this);
         glSurfaceView_1.setEGLContextClientVersion(2);
