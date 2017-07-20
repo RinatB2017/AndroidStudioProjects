@@ -20,11 +20,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Page_1" />
         <activity android:name=".Page_2" />
@@ -43,7 +38,15 @@
 
         <activity
             android:name=".My_MapsActivity"
-            android:label="@string/title_activity_my__maps"></activity>
+            android:label="@string/title_activity_my__maps" />
+        <activity android:name=".SensorsActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+            android:name="com.test.SensorsActivity"
+            android:label="@string/title_activity_sensors"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
