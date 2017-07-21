@@ -31,6 +31,7 @@ import static android.opengl.GLES20.glViewport;
 import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
+import android.os.Bundle;
 import android.os.SystemClock;
 
 import java.nio.ByteBuffer;
@@ -57,12 +58,21 @@ public class OpenGLRenderer implements Renderer {
     private float[] mModelMatrix = new float[16];
     private float[] mMatrix = new float[16];
 
+    private float value_X = 0;
+    private float value_Y = 0;
+    private float value_Z = 0;
+
     private int texture;
 
     float begin_angle = 0;
 
-    public OpenGLRenderer(Context context) {
+    public OpenGLRenderer(Context context, Bundle savedInstanceState) {
         this.context = context;
+        if(savedInstanceState != null) {
+            value_X = savedInstanceState.getFloat("value_X");
+            value_Y = savedInstanceState.getFloat("value_Y");
+            value_Z = savedInstanceState.getFloat("value_Z");
+        }
     }
 
     @Override
@@ -191,9 +201,9 @@ public class OpenGLRenderer implements Renderer {
 
     private void createViewMatrix() {
         // точка положения камеры
-        float eyeX = 0; //0
-        float eyeY = 2; //2
-        float eyeZ = 4; //4
+        float eyeX = value_X; //0
+        float eyeY = value_Y; //2
+        float eyeZ = value_Z; //4
 
         // точка направления камеры
         float centerX = 0;
@@ -207,7 +217,6 @@ public class OpenGLRenderer implements Renderer {
 
         Matrix.setLookAtM(mViewMatrix, 0, eyeX, eyeY, eyeZ, centerX, centerY, centerZ, upX, upY, upZ);
     }
-
 
     private void bindMatrix() {
         Matrix.multiplyMM(mMatrix, 0, mViewMatrix, 0, mModelMatrix, 0);

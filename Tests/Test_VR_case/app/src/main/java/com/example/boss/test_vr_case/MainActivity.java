@@ -13,7 +13,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-// http://startandroid.ru/ru/uroki/vse-uroki-spiskom/397-urok-168-opengl-vvedenie.html
+// http://startandroid.ru/ru/uroki/vse-uroki-spiskom/408-urok-176-opengl-indeksy-tekstury-dlja-kuba.html
 
 public class MainActivity extends Activity {
 
@@ -29,10 +29,21 @@ public class MainActivity extends Activity {
             return;
         }
 
-        OpenGLRenderer renderer_1 = new OpenGLRenderer(this);
-        //renderer_1.set_begin_angle(15.0f);
+        float delta = 0.0f;
 
-        OpenGLRenderer renderer_2 = new OpenGLRenderer(this);
+        Bundle bundle1 = new Bundle();
+        bundle1.putFloat("value_X", 3); //0
+        bundle1.putFloat("value_Y", 2 + delta); //2
+        bundle1.putFloat("value_Z", 7); //4
+
+        OpenGLRenderer renderer_1 = new OpenGLRenderer(this, bundle1);
+
+        Bundle bundle2 = new Bundle();
+        bundle2.putFloat("value_X", 3); //0
+        bundle2.putFloat("value_Y", 2 - delta); //2
+        bundle2.putFloat("value_Z", 7); //4
+
+        OpenGLRenderer renderer_2 = new OpenGLRenderer(this, bundle2);
 
         glSurfaceView_1 = new GLSurfaceView(this);
         glSurfaceView_1.setEGLContextClientVersion(2);
