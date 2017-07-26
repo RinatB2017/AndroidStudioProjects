@@ -83,6 +83,16 @@ public class ModBus {
         return (data0 << 8) + data1;
     }
     //---------------------------------------------------------------------------------------------
+    private byte get_lo(int value) {
+        byte data0 = (byte) value;
+        return data0;
+    }
+    //---------------------------------------------------------------------------------------------
+    private byte get_hi(int value) {
+        byte data1 = (byte) (value >> 8);
+        return data1;
+    }
+    //---------------------------------------------------------------------------------------------
     String get_string()
     {
         StringBuilder str = new StringBuilder();
@@ -94,9 +104,14 @@ public class ModBus {
         str.append(String.format("%02X", command));
         str.append(String.format("%02X", cnt_data));
 
-        str.append(String.format("%04X", convert(len_line)));
-        str.append(String.format("%04X", convert(len_pause)));
-        str.append(String.format("%04X", convert(delay_ms)));
+        str.append(String.format("%02X", get_lo(len_line)));
+        str.append(String.format("%02X", get_hi(len_line)));
+
+        str.append(String.format("%02X", get_lo(len_pause)));
+        str.append(String.format("%02X", get_hi(len_pause)));
+
+        str.append(String.format("%02X", get_lo(delay_ms)));
+        str.append(String.format("%02X", get_hi(delay_ms)));
 
         str.append(String.format("%02X", color_R));
         str.append(String.format("%02X", color_G));
