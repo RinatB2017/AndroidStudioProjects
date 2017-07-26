@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight/app" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/MegaLine" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/MegaLine/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
