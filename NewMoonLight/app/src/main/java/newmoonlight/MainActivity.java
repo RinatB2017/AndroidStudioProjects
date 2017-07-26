@@ -24,9 +24,7 @@ import android.app.ProgressDialog;
         import android.view.MenuItem;
         import android.view.MotionEvent;
         import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
+        import android.widget.ImageView;
         import android.widget.LinearLayout;
         import android.widget.SeekBar;
         import android.widget.TableLayout;
@@ -45,14 +43,14 @@ import android.widget.ImageView;
         import java.util.UUID;
 
 // если на смартфоне стоит Android 6.0, то надо поставить в свойствах app
-// Flawors API22
+// Flawors Target SDK Version API22
 // иначе bluetooth не будет находить устройства
 
 public class MainActivity extends AppCompatActivity
         implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
 
     private final static int REQUEST_ENABLE_BT = 1;
-    final String LOG_TAG = "myLogs";
+    final String LOG_TAG = "States";
 
     private Paint mPaint;
     Canvas c;
@@ -65,6 +63,7 @@ public class MainActivity extends AppCompatActivity
 
     Bitmap bitmap;
 
+    boolean flag_is_enable = false;
     SeekBar sb_hot;
     SeekBar sb_cold;
 
@@ -140,6 +139,10 @@ public class MainActivity extends AppCompatActivity
         int     color_center_off;
         boolean is_active;
         int     address;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void logging(String text) {
+        Log.i(LOG_TAG, text);
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -333,7 +336,7 @@ public class MainActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.action_settings_scan:
-                Log.v(LOG_TAG, "===> SCAN <===");
+                logging("===> SCAN <===");
                 scan();
                 break;
 
@@ -351,7 +354,9 @@ public class MainActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        logging("onCreate");
         // займем весь экран
+        /*
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -362,7 +367,7 @@ public class MainActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION           // hide nav bar
                         | View.SYSTEM_UI_FLAG_FULLSCREEN                // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-
+        */
         //---
 
         
@@ -372,6 +377,7 @@ public class MainActivity extends AppCompatActivity
         create_widgets();
         create_bluetooth();
         setting_GRAY();
+
         scan();
     }
     //---------------------------------------------------------------------------------------------
@@ -385,7 +391,7 @@ public class MainActivity extends AppCompatActivity
 
         if(bluetooth == null)
         {
-            Log.v(LOG_TAG, "Bluetooth модуль не найден");
+            logging("Bluetooth модуль не найден");
             return;
         }
         if(!bluetooth.isEnabled())
@@ -398,6 +404,8 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void create_widgets()
     {
+        logging("create_widgets");
+
         // создание LinearLayout
         linLayout = new LinearLayout(this);
         layoutParams = new LinearLayout.LayoutParams(
@@ -416,7 +424,7 @@ public class MainActivity extends AppCompatActivity
 
         bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
         //bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.imgpsh_fullsize).copy(Bitmap.Config.ARGB_8888, true);
-        Log.v(LOG_TAG, "w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
+        logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         //---
         mPaint = new Paint();
@@ -428,7 +436,7 @@ public class MainActivity extends AppCompatActivity
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int screenWidth = displaymetrics.widthPixels;
         int screenHeight = displaymetrics.heightPixels;
-        Log.v(LOG_TAG, "screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
+        logging("screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
         //---
         points = new ArrayList<LED>();
         new_draw_field();
@@ -504,6 +512,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onTouch(View view, MotionEvent event) {
 
+        if(flag_is_enable == false) {
+            return false;
+        }
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
             float x = event.getX();
             float y = event.getY();
@@ -544,8 +555,8 @@ public class MainActivity extends AppCompatActivity
                     return true;
                 }
                 else {
-                    Log.v(LOG_TAG, "line = " + line);
-                    Log.v(LOG_TAG, "led.radius = " + led.radius);
+                    logging("line = " + line);
+                    logging("led.radius = " + led.radius);
                 }
             }
         }
@@ -561,7 +572,7 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-        //log.append("onStartTrackingTouch\n");
+        //log.append("onStartTrackingTouch");
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -657,24 +668,27 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     private void block_interface(boolean state)
     {
-        //btn_scan.setEnabled(!state);
+        flag_is_enable = !state;
+        sb_cold.setEnabled(!state);
+        sb_hot.setEnabled(!state);
     }
     //---------------------------------------------------------------------------------------------
     public boolean scan()
     {
-        Log.v(LOG_TAG, "Scan begin!");
+        logging("Scan begin!");
         if(bluetooth == null)
         {
-            Log.v(LOG_TAG, "Bluetooth модуль не найден");
+            logging("Bluetooth модуль не найден");
             return false;
         }
         if(!bluetooth.isEnabled())
         {
-            Log.v(LOG_TAG, "Bluetooth выключен");
+            logging("Bluetooth выключен");
             block_interface(true);
             return false;
         }
 
+        block_interface(true);
         discoveredDevices.clear();
 
         if (discoveryDevicesReceiver == null) {
@@ -691,18 +705,23 @@ public class MainActivity extends AppCompatActivity
                         {
                             String d_name = device.getName();
                             if(d_name != null) {
-                                if (d_name.equals(DEVICE_NAME)) {
-                                    Log.v(LOG_TAG, "[" + DEVICE_NAME + "] FOUND");
+                                d_name = d_name.replaceAll("\n", "");
+                                logging("name = [" + d_name + "]");
+                                if (d_name.contains(DEVICE_NAME)) {
+                                    logging("[" + DEVICE_NAME + "] FOUND");
                                     boolean ok = connect_remote_device(device.getAddress());
-                                    block_interface(!ok);
+                                    if(ok) {
+                                        block_interface(false);
+                                        discoveredDevices.add(device);
+                                        bluetooth.cancelDiscovery();
 
-                                    Toast toast = Toast.makeText(getApplicationContext(),
-                                            "Найден " + DEVICE_NAME,
-                                            Toast.LENGTH_SHORT);
-                                    toast.show();
+                                        Toast toast = Toast.makeText(getApplicationContext(),
+                                                "Найден " + DEVICE_NAME,
+                                                Toast.LENGTH_SHORT);
+                                        toast.show();
+                                    }
                                 }
                             }
-                            discoveredDevices.add(device);
                         }
                     }
                 }
@@ -713,12 +732,10 @@ public class MainActivity extends AppCompatActivity
             discoveryFinishedReceiver = new BroadcastReceiver() {
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    Log.v(LOG_TAG, "Scan end!");
+                    logging("Scan end!");
                     if (progressDialog != null) progressDialog.dismiss();
                     unregisterReceiver(discoveryFinishedReceiver);
                     unregisterReceiver(discoveryDevicesReceiver);
-
-                    block_interface(true);
                 }
             };
         }
@@ -729,7 +746,7 @@ public class MainActivity extends AppCompatActivity
         progressDialog = ProgressDialog.show(this, "Поиск устройств", "Подождите...");
 
         bluetooth.startDiscovery();
-        Log.v(LOG_TAG, "Scan begin...");
+        logging("Scan begin...");
         return true;
     }
     //---------------------------------------------------------------------------------------------
@@ -737,7 +754,7 @@ public class MainActivity extends AppCompatActivity
     {
         if(MAC_address.isEmpty())
         {
-            Log.v(LOG_TAG, "MAC_address is empty!");
+            logging("MAC_address is empty!");
             return false;
         }
 
@@ -748,19 +765,19 @@ public class MainActivity extends AppCompatActivity
             Method m = r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             tmp = (BluetoothSocket) m.invoke(r_device, 1);
         } catch (IOException e) {
-            Log.v(LOG_TAG, "create ERROR: " +e.getMessage());
+            logging("create ERROR: " +e.getMessage());
             return false;
         } catch (NoSuchMethodException e)
         {
-            Log.v(LOG_TAG, "create ERROR: " +e.getMessage());
+            logging("create ERROR: " +e.getMessage());
             return false;
         } catch (IllegalAccessException e)
         {
-            Log.v(LOG_TAG, "create ERROR: " +e.getMessage());
+            logging("create ERROR: " +e.getMessage());
             return false;
         } catch (InvocationTargetException e)
         {
-            Log.v(LOG_TAG, "create ERROR: " +e.getMessage());
+            logging("create ERROR: " +e.getMessage());
             return false;
         }
         //---
@@ -773,7 +790,7 @@ public class MainActivity extends AppCompatActivity
                 mmSocket.connect();
             }
             catch (Exception e2) {
-                Log.v(LOG_TAG, "Stream ERROR: Couldn't establish Bluetooth connection!");
+                logging("Stream ERROR: Couldn't establish Bluetooth connection!");
                 return false;
             }
         }
@@ -782,13 +799,13 @@ public class MainActivity extends AppCompatActivity
             tmpIn  = mmSocket.getInputStream();
             tmpOut = mmSocket.getOutputStream();
         } catch (IOException e) {
-            Log.v(LOG_TAG, "Stream ERROR: " +e.getMessage());
+            logging("Stream ERROR: " +e.getMessage());
             return false;
         }
         //---
         inputStream = tmpIn;
         outputStream = tmpOut;
-        Log.v(LOG_TAG, "OK\n");
+        logging("OK");
         return true;
     }
     //---------------------------------------------------------------------------------------------
@@ -800,7 +817,7 @@ public class MainActivity extends AppCompatActivity
 
         if(outputStream == null)
         {
-            Log.v(LOG_TAG, "outputStream not created!\n");
+            logging("outputStream not created!");
             return false;
         }
         try {
@@ -812,7 +829,12 @@ public class MainActivity extends AppCompatActivity
                 }
             } while(bytesAvailableCount > 0);
         } catch (IOException e) {
-            Log.v(LOG_TAG, "send_data ERROR: " + e.getMessage() + "\n");
+            logging("send_data ERROR: " + e.getMessage());
+            block_interface(true);
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Ошибка связи",
+                    Toast.LENGTH_SHORT);
+            toast.show();
             return false;
         }
         return true;

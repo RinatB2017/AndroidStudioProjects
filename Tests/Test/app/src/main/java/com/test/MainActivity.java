@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
         logView = (TextView)findViewById(R.id.logView);
 
-        logView.append("MainActivity\n");
+        logging("MainActivity");
     }
 
     void logging(String text) {
-        Log.v(TAG, text);
-        logView.append(text);
+        Log.v(TAG, text + "\n");
+        logView.append(text + "\n");
     }
 
     @Override
