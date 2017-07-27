@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity
     TextView tv_value_color_R;
     TextView tv_value_color_G;
     TextView tv_value_color_B;
+
+    Button btn_send;
 
     TextView logView;
 
@@ -182,6 +185,8 @@ public class MainActivity extends AppCompatActivity
         tv_value_color_G = (TextView) findViewById(R.id.tv_value_color_G);
         tv_value_color_B = (TextView) findViewById(R.id.tv_value_color_B);
 
+        btn_send = (Button) findViewById(R.id.btn_send);
+
         sb_len_line.setOnSeekBarChangeListener(this);
         sb_len_pause.setOnSeekBarChangeListener(this);
         sb_delay_ms.setOnSeekBarChangeListener(this);
@@ -201,15 +206,17 @@ public class MainActivity extends AppCompatActivity
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        block_interface(true);
+
         create_bluetooth();
         state_restore();
+
+        scan();
     }
     //---------------------------------------------------------------------------------------------
     public void create_bluetooth()
     {
         bluetooth = BluetoothAdapter.getDefaultAdapter();
-
-        //block_interface(true);
 
         modbus = new ModBus();
 
@@ -324,7 +331,15 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     private void block_interface(boolean state)
     {
+        sb_len_line.setEnabled(!state);
+        sb_len_pause.setEnabled(!state);
+        sb_delay_ms.setEnabled(!state);
 
+        sb_color_R.setEnabled(!state);
+        sb_color_G.setEnabled(!state);
+        sb_color_B.setEnabled(!state);
+
+        btn_send.setEnabled(!state);
     }
     //---------------------------------------------------------------------------------------------
     public boolean connect_remote_device(String MAC_address)
@@ -463,6 +478,16 @@ public class MainActivity extends AppCompatActivity
     public void onProgressChanged(SeekBar seekBar,
                                   int progress,
                                   boolean fromUser) {
+        if(seekBar == sb_delay_ms) {
+            if(progress < 10) {
+                seekBar.setProgress(10);
+            }
+        }
+        if(seekBar == sb_len_line) {
+            if(progress < 1) {
+                seekBar.setProgress(1);
+            }
+        }
     }
     //---------------------------------------------------------------------------------------------
     public void onClick(View view) {
