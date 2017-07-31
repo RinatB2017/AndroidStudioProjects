@@ -340,10 +340,6 @@ public class MainActivity extends AppCompatActivity
                 scan();
                 break;
 
-            case R.id.action_settings_exit:
-                this.finish();
-                break;
-
             default:
                 break;
         }

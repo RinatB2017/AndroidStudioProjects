@@ -23,6 +23,12 @@ public class Page_2 extends AppCompatActivity {
   final String TAG = "States";
   TextView logView;
 
+  //---------------------------------------------------------------------------------------------
+  void logging(String text) {
+    Log.v(TAG, text + "\n");
+    logView.append(text + "\n");
+  }
+  //---------------------------------------------------------------------------------------------
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -31,48 +37,49 @@ public class Page_2 extends AppCompatActivity {
 
     logView = (TextView)findViewById(R.id.logView);
 
-    logView.append("Page_2\n");
+    logging("Page_2");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onRestart() {
     super.onRestart();
-    Log.d(TAG, "Page_2: onRestart()");
+    logging("Page_2: onRestart()");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onStart() {
     super.onStart();
-    Log.d(TAG, "Page_2: onStart()");
+    logging("Page_2: onStart()");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onResume() {
     super.onResume();
-    Log.d(TAG, "Page_2: onResume()");
+    logging("Page_2: onResume()");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onPause() {
     super.onPause();
-    Log.d(TAG, "Page_2: onPause()");
+    logging("Page_2: onPause()");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onStop() {
     super.onStop();
-    Log.d(TAG, "Page_2: onStop()");
+    logging("Page_2: onStop()");
   }
-
+  //---------------------------------------------------------------------------------------------
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    Log.d(TAG, "Page_2: onDestroy()");
+    logging("Page_2: onDestroy()");
   }
-
+  //---------------------------------------------------------------------------------------------
   public void onClick(View view) {
     // переключение активити
-    Intent intent = new Intent(this, MainActivity.class);
+    Intent intent = new Intent(this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
   }
+  //---------------------------------------------------------------------------------------------
 }
