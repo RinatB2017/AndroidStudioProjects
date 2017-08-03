@@ -1,7 +1,0 @@
-#Mon Jul 31 22:38:13 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_4e8d6e80f51f043956c60077080bd50ca20ca04d
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9f6d29c01d13ce10ae3d665aa3cc1f47915ee0bd/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_9f6d29c01d13ce10ae3d665aa3cc1f47915ee0bd
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_4e8d6e80f51f043956c60077080bd50ca20ca04d/classes.dex
