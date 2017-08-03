@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/ipcam-view.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/ipcam-view.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/mjpeg-view/mjpeg-view.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/ipcam-view/mjpeg-view/mjpeg-view.iml" />
+    </modules>
+  </component>
+</project>
