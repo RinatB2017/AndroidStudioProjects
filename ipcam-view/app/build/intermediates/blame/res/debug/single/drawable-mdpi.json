@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_info_black_24dp.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/src/main/res/drawable-mdpi/ic_info_black_24dp.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_camera_white_48dp.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/src/main/res/drawable-mdpi/ic_camera_white_48dp.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/build/intermediates/res/merged/debug/drawable-mdpi/ic_lock_black_24dp.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/ipcam-view/app/src/main/res/drawable-mdpi/ic_lock_black_24dp.png"
+    }
+]
