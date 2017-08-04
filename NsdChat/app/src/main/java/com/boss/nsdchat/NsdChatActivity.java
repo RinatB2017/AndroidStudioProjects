@@ -45,18 +45,6 @@ public class NsdChatActivity extends Activity {
 
     private static final int RECORD_REQUEST_CODE = 101;
 
-    //---
-    protected void requestPermission(String permissionType, int requestCode) {
-        int permission = ContextCompat.checkSelfPermission(this,
-                permissionType);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{permissionType}, requestCode
-            );
-        }
-    }
-
     void logging(String text) {
         mStatusView.append(text  +"\n");
         Log.d(TAG, text);
@@ -78,8 +66,6 @@ public class NsdChatActivity extends Activity {
                 addChatLine(chatLine);
             }
         };
-
-        //requestPermission(Manifest.permission.INTERNET, RECORD_REQUEST_CODE);
     }
 
     public void clickAdvertise(View v) {
