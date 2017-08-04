@@ -57,13 +57,19 @@ public class NsdChatActivity extends Activity {
         }
     }
 
+    void logging(String text) {
+        mStatusView.append(text  +"\n");
+        Log.d(TAG, text);
+    }
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d(TAG, "Creating chat activity");
         setContentView(R.layout.main);
         mStatusView = (TextView) findViewById(R.id.status);
+
+        logging("Creating chat activity");
 
         mUpdateHandler = new Handler() {
                 @Override
@@ -73,7 +79,7 @@ public class NsdChatActivity extends Activity {
             }
         };
 
-        requestPermission(Manifest.permission.INTERNET, RECORD_REQUEST_CODE);
+        //requestPermission(Manifest.permission.INTERNET, RECORD_REQUEST_CODE);
     }
 
     public void clickAdvertise(View v) {
@@ -81,7 +87,7 @@ public class NsdChatActivity extends Activity {
         if(mConnection.getLocalPort() > -1) {
             mNsdHelper.registerService(mConnection.getLocalPort());
         } else {
-            Log.d(TAG, "ServerSocket isn't bound.");
+            logging("ServerSocket isn't bound.");
         }
     }
 
@@ -92,11 +98,11 @@ public class NsdChatActivity extends Activity {
     public void clickConnect(View v) {
         NsdServiceInfo service = mNsdHelper.getChosenServiceInfo();
         if (service != null) {
-            Log.d(TAG, "Connecting.");
+            logging("Connecting.");
             mConnection.connectToServer(service.getHost(),
                     service.getPort());
         } else {
-            Log.d(TAG, "No service to connect to!");
+            logging("No service to connect to!");
         }
     }
 
@@ -117,8 +123,8 @@ public class NsdChatActivity extends Activity {
 
     @Override
     protected void onStart() {
-        Log.d(TAG, "Starting.");
-        mConnection = new ChatConnection(mUpdateHandler);
+        logging("Starting.");
+        mConnection = new ChatConnection(mUpdateHandler, mStatusView);
 
         mNsdHelper = new NsdHelper(this);
         mNsdHelper.initializeNsd();
@@ -128,7 +134,7 @@ public class NsdChatActivity extends Activity {
 
     @Override
     protected void onPause() {
-        Log.d(TAG, "Pausing.");
+        logging("Pausing.");
         if (mNsdHelper != null) {
             mNsdHelper.stopDiscovery();
         }
@@ -137,7 +143,7 @@ public class NsdChatActivity extends Activity {
 
     @Override
     protected void onResume() {
-        Log.d(TAG, "Resuming.");
+        logging("Resuming.");
         super.onResume();
         if (mNsdHelper != null) {
             mNsdHelper.discoverServices();
@@ -157,7 +163,7 @@ public class NsdChatActivity extends Activity {
 
     @Override
     protected void onStop() {
-        Log.d(TAG, "Being stopped.");
+        logging("Being stopped.");
         mNsdHelper.tearDown();
         mConnection.tearDown();
         mNsdHelper = null;
@@ -167,7 +173,7 @@ public class NsdChatActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        Log.d(TAG, "Being destroyed.");
+        logging("Being destroyed.");
         super.onDestroy();
     }
 }

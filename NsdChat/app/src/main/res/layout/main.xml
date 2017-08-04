@@ -17,12 +17,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="68dp"
         android:orientation="horizontal" >
 
         <Button
@@ -47,16 +48,28 @@
             android:text="@string/connect" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/status"
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:focusable="true" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="233dp"
+        android:layout_weight="0.85">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+            android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="336dp"
+            android:focusable="true" />
+        </LinearLayout>
+    </ScrollView>
 
     <EditText
         android:id="@+id/chatInput"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:inputType="text"
         android:singleLine="true" />
 
