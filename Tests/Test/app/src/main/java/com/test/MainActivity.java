@@ -1,16 +1,19 @@
 package com.test;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.provider.Settings;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,27 +25,74 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cb2;
     CheckBox cb3;
 
-    public SharedPreferences mSet;
-    public static final String NAME_PREFERENCES = "mysetting";
+    Memory mem;
+
     public static final String BOOL_CHECKBOX1 = "checkboxset1";
     public static final String BOOL_CHECKBOX2 = "checkboxset2";
     public static final String BOOL_CHECKBOX3 = "checkboxset3";
+    public static final String PASSWORD = "password";
 
     //---------------------------------------------------------------------------------------------
     void state_save() {
-        mSet = getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = mSet.edit();
-        editor.putBoolean(BOOL_CHECKBOX1, cb1.isChecked());
-        editor.putBoolean(BOOL_CHECKBOX2, cb2.isChecked());
-        editor.putBoolean(BOOL_CHECKBOX3, cb3.isChecked());
-        editor.commit();
+        mem.set_boolean_value(BOOL_CHECKBOX1, cb1.isChecked());
+        mem.set_boolean_value(BOOL_CHECKBOX2, cb2.isChecked());
+        mem.set_boolean_value(BOOL_CHECKBOX3, cb3.isChecked());
     }
     //---------------------------------------------------------------------------------------------
     void state_restore() {
-        mSet = getSharedPreferences(NAME_PREFERENCES, Context.MODE_PRIVATE);
-        if(mSet.contains(BOOL_CHECKBOX1)) {cb1.setChecked(mSet.getBoolean(BOOL_CHECKBOX1, false));}
-        if(mSet.contains(BOOL_CHECKBOX2)) {cb2.setChecked(mSet.getBoolean(BOOL_CHECKBOX2, false));}
-        if(mSet.contains(BOOL_CHECKBOX3)) {cb3.setChecked(mSet.getBoolean(BOOL_CHECKBOX3, false));}
+        cb1.setChecked(mem.get_boolean_value(BOOL_CHECKBOX1));
+        cb2.setChecked(mem.get_boolean_value(BOOL_CHECKBOX2));
+        cb3.setChecked(mem.get_boolean_value(BOOL_CHECKBOX3));
+    }
+    //---------------------------------------------------------------------------------------------
+    boolean check_data() {
+        String temp = mem.get_string(PASSWORD);
+        return !temp.isEmpty();
+    }
+    //---------------------------------------------------------------------------------------------
+    void dialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("Title");
+        alert.setMessage("Message");
+
+        // Set an EditText view to get user input
+        final EditText input = new EditText(this);
+        input.setText(mem.get_string_value(PASSWORD));
+        alert.setView(input);
+
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                Editable value = input.getText();
+                if(!value.toString().isEmpty()) {
+                    mem.set_string(PASSWORD, value.toString());
+                }
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // Canceled.
+            }
+        });
+
+        alert.show();
+    }
+    //---------------------------------------------------------------------------------------------
+    void test_first_create() {
+        //SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        // проверяем, первый ли раз открывается программа
+        boolean hasVisited = sp.getBoolean("hasVisited", false);
+
+        if (!hasVisited) {
+            // выводим нужную активность
+            SharedPreferences.Editor e = sp.edit();
+            e.putBoolean("hasVisited", true);
+            e.commit(); // не забудьте подтвердить изменения
+
+            logging("Is FIRST !!!");
+        }
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -54,12 +104,22 @@ public class MainActivity extends AppCompatActivity {
         cb2 = (CheckBox) findViewById(R.id.checkBox2);
         cb3 = (CheckBox) findViewById(R.id.checkBox3);
 
+        mem = new Memory(getApplicationContext());
+
         state_restore();
         Log.v(TAG, "MainActivity: onCreate()");
 
         logView = (TextView)findViewById(R.id.logView);
 
         logging("MainActivity");
+
+        if(!check_data()) {
+            dialog();
+        }
+        else {
+            logging("password = [" + mem.get_string(PASSWORD) + "]");
+        }
+        test_first_create();
     }
     //---------------------------------------------------------------------------------------------
     void logging(String text) {
@@ -77,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId())
         {
-            case R.id.action_settings_scan:
-                logging("===> SCAN <===");
+            case R.id.action_settings_test:
+                dialog();
                 break;
 
             default:
