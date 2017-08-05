@@ -43,8 +43,6 @@ public class NsdChatActivity extends Activity {
 
     ChatConnection mConnection;
 
-    private static final int RECORD_REQUEST_CODE = 101;
-
     void logging(String text) {
         mStatusView.append(text  +"\n");
         Log.d(TAG, text);
