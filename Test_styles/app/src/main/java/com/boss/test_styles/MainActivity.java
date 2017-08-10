@@ -3,12 +3,13 @@ package com.boss.test_styles;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    final String TAG = "States";
     TextView logView;
 
     void logging(String text) {
@@ -38,5 +39,12 @@ public class MainActivity extends AppCompatActivity {
     public void page_3(View view) {
         Intent intent = new Intent(this, Page3.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void test(View view) {
+        MyLog.i(TAG, "Info");
+        MyLog.d(TAG, "Debug");
+        MyLog.v(TAG, "Verbose");
+        MyLog.e(TAG, "Error");
     }
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">iTracing2</string>
+    <string name="ble_not_supported">Извините, bluetooth LE не поддерживается на вашем устройстве</string>
+    <string name="action_scan_start">Определение</string>
+    <string name="beacon_not_found">Устройства не найдены</string>
+    <string name="action_connect">Соединение</string>
+    <string name="start_immediate_alert">Включить тревогу на брелке</string>
+    <string name="stop_immediate_alert">Выключить тревогу на брелке</string>
+    <string name="link_background">всегда включён</string>
+    <string name="stop_ring">Остановить тревогу</string>
+    <string name="stop_vibrate">Остановить вибрацию</string>
+    <string name="simple_button_action">Функции при одиночном нажатии</string>
+    <string name="simple_button_action_summary">Выберите действие кнопки для одиночного нажатия</string>
+    <string name="double_button_action">Функции при двойном нажатии</string>
+    <string name="double_button_action_summary">Выберите действие кнопки при двойном нажатии</string>
+    <string name="link_background_summary">Включить дополнительные возможности</string>
+    <string name="battery_info">Информация о батарее</string>
+    <string name="immediate_alert_summary">нажмите для активации тревоги на брелке</string>
+    <string name="welcome_text">Добро пожаловать в iTracing2.\n\nЭто приложение поможет Вам соеденить с телефоном брелок iSee (Quintic PROXR) по bluetooth.\n
+        Если у Вас есть брелок Bluetooth LE , то программа &quot;iTracing&quot; поможет комфортно им пользоваться:)\n\n
+        Пожалуйста, нажмите на кнопку брелка, чтобы найти ваше ISEE устройство (его название должно быть "Quintic ProXR").\n\n
+        Если брелок обнаружен, появится окно, содержащее информацию о совместимых устройствах.\n
+        Если это окно пустое, попробуйте перезагрузить ITAG и телефон и повторите попытку.\n\n
+        Если связь брелка и телефона неустойчивая и теряется, включите в меню настроек (фоновая связь).\n\n
+        Я работаю над программой iTracing2 только в своё свободное время ;-)</string>
+    <string name="donate">Благодарность автору(PayPal)</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="donate_summary">для поддержки моей работы:)</string>
+    <string name="feedback_summary">не стесняйтесь, это ускорит выход новых версий.Спасибо!</string>
+    <string name="display_last_position">Показать последнюю записанную точку</string>
+    <string name="out_of_range_action">Потеря брелка</string>
+    <string name="out_of_range_action_summary">Какое действие выполнить при потере связи с брелком?</string>
+    <string name="action_on_power_off">Отключение Bluetooth</string>
+    <string name="action_on_power_off_summary">Отключить Bluetooth при разыве связи с брелком</string>
+    <string name="action_bip_out_of_range">iTag Звуковой сигнал</string>
+    <string name="action_bip_out_of_range_summary">Звуковой сигнал, если вне допустимого диапазона</string>
+    <string name="ring_tone_summary">Выберите мелодию для озвучивания действий</string>
+    <string name="ring_tone">Мелодия</string>
+    <string name="rssi_info">RSS информация</string>
+    <string name="actions">Действия брелка</string>
+    <string name="select_device">выберите устройство</string>
+    <string name="ring_tone_not_found">​мелодия не найдена! Пожалуйста, выберите другую, либо убедитесь, что у вас есть мелодия установленная по умолчанию, либо, что громкость звука добавлена.</string>
+    <string name="vibrator_not_found">виброрежим не найден! пожалуйста, убедитесь, что есть эта функция виброрежима в вашем телефоне.</string>
+    <string name="something_goes_wrong">что-то пошло не так!</string>
+    <string name="double_button_delay">Задержка двойного нажатия</string>
+    <string name="double_button_delay_summary">Задержка между двумя нажатиями (300 мс если пусто)</string>
+    <string name="default_double_button_delay">300</string>
+    <string name="custom_action">Пользовательские команды</string>
+    <string name="custom_action_summary">Открытие http(s)://.. или другое действие</string>
+    <string name="remove">Удалить брелок</string>
+    <string name="confirm_remove_keyring">Подтвердите удаление брелка</string>
+    <string name="confirm_change_name">Подтвердите смену имени брелка</string>
+    <string name="link_loss_disabled">Отключено слежение за брелком</string>
+    <string name="foreground_started">Фоновый режим включен</string>
+    <string name="preferences">Настройки</string>
+    <string name="dashboard">Статус</string>
+    <string name="action_foreground_summary">Улучшает связь между смартфоном и устройством</string>
+    <string name="action_foreground">фоновый режим</string>
+    <string name="ring_the_device">Включить звонок на брелке</string>
+    <string name="events_history">История событий</string>
+    <string name="connected_action">подключение действия</string>
+    <string name="connected_action_summary">Действие срабатывает, когда происходит соединение</string>
+    <string name="clear_events">очистить все события</string>
+    <string name="confirm_remove_events">Подтвердить удаление события</string>
+    <string name="export_events">экспорт</string>
+    <string-array name="button_actions">
+        <item>переключить телефон звонит</item>
+        <item>звонок в телефоне</item>
+        <item>отзвонить</item>
+        <item>тумблер вибрировать телефон</item>
+        <item>вибрация в телефоне</item>
+        <item>остановить вибрации</item>
+        <item>сохранить мою позицию</item>
+        <item>открыть URL или другое действие</item>
+    </string-array>
+    <string-array name="button_actions_values">
+        <item>TOGGLE_RING_PHONE</item>
+        <item>START_RING_PHONE</item>
+        <item>STOP_RING_PHONE</item>
+        <item>TOGGLE_VIBRATE_PHONE</item>
+        <item>START_VIBRATE_PHONE</item>
+        <item>STOP_VIBRATE_PHONE</item>
+        <item>CAPTURE_POSITION</item>
+        <item>CUSTOM_ACTION</item>
+    </string-array>
+    <string-array name="empty_array"/>
+</resources>

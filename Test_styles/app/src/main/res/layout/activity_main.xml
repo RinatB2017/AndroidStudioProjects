@@ -38,6 +38,15 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="112dp" />
 
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:onClick="test"
+        android:text="test"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="112dp" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
