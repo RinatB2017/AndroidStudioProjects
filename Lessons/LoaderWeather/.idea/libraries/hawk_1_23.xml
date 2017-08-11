@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="hawk-1.23">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/bbe2461189876c2a8c7de6228aec80f2a2636b3f/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/bbe2461189876c2a8c7de6228aec80f2a2636b3f/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
