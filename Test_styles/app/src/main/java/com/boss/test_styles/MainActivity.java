@@ -13,11 +13,11 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     final String TAG = "States";
-    TextView logView;
+    TextView log_main;
 
     void logging(String text) {
         Log.v(TAG, text);
-        logView.append(text + "\n");
+        log_main.append(text + "\n");
     }
 
     @Override
@@ -25,11 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        logView = (TextView)findViewById(R.id.logView);
+        log_main = (TextView)findViewById(R.id.log_main);
 
-        logging("onCreate");
+        for(int n=0; n<100; n++) {
+            logging("onCreate " + String.valueOf(n));
+        }
 
-        setContentView(R.layout.activity_main);
         getSupportLoaderManager().initLoader(R.id.loader_id, Bundle.EMPTY, new StubLoaderCallbacks());
     }
 
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view) {
-        MyLog.i(TAG, "Info");
-        MyLog.d(TAG, "Debug");
-        MyLog.v(TAG, "Verbose");
-        MyLog.e(TAG, "Error");
+        //MyLog.i(TAG, "Info");
+        //MyLog.d(TAG, "Debug");
+        //MyLog.v(TAG, "Verbose");
+        //MyLog.e(TAG, "Error");
 
         logging("TEST");
     }

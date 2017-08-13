@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:gravity="top"
     android:orientation="vertical">
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="page_1"
-        android:text="1"/>
+        android:text="1" />
 
     <Button
         android:id="@+id/btn_2"
@@ -70,9 +71,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/logView"
+                android:id="@+id/log_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 
