@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Test_styles</string>
+    <string name="load_finished">Загрузка завершена</string>
 </resources>

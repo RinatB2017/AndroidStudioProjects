@@ -1,8 +1,10 @@
 package com.example.boss.test_asynctask;
 
+    import android.app.Activity;
     import android.os.AsyncTask;
     import android.os.Bundle;
     import android.support.v7.app.AppCompatActivity;
+    import android.util.Log;
     import android.view.View;
     import android.widget.Button;
     import android.widget.ProgressBar;
@@ -10,12 +12,16 @@ package com.example.boss.test_asynctask;
 
     import java.util.concurrent.TimeUnit;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
-    private TextView mInfoTextView;
-    private ProgressBar mProgressBar;
-    private Button mStartButton;
-    private ProgressBar mHorizontalProgressBar;
+    private static TextView mInfoTextView;
+    private static Button mStartButton;
+    private static ProgressBar mHorizontalProgressBar;
+
+    CatTask catTask;
+
+    private static final String TAG = "States";
+    private static final int max_floor = 25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,26 +30,50 @@ public class MainActivity extends AppCompatActivity {
 
         mInfoTextView = (TextView) findViewById(R.id.textViewInfo);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mStartButton = (Button) findViewById(R.id.buttonStart);
         mHorizontalProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        mProgressBar.setMax(14);
+        mHorizontalProgressBar.setMax(max_floor);
+
+        catTask = (CatTask) getLastNonConfigurationInstance();
+        if (catTask == null) {
+            catTask = new CatTask();
+        }
+        // передаем в MyTask ссылку на текущее MainActivity
+        catTask.link(this);
     }
 
+    public Object onRetainNonConfigurationInstance() {
+        // удаляем из CatTask ссылку на старое MainActivity
+        catTask.unLink();
+        return catTask;
+    }
 
     public void onClick(View view) {
-        CatTask catTask = new CatTask();
+        //CatTask
+        catTask = new CatTask();
         catTask.execute();
     }
 
-    class CatTask extends AsyncTask<Void, Integer, Void> {
+    static class CatTask extends AsyncTask<Void, Integer, Void> {
+
+        MainActivity activity;
+
+        // получаем ссылку на MainActivity
+        void link(MainActivity act) {
+            activity = act;
+        }
+
+        // обнуляем ссылку
+        void unLink() {
+            activity = null;
+        }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             mInfoTextView.setText("Полез на крышу");
-            mStartButton.setVisibility(View.INVISIBLE);
+            mStartButton.setEnabled(false);
         }
 
         @Override
@@ -52,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 int counter = 0;
 
-                for (int i = 0; i < 14; i++) {
+                for (int i = 0; i < max_floor; i++) {
                     getFloor(counter);
                     publishProgress(++counter);
                 }
@@ -67,16 +97,18 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             mInfoTextView.setText("Залез");
-            mStartButton.setVisibility(View.VISIBLE);
+            mStartButton.setEnabled(true);
             mHorizontalProgressBar.setProgress(0);
         }
 
         @Override
-        protected void onProgressUpdate(Integer... values) {
+        protected void onProgressUpdate(final Integer... values) {
             super.onProgressUpdate(values);
 
             mInfoTextView.setText("Этаж: " + values[0]);
             mHorizontalProgressBar.setProgress(values[0]);
+
+            Log.v(TAG, "Этаж: " + values[0] + " progress: " + mHorizontalProgressBar.getProgress());
         }
 
         private void getFloor(int floor) throws InterruptedException {

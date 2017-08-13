@@ -6,11 +6,10 @@
 
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="Поехали">
-    </Button>
+        android:text="Поехали"></Button>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -20,9 +19,9 @@
 
     <TextView
         android:id="@+id/textViewInfo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="">
-    </TextView>
+        android:layout_weight="0.40"
+        android:text=""></TextView>
 
 </LinearLayout>
