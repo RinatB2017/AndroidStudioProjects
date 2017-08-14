@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/android-vision/visionSamples/barcode-reader" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/android-vision/visionSamples/barcode-reader/app" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/BarcodeDetection" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/BarcodeDetection/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
