@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="be.uhasselt.privacypolice" >
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Needed for Android 6.0 and up to access Wi-Fi scan results -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- The next two permissions are only used for analytics. See Analytics.java for details -->
+    <!--
+uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /
+    -->
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".PreferencesActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SSIDManagerActivity"
+            android:label="@string/modify_hotspots" >
+        </activity>
+        <activity
+            android:name=".MACManagerActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".LocationNoticeActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <!-- Receive all scan results in ScanResultsChecker class -->
+        <receiver
+            android:name=".ScanResultsChecker"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.net.wifi.SCAN_RESULTS" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".LocationAccess"
+            android:enabled="true"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".PermissionChangeReceiver"
+            android:enabled="true" />
+        <receiver
+            android:name=".WakelockHandler"
+            android:enabled="true" />
+        <activity
+            android:name=".AskPermissionActivity"
+            android:excludeFromRecents="true"
+            android:parentActivityName=".PreferencesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PreferencesActivity" />
+        </activity>
+        <!-- Used for analytics. See Analytics.java for details -->
+        <!--
+            meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" /
+        -->
+    </application>
+
+</manifest>

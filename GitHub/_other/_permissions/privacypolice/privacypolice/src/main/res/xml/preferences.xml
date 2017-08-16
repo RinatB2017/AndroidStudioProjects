@@ -1,0 +1,33 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <SwitchPreference
+        android:key="enableOnlyAvailableNetworks"
+        android:title="@string/pref_onlyavailable"
+        android:summary="@string/pref_onlyavailable_summ"
+        android:defaultValue="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <SwitchPreference
+        android:key="onlyConnectToKnownAccessPoints"
+        android:title="@string/pref_onlyknown"
+        android:summary="@string/pref_onlyknown_summ"
+        android:defaultValue="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <!--CheckBoxPreference
+        android:key="trackingAllowed"
+        android:title="@string/pref_tracking"
+        android:summary="@string/pref_tracking_summ"
+        android:defaultValue="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /-->
+    <!-- This preference is essentially just a button that allows for a nicer lay-out -->
+    <Preference
+        android:key="modifyHotspots"
+        android:title="@string/modify_hotspots"
+        android:summary="@string/modify_hotspots_summ"
+        android:dependency="onlyConnectToKnownAccessPoints"
+        />
+
+</PreferenceScreen>

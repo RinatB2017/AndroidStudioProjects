@@ -1,0 +1,7 @@
+#Tue Aug 15 22:30:07 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/Sudokuv4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ef3af7b8c53d623e333ccfec151db14ea5f4fba4
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/Sudokuv4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_923859a7c1836d85f6f03ed33797b31a0e823a3a/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/Sudokuv4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_923859a7c1836d85f6f03ed33797b31a0e823a3a
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/Sudokuv4/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ef3af7b8c53d623e333ccfec151db14ea5f4fba4/classes.dex

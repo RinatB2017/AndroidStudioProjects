@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wi-Fi Privacy Police</string>
+    <string name="pref_onlyavailable">Privacy protection</string>
+    <string name="pref_onlyavailable_summ">Prevent other people from viewing your list of networks by only enabling them when they are in range</string>
+    <string name="pref_onlyknown">Data protection</string>
+    <string name="pref_onlyknown_summ">Only allow connections to hotspots when they should be available (by asking you the first time you connect to a new hotspot)</string>
+    <string name="ask_permission">Are you sure network "%1$s" should be available right now?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="permission_header">\"%1$s\" encountered</string>
+    <string name="action_settings">Settings</string>
+    <string name="info_string">Wi-Fi Privacy Police will keep protecting you in the background. You can close this window and stop worrying about privacy sensitive information leaking from your device.</string>
+    <string name="clear_hotspots">Clear all hotspots</string>
+    <string name="clear_hotspots_summ">Click here to remove all trusted and untrusted hotspots from your list</string>
+    <string name="dialog_clearhotspots">Are you sure you want to remove all trusted and untrusted hotspots? This will result in Privacy Police asking you for every hotspot whether it should be allowed</string>
+    <string name="dialog_clearhotspots_yes">Clear</string>
+    <string name="dialog_clearhotspots_no">Cancel</string>
+    <string name="dialog_clearhotspotsformac">Are you sure you want to remove all hotspots for the network \"%1$s\"?</string>
+    <string name="pref_tracking">Allow anonymous usage statistics</string>
+    <string name="pref_tracking_summ">Enabling this helps further research by periodically sending anonymous usage data, such as whether you are still using the app. We do not collect any personally identifiable information, such as network names.</string>
+    <string name="modify_hotspots">Known hotspots</string>
+    <string name="modify_hotspots_summ">Remove hotspots from your list of trusted and blocked hotspots (advanced)</string>
+    <string name="dialog_removetrustedmac">Are you sure you want to remove hotspot \"%1$s\"?</string>
+    <string name="dialog_remove">Remove</string>
+    <string name="location_permission_header">Location access disabled</string>
+    <string name="location_permission_explanation">Wi-Fi PrivacyPolice might need (limited) location access in order to function correctly. Click here for more info.</string>
+    <string name="location_permission_full_explanation">Starting with Android version 6.0 (Marshmallow), apps can only view the list of Wi-Fi networks that are in range while location access is enabled. Your mileage may vary (depending on the device you\'re using, this might not be the case), but if you experience problems when using Wi-Fi PrivacyPolice, consider enabling location access. Coarse location access (only using Wi-Fi networks and cell towers, and not your actual GPS chip) should be sufficient.</string>
+    <string name="location_open_settings">Open location settings</string>
+    <string name="pref_locationnotice">Show location notice</string>
+    <string name="pref_locationnotice_summ">Remind me via a notification when coarse location access is disabled</string>
+</resources>

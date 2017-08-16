@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Wi-Fi Privacy Police</string>
+    <string name="pref_onlyavailable">Protection de la vie privée</string>
+    <string name="pref_onlyavailable_summ">Empêcher que d\'autres personnes puissent accéder à votre liste des points d\'accès connus</string>
+    <string name="pref_onlyknown">Protection des données</string>
+    <string name="pref_onlyknown_summ">Autoriser que les connexions aux points d\'accès de confiance (une confirmation vous sera demandée lors de la première connexion)</string>
+    <string name="ask_permission">Faites-vous confiance au réseau "%1$s"\u00a0?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="permission_header">\"%1$s\" rencontré</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="info_string">Wi-Fi Privacy Police continue de vous protéger en arrière-plan. Vous pouvez fermer cette fenêtre.</string>
+    <string name="clear_hotspots">Retirer tous les points d\'accès</string>
+    <string name="clear_hotspots_summ">Appuyez ici pour retirer votre liste de points d\'accès</string>
+    <string name="dialog_clearhotspots">Êtes-vous sûr de vouloir retirer la liste de points d\'accès\u00a0? Wi-Fi Privacy Police vous redemandera confirmation à chaque première connexion au point d\'accès</string>
+    <string name="dialog_clearhotspots_yes">Retirer</string>
+    <string name="dialog_clearhotspots_no">Annuler</string>
+    <string name="dialog_clearhotspotsformac">Êtes-vous sûr de vouloir retirer tous les points d\'accès du réseau \"%1$s\"\u00a0?</string>
+    <string name="pref_tracking">Autoriser les statistiques d\'utilisation anonymes</string>
+    <string name="pref_tracking_summ">Activer cette option aide au développement en envoyant périodiquement des données anonymes, comme par exemple si vous vous servez encore de l\'application. Nous ne collectons pas d\'informations personnelles telles que les noms des réseaux.</string>
+    <string name="modify_hotspots">Points d\'accès connus</string>
+    <string name="modify_hotspots_summ">Retirer les points d\'accès de la liste de confiance ou de celle des points d\'accès bloqués (avancé)</string>
+    <string name="dialog_removetrustedmac">Êtes-vous sûr de vouloir retirer le point d\'accès \"%1$s\" de cette liste\u00a0?</string>
+    <string name="dialog_remove">Retirer</string>
+    <string name="location_permission_header">Location access disabled</string>
+    <string name="location_permission_explanation">Wi-Fi PrivacyPolice might need (limited) location access in order to function correctly. Click here for more info.</string>
+    <string name="location_permission_full_explanation">Starting with Android version 6.0 (Marshmallow), apps can only view the list of Wi-Fi networks that are in range while location access is enabled. Your mileage may vary (depending on the device you\'re using, this might not be the case), but if you experience problems when using Wi-Fi PrivacyPolice, consider enabling location access. Coarse location access (only using Wi-Fi networks and cell towers, and not your actual GPS chip) should be sufficient.</string>
+    <string name="location_open_settings">Open location settings</string>
+    <string name="pref_locationnotice">Show location notice</string>
+    <string name="pref_locationnotice_summ">Remind me via a notification when coarse location access is disabled</string>
+</resources>

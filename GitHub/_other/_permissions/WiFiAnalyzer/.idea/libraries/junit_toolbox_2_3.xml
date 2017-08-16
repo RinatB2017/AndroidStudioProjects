@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="junit-toolbox-2.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.junit-toolbox/junit-toolbox/2.3/7e4cf91e18d270a48eb07b6fd4fe9c86b50d3885/junit-toolbox-2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.googlecode.junit-toolbox/junit-toolbox/2.3/4c353d1e29c8bb78726644078b7b883f289cf21b/junit-toolbox-2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
