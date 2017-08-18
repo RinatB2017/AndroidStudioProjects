@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/rxjava_demo.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/rxjava_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rxjava_demo.iml" filepath="$PROJECT_DIR$/rxjava_demo.iml" />
+    </modules>
+  </component>
+</project>
