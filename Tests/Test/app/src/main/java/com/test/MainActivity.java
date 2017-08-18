@@ -12,8 +12,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cb1;
     CheckBox cb2;
     CheckBox cb3;
+
+    Spinner spinner;
+    String[] data = {"one", "two", "three", "four", "five"};
 
     Memory mem;
 
@@ -103,6 +108,14 @@ public class MainActivity extends AppCompatActivity {
         cb1 = (CheckBox) findViewById(R.id.checkBox1);
         cb2 = (CheckBox) findViewById(R.id.checkBox2);
         cb3 = (CheckBox) findViewById(R.id.checkBox3);
+
+        //---
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+        //---
 
         mem = new Memory(getApplicationContext());
 
@@ -201,6 +214,10 @@ public class MainActivity extends AppCompatActivity {
         for(int n=0; n<100; n++) {
             logging("n="+String.valueOf(n));
         }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void run(View view) {
+        logging(spinner.getSelectedItem().toString());
     }
     //---------------------------------------------------------------------------------------------
 }
