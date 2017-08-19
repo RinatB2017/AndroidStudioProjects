@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     CheckBox cb2;
     CheckBox cb3;
 
+    // https://developer.android.com/guide/topics/ui/controls/spinner.html
     Spinner spinner;
     String[] data = {"one", "two", "three", "four", "five"};
 
