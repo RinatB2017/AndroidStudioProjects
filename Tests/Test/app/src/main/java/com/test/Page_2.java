@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-public class Page_2 extends Test_class {
+public class Page_2 extends TestingLogging {
 
   TextView logView;
 
@@ -23,44 +23,7 @@ public class Page_2 extends Test_class {
 
     logView = (TextView)findViewById(R.id.logView);
 
-    logging("Page_2: onCreate()");
-    test("Page_2");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onRestart() {
-    super.onRestart();
-    logging("Page_2: onRestart()");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onStart() {
-    super.onStart();
-    logging("Page_2: onStart()");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onResume() {
-    super.onResume();
-    logging("Page_2: onResume()");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onPause() {
-    super.onPause();
-    logging("Page_2: onPause()");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onStop() {
-    super.onStop();
-    logging("Page_2: onStop()");
-  }
-  //---------------------------------------------------------------------------------------------
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    logging("Page_2: onDestroy()");
+    logging(getLocalClassName() + ": onCreate()");
   }
   //---------------------------------------------------------------------------------------------
   public void onClick(View view) {

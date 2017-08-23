@@ -18,7 +18,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TestingLogging {
 
     final String TAG = "States";
     TextView logView;
@@ -121,11 +121,10 @@ public class MainActivity extends AppCompatActivity {
         mem = new Memory(getApplicationContext());
 
         state_restore();
-        Log.v(TAG, "MainActivity: onCreate()");
 
         logView = (TextView)findViewById(R.id.logView);
 
-        logging("MainActivity");
+        logging(getLocalClassName() + ": onCreate()");
 
         if(!check_data()) {
             dialog();
@@ -162,41 +161,10 @@ public class MainActivity extends AppCompatActivity {
     }
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onStart() {
-        super.onStart();
-        logging("MainActivity: onStart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        logging("MainActivity: onRestart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onResume() {
-        super.onResume();
-        logging("MainActivity: onResume()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onPause() {
-        super.onPause();
-        logging("MainActivity: onPause()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
     protected void onStop() {
         super.onStop();
-        logging("MainActivity: onStop()");
 
         state_save();
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        logging("MainActivity: onDestroy()");
     }
     //---------------------------------------------------------------------------------------------
     public void onClick(View view) {
