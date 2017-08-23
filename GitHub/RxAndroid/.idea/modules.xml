@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/rxandroid/rxandroid.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/rxandroid/rxandroid.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/rxandroid-root.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/rxandroid-root.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/sample-app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/sample-app.iml" />
+    </modules>
+  </component>
+</project>
