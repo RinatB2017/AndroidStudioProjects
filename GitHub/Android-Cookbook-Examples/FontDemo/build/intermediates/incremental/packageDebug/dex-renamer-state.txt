@@ -1,7 +1,0 @@
-#Sun Aug 20 01:54:40 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FontDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_fb7a9fc7a228a428454597acfd1ee2be959e1745
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FontDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f3c3efed81c0f987d14c7585ee74d706ee6af1a2/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FontDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_f3c3efed81c0f987d14c7585ee74d706ee6af1a2
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FontDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_fb7a9fc7a228a428454597acfd1ee2be959e1745/classes.dex

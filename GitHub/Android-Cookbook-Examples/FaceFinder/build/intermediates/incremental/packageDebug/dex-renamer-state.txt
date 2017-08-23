@@ -1,7 +1,0 @@
-#Sun Aug 20 02:01:01 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_78695d577171e3e324d365c66a2332aa76438cbf
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1053d1b1fb248c9effa01300ab542dc34954f571/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1053d1b1fb248c9effa01300ab542dc34954f571
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_78695d577171e3e324d365c66a2332aa76438cbf/classes.dex

@@ -1,4 +1,0 @@
-#Sun Aug 20 01:39:16 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4
-renamed.0=classes.dex
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex

@@ -1,4 +1,0 @@
-#Sun Aug 20 02:01:01 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2
-renamed.0=classes.dex
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/FaceFinder/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex
