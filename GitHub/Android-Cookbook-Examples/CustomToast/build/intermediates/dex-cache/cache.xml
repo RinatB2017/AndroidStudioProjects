@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomToast/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomToast/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2fdecde8f9570a80a5ef94337e41bb2b671f8afb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomToast/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="49d2fdb33ad0cda242dfe92311c059310f23d12d">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomToast/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_a8f39cc703600700e0dabe745f1ddf9d47aec16d/classes.dex" />
+    </item>
+
+</items>

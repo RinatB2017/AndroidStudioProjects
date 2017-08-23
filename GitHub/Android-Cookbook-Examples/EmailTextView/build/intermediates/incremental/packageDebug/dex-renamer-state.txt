@@ -1,0 +1,7 @@
+#Sun Aug 20 01:59:36 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2a32d106ee4f9cebb304ca456b0ce2363ee099dc
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_3f80661f7ae77dc43af0423f64bfdb326910c61e/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_3f80661f7ae77dc43af0423f64bfdb326910c61e
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2a32d106ee4f9cebb304ca456b0ce2363ee099dc/classes.dex

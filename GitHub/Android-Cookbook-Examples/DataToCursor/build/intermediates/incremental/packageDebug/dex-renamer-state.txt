@@ -1,0 +1,7 @@
+#Sun Aug 20 01:45:37 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DataToCursor/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7a1346aa49bda9b56f1cc4dac150386b8fa7bb23
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DataToCursor/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bb94b354b6be4b2993ddb02253401bb0d9ce2579/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DataToCursor/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bb94b354b6be4b2993ddb02253401bb0d9ce2579
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DataToCursor/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7a1346aa49bda9b56f1cc4dac150386b8fa7bb23/classes.dex

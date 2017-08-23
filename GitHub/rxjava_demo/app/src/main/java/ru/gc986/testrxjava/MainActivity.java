@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -13,10 +15,13 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
+import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     String[] data = {
             "mytest0",
+            "mytest1",
             "rxTest0" ,
             "rxTest" ,
             "rxTest1" ,
@@ -47,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinner;
     Button btn_run;
 
+    EditText editText;
+
+    private static CheckBox cb_open;
+    private static CheckBox cb_read;
+    private static CheckBox cb_close;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         btn_run = (Button)findViewById(R.id.btn_run);
         spinner = (Spinner)findViewById(R.id.spinner);
         log_main = (TextView)findViewById(R.id.log_main);
+
+        cb_open = (CheckBox)findViewById(R.id.cb_open);
+        cb_read = (CheckBox)findViewById(R.id.cb_read);
+        cb_close = (CheckBox)findViewById(R.id.cb_close);
+
+        editText = (EditText) findViewById(R.id.editText);
+        Observable<String> emailObservable = RxEditText.getTextWatcherObservable(editText);
 
         //---
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
@@ -75,34 +94,117 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    /*
-        Observable.range(1, 10)
-                .map(MainActivity::doubleValue)
-                .map(MainActivity::addValue)
-                .subscribeOn(Schedulers.computation())
-                .subscribe(new Subscriber<Integer>() {
+    void mytest0(long param) {
+
+        Observable.just("Hello, world!")
+                .map(new Func1<String, Integer>() {
+                    @Override
+                    public Integer call(String s) {
+                        int a = 6;
+                        int b = 0;
+                        int c = a / b;
+                        return s.hashCode() + c;
+                    }
+                })
+                .map(new Func1<Integer, String>() {
+                    @Override
+                    public String call(Integer s) {
+                        return "YES";
+                    }
+                })
+                .subscribe(new Subscriber<String>() {
                     @Override
                     public void onCompleted() {
-                        logging("Completed!");
+                        logging("Завершено успешно!");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        logging("Error: " + e.toString());
+                        logging(e.getMessage());
                     }
 
                     @Override
-                    public void onNext(Integer value) {
-                        printOut(value);
+                    public void onNext(String r) {
                     }
                 });
-     */
-    void mytest0(long param) {
+
+        Observable<String> myObservable = Observable.create(
+                new Observable.OnSubscribe<String>() {
+                    @Override
+                    public void call(Subscriber<? super String> sub) {
+                        sub.onNext("Hello, world!");
+                        sub.onCompleted();
+                    }
+                }
+        );
+        Subscriber<String> mySubscriber = new Subscriber<String>() {
+            @Override
+            public void onNext(String s) { logging(s); }
+
+            @Override
+            public void onCompleted() { }
+
+            @Override
+            public void onError(Throwable e) { }
+        };
+        myObservable.subscribe(mySubscriber);
+
+        Observable.just("Hello, world2!")
+                .subscribe(s -> logging(s));
+
+        Observable.just(5)
+                .map(integer -> { return integer / 2; } )
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+                        logging("Завершено успешно!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        logging(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Integer r) {
+                        if(r != 1)
+                            logging(String.valueOf(r));
+                    }
+                });
+
+        Observable.just(5)
+                .map(integer -> { return integer / 3.0; } )
+                .subscribe(integer -> { logging(String.valueOf(integer)); });
+
+        Observable.just(5)
+                .map(integer -> { return integer / 3.0; } )
+                .subscribe(integer -> { logging(String.valueOf(integer)); });
+
+        Observable.just("Мой Мега тест!")
+                .map(string -> {
+                    string = "0";
+                    logging("text 0");
+                    return string;
+                })
+                .map(string -> {
+                    logging("text 1");
+                    return string;
+                })
+                .map(string -> {
+                    logging("text 2");
+                    return string;
+                })
+                .subscribe(string -> { logging(string); });
+    }
+    //---------------------------------------------------------------------------------------------
+    void mytest1(long param) {
         long timeout= System.currentTimeMillis();
 
         Observable.range(1, 10)
                 .map(MainActivity::doubleValue)
+                //.filter(integer -> integer == 6)
                 .map(MainActivity::addValue)
+                .timeout(1100, TimeUnit.MILLISECONDS)
                 //.subscribeOn(Schedulers.computation())
                 .subscribe(new Subscriber<Integer>() {
                     @Override
@@ -113,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(Throwable e) {
                         logging("Error: " + e.toString());
+                        logging(e.getMessage());
                     }
 
                     @Override
@@ -130,20 +233,104 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static int addValue(int value) {
-        return value + 3;
+        return value + 1;
     }
 
     private static int doubleValue(int value) {
+        if(value == 5)
+            throw new RuntimeException("xxx");
+        return value * 2;
+    }
+
+    private static int sleeping_doubleValue(int value) {
         try {
             logging(String.valueOf(Thread.currentThread().getName() + ": doubling value"));
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             return value * 2;
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     //---------------------------------------------------------------------------------------------
+    void mytest2(long param) {
 
+        //---
+        Observable<String> myObservable = Observable.create(
+                new Observable.OnSubscribe<String>() {
+                    @Override
+                    public void call(Subscriber<? super String> sub) {
+                        sub.onNext("Hello, world!");
+                        sub.onCompleted();
+                    }
+                }
+        );
+        Subscriber<String> mySubscriber = new Subscriber<String>() {
+            @Override
+            public void onNext(String s) { logging(s); }
+
+            @Override
+            public void onCompleted() { }
+
+            @Override
+            public void onError(Throwable e) { }
+        };
+        myObservable.subscribe(mySubscriber);
+        //---
+        /*
+        Observable.just(1)
+                .map(MainActivity::step0)
+                .map(MainActivity::step1)
+                .map(MainActivity::step2)
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+                        logging("Завершено успешно!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        logging(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Integer r) {
+                        if(r != 1)
+                            logging(String.valueOf(r));
+                    }
+                });
+        */
+    }
+
+    private static int step0(int value) {
+        logging("Подключение к серверу");
+        if(check_open())
+            throw new RuntimeException("Ошмбка подключения к серверу");
+        return value;
+    }
+    private static int step1(int value) {
+        logging("Запрос данных");
+        if(check_data())
+            throw new RuntimeException("Ошмбка получения данных");
+        return value;
+    }
+    private static int step2(int value) {
+        logging("Отключение от сервера");
+        if(check_close())
+            throw new RuntimeException("Ошмбка отключения от сервера");
+        return value;
+    }
+
+
+    public static boolean check_open() {
+        return !cb_open.isChecked();
+    }
+    public static boolean check_data() {
+        return !cb_read.isChecked();
+    }
+    public static boolean check_close() {
+        return !cb_close.isChecked();
+    }
+    //---------------------------------------------------------------------------------------------
     void rxTest(long param) {
 
         Observable<String> myObservable = Observable.create(
@@ -170,7 +357,7 @@ public class MainActivity extends AppCompatActivity {
 
         myObservable.subscribe(mySubscriber);
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest0(long param) {
 
         Observable<String> myObservable = Observable.create(
@@ -209,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
         myObservable.subscribe(mySubscriber2);
         myObservable.subscribe(mySubscriber1);
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest1(long param) {
 
         Observable<String> myObservable = Observable.create(
@@ -249,24 +436,24 @@ public class MainActivity extends AppCompatActivity {
         myObservable2.subscribe(mySubscriber1);
 
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest2(long param) {
         Observable.just("My_Rx_Message")
                 .subscribe(s -> logging(s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest3(String... collection){
         Observable.from(collection)
                 .subscribe(s -> logging("Collect - " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest4(long param) {
         String[] arr = {"1","2","3"};
         Observable.just(arr)
                 .flatMap(a -> Observable.from(a))
                 .subscribe(s -> logging("Item - " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest5(long param) {
         String[] arr = {"Один","Два","Три","Четыре","Пять"};
         Observable.from(arr)
@@ -278,21 +465,21 @@ public class MainActivity extends AppCompatActivity {
         return Observable.just(str)
                 .map(s -> s.length());
     };
-
+    //---------------------------------------------------------------------------------------------
     void rxTest6(long param) {
         String[] arr = {"1","2","3","4","5"};
         Observable.from(arr)
                 .filter(s -> !s.equals("4"))
                 .subscribe(s -> logging("item = " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxTest7(long param) {
         String[] arr = {"1","2","3","4","5"};
         Observable.from(arr)
                 .take(3)
                 .subscribe(s -> logging("item = " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava8(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -302,7 +489,7 @@ public class MainActivity extends AppCompatActivity {
                 .doOnNext(s1 -> logging("-- "+s1))
                 .subscribe(s2 -> logging("item = "+s2));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava9(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -310,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
                 .doOnCompleted(() -> logging("End"))
                 .subscribe(s -> logging("item = " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava10(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -334,11 +521,11 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
-
+    //---------------------------------------------------------------------------------------------
     String errMap(String s){
         return (s.equals("4") ? s.substring(s.length(),s.length()+1) : s);
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava11(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -346,7 +533,7 @@ public class MainActivity extends AppCompatActivity {
                 .first()
                 .subscribe(s -> logging("Item => " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava12(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -354,7 +541,7 @@ public class MainActivity extends AppCompatActivity {
                 .last()
                 .subscribe(s -> logging("Item => " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava13(long param) {
         String[] arr = {"1","2","3","4","5"};
 
@@ -363,14 +550,14 @@ public class MainActivity extends AppCompatActivity {
                 .first()
                 .subscribe(s -> logging("Item ? " + s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava14(long param) {
         String[] arr = {"1","2","3","4","5"};
         Observable.from(arr)
                 .map(s->("-"+s+"-"))
                 .subscribe(s->logging(s));
     }
-
+    //---------------------------------------------------------------------------------------------
     void rxJava15(long param) {
         String[] arr = {"1","2","3","4","5"};
         Observable.from(arr)
@@ -379,7 +566,7 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s->logging(s));
     }
-
+    //---------------------------------------------------------------------------------------------
     public void run(View view) {
         btn_run.setEnabled(false);
 
@@ -407,4 +594,5 @@ public class MainActivity extends AppCompatActivity {
 
         btn_run.setEnabled(true);
     }
+    //---------------------------------------------------------------------------------------------
 }

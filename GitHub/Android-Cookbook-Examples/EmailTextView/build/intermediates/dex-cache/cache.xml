@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/libs/android-support-v4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="48c94ae70fa65718b382098237806a5909bb096e">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/2/android-support-v4_c5e754009544b23535b9ecc786f700cf34f96b97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_2a32d106ee4f9cebb304ca456b0ce2363ee099dc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="46fba24cfcdf827aabfc6e6fd7a04f810d188b57">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/EmailTextView/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_3f80661f7ae77dc43af0423f64bfdb326910c61e/classes.dex" />
+    </item>
+
+</items>

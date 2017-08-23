@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="461b5868ce6d59aff3be0fbee1128a0a279f089d">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6b7c0e598ed40b377b686d694230e5286c6992e8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_8ae21668a177e41683c1a4ab509b8c66c51e08fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/libs/android-support-v4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bd6479f5dd592790607e0504e66e0f31c2b4d308">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/ViewPagerDemo/build/intermediates/transforms/dex/debug/folders/1000/2/android-support-v4_bd22a068c7c7714a374be2dc76875d014c192ac9/classes.dex" />
+    </item>
+
+</items>

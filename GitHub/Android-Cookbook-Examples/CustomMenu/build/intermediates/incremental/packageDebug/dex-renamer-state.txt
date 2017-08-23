@@ -1,0 +1,7 @@
+#Sun Aug 20 01:39:16 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_49c8cf37f77a7a15fe7fa0cf4e2abdaa5d9a4fd8
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_eb495ded3179648585179bc0e918f34af21a3e38/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_eb495ded3179648585179bc0e918f34af21a3e38
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/CustomMenu/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_49c8cf37f77a7a15fe7fa0cf4e2abdaa5d9a4fd8/classes.dex

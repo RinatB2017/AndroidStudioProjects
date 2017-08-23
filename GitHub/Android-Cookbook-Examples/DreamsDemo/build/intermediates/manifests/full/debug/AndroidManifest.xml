@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dreamsdemo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="23" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="26.0.0-alpha1" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service
+            android:name="com.example.dreamsdemo.DreamsDemo"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher"
+            android:label="@string/dream_label" >
+            <intent-filter>
+                <action android:name="android.service.dreams.DreamService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <!--
+             Points to optional metadata for this dream; for now they only implement 
+             *** a Settings button, ours does nothing but there it is...
+            -->
+            <meta-data
+                android:name="android.service.dream"
+                android:resource="@xml/my_dream" />
+        </service>
+
+        <activity
+            android:name="com.example.dreamsdemo.SettingsActivity"
+            android:label="@string/dream_label" />
+    </application>
+
+</manifest>

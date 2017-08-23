@@ -1,0 +1,85 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:2:1-26:12
+	package
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:3:5-45
+	android:versionName
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:5:5-30
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+	android:versionCode
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:4:5-28
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /home/boss/.android/build-cache/1b30b12c9ed61f9f0da8e51a809e29d2a245381a/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /home/boss/.android/build-cache/5697b92941dc4a1f2335fad93211fa4dfa429a46/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /home/boss/.android/build-cache/2b622d9a1708cf57ae24ae0322b3e46069cca8d5/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /home/boss/.android/build-cache/c06667492d1b8d6567a189719b1facf9796a9a06/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /home/boss/.android/build-cache/b873a819585d4af6789e7521171130c14b8375ac/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/62c3b3df96cacdcb2afda5ccffae28fe3a527827/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/60b8982eaed4487b1798258cc1223df73b63b072/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /home/boss/.android/build-cache/15f562a553292041d7c32cf7bae15cfa5b8fc1c5/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:9:9-38
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:8:9-35
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml
+application
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:11:5-24:19
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /home/boss/.android/build-cache/1b30b12c9ed61f9f0da8e51a809e29d2a245381a/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /home/boss/.android/build-cache/5697b92941dc4a1f2335fad93211fa4dfa429a46/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /home/boss/.android/build-cache/2b622d9a1708cf57ae24ae0322b3e46069cca8d5/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /home/boss/.android/build-cache/c06667492d1b8d6567a189719b1facf9796a9a06/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /home/boss/.android/build-cache/b873a819585d4af6789e7521171130c14b8375ac/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/62c3b3df96cacdcb2afda5ccffae28fe3a527827/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/60b8982eaed4487b1798258cc1223df73b63b072/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /home/boss/.android/build-cache/15f562a553292041d7c32cf7bae15cfa5b8fc1c5/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:14:9-41
+	android:allowBackup
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:12:9-35
+	android:icon
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:13:9-45
+	android:theme
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:15:9-40
+activity#com.darwinsys.windowbackground.MainActivity
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:16:9-23:20
+	android:label
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:18:13-45
+	android:name
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:17:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:19:13-22:29
+action#android.intent.action.MAIN
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/WindowBackgroundDemo/AndroidManifest.xml:21:27-74
+meta-data#android.support.VERSION
+ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] /home/boss/.android/build-cache/1b30b12c9ed61f9f0da8e51a809e29d2a245381a/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] /home/boss/.android/build-cache/5697b92941dc4a1f2335fad93211fa4dfa429a46/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /home/boss/.android/build-cache/2b622d9a1708cf57ae24ae0322b3e46069cca8d5/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /home/boss/.android/build-cache/c06667492d1b8d6567a189719b1facf9796a9a06/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /home/boss/.android/build-cache/b873a819585d4af6789e7521171130c14b8375ac/output/AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/62c3b3df96cacdcb2afda5ccffae28fe3a527827/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] /home/boss/.android/build-cache/60b8982eaed4487b1798258cc1223df73b63b072/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] /home/boss/.android/build-cache/15f562a553292041d7c32cf7bae15cfa5b8fc1c5/output/AndroidManifest.xml:25:5-27:41
+	android:value
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:27:9-38
+	android:name
+		ADDED from [com.android.support:appcompat-v7:26.0.0-alpha1] /home/boss/.android/build-cache/c4343d61d78eb226c3994a52685b863375ac0a9d/output/AndroidManifest.xml:26:9-47
