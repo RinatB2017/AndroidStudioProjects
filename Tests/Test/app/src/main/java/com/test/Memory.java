@@ -57,5 +57,7 @@ public class Memory {
         return true;
     }
     //---------------------------------------------------------------------------------------------
-
+    public boolean get_boolean_value(int value) {
+        return (value != 0);
+    }
 }

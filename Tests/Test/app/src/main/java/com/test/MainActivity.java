@@ -168,18 +168,32 @@ public class MainActivity extends TestingLogging {
     }
     //---------------------------------------------------------------------------------------------
     public void onClick(View view) {
-        Intent intent = new Intent(this, Page_1.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-
-        //Intent intent = new Intent(this, Test_Activity.class);
+        //Intent intent = new Intent(this, Page_1.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //startActivity(intent);
+
+        Intent intent2 = new Intent(this, Test_Activity.class);
+        startActivity(intent2);
     }
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        //Test_class t_class = new Test_class();
-        //t_class.test();
-        //logging(String.valueOf(t_class.get_count()));
+        Test my_test = new Test();
 
+        try {
+            my_test.test();
+            my_test.test2();
+        }
+        catch (RuntimeException e) {
+            logging(e.getMessage());
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void test1(View view) {
+        Test_class t_class = new Test_class();
+        t_class.test("test");
+        logging(String.valueOf(t_class.get_count()));
+    }
+    //---------------------------------------------------------------------------------------------
+    public void test2(View view) {
         for(int n=0; n<100; n++) {
             logging("n="+String.valueOf(n));
         }

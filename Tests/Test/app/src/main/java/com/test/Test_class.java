@@ -10,8 +10,17 @@ import android.util.Log;
 public class Test_class extends AppCompatActivity {
 
     final String TAG = "States";
+    int cnt = 0;
+
+    void logging(String text) {
+        Log.v(TAG, text + "\n");
+    }
 
     public void test(String text) {
-        Log.v(TAG, text);
+        logging(text);
+    }
+
+    public int get_count() {
+        return cnt;
     }
 }
