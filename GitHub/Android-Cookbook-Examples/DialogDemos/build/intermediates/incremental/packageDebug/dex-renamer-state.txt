@@ -1,7 +1,0 @@
-#Sun Aug 20 01:50:23 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DialogDemos/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34fab63e772e4ce18fa466013081c7999b88e9d7
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DialogDemos/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b9d4c3f6c0d883cdd624c7b566f30afbf3c3f668/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DialogDemos/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_b9d4c3f6c0d883cdd624c7b566f30afbf3c3f668
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/Android-Cookbook-Examples/DialogDemos/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_34fab63e772e4ce18fa466013081c7999b88e9d7/classes.dex
