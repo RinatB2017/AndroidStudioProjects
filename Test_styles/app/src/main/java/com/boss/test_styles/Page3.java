@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class Page3 extends AppCompatActivity {
 
-    TextView logView;
+    private TextView logView;
 
     void logging(String text) {
         logView.append(text + "\n");
@@ -19,7 +19,7 @@ public class Page3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page3);
 
-        logView = (TextView)findViewById(R.id.logView);
+        logView = (TextView)findViewById(R.id.log_page3);
 
         logging("onCreate");
     }

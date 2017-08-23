@@ -16,7 +16,7 @@
 
     <Button
         android:id="@+id/btn_1"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="page_1"
         android:text="1"
@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/btn_2"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="page_2"
         android:text="2"
@@ -34,7 +34,7 @@
 
     <Button
         android:id="@+id/btn_home"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="page_main"
         android:text="Home"
@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/logView"
+                android:id="@+id/log_page3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="8dp" />

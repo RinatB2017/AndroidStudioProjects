@@ -53,7 +53,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/logView"
+                android:id="@+id/log_page3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:layout_editor_absoluteX="8dp" />
