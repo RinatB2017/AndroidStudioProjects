@@ -6,6 +6,13 @@
     android:layout_margin="8dp"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/button"
         style="@style/HabraThemeButton"

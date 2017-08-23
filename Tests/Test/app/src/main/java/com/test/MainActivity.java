@@ -17,6 +17,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends TestingLogging {
 
@@ -168,11 +169,11 @@ public class MainActivity extends TestingLogging {
     }
     //---------------------------------------------------------------------------------------------
     public void onClick(View view) {
-        //Intent intent = new Intent(this, Page_1.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //startActivity(intent);
+        Intent intent = new Intent(this, Page_1.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
 
-        Intent intent2 = new Intent(this, Test_Activity.class);
-        startActivity(intent2);
+        //Intent intent2 = new Intent(this, Test_Activity.class);
+        //startActivity(intent2);
     }
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
@@ -184,6 +185,7 @@ public class MainActivity extends TestingLogging {
         }
         catch (RuntimeException e) {
             logging(e.getMessage());
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
     //---------------------------------------------------------------------------------------------
