@@ -25,7 +25,7 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-        assertEquals("com.example.boss.test", appContext.getPackageName());
+        assertEquals("com.test", appContext.getPackageName());
 
         onView(withId(R.id.editText)).perform(typeText("MyLogin"));
     }

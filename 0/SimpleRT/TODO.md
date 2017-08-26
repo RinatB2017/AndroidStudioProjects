@@ -1,0 +1,10 @@
+- ~~push app into f-droid~~ done
+- implement simple gui
+- ~~pass dns server~~ done
+- ~~multi-tethering support~~ done
+- ~~push network config from desktop side, don't hardcode it into android service~~ done
+- make package for osx, debian
+- initialize accessory on utility starting, not on connecting device only
+- remove all puts/printfs into common log
+- think about proxy support
+- windows support?
