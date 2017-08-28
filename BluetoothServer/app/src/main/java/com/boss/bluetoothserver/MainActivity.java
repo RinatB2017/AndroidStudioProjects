@@ -52,9 +52,6 @@ public class MainActivity extends ListActivity {
         textData = (TextView) findViewById(R.id.textData);
 
         create_bluetooth();
-
-        //serverThread = new ServerThread(communicatorService);
-        //serverThread.start();
     }
 
     @Override
