@@ -1,6 +1,5 @@
 package interosite.ru.bluetoothdemo;
 
-import android.Manifest;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -10,8 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,9 +77,6 @@ public class MainActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //TODO временный костыль
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         setContentView(R.layout.main);
         textData = (TextView) findViewById(R.id.data_text);
         textMessage = (EditText) findViewById(R.id.message_text);
@@ -90,8 +84,6 @@ public class MainActivity extends ListActivity {
         create_bluetooth();
     }
 
-    public void create_bluetooth() {
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         /*
         if(bluetoothAdapter == null)
         {
@@ -103,12 +95,11 @@ public class MainActivity extends ListActivity {
             // Bluetooth выключен. Предложим пользователю включить его.
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-
-            //Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-            //enableBtIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION,300);
-            //startActivity(enableBtIntent);
         }
         */
+
+    public void create_bluetooth() {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         listAdapter = new ArrayAdapter<BluetoothDevice>(getBaseContext(), android.R.layout.simple_list_item_1, discoveredDevices) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
