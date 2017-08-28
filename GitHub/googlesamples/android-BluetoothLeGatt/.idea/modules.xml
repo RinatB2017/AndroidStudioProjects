@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/0/android-BluetoothLeGatt/Application/Application.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/0/android-BluetoothLeGatt/Application/Application.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/0/android-BluetoothLeGatt/android-BluetoothLeGatt.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/0/android-BluetoothLeGatt/android-BluetoothLeGatt.iml" />
+    </modules>
+  </component>
+</project>
