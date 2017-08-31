@@ -41,6 +41,8 @@ public class MainActivity extends ListActivity {
                             textData.setText(textData.getText().toString());
                             textData.append(message + "\n");
                             textData.append(socket.getRemoteDevice().getName() + "\n");
+                            
+                            // отвечаем эхом
                             try {
                                 OutputStream o_stream = socket.getOutputStream();
                                 o_stream.write(message.getBytes());
