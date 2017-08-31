@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,14 +31,22 @@ public class MainActivity extends ListActivity {
 
     private final CommunicatorService communicatorService = new CommunicatorService() {
         @Override
-        public Communicator createCommunicatorThread(BluetoothSocket socket) {
+        public Communicator createCommunicatorThread(final BluetoothSocket socket) {
             return new CommunicatorImpl(socket, new CommunicatorImpl.CommunicationListener() {
                 @Override
                 public void onMessage(final String message) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            textData.setText(textData.getText().toString() + "\n" + message);
+                            textData.setText(textData.getText().toString());
+                            textData.append(message + "\n");
+                            textData.append(socket.getRemoteDevice().getName() + "\n");
+                            try {
+                                OutputStream o_stream = socket.getOutputStream();
+                                o_stream.write(message.getBytes());
+                            } catch (IOException e) {
+                                textData.append("Stream ERROR: " +e.getMessage() + " \n");
+                            }
                         }
                     });
                 }
@@ -65,8 +75,7 @@ public class MainActivity extends ListActivity {
     }
 
     public void makeDiscoverable(View view) {
-        Intent i = new Intent(
-                BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
         i.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         startActivity(i);
     }
