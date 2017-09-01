@@ -1,7 +1,0 @@
-#Fri Sep 01 22:23:29 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10/reactive-streams-1.0.0_1094f807f654c8693aa7b6ba60c06c9e48487fff
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-2.0.1_361138ba89b0ea64772025e4caa273eacdfd8649/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10/rxjava-2.0.1_361138ba89b0ea64772025e4caa273eacdfd8649
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10/reactive-streams-1.0.0_1094f807f654c8693aa7b6ba60c06c9e48487fff/classes.dex
