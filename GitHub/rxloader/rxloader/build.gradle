@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     compile 'io.reactivex:rxandroid:0.24.0'
-    provided 'android:android:4.3'
+    provided 'android:android:4.3-r2'
     provided 'android.support:compatibility-v4:21.0.0'
 }
 

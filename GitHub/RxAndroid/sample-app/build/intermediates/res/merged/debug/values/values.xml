@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="app_name">RxJava Android Samples</string>
+    <string name="button_run_scheduler">Run Schedulers Example</string>
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+
+    </style>
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textAppearance">@android:style/TextAppearance.DeviceDefault.Large</item>
+    </style>
+</resources>

@@ -14,10 +14,14 @@
 package io.reactivex.android.samples;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -28,12 +32,38 @@ import java.util.concurrent.Callable;
 
 public class MainActivity extends Activity {
     private static final String TAG = "RxAndroidSamples";
+    private static final String log_name = "LOG";
 
     private final CompositeDisposable disposables = new CompositeDisposable();
+
+    TextView logView;
+
+    void logging(String text) {
+        logView.append(text + "\n");
+    }
+
+    void load_log() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        logView.append(sp.getString(log_name, ""));
+
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putString(log_name, "");
+        editor.apply();
+    }
+
+    void save_log() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putString(log_name, logView.getText().toString());
+        editor.apply();
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        logView = (TextView)findViewById(R.id.logView);
+        load_log();
+
         findViewById(R.id.button_run_scheduler).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 onRunSchedulerExampleButtonClicked();
@@ -41,7 +71,15 @@ public class MainActivity extends Activity {
         });
     }
 
-    @Override protected void onDestroy() {
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        save_log();
+    }
+
+    @Override
+    protected void onDestroy() {
         super.onDestroy();
         disposables.clear();
     }
@@ -55,14 +93,17 @@ public class MainActivity extends Activity {
             .subscribeWith(new DisposableObserver<String>() {
                 @Override public void onComplete() {
                     Log.d(TAG, "onComplete()");
+                    logging("onComplete()");
                 }
 
                 @Override public void onError(Throwable e) {
                     Log.e(TAG, "onError()", e);
+                    logging("onError() " + e.getMessage());
                 }
 
                 @Override public void onNext(String string) {
                     Log.d(TAG, "onNext(" + string + ")");
+                    logging("onNext(" + string + ")");
                 }
             }));
     }

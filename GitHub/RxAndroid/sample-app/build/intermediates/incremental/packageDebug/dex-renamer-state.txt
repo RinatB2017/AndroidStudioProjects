@@ -1,0 +1,7 @@
+#Fri Sep 01 22:23:29 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b0e326cb3594ace93d7a82c28fbca54245743294
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6e12f29b8bf904b2bde2acde12dfa9fdafdeb6f0/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6e12f29b8bf904b2bde2acde12dfa9fdafdeb6f0
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b0e326cb3594ace93d7a82c28fbca54245743294/classes.dex

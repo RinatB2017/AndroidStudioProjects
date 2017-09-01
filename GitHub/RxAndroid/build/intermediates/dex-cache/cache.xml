@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b0e326cb3594ace93d7a82c28fbca54245743294/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f3c22e20b328801b3d1a3aed33eb350455a06ef2">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/RxAndroid/sample-app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_6e12f29b8bf904b2bde2acde12dfa9fdafdeb6f0/classes.dex" />
+    </item>
+
+</items>
