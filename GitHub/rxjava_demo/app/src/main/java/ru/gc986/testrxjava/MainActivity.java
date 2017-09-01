@@ -1,5 +1,6 @@
 package ru.gc986.testrxjava;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.observers.TestSubscriber;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     String[] data = {
             "mytest0",
             "mytest1",
+            "mytest2",
             "rxTest0" ,
             "rxTest" ,
             "rxTest1" ,
@@ -95,6 +98,98 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     void mytest0(long param) {
+
+        logging("mytest0");
+        Observable.just(10)
+                .map(MainActivity::test)
+                .subscribe(new Subscriber<Integer>() {
+                    @Override
+                    public void onCompleted() {
+                        logging("Завершено успешно!");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        logging(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(Integer r) {
+                    }
+                });
+    }
+    private static int test(int value) {
+        int temp = value;
+        while(temp > 0) {
+            logging(String.valueOf(temp));
+            temp--;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+//        CatTask cat = new CatTask();
+//        cat.execute();
+
+        return temp;
+    }
+    static class CatTask extends AsyncTask<Void, Integer, Void> {
+
+        MainActivity activity;
+
+        // получаем ссылку на MainActivity
+        void link(MainActivity act) {
+            activity = act;
+        }
+
+        // обнуляем ссылку
+        void unLink() {
+            activity = null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            try {
+                int counter = 0;
+
+                for (int i = 0; i < 100; i++) {
+                    getFloor(counter);
+                    publishProgress(++counter);
+                }
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            logging("Залез");
+        }
+
+        @Override
+        protected void onProgressUpdate(final Integer... values) {
+            super.onProgressUpdate(values);
+
+            logging("Этаж: " + values[0]);
+        }
+
+        private void getFloor(int floor) throws InterruptedException {
+            TimeUnit.SECONDS.sleep(1);
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    void mytest1(long param) {
 
         Observable.just("Hello, world!")
                 .map(new Func1<String, Integer>() {
@@ -197,7 +292,7 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(string -> { logging(string); });
     }
     //---------------------------------------------------------------------------------------------
-    void mytest1(long param) {
+    void mytest2(long param) {
         long timeout= System.currentTimeMillis();
 
         Observable.range(1, 10)
@@ -252,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     //---------------------------------------------------------------------------------------------
-    void mytest2(long param) {
+    void mytest3(long param) {
 
         //---
         Observable<String> myObservable = Observable.create(

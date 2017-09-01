@@ -45,18 +45,21 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/src/main/java/ru/gc986/testrxjava/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
+            <state relative-caret-position="306">
+              <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
               <folding>
-                <element signature="e#3284#3285#0" expanded="true" />
-                <element signature="e#3344#3345#0" expanded="true" />
-                <element signature="e#3572#3573#0" expanded="true" />
-                <element signature="e#3658#3659#0" expanded="true" />
-                <element signature="e#3729#3730#0" expanded="true" />
-                <element signature="e#4867#4868#0" expanded="true" />
-                <element signature="e#4944#4945#0" expanded="true" />
-                <element signature="e#5030#5031#0" expanded="true" />
-                <element signature="e#5101#5102#0" expanded="true" />
+                <element signature="e#3094#3095#0" expanded="true" />
+                <element signature="e#3171#3172#0" expanded="true" />
+                <element signature="e#3257#3258#0" expanded="true" />
+                <element signature="e#3328#3329#0" expanded="true" />
+                <element signature="e#4060#4061#0" expanded="true" />
+                <element signature="e#4098#4099#0" expanded="true" />
+                <element signature="e#4150#4151#0" expanded="true" />
+                <element signature="e#4189#4190#0" expanded="true" />
+                <element signature="e#4248#4249#0" expanded="true" />
+                <element signature="e#4292#4293#0" expanded="true" />
+                <element signature="e#6063#6064#0" expanded="true" />
+                <element signature="e#6140#6141#0" expanded="true" />
                 <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -75,6 +78,8 @@
                 <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+                <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+                <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -1840,9 +1845,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="966" />
-    <option name="width" value="1336" />
-    <option name="height" value="1050" />
+    <option name="x" value="1001" />
+    <option name="width" value="1301" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -1870,6 +1875,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1887,84 +1894,15 @@
               <option name="myItemId" value="rxjava_demo" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxjava_demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxjava_demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxjava_demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="testrxjava" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rxjava_demo" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="device.picker.selection" value="Nexus_5X_API_26" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -2289,7 +2227,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="966" y="0" width="1336" height="1050" extended-state="4" />
+    <frame x="1001" y="0" width="1301" height="1056" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2298,14 +2236,14 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.50625" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.49375" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32922733" sideWeight="0.49375" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27421874" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2819277" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2342,18 +2280,21 @@
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/src/main/java/ru/gc986/testrxjava/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1740">
+          <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2372,6 +2313,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2381,15 +2324,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2408,6 +2354,49 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/src/main/java/ru/gc986/testrxjava/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
+            <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest2#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest3#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest4#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest5#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#forTest5#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest6#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxTest7#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava8#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava9#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava10#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava11#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava12#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2417,15 +2406,18 @@
         <state relative-caret-position="750">
           <caret line="69" column="10" selection-start-line="69" selection-start-column="10" selection-end-line="69" selection-end-column="10" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2444,6 +2436,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2464,15 +2458,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2491,6 +2488,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2500,15 +2499,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2527,6 +2529,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2536,15 +2540,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2563,6 +2570,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2572,15 +2581,18 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2599,6 +2611,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2691,20 +2705,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///opt/android-sdk-update-manager/sources/android-24/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="311" column="23" selection-start-line="311" selection-start-column="23" selection-end-line="311" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/rxjava_demo/app/src/main/java/ru/gc986/testrxjava/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="116" column="47" selection-start-line="116" selection-start-column="47" selection-end-line="116" selection-end-column="47" />
+        <state relative-caret-position="306">
+          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
           <folding>
-            <element signature="e#3284#3285#0" expanded="true" />
-            <element signature="e#3344#3345#0" expanded="true" />
-            <element signature="e#3572#3573#0" expanded="true" />
-            <element signature="e#3658#3659#0" expanded="true" />
-            <element signature="e#3729#3730#0" expanded="true" />
-            <element signature="e#4867#4868#0" expanded="true" />
-            <element signature="e#4944#4945#0" expanded="true" />
-            <element signature="e#5030#5031#0" expanded="true" />
-            <element signature="e#5101#5102#0" expanded="true" />
+            <element signature="e#3094#3095#0" expanded="true" />
+            <element signature="e#3171#3172#0" expanded="true" />
+            <element signature="e#3257#3258#0" expanded="true" />
+            <element signature="e#3328#3329#0" expanded="true" />
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4150#4151#0" expanded="true" />
+            <element signature="e#4189#4190#0" expanded="true" />
+            <element signature="e#4248#4249#0" expanded="true" />
+            <element signature="e#4292#4293#0" expanded="true" />
+            <element signature="e#6063#6064#0" expanded="true" />
+            <element signature="e#6140#6141#0" expanded="true" />
             <element signature="method#rxTest#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest0#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxTest1#0;class#MainActivity#0" expanded="false" />
@@ -2723,6 +2748,8 @@
             <element signature="method#rxJava13#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava14#0;class#MainActivity#0" expanded="false" />
             <element signature="method#rxJava15#0;class#MainActivity#0" expanded="false" />
+            <marker date="1504288405002" expanded="false" signature="5343:8739" ph="{...}" />
+            <marker date="1504288405002" expanded="false" signature="10723:12223" ph="{...}" />
           </folding>
         </state>
       </provider>
