@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/RTSPPlayer/RTSPPlayer.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/RTSPPlayer/RTSPPlayer.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/RTSPPlayer/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/RTSPPlayer/app/app.iml" />
+    </modules>
+  </component>
+</project>
