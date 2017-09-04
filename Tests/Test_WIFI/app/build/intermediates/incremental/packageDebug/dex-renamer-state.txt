@@ -1,0 +1,7 @@
+#Mon Sep 04 22:45:20 MSK 2017
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/Tests/Test_WIFI/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_254ae88b9e536df93d7eeee627a683270aafaf62
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/Tests/Test_WIFI/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7c68a18263e16fb7d387151e651dc0f1af16039c/classes.dex
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/Tests/Test_WIFI/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7c68a18263e16fb7d387151e651dc0f1af16039c
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/Tests/Test_WIFI/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_254ae88b9e536df93d7eeee627a683270aafaf62/classes.dex
