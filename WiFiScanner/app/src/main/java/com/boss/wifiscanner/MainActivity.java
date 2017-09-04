@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+// http://www.fandroid.info/kak-sozdat-prilozhenie-wi-fi-skanner-dlya-android/
+
 public class MainActivity extends AppCompatActivity {
 
     private Element[] nets;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void detectWifi(){
-        this.wifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+        this.wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         this.wifiManager.startScan();
         this.wifiList = this.wifiManager.getScanResults();
 
