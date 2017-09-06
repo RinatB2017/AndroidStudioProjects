@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvText = (TextView) findViewById(R.id.tvText);
+        tvText = (TextView) findViewById(R.id.logView);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorMagnet = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
@@ -79,9 +79,8 @@ public class MainActivity extends Activity {
 
     void showInfo() {
         sb.setLength(0);
-        sb.append("Orientation : " + format(valuesResult))
-                .append("\nOrientation 2: " + format(valuesResult2))
-        ;
+        sb.append("Orientation : " + format(valuesResult));
+        sb.append("\nOrientation 2: " + format(valuesResult2));
         tvText.setText(sb);
     }
 

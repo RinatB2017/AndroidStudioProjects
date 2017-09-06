@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/P1373_Orientation.iml" filepath="$PROJECT_DIR$/P1373_Orientation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/P1373_Orientation/P1373_Orientation.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/P1373_Orientation/P1373_Orientation.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/P1373_Orientation/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/P1373_Orientation/app/app.iml" />
     </modules>
   </component>
 </project>
