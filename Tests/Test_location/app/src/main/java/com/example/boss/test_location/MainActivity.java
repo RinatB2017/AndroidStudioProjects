@@ -16,25 +16,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class MainActivity extends AppCompatActivity {
 
-    TextView tvEnabledGPS;
-    TextView tvStatusGPS;
-    TextView tvLocationGPS;
-    TextView tvEnabledNet;
-    TextView tvStatusNet;
-    TextView tvLocationNet;
+    private TextView tvEnabledGPS;
+    private TextView tvStatusGPS;
+    private TextView tvLocationGPS;
+    private TextView tvEnabledNet;
+    private TextView tvStatusNet;
+    private TextView tvLocationNet;
 
-    TextView logView;
-    final String TAG = "States";
+    private TextView logView;
+    private final String TAG = "States";
 
     private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
-    StringBuilder sbGPS = new StringBuilder();
-    StringBuilder sbNet = new StringBuilder();
+    private StringBuilder sbGPS = new StringBuilder();
+    private StringBuilder sbNet = new StringBuilder();
 
     //---
     protected void requestPermission(String permissionType, int requestCode) {
@@ -50,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     //private static final int RECORD_REQUEST_CODE = 101;
     //requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
     //---
+
+    void logging(String text) {
+        logView.append(text + "\n");
+        Log.v(TAG, text);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +76,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.e(TAG, "error permission");
-            logView.append("onResume: error permission\n");
+            logging("onResume: error permission");
             return;
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                1000 * 10, 10, locationListener);
         locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 1000 * 10, 10,
+                LocationManager.GPS_PROVIDER,
+                1000 * 10, 10,
+                locationListener);
+        locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                1000 * 10, 10,
                 locationListener);
         checkEnabled();
     }
@@ -107,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
         public void onProviderEnabled(String provider) {
             checkEnabled();
             if (ActivityCompat.checkSelfPermission(getParent(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getParent(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                Log.e(TAG, "error permission");
-                logView.append("onProviderEnabled: error permission\n");
+                logging("onProviderEnabled: error permission");
                 return;
             }
             showLocation(locationManager.getLastKnownLocation(provider));
@@ -139,9 +143,10 @@ public class MainActivity extends AppCompatActivity {
         if (location == null)
             return "";
         return String.format(
-                "Coordinates: lat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
-                location.getLatitude(), location.getLongitude(), new Date(
-                        location.getTime()));
+                "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
+                location.getLatitude(),
+                location.getLongitude(),
+                new Date(location.getTime()));
     }
 
     private void checkEnabled() {
@@ -160,17 +165,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void update(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.e(TAG, "error permission");
-            logView.append("onResume: error permission\n");
+            logging("onResume: error permission");
             return;
         }
-        logView.append("update\n");
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                1000 * 10, 10, locationListener);
+        logging("update");
         locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 1000 * 10, 10,
+                LocationManager.GPS_PROVIDER,
+                1000 * 10, 10,
+                locationListener);
+        locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                1000 * 10, 10,
                 locationListener);
         checkEnabled();
-        logView.append("OK\n");
+        logging("OK");
     }
 }
