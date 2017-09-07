@@ -110,9 +110,9 @@ public class MainActivity extends Activity {
         valuesResult[1] = (float) Math.toDegrees(valuesResult[1]);
         valuesResult[2] = (float) Math.toDegrees(valuesResult[2]);
 
-        tv_X1.setText(String.valueOf(valuesResult[0]));
-        tv_Y1.setText(String.valueOf(valuesResult[1]));
-        tv_Z1.setText(String.valueOf(valuesResult[2]));
+        tv_X1.setText(String.format("%.1f", valuesResult[0]));
+        tv_Y1.setText(String.format("%.1f", valuesResult[1]));
+        tv_Z1.setText(String.format("%.1f", valuesResult[2]));
         return;
     }
 
@@ -144,9 +144,9 @@ public class MainActivity extends Activity {
         valuesResult2[1] = (float) Math.toDegrees(valuesResult2[1]);
         valuesResult2[2] = (float) Math.toDegrees(valuesResult2[2]);
 
-        tv_X2.setText(String.valueOf(valuesResult2[0]));
-        tv_Y2.setText(String.valueOf(valuesResult2[1]));
-        tv_Z2.setText(String.valueOf(valuesResult2[2]));
+        tv_X2.setText(String.format("%.1f", valuesResult2[0]));
+        tv_Y2.setText(String.format("%.1f", valuesResult2[1]));
+        tv_Z2.setText(String.format("%.1f", valuesResult2[2]));
         return;
     }
 
