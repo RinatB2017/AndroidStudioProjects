@@ -24,6 +24,14 @@ public class MainActivity extends Activity {
 
     StringBuilder sb = new StringBuilder();
 
+    TextView tv_X1;
+    TextView tv_Y1;
+    TextView tv_Z1;
+
+    TextView tv_X2;
+    TextView tv_Y2;
+    TextView tv_Z2;
+
     Timer timer;
 
     int rotation;
@@ -36,6 +44,14 @@ public class MainActivity extends Activity {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sensorMagnet = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+        tv_X1 = (TextView)findViewById(R.id.tv_X1);
+        tv_Y1 = (TextView)findViewById(R.id.tv_Y1);
+        tv_Z1 = (TextView)findViewById(R.id.tv_Z1);
+
+        tv_X2 = (TextView)findViewById(R.id.tv_X2);
+        tv_Y2 = (TextView)findViewById(R.id.tv_Y2);
+        tv_Z2 = (TextView)findViewById(R.id.tv_Z2);
     }
 
     @Override
@@ -93,6 +109,10 @@ public class MainActivity extends Activity {
         valuesResult[0] = (float) Math.toDegrees(valuesResult[0]);
         valuesResult[1] = (float) Math.toDegrees(valuesResult[1]);
         valuesResult[2] = (float) Math.toDegrees(valuesResult[2]);
+
+        tv_X1.setText(String.valueOf(valuesResult[0]));
+        tv_Y1.setText(String.valueOf(valuesResult[1]));
+        tv_Z1.setText(String.valueOf(valuesResult[2]));
         return;
     }
 
@@ -123,6 +143,10 @@ public class MainActivity extends Activity {
         valuesResult2[0] = (float) Math.toDegrees(valuesResult2[0]);
         valuesResult2[1] = (float) Math.toDegrees(valuesResult2[1]);
         valuesResult2[2] = (float) Math.toDegrees(valuesResult2[2]);
+
+        tv_X2.setText(String.valueOf(valuesResult2[0]));
+        tv_Y2.setText(String.valueOf(valuesResult2[1]));
+        tv_Z2.setText(String.valueOf(valuesResult2[2]));
         return;
     }
 
