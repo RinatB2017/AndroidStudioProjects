@@ -1,8 +1,11 @@
 package com.boss.test_orientation;
 
+import android.content.DialogInterface;
 import android.opengl.GLSurfaceView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -53,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn2 = new Button(this);
         btn2.setText("test2");
+
+        // создаем обработчик нажатия
+        View.OnClickListener oclBtnOk = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("States", "click");
+            }
+        };
+
+        // присвоим обработчик кнопке OK (btnOk)
+        btn.setOnClickListener(oclBtnOk);
 
         linLayout.addView(btn, layoutParams);
         linLayout.addView(glSurfaceView, stretch);

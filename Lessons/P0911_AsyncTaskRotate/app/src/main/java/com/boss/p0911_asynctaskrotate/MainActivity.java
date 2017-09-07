@@ -2,13 +2,13 @@ package com.boss.p0911_asynctaskrotate;
 
 import java.util.concurrent.TimeUnit;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     MyTask mt;
     TextView tv;
@@ -31,12 +31,13 @@ public class MainActivity extends Activity {
         Log.d("qwe", "create MyTask: " + mt.hashCode());
     }
 
+    /*
     public Object onRetainNonConfigurationInstance() {
         // удаляем из MyTask ссылку на старое MainActivity
         mt.unLink();
         return mt;
     }
-
+    */
 
     static class MyTask extends AsyncTask<String, Integer, Void> {
 

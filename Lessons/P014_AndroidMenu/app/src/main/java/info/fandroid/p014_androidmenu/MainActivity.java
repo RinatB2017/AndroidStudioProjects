@@ -1,16 +1,16 @@
 package info.fandroid.p014_androidmenu;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import info.fandroid.p013_androidcontextmenu.R;
+import info.fandroid.p014_androidmenu.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     CheckBox chb1, chb2;
     Menu menu;
