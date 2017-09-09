@@ -28,11 +28,10 @@
 
         <activity android:name=".Test_Activity" />
 
-        <activity android:name=".SensorsActivity">
-            android:name="com.test.SensorsActivity"
+        <activity
+            android:name=".SensorsActivity"
             android:label="@string/title_activity_sensors"
-            android:theme="@style/AppTheme.NoActionBar"
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

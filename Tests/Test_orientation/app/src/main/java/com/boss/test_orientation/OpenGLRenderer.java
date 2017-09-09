@@ -32,7 +32,6 @@ import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
 import android.os.Bundle;
-import android.os.SystemClock;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -64,7 +63,9 @@ public class OpenGLRenderer implements Renderer {
 
     private int texture;
 
-    float begin_angle = 0;
+    float angle_X = 0;
+    float angle_Y = 0;
+    float angle_Z = 0;
 
     public OpenGLRenderer(Context context, Bundle savedInstanceState) {
         this.context = context;
@@ -165,8 +166,13 @@ public class OpenGLRenderer implements Renderer {
     private void bindData() {
         // координаты вершин
         vertexData.position(0);
-        glVertexAttribPointer(aPositionLocation, POSITION_COUNT, GL_FLOAT,
-                false, 0, vertexData);
+        glVertexAttribPointer(
+                aPositionLocation,
+                POSITION_COUNT,
+                GL_FLOAT,
+                false,
+                0,
+                vertexData );
         glEnableVertexAttribArray(aPositionLocation);
 
         // помещаем текстуру в target CUBE_MAP юнита 0
@@ -232,20 +238,23 @@ public class OpenGLRenderer implements Renderer {
         Matrix.setIdentityM(mModelMatrix, 0);
 
         // вращение
-        //setModelMatrix();
+        setModelMatrix();
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, indexArray);
     }
 
-    public void set_begin_angle(float value) {
-        begin_angle = value;
+    public void set_angle(float value_X,
+                          float value_Y,
+                          float value_Z) {
+        angle_X = value_X;
+        angle_Y = value_Y;
+        angle_Z = value_Z;
     }
 
     private void setModelMatrix() {
-        float angle = (float)(SystemClock.uptimeMillis() % TIME) / TIME * 360;
-        angle += begin_angle;
-        Matrix.rotateM(mModelMatrix, 0, angle, 1, 0, 0);
-        Matrix.rotateM(mModelMatrix, 0, 90, 0, 0, 1);
+        Matrix.rotateM(mModelMatrix, 0, angle_X, 1, 0, 0);
+        Matrix.rotateM(mModelMatrix, 0, angle_Y, 0, 1, 0);
+        Matrix.rotateM(mModelMatrix, 0, angle_Z, 0, 0, 1);
         bindMatrix();
     }
 
