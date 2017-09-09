@@ -32,6 +32,7 @@ import android.content.Context;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.Matrix;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -246,6 +247,10 @@ public class OpenGLRenderer implements Renderer {
     public void set_angle(float value_X,
                           float value_Y,
                           float value_Z) {
+        Log.i("States", "X = " + String.valueOf(value_X));
+        Log.i("States", "Y = " + String.valueOf(value_Y));
+        Log.i("States", "Z = " + String.valueOf(value_Z));
+
         angle_X = value_X;
         angle_Y = value_Y;
         angle_Z = value_Z;

@@ -37,12 +37,26 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_Y2;
     TextView tv_Z2;
 
+    Button btn_X_plus;
+    Button btn_X_minus;
+
+    Button btn_Y_plus;
+    Button btn_Y_minus;
+
+    Button btn_Z_plus;
+    Button btn_Z_minus;
+
     GLSurfaceView glSurfaceView;
     OpenGLRenderer main_view;
 
     SensorManager sensorManager;
     Sensor sensorAccel;
     Sensor sensorMagnet;
+
+    float X = 0;
+    float Y = 0;
+    float Z = 0;
+    float delta = 5;
 
     StringBuilder sb = new StringBuilder();
 
@@ -96,15 +110,60 @@ public class MainActivity extends AppCompatActivity {
         Button btn = new Button(this);
         btn.setText("test");
 
-        // создаем обработчик нажатия
         View.OnClickListener oclBtnOk = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("States", "click");
-                main_view.set_angle(45, 45, 45);
+                X = 0;
+                Y = 0;
+                Z = 0;
+                main_view.set_angle(X, Y, Z);
             }
         };
 
+        //---
+        View.OnClickListener btn_X_plus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                X = X + delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        View.OnClickListener btn_Y_plus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Y = Y + delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        View.OnClickListener btn_Z_plus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Z = Z + delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        View.OnClickListener btn_X_minus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                X = X - delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        View.OnClickListener btn_Y_minus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Y = Y - delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        View.OnClickListener btn_Z_minus_click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Z = Z - delta;
+                main_view.set_angle(X, Y, Z);
+            }
+        };
+        //---
         // присвоим обработчик кнопке OK (btnOk)
         btn.setOnClickListener(oclBtnOk);
 
@@ -151,13 +210,6 @@ public class MainActivity extends AppCompatActivity {
         table.addView(row1);
         //---
 
-        linLayout.addView(table, layoutParams);
-        linLayout.addView(glSurfaceView, stretch);
-        linLayout.addView(btn, layoutParams);
-
-        // устанавливаем linLayout как корневой элемент экрана
-        setContentView(linLayout, linLayoutParam);
-
         tv_X1.append("0");
         tv_Y1.append("0");
         tv_Z1.append("0");
@@ -165,6 +217,59 @@ public class MainActivity extends AppCompatActivity {
         tv_X2.append("0");
         tv_Y2.append("0");
         tv_Z2.append("0");
+
+        //---
+        btn_X_plus = new Button(this);
+        btn_Y_plus = new Button(this);
+        btn_Z_plus = new Button(this);
+
+        btn_X_minus = new Button(this);
+        btn_Y_minus = new Button(this);
+        btn_Z_minus = new Button(this);
+
+        btn_X_plus.setOnClickListener(btn_X_plus_click);
+        btn_Y_plus.setOnClickListener(btn_Y_plus_click);
+        btn_Z_plus.setOnClickListener(btn_Z_plus_click);
+
+        btn_X_minus.setOnClickListener(btn_X_minus_click);
+        btn_Y_minus.setOnClickListener(btn_Y_minus_click);
+        btn_Z_minus.setOnClickListener(btn_Z_minus_click);
+
+        btn_X_plus.setText("X+");
+        btn_Y_plus.setText("Y+");
+        btn_Z_plus.setText("Z+");
+
+        btn_X_minus.setText("X-");
+        btn_Y_minus.setText("Y-");
+        btn_Z_minus.setText("Z-");
+
+        TableRow row_btn0 = new TableRow(this);
+        TableRow row_btn1 = new TableRow(this);
+        TableRow row_btn2 = new TableRow(this);
+
+        row_btn0.addView(btn_X_plus);
+        row_btn0.addView(btn_X_minus);
+
+        row_btn1.addView(btn_Y_plus);
+        row_btn1.addView(btn_Y_minus);
+
+        row_btn2.addView(btn_Z_plus);
+        row_btn2.addView(btn_Z_minus);
+
+        TableLayout table2 = new TableLayout(this);
+
+        table2.addView(row_btn0);
+        table2.addView(row_btn1);
+        table2.addView(row_btn2);
+        //---
+
+        linLayout.addView(table, layoutParams);
+        linLayout.addView(glSurfaceView, stretch);
+        linLayout.addView(table2, layoutParams);
+        linLayout.addView(btn, layoutParams);
+
+        // устанавливаем linLayout как корневой элемент экрана
+        setContentView(linLayout, linLayoutParam);
     }
 
     @Override
@@ -222,10 +327,10 @@ public class MainActivity extends AppCompatActivity {
         tv_Y1.setText(String.format("%.1f", valuesResult[1]));
         tv_Z1.setText(String.format("%.1f", valuesResult[2]));
 
-        main_view.set_angle(
-                valuesResult[0] * -1,
-                valuesResult[1] * -1,
-                valuesResult[2] * -1);
+//        main_view.set_angle(
+//                valuesResult[0],
+//                valuesResult[1],
+//                valuesResult[2]);
         return;
     }
 
