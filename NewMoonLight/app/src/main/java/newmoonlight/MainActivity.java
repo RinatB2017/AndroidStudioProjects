@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity
 
     //---
     BluetoothAdapter bluetooth;
-    BluetoothSocket btSocket;
     private BroadcastReceiver discoveryDevicesReceiver;
     private BroadcastReceiver discoveryFinishedReceiver;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
@@ -378,7 +377,6 @@ public class MainActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.action_settings_scan:
-                logging("===> SCAN <===");
                 scan();
                 break;
 
@@ -421,6 +419,7 @@ public class MainActivity extends AppCompatActivity
         create_bluetooth();
         setting_GRAY();
 
+        //TODO
         scan();
 
         //load_states();
@@ -552,12 +551,22 @@ public class MainActivity extends AppCompatActivity
         Button btn_apply = new Button(this);
         Button btn_cancel = new Button(this);
 
+        //-------------------------------------------------------------------
+        //TODO
         View.OnClickListener apply = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(LOG_TAG, "apply");
+
+                //boolean ok = connect_remote_device("00:14:02:10:09:04");
+                boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
+                if(ok)
+                    logging("Connect is TRUE");
+                else
+                    logging("Connect is FALSE");
             }
         };
+        //-------------------------------------------------------------------
         View.OnClickListener cancel = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -779,66 +788,14 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
 
-        block_interface(true);
-        discoveredDevices.clear();
+        boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
+        if(ok)
+            logging("Connect is TRUE");
+        else
+            logging("Connect is FALSE");
+        block_interface(!ok);
 
-        if (discoveryDevicesReceiver == null) {
-            discoveryDevicesReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    String action = intent.getAction();
-
-                    if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        //BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_NAME);
-
-                        if (!discoveredDevices.contains(device))
-                        {
-                            String d_name = device.getName();
-                            if(d_name != null) {
-                                d_name = d_name.replaceAll("\n", "");
-                                logging("name = [" + d_name + "]");
-                                if (d_name.contains(DEVICE_NAME)) {
-                                    logging("[" + DEVICE_NAME + "] FOUND");
-                                    boolean ok = connect_remote_device(device.getAddress());
-                                    if(ok) {
-                                        block_interface(false);
-                                        discoveredDevices.add(device);
-                                        bluetooth.cancelDiscovery();
-
-                                        Toast toast = Toast.makeText(getApplicationContext(),
-                                                "Найден " + DEVICE_NAME,
-                                                Toast.LENGTH_SHORT);
-                                        toast.show();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-        }
-
-        if (discoveryFinishedReceiver == null) {
-            discoveryFinishedReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    logging("Scan end!");
-                    if (progressDialog != null) progressDialog.dismiss();
-                    unregisterReceiver(discoveryFinishedReceiver);
-                    unregisterReceiver(discoveryDevicesReceiver);
-                }
-            };
-        }
-
-        registerReceiver(discoveryDevicesReceiver,  new IntentFilter(BluetoothDevice.ACTION_FOUND));
-        registerReceiver(discoveryFinishedReceiver, new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED));
-
-        progressDialog = ProgressDialog.show(this, "Поиск устройств", "Подождите...");
-
-        bluetooth.startDiscovery();
-        logging("Scan begin...");
-        return true;
+        return ok;
     }
     //---------------------------------------------------------------------------------------------
     public boolean connect_remote_device(String MAC_address)

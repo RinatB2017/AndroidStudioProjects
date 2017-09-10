@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">NewMoonLight</string>
+    <string name="app_name">Лунный свет</string>
+    <string name="title_discover_devices">Найти устройста</string>
 </resources>

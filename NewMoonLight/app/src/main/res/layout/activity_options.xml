@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="discoverDevices"
+        android:text="@string/title_discover_devices" />
+
+    <ListView
+        android:id="@+id/lv_devices"
+        android:layout_width="match_parent"
+        android:layout_height="410dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

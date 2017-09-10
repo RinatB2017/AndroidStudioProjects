@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_settings_scan" android:orderInCategory="100"
-        android:title="SCAN" app:showAsAction="never" />
+        android:title="CONNECT" app:showAsAction="never" />
     <item android:id="@+id/action_settings_options" android:orderInCategory="100"
         android:title="OPTIONS" app:showAsAction="never" />
 </menu>
