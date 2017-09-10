@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity
     private final static int REQUEST_ENABLE_BT = 1;
     final String LOG_TAG = "States";
 
+    TextView tv_log;
+
     private Paint mPaint;
     Canvas c;
     LinearLayout linLayout;
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
+        tv_log.setText(text);
     }
     //---------------------------------------------------------------------------------------------
     void load_states() {
@@ -395,7 +398,9 @@ public class MainActivity extends AppCompatActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        logging("onCreate");
+        tv_log = new TextView(this);
+        tv_log.setTextColor(Color.WHITE);
+
         // займем весь экран
         /*
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -448,8 +453,6 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void create_widgets()
     {
-        logging("create_widgets");
-
         // создание LinearLayout
         linLayout = new LinearLayout(this);
         layoutParams = new LinearLayout.LayoutParams(
@@ -461,7 +464,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(linLayout);
 
         bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
-        logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
+        //logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         //---
         mPaint = new Paint();
@@ -473,7 +476,7 @@ public class MainActivity extends AppCompatActivity
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         int screenWidth = displaymetrics.widthPixels;
         int screenHeight = displaymetrics.heightPixels;
-        logging("screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
+        //logging("screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
         //---
         points = new ArrayList<LED>();
         new_draw_field();
@@ -492,10 +495,6 @@ public class MainActivity extends AppCompatActivity
     }
     //---------------------------------------------------------------------------------------------
     TextView add_log() {
-        TextView tv_log = new TextView(this);
-        tv_log.setText("log");
-        tv_log.setTextColor(Color.WHITE);
-
         return tv_log;
     }
     //---------------------------------------------------------------------------------------------
@@ -561,9 +560,9 @@ public class MainActivity extends AppCompatActivity
                 //boolean ok = connect_remote_device("00:14:02:10:09:04");
                 boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
                 if(ok)
-                    logging("Connect is TRUE");
+                    logging("Соединение установлено");
                 else
-                    logging("Connect is FALSE");
+                    logging("Соединение не удалось");
             }
         };
         //-------------------------------------------------------------------
@@ -655,8 +654,8 @@ public class MainActivity extends AppCompatActivity
                     return true;
                 }
                 else {
-                    logging("line = " + line);
-                    logging("led.radius = " + led.radius);
+                    //logging("line = " + line);
+                    //logging("led.radius = " + led.radius);
                 }
             }
         }
@@ -697,7 +696,25 @@ public class MainActivity extends AppCompatActivity
         modbus.set_command(1);
         modbus.set_data(get_data());
 
-        send_modbus_data(modbus.get_string());
+        boolean ok = send_modbus_data(modbus.get_string());
+        if(!ok) {
+            ok = scan();
+            if(ok) {
+                ok = send_modbus_data(modbus.get_string());
+                if(ok) {
+                    logging("Данные переданы.");
+                }
+                else {
+                    logging("Ошибка соединения.");
+                }
+            }
+            else {
+                logging("Ошибка соединения.");
+            }
+        }
+        else {
+            logging("Данные переданы.");
+        }
     }
     //---------------------------------------------------------------------------------------------
     private void new_draw_field()
@@ -775,7 +792,6 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public boolean scan()
     {
-        logging("Scan begin!");
         if(bluetooth == null)
         {
             logging("Bluetooth модуль не найден");
@@ -790,9 +806,9 @@ public class MainActivity extends AppCompatActivity
 
         boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
         if(ok)
-            logging("Connect is TRUE");
+            logging("Соединение установлено");
         else
-            logging("Connect is FALSE");
+            logging("Сокдинение не удалось");
         block_interface(!ok);
 
         return ok;
@@ -813,19 +829,19 @@ public class MainActivity extends AppCompatActivity
             Method m = r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             tmp = (BluetoothSocket) m.invoke(r_device, 1);
         } catch (IOException e) {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (NoSuchMethodException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (IllegalAccessException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (InvocationTargetException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         }
         //---
@@ -847,13 +863,12 @@ public class MainActivity extends AppCompatActivity
             tmpIn  = mmSocket.getInputStream();
             tmpOut = mmSocket.getOutputStream();
         } catch (IOException e) {
-            logging("Stream ERROR: " +e.getMessage());
+            logging("Stream ERROR: " + e.getMessage());
             return false;
         }
         //---
         inputStream = tmpIn;
         outputStream = tmpOut;
-        logging("OK");
         return true;
     }
     //---------------------------------------------------------------------------------------------
@@ -931,41 +946,10 @@ public class MainActivity extends AppCompatActivity
     }
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onStart() {
-        super.onStart();
-        logging("MainActivity: onStart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        logging("MainActivity: onRestart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onResume() {
-        super.onResume();
-        logging("MainActivity: onResume()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onPause() {
-        super.onPause();
-        logging("MainActivity: onPause()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
     protected void onStop() {
         super.onStop();
-        logging("MainActivity: onStop()");
 
         //save_states();
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        logging("MainActivity: onDestroy()");
     }
     //---------------------------------------------------------------------------------------------
 }
