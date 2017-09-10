@@ -1,46 +1,48 @@
 package newmoonlight;
 
-        import android.app.ProgressDialog;
-        import android.bluetooth.BluetoothAdapter;
-        import android.bluetooth.BluetoothDevice;
-        import android.bluetooth.BluetoothSocket;
-        import android.content.BroadcastReceiver;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.content.IntentFilter;
-        import android.content.pm.ActivityInfo;
-        import android.graphics.Bitmap;
-        import android.graphics.Canvas;
-        import android.graphics.Color;
-        import android.graphics.Paint;
-        import android.graphics.PorterDuff;
-        import android.graphics.drawable.ColorDrawable;
-        import android.os.Bundle;
-        import android.support.v7.app.ActionBar;
-        import android.support.v7.app.AppCompatActivity;
-        import android.util.DisplayMetrics;
-        import android.util.Log;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.view.MotionEvent;
-        import android.view.View;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.SeekBar;
-        import android.widget.TableLayout;
-        import android.widget.TableRow;
-        import android.widget.TextView;
-        import android.widget.Toast;
+    import android.app.ProgressDialog;
+    import android.bluetooth.BluetoothAdapter;
+    import android.bluetooth.BluetoothDevice;
+    import android.bluetooth.BluetoothSocket;
+    import android.content.BroadcastReceiver;
+    import android.content.Context;
+    import android.content.Intent;
+    import android.content.IntentFilter;
+    import android.content.SharedPreferences;
+    import android.content.pm.ActivityInfo;
+    import android.graphics.Bitmap;
+    import android.graphics.Canvas;
+    import android.graphics.Color;
+    import android.graphics.Paint;
+    import android.graphics.PorterDuff;
+    import android.graphics.drawable.ColorDrawable;
+    import android.os.Bundle;
+    import android.preference.PreferenceManager;
+    import android.support.v7.app.ActionBar;
+    import android.support.v7.app.AppCompatActivity;
+    import android.util.DisplayMetrics;
+    import android.util.Log;
+    import android.view.Menu;
+    import android.view.MenuItem;
+    import android.view.MotionEvent;
+    import android.view.View;
+    import android.widget.ImageView;
+    import android.widget.LinearLayout;
+    import android.widget.SeekBar;
+    import android.widget.TableLayout;
+    import android.widget.TableRow;
+    import android.widget.TextView;
+    import android.widget.Toast;
 
-        import java.io.ByteArrayOutputStream;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.io.OutputStream;
-        import java.lang.reflect.InvocationTargetException;
-        import java.lang.reflect.Method;
-        import java.util.ArrayList;
-        import java.util.List;
-        import java.util.UUID;
+    import java.io.ByteArrayOutputStream;
+    import java.io.IOException;
+    import java.io.InputStream;
+    import java.io.OutputStream;
+    import java.lang.reflect.InvocationTargetException;
+    import java.lang.reflect.Method;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.UUID;
 
 // если на смартфоне стоит Android 6.0, то надо поставить в свойствах app
 // Flawors Target SDK Version API22
@@ -143,6 +145,42 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
+    }
+    //---------------------------------------------------------------------------------------------
+    void load_states() {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sb_hot.setProgress(sp.getInt("sb_hot", 0));
+        sb_cold.setProgress(sp.getInt("sb_cold", 0));
+
+        tv_hot.setText(String.valueOf(sb_hot.getProgress()));
+        tv_cold.setText(String.valueOf(sb_cold.getProgress()));
+
+        flag_is_enable = sp.getBoolean("flag_is_enable", false);
+
+        for (int n = 0; n < points.size(); n++) {
+            LED led = new LED();
+            led.color_border = sp.getInt("color_border_" + String.valueOf(n), color_border);
+            led.color_center_on = sp.getInt("color_center_on_" + String.valueOf(n), color_on);
+            led.color_center_off = sp.getInt("color_center_off_" + String.valueOf(n), color_off);
+            led.is_active = sp.getBoolean("is_active_" + String.valueOf(n), false);
+
+            points.set(n, led);
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    void save_states() {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        editor.putInt("sb_hot", sb_hot.getProgress());
+        editor.putInt("sb_cold", sb_cold.getProgress());
+        editor.putBoolean("flag_is_enable", flag_is_enable);
+
+        for (int n = 0; n < points.size(); n++) {
+            editor.putInt("color_border_" + String.valueOf(n), points.get(n).color_border);
+            editor.putInt("color_center_on_" + String.valueOf(n), points.get(n).color_center_on);
+            editor.putInt("color_center_off_" + String.valueOf(n), points.get(n).color_center_off);
+            editor.putBoolean("is_active_" + String.valueOf(n), points.get(n).is_active);
+        }
+        editor.apply();
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -375,6 +413,8 @@ public class MainActivity extends AppCompatActivity
         setting_GRAY();
 
         scan();
+
+        //load_states();
     }
     //---------------------------------------------------------------------------------------------
     public void create_bluetooth()
@@ -907,7 +947,7 @@ public class MainActivity extends AppCompatActivity
         super.onStop();
         logging("MainActivity: onStop()");
 
-        //state_save();
+        //save_states();
     }
     //---------------------------------------------------------------------------------------------
     @Override
