@@ -20,12 +20,16 @@ package newmoonlight;
     import android.preference.PreferenceManager;
     import android.support.v7.app.ActionBar;
     import android.support.v7.app.AppCompatActivity;
+    import android.text.Editable;
+    import android.text.method.KeyListener;
     import android.util.DisplayMetrics;
     import android.util.Log;
+    import android.view.KeyEvent;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.MotionEvent;
     import android.view.View;
+    import android.widget.Button;
     import android.widget.ImageView;
     import android.widget.LinearLayout;
     import android.widget.SeekBar;
@@ -378,6 +382,11 @@ public class MainActivity extends AppCompatActivity
                 scan();
                 break;
 
+            case R.id.action_settings_options:
+                Intent intent = new Intent(this, OptionsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                break;
+
             default:
                 break;
         }
@@ -445,21 +454,14 @@ public class MainActivity extends AppCompatActivity
         // создание LinearLayout
         linLayout = new LinearLayout(this);
         layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10, 0, 10, 0);
 
-        // установим вертикальную ориентацию
         linLayout.setOrientation(LinearLayout.VERTICAL);
-        // создаем LayoutParams
-        // LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        // устанавливаем linLayout как корневой элемент экрана
-        // setContentView(linLayout, linLayoutParam);
         setContentView(linLayout);
 
-        //LinearLayout.LayoutParams stretch = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-
         bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
-        //bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.imgpsh_fullsize).copy(Bitmap.Config.ARGB_8888, true);
         logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         //---
@@ -483,6 +485,22 @@ public class MainActivity extends AppCompatActivity
         main_view.setOnTouchListener(this);
 
         //---
+        linLayout.addView(main_view, layoutParams);
+        linLayout.addView(add_sb_table(), layoutParams);
+
+        linLayout.addView(add_btn());
+        linLayout.addView(add_log());
+    }
+    //---------------------------------------------------------------------------------------------
+    TextView add_log() {
+        TextView tv_log = new TextView(this);
+        tv_log.setText("log");
+        tv_log.setTextColor(Color.WHITE);
+
+        return tv_log;
+    }
+    //---------------------------------------------------------------------------------------------
+    TableLayout add_sb_table() {
         TableLayout table = new TableLayout(this);
         table.setColumnStretchable(1, true);
 
@@ -520,9 +538,46 @@ public class MainActivity extends AppCompatActivity
 
         table.addView(row0);
         table.addView(row1);
-        //---
-        linLayout.addView(main_view, layoutParams);
-        linLayout.addView(table, layoutParams);
+
+        return table;
+    }
+    //---------------------------------------------------------------------------------------------
+    LinearLayout add_btn() {
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.weight = 1;
+
+        LinearLayout btn_layout = new LinearLayout(this);
+        btn_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+        Button btn_apply = new Button(this);
+        Button btn_cancel = new Button(this);
+
+        View.OnClickListener apply = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG, "apply");
+            }
+        };
+        View.OnClickListener cancel = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG, "cancel");
+            }
+        };
+
+        btn_apply.setOnClickListener(apply);
+        btn_cancel.setOnClickListener(cancel);
+
+        btn_apply.setText("Применить");
+        btn_cancel.setText("Отменить");
+
+        btn_apply.setLayoutParams(p);
+        btn_cancel.setLayoutParams(p);
+
+        btn_layout.addView(btn_apply);
+        btn_layout.addView(btn_cancel);
+
+        return btn_layout;
     }
     //---------------------------------------------------------------------------------------------
     public void redraw_all_buttons(boolean is_filled) {
