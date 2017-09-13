@@ -490,7 +490,7 @@ public class MainActivity extends AppCompatActivity
         linLayout.addView(main_view, layoutParams);
         linLayout.addView(add_sb_table(), layoutParams);
 
-        linLayout.addView(add_btn());
+        //linLayout.addView(add_btn());
         linLayout.addView(add_log());
     }
     //---------------------------------------------------------------------------------------------

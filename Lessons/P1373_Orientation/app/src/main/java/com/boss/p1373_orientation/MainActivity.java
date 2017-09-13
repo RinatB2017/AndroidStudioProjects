@@ -98,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
         sb.append("Orientation : " + format(valuesResult));
         sb.append("\nOrientation 2: " + format(valuesResult2));
         tvText.setText(sb);
+
+        //TODO
+        test();
     }
 
     float[] r = new float[9];
@@ -118,6 +121,38 @@ public class MainActivity extends AppCompatActivity {
 
     float[] inR = new float[9];
     float[] outR = new float[9];
+
+    /*
+    SensorManager.getRotationMatrix(R, null, aValues, mValues);
+    float[] outR = new float[9];
+    SensorManager.remapCoordinateSystem(R,
+    SensorManager.AXIS_X, SensorManager.AXIS_Z, outR);
+    SensorManager.getOrientation(outR, values);
+    // Преобразуйте радианы в градусы.
+    values[0] = (float) Math.toDegrees(values[0]);
+    values[1] = (float) Math.toDegrees(values[1]);
+    values[2] = (float) Math.toDegrees(values[2]);
+    */
+
+    void test() {
+        float[] accVal      = new float[3];
+        float[] magVal      = new float[3];
+        float[] orientVal   = new float[3];
+
+        float[] rMatrix     = new float[16];
+        float[] iMatrix     = new float[16];
+        float[] rotMiO      = new float[16];
+
+        SensorManager.getRotationMatrix(rMatrix, iMatrix, accVal, magVal);
+        SensorManager.remapCoordinateSystem(rMatrix, SensorManager.AXIS_X, SensorManager.AXIS_Z, rotMiO);
+        SensorManager.getOrientation(rotMiO, orientVal);
+
+        String temp_str = String.format("\n %1$.1f\t\t%2$.1f\t\t%3$.1f",
+                orientVal[0],
+                orientVal[1],
+                orientVal[2]);
+        tvText.append(temp_str);
+    }
 
     void getActualDeviceOrientation() {
         SensorManager.getRotationMatrix(inR, null, valuesAccel, valuesMagnet);
@@ -147,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
         tv_X2.setText(String.format("%.1f", valuesResult2[0]));
         tv_Y2.setText(String.format("%.1f", valuesResult2[1]));
         tv_Z2.setText(String.format("%.1f", valuesResult2[2]));
+
         return;
     }
 
