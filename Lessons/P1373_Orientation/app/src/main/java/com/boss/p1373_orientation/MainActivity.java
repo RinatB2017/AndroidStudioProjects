@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         SensorManager.remapCoordinateSystem(rMatrix, SensorManager.AXIS_X, SensorManager.AXIS_Z, rotMiO);
         SensorManager.getOrientation(rotMiO, orientVal);
 
-        String temp_str = String.format("\n %1$.1f\t\t%2$.1f\t\t%3$.1f",
+        String temp_str = String.format("\n test() %1$.1f\t\t%2$.1f\t\t%3$.1f",
                 orientVal[0],
                 orientVal[1],
                 orientVal[2]);
