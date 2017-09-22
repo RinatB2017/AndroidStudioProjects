@@ -144,4 +144,111 @@
 
     </LinearLayout>
 
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Focus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Focus"
+                android:text="Focus" />
+
+            <Button
+                android:id="@+id/btn_Creativity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Creativity"
+                android:text="Creativity" />
+
+            <Button
+                android:id="@+id/btn_Relaxation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Relaxation"
+                android:text="Relaxation" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="f_Sleep"
+                android:text="Sleep" />
+
+            <Button
+                android:id="@+id/btn_Chanting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Chanting"
+                android:text="Chanting" />
+
+            <Button
+                android:id="@+id/btn_Intuition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Intuition"
+                android:text="Intuition" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Astral_Travel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Astral_Travel"
+                android:text="Astral Travel" />
+
+            <Button
+                android:id="@+id/btn_Healing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Healing"
+                android:text="Healing" />
+
+            <Button
+                android:id="@+id/btn_Alpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Alpha"
+                android:text="Alpha" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Intelligence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Intelligence"
+                android:text="Intelligence" />
+
+            <Button
+                android:id="@+id/btn_Euphoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Euphoria"
+                android:text="Euphoria" />
+
+        </TableRow>
+
+    </TableLayout>
+
 </LinearLayout>

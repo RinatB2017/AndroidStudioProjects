@@ -228,4 +228,102 @@ public class MainActivity extends Activity {
 		displayBeatFrequency.setText(String.valueOf(beatFrequency));
 	}
 
+    public void f_Focus(View view) {
+		frequencyCarrierInput.setText("263");
+		frequencyBeatInput.setText("24");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+    }
+
+	public void f_Creativity(View view) {
+		frequencyCarrierInput.setText("180");
+		frequencyBeatInput.setText("10.6");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Relaxation(View view) {
+		frequencyCarrierInput.setText("136.1");
+		frequencyBeatInput.setText("6");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Sleep(View view) {
+		frequencyCarrierInput.setText("141.27");
+		frequencyBeatInput.setText("3.4");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Chanting(View view) {
+		frequencyCarrierInput.setText("432");
+		frequencyBeatInput.setText("4.5");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Intuition(View view) {
+		frequencyCarrierInput.setText("211.44");
+		frequencyBeatInput.setText("5.5");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Astral_Travel(View view) {
+		frequencyCarrierInput.setText("140");
+		frequencyBeatInput.setText("6.3");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Healing(View view) {
+		frequencyCarrierInput.setText("150");
+		frequencyBeatInput.setText("8.0");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Alpha(View view) {
+		frequencyCarrierInput.setText("306.9");
+		frequencyBeatInput.setText("9.3");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Intelligence(View view) {
+		frequencyCarrierInput.setText("492");
+		frequencyBeatInput.setText("13.0");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
+
+	public void f_Euphoria(View view) {
+		frequencyCarrierInput.setText("210.42");
+		frequencyBeatInput.setText("20.0");
+		if (isDataChanged && startStop.isActivated()){
+			refresh();
+			attemptStartWave();
+		}
+	}
 }
