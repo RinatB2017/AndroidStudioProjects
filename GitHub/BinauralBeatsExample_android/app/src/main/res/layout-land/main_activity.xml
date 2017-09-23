@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gmtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:soundEffectsEnabled="false"
+        android:text="@string/gmt"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:id="@+id/radioBeatType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:soundEffectsEnabled="false">
+
+            <RadioButton
+                android:id="@+id/radioBinaural"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:soundEffectsEnabled="false"
+                android:text="@string/binaural_radio" />
+
+            <RadioButton
+                android:id="@+id/radioIsochronic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:soundEffectsEnabled="false"
+                android:text="@string/isochronic_radio" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etCarrierFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/carrier_hint"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="false"
+                    android:text="200"></EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/carrier_label" />
+
+                <TextView
+                    android:id="@+id/tvCarrierFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/not_applicable" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ToggleButton
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_custom"
+            android:gravity="center"
+            android:onClick="clickPlay"
+            android:soundEffectsEnabled="false"
+            android:text=""
+            android:textOff=""
+            android:textOn="" />
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.33">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etBeatFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="@string/beat_hint"
+                    android:inputType="numberDecimal"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="false"
+                    android:text="8"></EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/beat_label" />
+
+                <TextView
+                    android:id="@+id/tvBeatFrequency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/not_applicable" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Focus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Focus"
+                android:text="Focus" />
+
+            <Button
+                android:id="@+id/btn_Creativity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Creativity"
+                android:text="Creativity" />
+
+            <Button
+                android:id="@+id/btn_Relaxation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Relaxation"
+                android:text="Relaxation" />
+
+            <Button
+                android:id="@+id/btn_Sleep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="f_Sleep"
+                android:text="Sleep" />
+
+            <Button
+                android:id="@+id/btn_Chanting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Chanting"
+                android:text="Chanting" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Intuition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Intuition"
+                android:text="Intuition" />
+
+            <Button
+                android:id="@+id/btn_Astral_Travel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Astral_Travel"
+                android:text="Astral Travel" />
+
+            <Button
+                android:id="@+id/btn_Healing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Healing"
+                android:text="Healing" />
+
+            <Button
+                android:id="@+id/btn_Alpha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Alpha"
+                android:text="Alpha" />
+
+            <Button
+                android:id="@+id/btn_Intelligence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Intelligence"
+                android:text="Intelligence" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btn_Euphoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="f_Euphoria"
+                android:text="Euphoria" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
