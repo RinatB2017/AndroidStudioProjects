@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/android" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/core" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/desktop" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
