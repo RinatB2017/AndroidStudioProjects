@@ -43,8 +43,6 @@ public class NET_activity extends AppCompatActivity {
                     requestCode );
         }
     }
-    //private static final int RECORD_REQUEST_CODE = 101;
-    //requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
     //---
 
     void logging(String text) {
@@ -61,11 +59,17 @@ public class NET_activity extends AppCompatActivity {
         tvStatusNet = (TextView) findViewById(R.id.tvStatusNet);
         tvLocationNet = (TextView) findViewById(R.id.tvLocationNet);
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
         logView = (TextView)findViewById(R.id.logView);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
+
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        /*
+        List<String> matchingProviders = locationManager.getAllProviders();
+        for (String provider: matchingProviders) {
+            logging("Provider: " + provider);
+            }
+        */
     }
 
     //---
@@ -107,8 +111,8 @@ public class NET_activity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
-                1000,
-                1,
+                60 * 1000,
+                10,
                 locationListener);
         checkEnabled();
     }
@@ -120,10 +124,13 @@ public class NET_activity extends AppCompatActivity {
             return;
         }
         logging("update");
+        if(!locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            logging("isProviderEnabled return FALSE");
+        }
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
-                1000,
-                1,
+                60 * 1000,
+                10,
                 locationListener);
         checkEnabled();
         logging("OK");
@@ -150,12 +157,12 @@ public class NET_activity extends AppCompatActivity {
 
         @Override
         public void onProviderEnabled(String provider) {
-            checkEnabled();
             if (ActivityCompat.checkSelfPermission(getParent(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(getParent(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 logging("onProviderEnabled: error permission");
                 return;
             }
+            checkEnabled();
             showLocation(locationManager.getLastKnownLocation(provider));
         }
 
@@ -169,6 +176,7 @@ public class NET_activity extends AppCompatActivity {
 
     private void showLocation(Location location) {
         if (location == null) {
+            logging("showLocation: location is NULL");
             return;
         }
         if (location.getProvider().equals(LocationManager.NETWORK_PROVIDER)) {
@@ -177,8 +185,10 @@ public class NET_activity extends AppCompatActivity {
     }
 
     private String formatLocation(Location location) {
-        if (location == null)
+        if (location == null) {
+            logging("formatLocation: location is NULL");
             return "";
+        }
         return String.format(
                 "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
                 location.getLatitude(),

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+     
+    <PreferenceCategory
+        android:title="Sms Settings">
+        <ListPreference
+            android:key="PREF_LIST"
+            android:defaultValue="1000"
+            android:title="@string/send_sms"
+            android:summary="@string/send_sms_summary"
+            android:entries="@array/listentries"
+            android:entryValues="@array/listvalues" />
+        
+          <CheckBoxPreference
+  				android:defaultValue="0"
+                android:key="Send_Chk"
+                android:title="Send SMS"
+                android:summary="Remove check if you dont want to be tracked with SMS but be tracked with application" />
+        
+    </PreferenceCategory>
+ 
+</PreferenceScreen>

@@ -135,11 +135,13 @@ public class BOTH_activity extends AppCompatActivity {
         logging("update");
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                1000 * 10, 10,
+                1000 * 10,
+                10,
                 locationListener);
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
-                1000 * 10, 10,
+                1000 * 10,
+                10,
                 locationListener);
         checkEnabled();
         logging("OK");

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="listentries">
+        <item>10 Mins</item>
+        <item>30 Mins</item>
+        <item>40 Mins</item>
+    </string-array>
+    <string-array name="listvalues">
+        <item>10000</item>
+        <item>30000</item>
+        <item>40000</item>
+    </string-array>      
+</resources>

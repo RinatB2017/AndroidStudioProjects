@@ -168,16 +168,20 @@ public class GPS_activity extends AppCompatActivity {
     };
 
     private void showLocation(Location location) {
-        if (location == null)
+        if (location == null) {
+            logging("showLocation: location is NULL");
             return;
+        }
         if (location.getProvider().equals(LocationManager.GPS_PROVIDER)) {
             tvLocationGPS.setText(formatLocation(location));
         }
     }
 
     private String formatLocation(Location location) {
-        if (location == null)
+        if (location == null) {
+            logging("formatLocation: location is NULL");
             return "";
+        }
         return String.format(
                 "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
                 location.getLatitude(),

@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/res/merged/debug/drawable-hdpi/button.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/src/main/res/drawable-hdpi/button.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/res/merged/debug/drawable-hdpi/sms.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/src/main/res/drawable-hdpi/sms.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/res/merged/debug/drawable-hdpi/settings.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/src/main/res/drawable-hdpi/settings.png"
+    },
+    {
+        "merged": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_search.png",
+        "source": "/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/src/main/res/drawable-hdpi/ic_search.png"
+    }
+]

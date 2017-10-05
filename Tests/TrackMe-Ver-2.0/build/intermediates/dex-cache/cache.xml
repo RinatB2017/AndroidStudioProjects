@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="aa47a1e9291c1911e0beab744189ef45c571bf9c">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_8fabae1d4f480ff324d3e8cfe9b6d38d00635be7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_41df863e86bb2102ae44bb5ed1aab4d0ada999f0/classes.dex" />
+    </item>
+
+</items>

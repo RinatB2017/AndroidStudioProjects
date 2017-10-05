@@ -14,32 +14,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85bec9bb-18b7-4ea9-8b18-cb46c03793e2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/../../NewMoonLight/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/../Test_VR_case/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../NewMoonLight/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../NewMoonLight/app/app.iml" afterPath="$PROJECT_DIR$/../../NewMoonLight/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/misc.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/app/app.iml" afterPath="$PROJECT_DIR$/../Test_VR_case/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/app/app.iml" afterPath="$PROJECT_DIR$/../../Lessons/P1373_Orientation/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/BOTH_activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/BOTH_activity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/GPS_activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/GPS_activity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/NET_activity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/boss/test_location/NET_activity.java" />
     </list>
     <ignored path="Test_location.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +61,37 @@
     <favorites_list name="Test_location" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="NET_activity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="132" column="18" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4922#4923#0" expanded="true" />
+                <element signature="e#4968#4969#0" expanded="true" />
+                <element signature="e#5045#5046#0" expanded="true" />
+                <element signature="e#5083#5084#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -1501,7 +1522,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4505217809732" />
+        <entry key="$PROJECT_DIR$" value="4507311695934" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1852,22 +1873,23 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build.gradle" />
-        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_GPS.xml" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_NET.xml" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/menu/main.xml" />
-        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/AndroidManifest.xml" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/MainActivity.java" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_main.xml" />
-        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/BOTH_activity.java" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPS_activity.java" />
+        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/BOTH_activity.java" />
+        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPSTracker.java" />
+        <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/AndroidManifest.xml" />
         <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="40" />
-    <option name="width" value="1560" />
+    <option name="x" value="756" />
+    <option name="width" value="1546" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -1895,10 +1917,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1907,13 +1925,59 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test_location" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test_location" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test_location" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test_location" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="2e1487aa" />
+    <property name="device.picker.selection" value="RQ3004ZJKU" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
   </component>
@@ -2168,7 +2232,7 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
       <option name="PREFERRED_AVD" value="" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
@@ -2240,8 +2304,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="0" width="1560" height="1056" extended-state="4" />
-    <editor active="false" />
+    <frame x="756" y="0" width="1546" height="1056" extended-state="4" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295964" sideWeight="0.49460045" order="7" side_tool="false" content_ui="tabs" />
@@ -2256,7 +2320,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19880319" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20067114" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2289,34 +2353,81 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java</url>
-          <line>152</line>
+          <line>149</line>
           <properties />
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java</url>
-          <line>163</line>
+          <line>154</line>
           <properties />
-          <option name="timeStamp" value="9" />
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java</url>
-          <line>142</line>
+          <line>159</line>
           <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java</url>
-          <line>147</line>
+          <line>170</line>
           <properties />
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="14" />
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4922#4923#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
+            <element signature="e#5045#5046#0" expanded="true" />
+            <element signature="e#5083#5084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPSTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding>
+            <element signature="e#6263#6264#0" expanded="true" />
+            <element signature="e#6305#6306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4922#4923#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
+            <element signature="e#5045#5046#0" expanded="true" />
+            <element signature="e#5083#5084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/BOTH_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1755">
+          <caret line="133" column="9" selection-start-line="133" selection-start-column="9" selection-end-line="133" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_NET.xml" />
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -2364,7 +2475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -2389,31 +2499,24 @@
     </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_GPS.xml" />
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_NET.xml" />
-    <entry file="file:///opt/android-sdk-update-manager/sources/android-25/android/location/LocationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="1197" column="20" selection-start-line="1197" selection-start-column="20" selection-end-line="1197" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/menu/main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="47" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/MainActivity.java">
@@ -2423,29 +2526,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPS_activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="89" column="60" selection-start-line="89" selection-start-column="60" selection-end-line="89" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_gps.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/mipmap-xhdpi/ic_launcher.png">
@@ -2453,17 +2541,68 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_net.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///opt/android-sdk-update-manager/sources/android-25/android/location/LocationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="463" column="26" selection-start-line="463" selection-start-column="16" selection-end-line="463" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/build/intermediates/manifests/full/debug/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPS_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="177" column="5" selection-start-line="177" selection-start-column="5" selection-end-line="177" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/BOTH_activity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1230">
-          <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+        <state relative-caret-position="156">
+          <caret line="176" column="62" selection-start-line="176" selection-start-column="62" selection-end-line="176" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/android-sdk-update-manager/sources/android-23/android/location/LocationManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="79" column="31" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/GPSTracker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+          <folding>
+            <element signature="e#6263#6264#0" expanded="true" />
+            <element signature="e#6305#6306#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -2471,13 +2610,17 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/res/layout/activity_net.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+    <entry file="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/src/main/java/com/example/boss/test_location/NET_activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="132" column="18" selection-start-line="132" selection-start-column="18" selection-end-line="132" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4922#4923#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
+            <element signature="e#5045#5046#0" expanded="true" />
+            <element signature="e#5083#5084#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
