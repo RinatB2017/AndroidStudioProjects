@@ -15,6 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
@@ -138,10 +144,10 @@ public class MainActivity extends TestingLogging {
         return true;
     }
     //---------------------------------------------------------------------------------------------
-    private boolean hasPermission_ACCESS_FINE_LOCATION() {
+    private boolean hasPermission_INTERNET() {
         int res = 0;
         //string array of permissions,
-        String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
+        String[] permissions = new String[]{Manifest.permission.INTERNET};
 
         for (String perms : permissions){
             res = checkCallingOrSelfPermission(perms);
@@ -169,9 +175,9 @@ public class MainActivity extends TestingLogging {
             logging("hasPermission_CHANGE_WIFI_MULTICAST_STATE is FALSE");
             return false;
         }
-        if(!hasPermission_ACCESS_FINE_LOCATION())
+        if(!hasPermission_INTERNET())
         {
-            logging("hasPermission_ACCESS_FINE_LOCATION is FALSE");
+            logging("hasPermission_INTERNET is FALSE");
             return false;
         }
         return true;
@@ -286,6 +292,35 @@ public class MainActivity extends TestingLogging {
         if(!wifi.isWifiEnabled()) {
             logging("wifi модуль не включен");
             return;
+        }
+
+        /*
+        URL pageURL = null;
+        try {
+            pageURL = new URL("http://192.168.0.1");
+            URLConnection uc = pageURL.openConnection();
+            BufferedReader buff = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+//            InputStreamReader ir = new InputStreamReader(uc.getInputStream());
+//            BufferedReader buff = new BufferedReader(ir);
+            logging(buff.toString());
+        } catch (MalformedURLException e) {
+            logging("MalformedURLException: " + e.getMessage());
+        } catch (IOException e) {
+            logging("Exception: " + e.getMessage());
+        }
+        */
+
+        try{
+            URL url = null;
+            url = new URL("http://192.168.0.1");
+            URLConnection con1 = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con1.getInputStream()));
+            String line ="";
+            while ((line=reader.readLine())!=null){
+                logging(line);
+            }
+        } catch (Exception e){
+            logging("Exception: " + e.getMessage());
         }
 
         logging("send_cmd_1()");
