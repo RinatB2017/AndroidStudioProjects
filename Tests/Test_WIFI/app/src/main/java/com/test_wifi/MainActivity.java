@@ -1,28 +1,26 @@
 package com.test_wifi;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.net.wifi.ScanResult;
 import android.content.Context;
-import android.content.Intent;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.Collections;
-import java.util.List;
 
     /*
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -33,9 +31,10 @@ import java.util.List;
 public class MainActivity extends TestingLogging {
     TextView log;
 
+    EditText et_address;
+
     WifiManager wifi;
     String wifis[];
-    WifiScanReceiver wifiReciever;
 
     //---------------------------------------------------------------------------------------------
     @Override
@@ -43,11 +42,14 @@ public class MainActivity extends TestingLogging {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        et_address = (EditText)findViewById(R.id.et_address);
         log = (TextView)findViewById(R.id.editText);
     }
     //---------------------------------------------------------------------------------------------
     void logging(String text) {
-        log.append(text + "\n");
+        if(!text.isEmpty()) {
+            log.append(text + "\n");
+        }
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -61,19 +63,19 @@ public class MainActivity extends TestingLogging {
         switch(item.getItemId())
         {
             case R.id.action_1:
-                send_cmd_1();
+                send_cmd_1(item.getActionView());
                 break;
 
             case R.id.action_2:
-                send_cmd_2();
+                send_cmd_2(item.getActionView());
                 break;
 
             case R.id.action_3:
-                send_cmd_3();
+                send_cmd_3(item.getActionView());
                 break;
 
             case R.id.action_4:
-                send_cmd_4();
+                send_cmd_4(item.getActionView());
                 break;
 
             case R.id.action_clean:
@@ -88,12 +90,6 @@ public class MainActivity extends TestingLogging {
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
-        try {
-            unregisterReceiver(wifiReciever);
-        } catch (IllegalArgumentException e) {
-
-        }
-
         try {
             wifi.setWifiEnabled(false);
         } catch (NullPointerException e) {
@@ -209,8 +205,6 @@ public class MainActivity extends TestingLogging {
         //---
 
         wifi = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        wifiReciever = new WifiScanReceiver();
-        registerReceiver(wifiReciever, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 
         WifiInfo wifiInf = wifi.getConnectionInfo();
         logging("MAC " + wifiInf.getMacAddress());
@@ -233,112 +227,82 @@ public class MainActivity extends TestingLogging {
         }
     }
     //---------------------------------------------------------------------------------------------
-    //int hasSMSPermission = checkSelfPermission( Manifest.permission.ACCESS_WIFI_STATE );
-    //List<String> permissions = new ArrayList<String>();
-    public void scan(View view) {
+    class MyDownloadTask extends AsyncTask<String, Void, String> {
 
-        List<ScanResult> scanResults = Collections.emptyList();
+        String responseMsg = "not response";
 
-        //---
+        protected String doInBackground(String... params) {
+            try{
+                URL url = new URL(params[0]);
+
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                //con.setRequestMethod("POST");
+                con.setRequestMethod("GET");
+                con.setRequestProperty("User-Agent", "Mozilla/5.0");
+                con.setRequestProperty("Accept-Charset", "UTF-8");
+                con.setReadTimeout(10000);
+                con.connect();
+
+                BufferedReader reader= new BufferedReader(new InputStreamReader(con.getInputStream()));
+                StringBuilder buf=new StringBuilder();
+                String line = null;
+                while ((line=reader.readLine()) != null) {
+                    buf.append(line);
+                    Log.e("States", "readLine [" + line + "]");
+                }
+
+                responseMsg = buf.toString();
+                return buf.toString();
+            }
+            catch (MalformedURLException e) {
+                Log.e("States", e.toString());
+            }
+            catch (IOException e) {
+                Log.e("States", e.toString());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            //display progress dialog.
+        }
+
+        @Override
+        protected void onPostExecute(String content) {
+            if(!responseMsg.isEmpty()) {
+                logging(responseMsg);
+            }
+            //Toast.makeText(getApplication(), "Данные загружены", Toast.LENGTH_SHORT).show();
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void send_cmd_1(View view) {
+        logging("send_cmd_1()");
+        if(wifi == null) {
+            logging("wifi модуль не найден");
+            return;
+        }
+        if(!wifi.isWifiEnabled()) {
+            logging("wifi модуль не включен");
+            return;
+        }
         if(!check_all_permissions()) {
             return;
         }
-        //---
 
-        logging("scan()");
-        if(wifi != null) {
-            boolean ok = wifi.startScan();
-            if (ok) {
-                //scanResults = wifi.getScanResults();
-                //logging("size = " + String.valueOf(scanResults.size()));
-                logging("OK");
-            }
-            else {
-                logging("startScan return false");
-            }
-        }
-        else
-        {
-            logging("wifi модуль не найден");
+        String addr = et_address.getText().toString();
+        if(!addr.isEmpty()) {
+            logging(addr);
+            MyDownloadTask x = new MyDownloadTask();
+            x.execute(addr);
+            //x.execute("http://192.168.0.1");
+            //x.execute("http://www.google.com");
         }
     }
     //---------------------------------------------------------------------------------------------
-    private class WifiScanReceiver extends BroadcastReceiver{
-        public void onReceive(Context c, Intent intent) {
-            logging("onReceive()");
-
-            List<ScanResult> wifiScanList = wifi.getScanResults();
-            wifis = new String[wifiScanList.size()];
-
-            int size = wifiScanList.size();
-            logging("wifiScanList.size() = " + String.valueOf(size));
-            if(size > 0) {
-                logging("-------------------");
-                for (int i = 0; i < wifiScanList.size(); i++) {
-                    //logging((wifiScanList.get(i).toString()));
-                    logging((wifiScanList.get(i)).SSID);
-                }
-                logging("-------------------");
-            }
-            logging("OK");
-        }
-    }
-    //---------------------------------------------------------------------------------------------
-    public void send_cmd_1() {
-        if(wifi == null) {
-            logging("wifi модуль не найден");
-            return;
-        }
-        if(!wifi.isWifiEnabled()) {
-            logging("wifi модуль не включен");
-            return;
-        }
-
-        /*
-        URL pageURL = null;
-        try {
-            pageURL = new URL("http://192.168.0.1");
-            URLConnection uc = pageURL.openConnection();
-            BufferedReader buff = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-//            InputStreamReader ir = new InputStreamReader(uc.getInputStream());
-//            BufferedReader buff = new BufferedReader(ir);
-            logging(buff.toString());
-        } catch (MalformedURLException e) {
-            logging("MalformedURLException: " + e.getMessage());
-        } catch (IOException e) {
-            logging("Exception: " + e.getMessage());
-        }
-        */
-
-        try{
-            URL url = null;
-            url = new URL("http://192.168.0.1");
-            URLConnection con1 = url.openConnection();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con1.getInputStream()));
-            String line ="";
-            while ((line=reader.readLine())!=null){
-                logging(line);
-            }
-        } catch (Exception e){
-            logging("Exception: " + e.getMessage());
-        }
-
-        logging("send_cmd_1()");
-    }
-    //---------------------------------------------------------------------------------------------
-    public void send_cmd_2() {
-        if(wifi == null) {
-            logging("wifi модуль не найден");
-            return;
-        }
-        if(!wifi.isWifiEnabled()) {
-            logging("wifi модуль не включен");
-            return;
-        }
+    public void send_cmd_2(View view) {
         logging("send_cmd_2()");
-    }
-    //---------------------------------------------------------------------------------------------
-    public void send_cmd_3() {
         if(wifi == null) {
             logging("wifi модуль не найден");
             return;
@@ -347,10 +311,13 @@ public class MainActivity extends TestingLogging {
             logging("wifi модуль не включен");
             return;
         }
+        if(!check_all_permissions()) {
+            return;
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void send_cmd_3(View view) {
         logging("send_cmd_3()");
-    }
-    //---------------------------------------------------------------------------------------------
-    public void send_cmd_4() {
         if(wifi == null) {
             logging("wifi модуль не найден");
             return;
@@ -359,7 +326,24 @@ public class MainActivity extends TestingLogging {
             logging("wifi модуль не включен");
             return;
         }
+        if(!check_all_permissions()) {
+            return;
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void send_cmd_4(View view) {
         logging("send_cmd_4()");
+        if(wifi == null) {
+            logging("wifi модуль не найден");
+            return;
+        }
+        if(!wifi.isWifiEnabled()) {
+            logging("wifi модуль не включен");
+            return;
+        }
+        if(!check_all_permissions()) {
+            return;
+        }
     }
     //---------------------------------------------------------------------------------------------
 }

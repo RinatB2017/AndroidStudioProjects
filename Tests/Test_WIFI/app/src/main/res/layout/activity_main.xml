@@ -33,13 +33,66 @@
             android:onClick="disconnect"
             android:layout_weight="1" />
 
-        <Button
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="scan"
-            android:id="@+id/btn_scan"
-            android:onClick="scan"
-            android:layout_weight="1" />
+            android:text="Address" />
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="http://192.168.0.1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="send_cmd_1"
+            android:text="1"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="send_cmd_2"
+            android:text="2"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="send_cmd_3"
+            android:text="3"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="send_cmd_4"
+            android:text="4"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 
     <EditText
@@ -53,40 +106,5 @@
         android:background="#00000000"
         android:editable="false"
         android:gravity="top|left" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="send_cmd_1"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="send_cmd_2"
-            android:text="2" />
-
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="send_cmd_3"
-            android:text="3" />
-
-        <Button
-            android:id="@+id/btn4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="send_cmd_4"
-            android:text="4" />
-
-    </LinearLayout>
 
 </LinearLayout>
