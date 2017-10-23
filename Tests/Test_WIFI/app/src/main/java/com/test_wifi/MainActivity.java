@@ -31,6 +31,9 @@ import java.net.URL;
 public class MainActivity extends TestingLogging {
     TextView log;
 
+    EditText et_login;
+    EditText et_password;
+
     EditText et_address;
 
     WifiManager wifi;
@@ -41,6 +44,9 @@ public class MainActivity extends TestingLogging {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        et_login = (EditText)findViewById(R.id.et_login);
+        et_password = (EditText)findViewById(R.id.et_password);
 
         et_address = (EditText)findViewById(R.id.et_address);
         log = (TextView)findViewById(R.id.editText);
@@ -260,6 +266,9 @@ public class MainActivity extends TestingLogging {
             catch (IOException e) {
                 Log.e("States", e.toString());
             }
+            catch (Exception e) {
+                Log.e("States", e.toString());
+            }
             return null;
         }
 
@@ -270,9 +279,7 @@ public class MainActivity extends TestingLogging {
 
         @Override
         protected void onPostExecute(String content) {
-            if(!responseMsg.isEmpty()) {
-                logging(responseMsg);
-            }
+            logging(responseMsg);
             //Toast.makeText(getApplication(), "Данные загружены", Toast.LENGTH_SHORT).show();
         }
     }
@@ -344,6 +351,21 @@ public class MainActivity extends TestingLogging {
         if(!check_all_permissions()) {
             return;
         }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void login(View view) {
+        logging("login");
+        if(et_login.toString().isEmpty()) {
+            logging("Login is Empty");
+            return;
+        }
+        if(et_password.toString().isEmpty()) {
+            logging("Password is Empty");
+            return;
+        }
+
+        WiFiConnector wifi = new WiFiConnector(this, log);
+        wifi.connect(et_login.toString(), et_password.toString());
     }
     //---------------------------------------------------------------------------------------------
 }
