@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="df35a9cbe7646639754e50e17ff26db7a105ca7e">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_8542261bd358d942efb35396f6864d0b4f3cc24a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/.android/build-cache/adc111a5c082ccddd57e452d5c9e8d27b1cd9402/output/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_25c4eefd439b9a3a690d85e16c14ff8cbb70fa17/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/.android/build-cache/fe3d942eb45ce7f19c4ee0ce9e0a40c2fa240924/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e5b97e4538e6c970044d341accbaf9597931bb7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_7e856e237e4eaf6763bbb23803c869ae9c1b79db/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/.android/build-cache/adc111a5c082ccddd57e452d5c9e8d27b1cd9402/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3d791a717b44693f7a207ba5e696e281a47f76b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/opt/android-sdk-update-manager/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_feb6d208044b0a76cd58faa4c967fad60ab7a21f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/.android/build-cache/ed093a9cd30d1db8bbc4111f579a3af17d3c4fa5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a934d1a4aa8bce194c72410fcf9e99a12eac5937/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/home/boss/.android/build-cache/dae41059db41700273a4318129317b98598e2266/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_01564355b92051a11ed9bd59c498755fd214636d/classes.dex" />
+    </item>
+
+</items>

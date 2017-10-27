@@ -1,0 +1,19 @@
+#Fri Oct 27 22:17:28 MSK 2017
+renamed.5=classes.dex
+renamed.4=classes3.dex
+renamed.3=classes6.dex
+renamed.2=classes2.dex
+renamed.1=classes5.dex
+renamed.0=classes4.dex
+base.5=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_feb6d208044b0a76cd58faa4c967fad60ab7a21f
+base.4=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_01564355b92051a11ed9bd59c498755fd214636d
+base.3=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e5b97e4538e6c970044d341accbaf9597931bb7
+base.2=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a934d1a4aa8bce194c72410fcf9e99a12eac5937
+base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_25c4eefd439b9a3a690d85e16c14ff8cbb70fa17
+base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3d791a717b44693f7a207ba5e696e281a47f76b
+file.5=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_feb6d208044b0a76cd58faa4c967fad60ab7a21f/classes.dex
+file.4=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_01564355b92051a11ed9bd59c498755fd214636d/classes.dex
+file.3=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8e5b97e4538e6c970044d341accbaf9597931bb7/classes.dex
+file.2=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a934d1a4aa8bce194c72410fcf9e99a12eac5937/classes.dex
+file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_25c4eefd439b9a3a690d85e16c14ff8cbb70fa17/classes.dex
+file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/SetScreenBrightness-Android-Examples.com/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b3d791a717b44693f7a207ba5e696e281a47f76b/classes.dex

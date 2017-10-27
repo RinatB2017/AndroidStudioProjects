@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/QRCodeReaderView.iml" filepath="$PROJECT_DIR$/QRCodeReaderView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/qrcodereaderview/qrcodereaderview.iml" filepath="$PROJECT_DIR$/qrcodereaderview/qrcodereaderview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/samples/samples.iml" filepath="$PROJECT_DIR$/samples/samples.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/QRCodeReaderView.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/QRCodeReaderView.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/qrcodereaderview.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/qrcodereaderview.iml" />
+      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/samples.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/samples.iml" />
     </modules>
   </component>
 </project>

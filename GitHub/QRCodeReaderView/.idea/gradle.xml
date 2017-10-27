@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/qrcodereaderview" />
-            <option value="$PROJECT_DIR$/samples" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview" />
+            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
