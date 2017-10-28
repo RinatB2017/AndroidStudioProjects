@@ -14,6 +14,7 @@ package newmoonlight;
     import android.graphics.Canvas;
     import android.graphics.Color;
     import android.graphics.Paint;
+    import android.graphics.Point;
     import android.graphics.PorterDuff;
     import android.graphics.drawable.ColorDrawable;
     import android.os.Bundle;
@@ -24,11 +25,14 @@ package newmoonlight;
     import android.text.method.KeyListener;
     import android.util.DisplayMetrics;
     import android.util.Log;
+    import android.view.Display;
     import android.view.KeyEvent;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.MotionEvent;
     import android.view.View;
+    import android.view.Window;
+    import android.view.WindowManager;
     import android.widget.Button;
     import android.widget.ImageView;
     import android.widget.LinearLayout;
@@ -78,25 +82,20 @@ public class MainActivity extends AppCompatActivity
     TextView tv_hot;
     TextView tv_cold;
 
-    //static final int WIDTH  = 798;
-    //static final int HEIGHT = 784;
-    //static final int WIDTH  = 768;
-    //static final int HEIGHT = 768;
+    static int WIDTH  = 768;
+    static int HEIGHT = 768;
 
-    static final int WIDTH  = 768;
-    static final int HEIGHT = 768;
+    static float center_x = WIDTH / 2.0f;
+    static float center_y = HEIGHT / 2.0f;
 
-    static final float center_x = WIDTH / 2.0f;
-    static final float center_y = HEIGHT / 2.0f;
+    static float center_r = WIDTH / 14.0f;
 
-    static final float center_r = WIDTH / 14.0f;
-
-    static final float led_r = WIDTH / 17.0f;
-    static final float min_r = center_r + led_r + 10.0f;
-    static final float max_r = WIDTH / 2.0f - 20.0f;
-    static final float min_angle = -30.0f;
-    static final float max_angle = 330.0f;
-    static final int inc_r = (int)((max_r - min_r) / 2.4f);
+    static float led_r = WIDTH / 17.0f;
+    static float min_r = center_r + led_r + 10.0f;
+    static float max_r = WIDTH / 2.0f - 20.0f;
+    static float min_angle = -30.0f;
+    static float max_angle = 330.0f;
+    static int inc_r = (int)((max_r - min_r) / 2.4f);
     static float temp_x = 0;
     static float temp_y = 0;
 
@@ -394,15 +393,8 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     //---------------------------------------------------------------------------------------------
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        tv_log = new TextView(this);
-        tv_log.setTextColor(Color.WHITE);
-
+    void max_screen() {
         // займем весь экран
-        /*
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -413,10 +405,17 @@ public class MainActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION           // hide nav bar
                         | View.SYSTEM_UI_FLAG_FULLSCREEN                // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        */
-        //---
+    }
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-        
+        tv_log = new TextView(this);
+        tv_log.setTextColor(Color.WHITE);
+
+        //max_screen();
+
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -453,6 +452,24 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void create_widgets()
     {
+        //---
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        WIDTH = p.x;
+        HEIGHT = p.x;
+
+        center_x = WIDTH / 2.0f;
+        center_y = HEIGHT / 2.0f;
+
+        center_r = WIDTH / 14.0f;
+
+        led_r = WIDTH / 17.0f;
+        min_r = center_r + led_r + 10.0f;
+        max_r = WIDTH / 2.0f - 20.0f;
+        inc_r = (int)((max_r - min_r) / 2.4f);
+        //---
+
         // создание LinearLayout
         linLayout = new LinearLayout(this);
         layoutParams = new LinearLayout.LayoutParams(
@@ -471,12 +488,6 @@ public class MainActivity extends AppCompatActivity
         mPaint.setStrokeWidth(5);
         //---
         c = new Canvas(bitmap);
-        //---
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int screenWidth = displaymetrics.widthPixels;
-        int screenHeight = displaymetrics.heightPixels;
-        //logging("screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
         //---
         points = new ArrayList<LED>();
         new_draw_field();
