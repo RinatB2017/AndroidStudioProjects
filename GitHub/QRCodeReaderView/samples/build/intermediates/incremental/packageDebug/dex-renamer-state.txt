@@ -1,7 +1,0 @@
-#Tue Oct 24 14:01:01 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a9b175ced33bc8e7ea7a822eff9d3c9a6d3856a5
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_8b1b2a867bf754878af36e729099ebbac467935d/classes.dex
-base.1=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_8b1b2a867bf754878af36e729099ebbac467935d
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a9b175ced33bc8e7ea7a822eff9d3c9a6d3856a5/classes.dex

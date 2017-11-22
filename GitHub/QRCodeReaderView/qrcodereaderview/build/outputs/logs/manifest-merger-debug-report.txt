@@ -1,0 +1,35 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+	package
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:3:5-35
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:2:1-9:12
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+uses-sdk
+ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+	android:targetSdkVersion
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml:6:3-7:9
+		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/qrcodereaderview/src/main/AndroidManifest.xml

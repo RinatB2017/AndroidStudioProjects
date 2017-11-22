@@ -17,6 +17,7 @@ package newmoonlight;
     import android.graphics.Point;
     import android.graphics.PorterDuff;
     import android.graphics.drawable.ColorDrawable;
+    import android.os.Build;
     import android.os.Bundle;
     import android.preference.PreferenceManager;
     import android.support.v7.app.ActionBar;
@@ -367,11 +368,14 @@ public class MainActivity extends AppCompatActivity
         tv_cold.setTextColor(text_color);
         tv_hot.setTextColor(text_color);
 
-        sb_cold.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        sb_cold.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        //заремарено из-за 4.0.4
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            sb_cold.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_cold.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 
-        sb_hot.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        sb_hot.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_hot.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_hot.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        }
     }
     //---------------------------------------------------------------------------------------------
     @Override

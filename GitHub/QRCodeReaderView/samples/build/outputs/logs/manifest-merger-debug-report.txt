@@ -1,6 +1,25 @@
 -- Merging decision tree log ---
 manifest
 ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+MERGED from [com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/qrcodereaderview-2.0.2.aar/a67bde62f3362b158b2170adf568291a/AndroidManifest.xml:2:1-12:12
+MERGED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/cc3ba5419e194744ec423108d072efbc/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:transition:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/16e1b5d555b3d39c60a80ac6840c1dc0/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-25.1.0.aar/2712dfe6cc8da47efa7b57874923e68d/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-25.1.0.aar/19bcaf6cd73ac48d9626ff1fb109b382/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.1.0.aar/172984fef9e687693fcce1881e33236e/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.1.0.aar/5aceaf0f9ccbdeec4316a17c49f5769b/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:recyclerview-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.1.0.aar/9f2ecafba94707125fc38455828b7d96/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.1.0.aar/6d65a6e0d1daab15841f013de10337dd/AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/f241dbd7b1b97ac60ec20f766af3ae1a/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/f10e678a545e7174b0993bf10f7515e1/AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-25.1.0.aar/20446acdfbe1a31c5fa5772f365cf039/AndroidManifest.xml:17:1-27:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:1-31:12
 	package
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:3:5-43
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
@@ -9,12 +28,12 @@ ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderV
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:5:5-30
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:4:5-28
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
-	xmlns:android
-		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.CAMERA
 ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:8:3-62
 	android:name
@@ -29,23 +48,34 @@ ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderV
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:11:17-65
 application
 ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:13:3-29:17
-MERGED from [com.android.support:design:25.1.0] /home/boss/.android/build-cache/38dee49b2b7f07a3e6a71a086b1545adf1052c34/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.android/build-cache/80e6e8cd75ccc262ed2b5daf798c4b04c4d25571/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.android/build-cache/0e307b11219563e0527213af55481947564cb158/output/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.android/build-cache/0d0c1ef7b82a2b2d863689a127fe309586454b20/output/AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:transition:25.1.0] /home/boss/.android/build-cache/02a882554be678a5eb0af0ebee0a1f1f85ff03fd/output/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.android/build-cache/14ef9dcd437cd8149275b2394c815da574963c28/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.android/build-cache/7a5a854d454682af5a460d715eb938b28bbf2c14/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.android/build-cache/c9ee030f8443998f508b314e6d10928613beb12c/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.android/build-cache/1fbe5374935a42b0ed74cb115e30f48decd40771/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.android/build-cache/8d256b122fea01b8e4d5bebccba7ecbb72eddc03/output/AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.android/build-cache/0b26022e8457e8477a67513a8a8ca6a7bd05c568/output/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/cc3ba5419e194744ec423108d072efbc/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/cc3ba5419e194744ec423108d072efbc/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:transition:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/16e1b5d555b3d39c60a80ac6840c1dc0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:transition:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/16e1b5d555b3d39c60a80ac6840c1dc0/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-25.1.0.aar/2712dfe6cc8da47efa7b57874923e68d/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-25.1.0.aar/2712dfe6cc8da47efa7b57874923e68d/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-25.1.0.aar/19bcaf6cd73ac48d9626ff1fb109b382/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-25.1.0.aar/19bcaf6cd73ac48d9626ff1fb109b382/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.1.0.aar/172984fef9e687693fcce1881e33236e/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.1.0.aar/172984fef9e687693fcce1881e33236e/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.1.0.aar/5aceaf0f9ccbdeec4316a17c49f5769b/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.1.0.aar/5aceaf0f9ccbdeec4316a17c49f5769b/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.1.0.aar/6d65a6e0d1daab15841f013de10337dd/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.1.0.aar/6d65a6e0d1daab15841f013de10337dd/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/f241dbd7b1b97ac60ec20f766af3ae1a/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/f241dbd7b1b97ac60ec20f766af3ae1a/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/f10e678a545e7174b0993bf10f7515e1/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/f10e678a545e7174b0993bf10f7515e1/AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-25.1.0.aar/20446acdfbe1a31c5fa5772f365cf039/AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-25.1.0.aar/20446acdfbe1a31c5fa5772f365cf039/AndroidManifest.xml:25:5-20
 	android:label
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:16:7-39
-	android:allowBackup
-		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:14:7-33
 	android:icon
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:15:7-43
+	android:allowBackup
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:14:7-33
 	android:theme
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:17:7-65
 activity#com.example.qr_readerexample.DecoderActivity
@@ -66,24 +96,43 @@ ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderV
 		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml:26:19-66
 uses-sdk
 INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2] /home/boss/.android/build-cache/49021b3f1347ac46a8ec41477d35fc617830e630/output/AndroidManifest.xml:8:5-10:41
-MERGED from [com.android.support:design:25.1.0] /home/boss/.android/build-cache/38dee49b2b7f07a3e6a71a086b1545adf1052c34/output/AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.android/build-cache/80e6e8cd75ccc262ed2b5daf798c4b04c4d25571/output/AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.android/build-cache/0e307b11219563e0527213af55481947564cb158/output/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.android/build-cache/0d0c1ef7b82a2b2d863689a127fe309586454b20/output/AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:25.1.0] /home/boss/.android/build-cache/735da31e0c0fba670e11417f99c7af630d268fd1/output/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.1.0] /home/boss/.android/build-cache/02a882554be678a5eb0af0ebee0a1f1f85ff03fd/output/AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.android/build-cache/14ef9dcd437cd8149275b2394c815da574963c28/output/AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.android/build-cache/7a5a854d454682af5a460d715eb938b28bbf2c14/output/AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.android/build-cache/c9ee030f8443998f508b314e6d10928613beb12c/output/AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.android/build-cache/1fbe5374935a42b0ed74cb115e30f48decd40771/output/AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.android/build-cache/8d256b122fea01b8e4d5bebccba7ecbb72eddc03/output/AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.android/build-cache/0b26022e8457e8477a67513a8a8ca6a7bd05c568/output/AndroidManifest.xml:21:5-23:58
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+MERGED from [com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/qrcodereaderview-2.0.2.aar/a67bde62f3362b158b2170adf568291a/AndroidManifest.xml:8:5-10:41
+MERGED from [com.dlazaro66.qrcodereaderview:qrcodereaderview:2.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/qrcodereaderview-2.0.2.aar/a67bde62f3362b158b2170adf568291a/AndroidManifest.xml:8:5-10:41
+MERGED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/cc3ba5419e194744ec423108d072efbc/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.1.0.aar/cc3ba5419e194744ec423108d072efbc/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:transition:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/16e1b5d555b3d39c60a80ac6840c1dc0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/transition-25.1.0.aar/16e1b5d555b3d39c60a80ac6840c1dc0/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-25.1.0.aar/2712dfe6cc8da47efa7b57874923e68d/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-25.1.0.aar/2712dfe6cc8da47efa7b57874923e68d/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-25.1.0.aar/19bcaf6cd73ac48d9626ff1fb109b382/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-25.1.0.aar/19bcaf6cd73ac48d9626ff1fb109b382/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.1.0.aar/172984fef9e687693fcce1881e33236e/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.1.0.aar/172984fef9e687693fcce1881e33236e/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.1.0.aar/5aceaf0f9ccbdeec4316a17c49f5769b/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.1.0.aar/5aceaf0f9ccbdeec4316a17c49f5769b/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:recyclerview-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.1.0.aar/9f2ecafba94707125fc38455828b7d96/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.1.0.aar/9f2ecafba94707125fc38455828b7d96/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.1.0.aar/6d65a6e0d1daab15841f013de10337dd/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.1.0.aar/6d65a6e0d1daab15841f013de10337dd/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/f241dbd7b1b97ac60ec20f766af3ae1a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.1.0.aar/f241dbd7b1b97ac60ec20f766af3ae1a/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/f10e678a545e7174b0993bf10f7515e1/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-vector-drawable:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.1.0.aar/f10e678a545e7174b0993bf10f7515e1/AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-25.1.0.aar/20446acdfbe1a31c5fa5772f365cf039/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-25.1.0.aar/20446acdfbe1a31c5fa5772f365cf039/AndroidManifest.xml:21:5-23:58
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:25.1.0] /home/boss/.android/build-cache/38dee49b2b7f07a3e6a71a086b1545adf1052c34/output/AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:25.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/design-25.1.0.aar/e05636de6c36e5b2d401b7d1294081b4/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
+		ADDED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
 		INJECTED from /home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/src/main/AndroidManifest.xml
