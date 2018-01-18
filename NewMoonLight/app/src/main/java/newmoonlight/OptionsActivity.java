@@ -50,19 +50,26 @@ public class OptionsActivity extends AppCompatActivity {
         btn_apply = (Button)findViewById(R.id.btn_apply);
         btn_cancel = (Button)findViewById(R.id.btn_cancel);
 
+        btn_apply.setEnabled(false);
+        btn_cancel.setEnabled(false);
+
         View.OnClickListener apply = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(LOG_TAG, "apply");
 
                 //TODO
-                BluetoothDevice deviceSelected = discoveredDevices.get(position);
-                if(deviceSelected != null) {
-                    BluetoothName.set_name(getApplicationContext(), deviceSelected.getName());
-                    BluetoothName.set_mac(getApplicationContext(), deviceSelected.getAddress());
+                if(position >= 0) {
+                    BluetoothDevice deviceSelected = discoveredDevices.get(position);
+                    if (deviceSelected != null) {
+                        BluetoothName.set_name(getApplicationContext(), deviceSelected.getName());
+                        BluetoothName.set_mac(getApplicationContext(), deviceSelected.getAddress());
+                    }
+                    f_run_MainActivity();
                 }
-
-                f_run_MainActivity();
+                else {
+                    Toast.makeText(getBaseContext(), "Устройство не выбрано.", Toast.LENGTH_LONG).show();
+                }
             }
         };
         View.OnClickListener cancel = new View.OnClickListener() {
@@ -111,15 +118,23 @@ public class OptionsActivity extends AppCompatActivity {
                     String action = intent.getAction();
 
                     if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                        BluetoothDevice e_device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                        if(e_device != null) {
+                            Log.i(LOG_TAG, "e_device [" + e_device.getName() + "]");
 
-                        if (!discoveredDevices.contains(device)) {
-                            discoveredDevices.add(device);
-                            listAdapter.notifyDataSetChanged();
+                            if(e_device.getName() != null) {
+                                if (!discoveredDevices.contains(e_device)) {
+                                    discoveredDevices.add(e_device);
+                                    listAdapter.notifyDataSetChanged();
+                                }
+                            }
                         }
                     }
                 }
             };
+        }
+        else {
+            Log.i(LOG_TAG, "what???");
         }
 
         if (discoveryFinishedReceiver == null) {
@@ -130,12 +145,16 @@ public class OptionsActivity extends AppCompatActivity {
                     if (progressDialog != null)
                         progressDialog.dismiss();
                     Toast.makeText(getBaseContext(), "Поиск закончен.", Toast.LENGTH_LONG).show();
+                    if(!listAdapter.isEmpty()) {
+                        btn_apply.setEnabled(true);
+                    }
+                    btn_cancel.setEnabled(true);
                     unregisterReceiver(discoveryFinishedReceiver);
                 }
             };
         }
 
-        registerReceiver(discoverDevicesReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+        registerReceiver(discoverDevicesReceiver,   new IntentFilter(BluetoothDevice.ACTION_FOUND));
         registerReceiver(discoveryFinishedReceiver, new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED));
 
         lv_devices.setEnabled(false);

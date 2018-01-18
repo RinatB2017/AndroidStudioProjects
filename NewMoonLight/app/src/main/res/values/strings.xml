@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Лунный свет</string>
     <string name="title_discover_devices">Найти устройства</string>
+    <string name="Connect">Соединиться</string>
+    <string name="Disconnect">Разьединиться</string>
+    <string name="Options">Опции</string>
 </resources>

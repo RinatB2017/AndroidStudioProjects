@@ -1,5 +1,6 @@
 package newmoonlight;
 
+    import android.Manifest;
     import android.app.ProgressDialog;
     import android.bluetooth.BluetoothAdapter;
     import android.bluetooth.BluetoothDevice;
@@ -10,6 +11,7 @@ package newmoonlight;
     import android.content.IntentFilter;
     import android.content.SharedPreferences;
     import android.content.pm.ActivityInfo;
+    import android.content.pm.PackageManager;
     import android.graphics.Bitmap;
     import android.graphics.Canvas;
     import android.graphics.Color;
@@ -20,6 +22,8 @@ package newmoonlight;
     import android.os.Build;
     import android.os.Bundle;
     import android.preference.PreferenceManager;
+    import android.support.v4.app.ActivityCompat;
+    import android.support.v4.content.ContextCompat;
     import android.support.v7.app.ActionBar;
     import android.support.v7.app.AppCompatActivity;
     import android.text.Editable;
@@ -60,6 +64,7 @@ package newmoonlight;
 public class MainActivity extends AppCompatActivity
         implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
 
+    private static final int RECORD_REQUEST_CODE = 101;
     private final static int REQUEST_ENABLE_BT = 1;
     final String LOG_TAG = "States";
 
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
     //private static final String DEVICE_NAME = "20:15:10:19:62:52";
-    private static final String DEVICE_NAME = "HC-05";
+    //private static final String DEVICE_NAME = "HC-05";
     private static InputStream inputStream;
     private static OutputStream outputStream;
 
@@ -386,15 +391,40 @@ public class MainActivity extends AppCompatActivity
                 scan();
                 break;
 
+            case R.id.action_settings_disconnect:
+                if(mmSocket.isConnected()) {
+                    try {
+                        mmSocket.close();
+                        logging("Соединение разорвано");
+                        block_interface(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+
             case R.id.action_settings_options:
                 Intent intent = new Intent(this, OptionsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                if(intent != null) {
+                    startActivity(intent);
+                }
                 break;
 
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+    //---------------------------------------------------------------------------------------------
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permissionType}, requestCode
+            );
+        }
     }
     //---------------------------------------------------------------------------------------------
     void max_screen() {
@@ -410,6 +440,7 @@ public class MainActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_FULLSCREEN                // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
+
     //---------------------------------------------------------------------------------------------
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -426,6 +457,8 @@ public class MainActivity extends AppCompatActivity
         create_widgets();
         create_bluetooth();
         setting_GRAY();
+
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
         //TODO
         scan();
@@ -823,7 +856,7 @@ public class MainActivity extends AppCompatActivity
         if(ok)
             logging("Соединение установлено");
         else
-            logging("Сокдинение не удалось");
+            logging("Соединение не удалось");
         block_interface(!ok);
 
         return ok;

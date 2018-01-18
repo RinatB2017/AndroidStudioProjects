@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lv;
     private final static int REQUEST_ENABLE_BT = 1;
 
-    final String TAG_LOG = "INFO";
+    final String TAG_LOG = "States";
 
     Button btn_scan;
     Button btn_1;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn_4;
 
     BluetoothAdapter bluetooth;
-    BluetoothSocket btSocket;
+    //BluetoothSocket btSocket;
     private BroadcastReceiver discoveryDevicesReceiver;
     private BroadcastReceiver discoveryFinishedReceiver;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     //private static final UUID MY_UUID = UUID.fromString("50001101-0000-1000-8000-00809F9B34FB");
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
-    private static final String DEVICE_NAME = "MEGALED";
+    //private static final String DEVICE_NAME = "MEGALED";
+    private static final String DEVICE_NAME = "HC-05";
     private static InputStream  inputStream;
     private static OutputStream outputStream;
 
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.editText);
         bluetooth = BluetoothAdapter.getDefaultAdapter();
 
-        block_interface(true);
+        //block_interface(true);
 
         modbus = new ModBus();
 
@@ -93,8 +94,10 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
 
-        boolean ok = scan();
-        if(ok) btn_scan.setEnabled(true);
+//        boolean ok = scan();
+//        if(ok) {
+//            btn_scan.setEnabled(true);
+//        }
         Log.d(TAG_LOG, "onCreate");
     }
     //--------------------------------------------------------------------------------------------
@@ -152,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     public boolean scan()
     {
+        Log.i(TAG_LOG, "scan");
         if(bluetooth == null)
         {
             tv.append("Bluetooth модуль не найден\n");
@@ -173,17 +177,18 @@ public class MainActivity extends AppCompatActivity {
                     String action = intent.getAction();
 
                     if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                        BluetoothDevice e_device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                        Log.i(TAG_LOG, "e_device [" + e_device.getName() + "]");
 
-                        if (!discoveredDevices.contains(device))
+                        if (!discoveredDevices.contains(e_device))
                         {
-                            if(device.getName().equals(DEVICE_NAME))
+                            if(e_device.getName().equals(DEVICE_NAME))
                             {
                                 tv.append("[" + DEVICE_NAME + "] FOUND\n");
-                                boolean ok = connect_remote_device(device.getAddress());
+                                boolean ok = connect_remote_device(e_device.getAddress());
                                 block_interface(!ok);
                             }
-                            discoveredDevices.add(device);
+                            discoveredDevices.add(e_device);
                         }
                     }
                 }
@@ -199,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                     unregisterReceiver(discoveryFinishedReceiver);
                     unregisterReceiver(discoveryDevicesReceiver);
 
-                    btn_scan.setEnabled(false);
+                    //btn_scan.setEnabled(false);
                     btn_1.setEnabled(true);
                     btn_2.setEnabled(true);
                     btn_3.setEnabled(true);

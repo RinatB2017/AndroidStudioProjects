@@ -84,19 +84,19 @@ public class MainActivity extends ListActivity {
         create_bluetooth();
     }
 
-        /*
-        if(bluetoothAdapter == null)
-        {
-            Log.d("MainActivity", "Bluetooth модуль не найден");
-            return;
-        }
-        if(!bluetoothAdapter.isEnabled())
-        {
-            // Bluetooth выключен. Предложим пользователю включить его.
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
-        */
+    /*
+    if(bluetoothAdapter == null)
+    {
+        Log.d("MainActivity", "Bluetooth модуль не найден");
+        return;
+    }
+    if(!bluetoothAdapter.isEnabled())
+    {
+        // Bluetooth выключен. Предложим пользователю включить его.
+        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+    }
+    */
 
     public void create_bluetooth() {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -149,7 +149,7 @@ public class MainActivity extends ListActivity {
                     getListView().setEnabled(true);
                     if (progressDialog != null)
                         progressDialog.dismiss();
-                    Toast.makeText(getBaseContext(), "Поиск закончен. Выберите устройство для отправки ообщения.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "Поиск закончен. Выберите устройство для отправки сообщения.", Toast.LENGTH_LONG).show();
                     unregisterReceiver(discoveryFinishedReceiver);
                 }
             };

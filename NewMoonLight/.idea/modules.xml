@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NewMoonLight.iml" filepath="$PROJECT_DIR$/NewMoonLight.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight/NewMoonLight.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight/NewMoonLight.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/NewMoonLight/app/app.iml" />
     </modules>
   </component>
 </project>
