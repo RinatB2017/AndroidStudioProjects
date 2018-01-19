@@ -1,0 +1,96 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+MERGED from [com.android.support:appcompat-v7:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/ce72c86ff0656fa0aa189a5ff6f9858d/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-v4:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/a8fd5500324cb60d02087d02338ecbb2/AndroidManifest.xml:17:1-24:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+	package
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:3:5-49
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-26:12
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:5:22-65
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:6:5-80
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:6:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:7:5-78
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:7:22-76
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:8:5-73
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:8:22-71
+application
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:10:5-24:19
+MERGED from [com.android.support:appcompat-v7:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/ce72c86ff0656fa0aa189a5ff6f9858d/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/ce72c86ff0656fa0aa189a5ff6f9858d/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/a8fd5500324cb60d02087d02338ecbb2/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/a8fd5500324cb60d02087d02338ecbb2/AndroidManifest.xml:22:5-20
+	android:supportsRtl
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:15:9-35
+	android:label
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:13:9-41
+	android:roundIcon
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:14:9-54
+	android:icon
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:12:9-43
+	android:allowBackup
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:11:9-35
+	android:theme
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:16:9-40
+activity#com.example.boss.bluetooth_megaled.MainActivity
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:17:9-23:20
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:17:19-47
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:18:13-22:29
+action#android.intent.action.MAIN
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:19:17-69
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:21:17-77
+	android:name
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:21:27-74
+uses-sdk
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/ce72c86ff0656fa0aa189a5ff6f9858d/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/ce72c86ff0656fa0aa189a5ff6f9858d/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-v4:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/a8fd5500324cb60d02087d02338ecbb2/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/a8fd5500324cb60d02087d02338ecbb2/AndroidManifest.xml:20:5-43
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml

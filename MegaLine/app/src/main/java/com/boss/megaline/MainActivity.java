@@ -1,5 +1,6 @@
 package com.boss.megaline;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -10,6 +11,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +37,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity
         implements SeekBar.OnSeekBarChangeListener {
 
+    private static final int RECORD_REQUEST_CODE = 101;
     private final static int REQUEST_ENABLE_BT = 1;
     final String LOG_TAG = "States";
 
@@ -159,6 +164,17 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     //---------------------------------------------------------------------------------------------
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permissionType}, requestCode
+            );
+        }
+    }
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -202,6 +218,8 @@ public class MainActivity extends AppCompatActivity
 
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
         block_interface(true);
 

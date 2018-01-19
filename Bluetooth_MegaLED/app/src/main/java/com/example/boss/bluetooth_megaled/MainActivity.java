@@ -1,5 +1,6 @@
 package com.example.boss.bluetooth_megaled;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -8,7 +9,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +33,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
     private TextView tv;
     private ListView lv;
+    private static final int RECORD_REQUEST_CODE = 101;
     private final static int REQUEST_ENABLE_BT = 1;
 
     final String TAG_LOG = "States";
@@ -62,6 +67,16 @@ public class MainActivity extends AppCompatActivity {
     ModBus modbus;
 
     //---------------------------------------------------------------------------------------------
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permissionType}, requestCode
+            );
+        }
+    }
     //--------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.editText);
         bluetooth = BluetoothAdapter.getDefaultAdapter();
+
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
         //block_interface(true);
 
