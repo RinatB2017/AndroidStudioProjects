@@ -195,17 +195,19 @@ public class MainActivity extends AppCompatActivity {
 
                     if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                         BluetoothDevice e_device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        Log.i(TAG_LOG, "e_device [" + e_device.getName() + "]");
+                        if(e_device != null) {
+                            if(e_device.getName() != null) {
+                                Log.i(TAG_LOG, "e_device [" + e_device.getName() + "]");
 
-                        if (!discoveredDevices.contains(e_device))
-                        {
-                            if(e_device.getName().equals(DEVICE_NAME))
-                            {
-                                tv.append("[" + DEVICE_NAME + "] FOUND\n");
-                                boolean ok = connect_remote_device(e_device.getAddress());
-                                block_interface(!ok);
+                                if (!discoveredDevices.contains(e_device)) {
+                                    if (e_device.getName().equals(DEVICE_NAME)) {
+                                        tv.append("[" + DEVICE_NAME + "] FOUND\n");
+                                        boolean ok = connect_remote_device(e_device.getAddress());
+                                        block_interface(!ok);
+                                    }
+                                    discoveredDevices.add(e_device);
+                                }
                             }
-                            discoveredDevices.add(e_device);
                         }
                     }
                 }

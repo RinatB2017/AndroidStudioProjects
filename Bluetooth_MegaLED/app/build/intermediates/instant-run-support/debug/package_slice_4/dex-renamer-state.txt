@@ -1,0 +1,4 @@
+#Fri Jan 19 21:00:15 MSK 2018
+base.0=/home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/build/intermediates/transforms/dexMerger/debug/5
+path.0=classes.dex
+renamed.0=classes.dex
