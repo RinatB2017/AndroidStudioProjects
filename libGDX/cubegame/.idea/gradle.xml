@@ -7,10 +7,10 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/android" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/core" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/libGDX/cubegame/desktop" />
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/android" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/desktop" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

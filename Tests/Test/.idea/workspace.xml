@@ -14,12 +14,110 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8fc1fad-6d5b-4372-8d75-392aaa9faaca" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/Read Me First.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/.project" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/.settings/org.eclipse.jdt.core.prefs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/R.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/SetScreenBrightness-Android-Examples.com.apk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes.dex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$anim.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$attr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$bool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$color.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$dimen.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$drawable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$id.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$integer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$layout.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$string.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$style.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R$styleable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/android/support/v7/appcompat/R.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/BuildConfig.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/MainActivity$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/MainActivity.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$anim.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$attr.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$bool.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$color.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$dimen.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$drawable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$id.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$integer.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$layout.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$menu.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$string.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$style.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R$styleable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/classes/com/setscreenbrightness_android_examples/com/R.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/dexedLibs/android-support-v4-d42c77490fd507bfc8b70e6669ccad3e.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/dexedLibs/android-support-v7-appcompat-f50da7292b023d59f61bffaf2dc6d94f.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/dexedLibs/appcompat_v7-b14d1e8ce2086a36dbe5746cf1e064ba.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/res/crunch/drawable-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/res/crunch/drawable-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/res/crunch/drawable-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/res/crunch/drawable-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/bin/resources.ap_" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/gen/android/support/v7/appcompat/R.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/gen/com/setscreenbrightness_android_examples/com/BuildConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/gen/com/setscreenbrightness_android_examples/com/R.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/ic_launcher-web.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/libs/android-support-v4.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/drawable-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/drawable-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/drawable-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/drawable-xxhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/layout/activity_main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/menu/main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values-v11/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values-v14/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values-w820dp/dimens.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values/dimens.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values/strings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/res/values/styles.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../SetScreenBrightness-Android-Examples.com_/SetScreenBrightness-Android-Examples.com/src/com/setscreenbrightness_android_examples/com/MainActivity.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/animated_vector_drawable_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/appcompat_v7_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/constraint_layout_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/constraint_layout_solver_1_0_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/espresso_core_2_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/hamcrest_integration_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/hamcrest_library_1_3.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/javawriter_2_1_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/javax_annotation_api_1_2.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/javax_inject_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/jsr305_2_0_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/junit_4_12.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/rules_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/runner_0_5.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_annotations_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_compat_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_core_ui_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_core_utils_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_fragment_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_media_compat_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_v4_25_3_1.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/libraries/support_vector_drawable_25_3_1.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test.iml" afterPath="$PROJECT_DIR$/Test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/gradle.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/misc.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/modules.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Test_VR_case/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/Test_VR_case.iml" afterPath="$PROJECT_DIR$/../Test_VR_case/Test_VR_case.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/app/app.iml" afterPath="$PROJECT_DIR$/../Test_VR_case/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/app/build.gradle" afterPath="$PROJECT_DIR$/../Test_VR_case/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/build.gradle" afterPath="$PROJECT_DIR$/../Test_VR_case/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Test_VR_case/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/../Test_VR_case/gradle/wrapper/gradle-wrapper.properties" />
     </list>
     <ignored path="Test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1993,7 +2091,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="391" />
+    <option name="x" value="34" />
     <option name="width" value="1404" />
     <option name="height" value="1056" />
   </component>
@@ -2013,6 +2111,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Android Instrumented Tests">
           <PATH>
@@ -2023,7 +2123,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2034,11 +2133,10 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="device.picker.selection" value="Nexus_5X_API_26" />
+    <property name="device.picker.selection" value="Nexus_5X_API_23" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -2110,7 +2208,7 @@
       <option name="ACTIVITY_CLASS" value="com.test.Page_2" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515279072207" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516490597482" />
       </method>
     </configuration>
     <configuration default="false" name="com.test in app" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
@@ -2184,7 +2282,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515279072207" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516490597483" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -2257,7 +2355,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515279072208" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516490597483" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2305,7 +2403,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515279072208" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516490597483" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2337,27 +2435,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -2488,7 +2565,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1515279072210" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516490597484" />
       </method>
     </configuration>
     <list size="4">
@@ -2578,14 +2655,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="391" y="0" width="1404" height="1056" extended-state="4" />
+    <frame x="34" y="0" width="1404" height="1056" extended-state="4" />
     <layout>
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32988507" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34529147" sideWeight="0.47346252" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881355" sideWeight="0.50631845" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34080717" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2599,10 +2676,10 @@
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21142434" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.49368155" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2724,7 +2801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
