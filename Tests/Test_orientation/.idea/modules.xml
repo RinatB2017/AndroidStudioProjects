@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Test_orientation.iml" filepath="$PROJECT_DIR$/Test_orientation.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_orientation/Test_orientation.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_orientation/Test_orientation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_orientation/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_orientation/app/app.iml" />
     </modules>
   </component>
