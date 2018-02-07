@@ -7,6 +7,72 @@
     android:layout_margin="8dp"
     android:orientation="vertical">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/lbl_temperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Temperature: " />
+
+            <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/lbl_pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pressure: " />
+
+            <TextView
+                android:id="@+id/tv_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/lbl_atm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Atm: " />
+
+            <TextView
+                android:id="@+id/tv_atm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/lbl_altitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Altitude: " />
+
+            <TextView
+                android:id="@+id/tv_altitude"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </TableRow>
+
+    </TableLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

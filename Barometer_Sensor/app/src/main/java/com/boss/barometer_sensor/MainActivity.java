@@ -61,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
     private Handler handler = new Handler();
 
     TextView logView;
+
+    TextView tv_temperature;
+    TextView tv_pressure;
+    TextView tv_atm;
+    TextView tv_altitude;
     //---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,6 +137,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logView = (TextView)findViewById(R.id.logView);
+
+        tv_temperature = (TextView)findViewById(R.id.tv_temperature);
+        tv_pressure = (TextView)findViewById(R.id.tv_pressure);
+        tv_atm = (TextView)findViewById(R.id.tv_atm);
+        tv_altitude = (TextView)findViewById(R.id.tv_altitude);
 
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -277,7 +287,11 @@ public class MainActivity extends AppCompatActivity {
                             bytesRead = instream.read(buffer);
                         }
                         message = message + new String(buffer, 0, bytesRead - 1);
-                        handler.post(new MessagePoster(textView, message));
+                        handler.post(new MessagePoster(tv_temperature,
+                                tv_pressure,
+                                tv_atm,
+                                tv_altitude,
+                                message));
                         socket.getInputStream();
                     }
                 }
