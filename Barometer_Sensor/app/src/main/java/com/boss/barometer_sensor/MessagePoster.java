@@ -37,6 +37,7 @@ public class MessagePoster implements Runnable {
             Float pressure = Float.parseFloat(str_pressure) * 0.75006375541921f / 100.0f;
             Float atm = Float.parseFloat(str_atm);
             Float altitude = Float.parseFloat(str_altitude);
+            
             tv_temperature.setText(Float.toString(temperature));
             tv_pressure.setText(Float.toString(pressure));
             tv_atm.setText(Float.toString(atm));
