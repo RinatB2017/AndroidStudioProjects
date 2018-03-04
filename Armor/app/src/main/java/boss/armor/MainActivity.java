@@ -358,9 +358,14 @@ public class MainActivity extends AppCompatActivity
     {
         logging("set_delay_ms");
 
+        byte [] t_data = new byte [2];
+        t_data[0] = (byte) (value & 0xFF);
+        t_data[1] = (byte) ((value >> 8) & 0xFF);
+
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
-        data.write(value);
+        data.write(t_data[1]);
+        data.write(t_data[0]);
 
         ModBus modbus = new ModBus();
         modbus.set_command(CMD_SET_DELAY_MS);
@@ -387,6 +392,7 @@ public class MainActivity extends AppCompatActivity
 
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
+        data.write(0);
         data.write(value);
 
         ModBus modbus = new ModBus();
@@ -414,6 +420,7 @@ public class MainActivity extends AppCompatActivity
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
         data.write(0);
+        data.write(0);
 
         ModBus modbus = new ModBus();
         modbus.set_command(CMD_01);
@@ -439,6 +446,7 @@ public class MainActivity extends AppCompatActivity
 
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
+        data.write(0);
         data.write(0);
 
         ModBus modbus = new ModBus();
@@ -466,6 +474,7 @@ public class MainActivity extends AppCompatActivity
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
         data.write(0);
+        data.write(0);
 
         ModBus modbus = new ModBus();
         modbus.set_command(CMD_03);
@@ -492,6 +501,7 @@ public class MainActivity extends AppCompatActivity
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
         data.write(0);
+        data.write(0);
 
         ModBus modbus = new ModBus();
         modbus.set_command(CMD_04);
@@ -517,6 +527,7 @@ public class MainActivity extends AppCompatActivity
 
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
+        data.write(0);
         data.write(0);
 
         ModBus modbus = new ModBus();
