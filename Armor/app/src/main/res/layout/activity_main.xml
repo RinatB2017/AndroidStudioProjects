@@ -16,16 +16,20 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_delay_ms"
+                android:id="@+id/tv_delay_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="delay_ms" />
-
             <SeekBar
                 android:id="@+id/sb_delay_ms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+            <TextView
+                android:id="@+id/tv_delay_ms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
         </TableRow>
 
         />
@@ -35,16 +39,20 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_brightness"
+                android:id="@+id/tv_brightness_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="brightness" />
-
             <SeekBar
                 android:id="@+id/sb_brightness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
+            <TextView
+                android:id="@+id/tv_brightness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
         </TableRow>
     </TableLayout>
 
