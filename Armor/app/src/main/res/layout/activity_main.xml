@@ -61,35 +61,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="command_1"
-        android:text="CMD 1" />
+        android:text="MODE 1" />
 
     <Button
         android:id="@+id/btn_cmd_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="command_2"
-        android:text="CMD 2" />
+        android:text="MODE 2" />
 
     <Button
         android:id="@+id/btn_cmd_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="command_3"
-        android:text="CMD 3" />
+        android:text="MODE 3" />
 
     <Button
         android:id="@+id/btn_cmd_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="command_4"
-        android:text="CMD 4" />
+        android:text="MODE 4" />
 
     <Button
         android:id="@+id/btn_cmd_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="command_5"
-        android:text="CMD 5" />
+        android:text="MODE 5" />
 
     <ScrollView
         android:layout_width="match_parent"
