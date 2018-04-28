@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_location/Test_location.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_location/Test_location.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/Test_location.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/Test_location.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_location/app/app.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_location/app/app.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_location/app/app.iml" />
     </modules>
   </component>
 </project>

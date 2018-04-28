@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BluetoothDemo-master.iml" filepath="$PROJECT_DIR$/BluetoothDemo-master.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/BluetoothDemo-master/BluetoothDemo-master.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/BluetoothDemo-master/BluetoothDemo-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/BluetoothDemo-master/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/BluetoothDemo-master/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/BluetoothDemo-master/BluetoothDemo-master.iml" filepath="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/BluetoothDemo-master/BluetoothDemo-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/BluetoothDemo-master/app/app.iml" filepath="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/BluetoothDemo-master/app/app.iml" />
     </modules>
   </component>
 </project>
