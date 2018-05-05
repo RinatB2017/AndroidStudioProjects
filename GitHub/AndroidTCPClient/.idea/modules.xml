@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPClient/AndroidTCPClient.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPClient/AndroidTCPClient.iml" />
-      <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPClient/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPClient/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPClient/AndroidTCPClient.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPClient/AndroidTCPClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPClient/app/app.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPClient/app/app.iml" />
     </modules>
   </component>
 </project>

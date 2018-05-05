@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPServer" />
-            <option value="$USER_HOME$/HDD/Programming/AndroidStudioProjects/GitHub/AndroidTCPServer/app" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPServer" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/GitHub/AndroidTCPServer/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

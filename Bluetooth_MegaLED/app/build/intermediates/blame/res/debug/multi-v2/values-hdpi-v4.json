@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/boss/Programming/AndroidStudioProjects/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "outputFile": "/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/a78ea4cee5647585f88af679493ae606/res/values-hdpi/values-hdpi.xml",
+                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/9300abee02e7c862cdfcdf341ca2786b/res/values-hdpi/values-hdpi.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "4",
