@@ -6,9 +6,7 @@ package newmoonlight;
     import android.bluetooth.BluetoothDevice;
     import android.bluetooth.BluetoothSocket;
     import android.content.BroadcastReceiver;
-    import android.content.Context;
     import android.content.Intent;
-    import android.content.IntentFilter;
     import android.content.SharedPreferences;
     import android.content.pm.ActivityInfo;
     import android.content.pm.PackageManager;
@@ -18,6 +16,7 @@ package newmoonlight;
     import android.graphics.Paint;
     import android.graphics.Point;
     import android.graphics.PorterDuff;
+    import android.graphics.Rect;
     import android.graphics.drawable.ColorDrawable;
     import android.os.Build;
     import android.os.Bundle;
@@ -26,12 +25,8 @@ package newmoonlight;
     import android.support.v4.content.ContextCompat;
     import android.support.v7.app.ActionBar;
     import android.support.v7.app.AppCompatActivity;
-    import android.text.Editable;
-    import android.text.method.KeyListener;
-    import android.util.DisplayMetrics;
     import android.util.Log;
     import android.view.Display;
-    import android.view.KeyEvent;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.MotionEvent;
@@ -42,6 +37,7 @@ package newmoonlight;
     import android.widget.ImageView;
     import android.widget.LinearLayout;
     import android.widget.SeekBar;
+    import android.widget.Space;
     import android.widget.TableLayout;
     import android.widget.TableRow;
     import android.widget.TextView;
@@ -151,6 +147,10 @@ public class MainActivity extends AppCompatActivity
         int     color_center_off;
         boolean is_active;
         int     address;
+
+        //TODO
+        String text;
+        boolean draw_text;
     }
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -360,6 +360,33 @@ public class MainActivity extends AppCompatActivity
                     points.get(n).center_y,
                     points.get(n).radius-1,
                     mPaint);
+
+            //FIXME надо исправить
+            if(points.get(n).draw_text) {
+                int fontSize = 80;
+
+                String text = points.get(n).text;
+                mPaint.setColor(Color.WHITE);
+                mPaint.setStyle(Paint.Style.FILL);
+                mPaint.setAntiAlias(true);
+                mPaint.setTextSize(fontSize);
+
+                Paint fontPaint;
+                fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                fontPaint.setTextSize(fontSize);
+                float width = fontPaint.measureText(text);
+
+                Rect bounds = new Rect();
+                fontPaint.getTextBounds(text, 0, 1, bounds);
+
+                float height = bounds.height();
+
+                c.drawText(text,
+                        points.get(n).center_x - width / 2,
+                        points.get(n).center_y + height / 2,
+                        mPaint);
+            }
+            //---
         }
 
         ActionBar bar = getSupportActionBar();
@@ -534,11 +561,15 @@ public class MainActivity extends AppCompatActivity
         main_view.setImageBitmap(bitmap);
         main_view.setOnTouchListener(this);
 
-        //---
         linLayout.addView(main_view, layoutParams);
+
+        //FIXME исправить позже
+        Space space = new Space(getApplicationContext());
+        final LinearLayout.LayoutParams spacerLp = new LinearLayout.LayoutParams(0, 0, 1f);
+        linLayout.addView(space, spacerLp);
+
         linLayout.addView(add_sb_table(), layoutParams);
 
-        //linLayout.addView(add_btn());
         linLayout.addView(add_log());
     }
     //---------------------------------------------------------------------------------------------
@@ -652,6 +683,37 @@ public class MainActivity extends AppCompatActivity
                     led.center_y,
                     led.radius,
                     mPaint);
+
+            //FIXME исправить позже
+            if(points.get(n).draw_text) {
+                int fontSize = 80;
+
+                String text = points.get(n).text;
+                if(led.is_active)
+                    mPaint.setColor(Color.BLACK);
+                else
+                    mPaint.setColor(Color.WHITE);
+
+                mPaint.setStyle(Paint.Style.FILL);
+                mPaint.setAntiAlias(true);
+                mPaint.setTextSize(fontSize);
+
+                Paint fontPaint;
+                fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                fontPaint.setTextSize(fontSize);
+                float width = fontPaint.measureText(text);
+
+                Rect bounds = new Rect();
+                fontPaint.getTextBounds(text, 0, 1, bounds);
+
+                float height = bounds.height();
+
+                c.drawText(text,
+                        points.get(n).center_x - width / 2,
+                        points.get(n).center_y + height / 2,
+                        mPaint);
+            }
+            //---
         }
         main_view.setImageBitmap(bitmap);
     }
@@ -698,7 +760,36 @@ public class MainActivity extends AppCompatActivity
                                 mPaint);
                     }
                     main_view.setImageBitmap(bitmap);
+                    //FIXME исправить позже
+                    if(points.get(index).draw_text) {
+                        int fontSize = 80;
 
+                        String text = points.get(index).text;
+                        if(led.is_active)
+                            mPaint.setColor(Color.BLACK);
+                        else
+                            mPaint.setColor(Color.WHITE);
+
+                        mPaint.setStyle(Paint.Style.FILL);
+                        mPaint.setAntiAlias(true);
+                        mPaint.setTextSize(fontSize);
+
+                        Paint fontPaint;
+                        fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                        fontPaint.setTextSize(fontSize);
+                        float width = fontPaint.measureText(text);
+
+                        Rect bounds = new Rect();
+                        fontPaint.getTextBounds(text, 0, 1, bounds);
+
+                        float height = bounds.height();
+
+                        c.drawText(text,
+                                points.get(index).center_x - width / 2,
+                                points.get(index).center_y + height / 2,
+                                mPaint);
+                    }
+                    //---
                     return true;
                 }
                 else {
@@ -811,6 +902,22 @@ public class MainActivity extends AppCompatActivity
                 s_led.color_center_off = color_off;
                 s_led.color_center_on  = color_on;
                 s_led.address = leds_arr[n][x];
+
+                //FIXME исправить позже
+                if(n == 2) {
+                    if(angle == 270) s_led.text = "1";
+                    if(angle == -30) s_led.text = "2";
+                    if(angle ==  30) s_led.text = "3";
+                    if(angle ==  90) s_led.text = "4";
+                    if(angle == 150) s_led.text = "5";
+                    if(angle == 210) s_led.text = "6";
+                    s_led.draw_text = true;
+                }
+                else {
+                    s_led.draw_text = false;
+                }
+                //---
+
                 points.add(s_led);
             }
             angle += 60.0f;
