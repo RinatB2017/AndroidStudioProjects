@@ -1,5 +1,6 @@
 package newmoonlight;
 
+    import android.Manifest;
     import android.app.ProgressDialog;
     import android.bluetooth.BluetoothAdapter;
     import android.bluetooth.BluetoothDevice;
@@ -10,22 +11,34 @@ package newmoonlight;
     import android.content.IntentFilter;
     import android.content.SharedPreferences;
     import android.content.pm.ActivityInfo;
+    import android.content.pm.PackageManager;
     import android.graphics.Bitmap;
     import android.graphics.Canvas;
     import android.graphics.Color;
     import android.graphics.Paint;
+    import android.graphics.Point;
     import android.graphics.PorterDuff;
     import android.graphics.drawable.ColorDrawable;
+    import android.os.Build;
     import android.os.Bundle;
     import android.preference.PreferenceManager;
+    import android.support.v4.app.ActivityCompat;
+    import android.support.v4.content.ContextCompat;
     import android.support.v7.app.ActionBar;
     import android.support.v7.app.AppCompatActivity;
+    import android.text.Editable;
+    import android.text.method.KeyListener;
     import android.util.DisplayMetrics;
     import android.util.Log;
+    import android.view.Display;
+    import android.view.KeyEvent;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.MotionEvent;
     import android.view.View;
+    import android.view.Window;
+    import android.view.WindowManager;
+    import android.widget.Button;
     import android.widget.ImageView;
     import android.widget.LinearLayout;
     import android.widget.SeekBar;
@@ -51,8 +64,11 @@ package newmoonlight;
 public class MainActivity extends AppCompatActivity
         implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
 
+    private static final int RECORD_REQUEST_CODE = 101;
     private final static int REQUEST_ENABLE_BT = 1;
     final String LOG_TAG = "States";
+
+    TextView tv_log;
 
     private Paint mPaint;
     Canvas c;
@@ -72,25 +88,20 @@ public class MainActivity extends AppCompatActivity
     TextView tv_hot;
     TextView tv_cold;
 
-    //static final int WIDTH  = 798;
-    //static final int HEIGHT = 784;
-    //static final int WIDTH  = 768;
-    //static final int HEIGHT = 768;
+    static int WIDTH  = 768;
+    static int HEIGHT = 768;
 
-    static final int WIDTH  = 768;
-    static final int HEIGHT = 768;
+    static float center_x = WIDTH / 2.0f;
+    static float center_y = HEIGHT / 2.0f;
 
-    static final float center_x = WIDTH / 2.0f;
-    static final float center_y = HEIGHT / 2.0f;
+    static float center_r = WIDTH / 14.0f;
 
-    static final float center_r = WIDTH / 14.0f;
-
-    static final float led_r = WIDTH / 17.0f;
-    static final float min_r = center_r + led_r + 10.0f;
-    static final float max_r = WIDTH / 2.0f - 20.0f;
-    static final float min_angle = -30.0f;
-    static final float max_angle = 330.0f;
-    static final int inc_r = (int)((max_r - min_r) / 2.4f);
+    static float led_r = WIDTH / 17.0f;
+    static float min_r = center_r + led_r + 10.0f;
+    static float max_r = WIDTH / 2.0f - 20.0f;
+    static float min_angle = -30.0f;
+    static float max_angle = 330.0f;
+    static int inc_r = (int)((max_r - min_r) / 2.4f);
     static float temp_x = 0;
     static float temp_y = 0;
 
@@ -102,7 +113,6 @@ public class MainActivity extends AppCompatActivity
 
     //---
     BluetoothAdapter bluetooth;
-    BluetoothSocket btSocket;
     private BroadcastReceiver discoveryDevicesReceiver;
     private BroadcastReceiver discoveryFinishedReceiver;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
@@ -110,7 +120,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
     //private static final String DEVICE_NAME = "20:15:10:19:62:52";
-    private static final String DEVICE_NAME = "HC-05";
+    //private static final String DEVICE_NAME = "HC-05";
     private static InputStream inputStream;
     private static OutputStream outputStream;
 
@@ -145,6 +155,7 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
+        tv_log.setText(text);
     }
     //---------------------------------------------------------------------------------------------
     void load_states() {
@@ -362,11 +373,14 @@ public class MainActivity extends AppCompatActivity
         tv_cold.setTextColor(text_color);
         tv_hot.setTextColor(text_color);
 
-        sb_cold.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        sb_cold.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        //заремарено из-за 4.0.4
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            sb_cold.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_cold.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
 
-        sb_hot.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
-        sb_hot.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_hot.getProgressDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+            sb_hot.getThumb().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
+        }
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -374,8 +388,26 @@ public class MainActivity extends AppCompatActivity
         switch(item.getItemId())
         {
             case R.id.action_settings_scan:
-                logging("===> SCAN <===");
                 scan();
+                break;
+
+            case R.id.action_settings_disconnect:
+                if(mmSocket.isConnected()) {
+                    try {
+                        mmSocket.close();
+                        logging("Соединение разорвано");
+                        block_interface(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+
+            case R.id.action_settings_options:
+                Intent intent = new Intent(this, OptionsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if(intent != null) {
+                    startActivity(intent);
+                }
                 break;
 
             default:
@@ -384,13 +416,19 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
     //---------------------------------------------------------------------------------------------
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
 
-        logging("onCreate");
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permissionType}, requestCode
+            );
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    void max_screen() {
         // займем весь экран
-        /*
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -401,10 +439,18 @@ public class MainActivity extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION           // hide nav bar
                         | View.SYSTEM_UI_FLAG_FULLSCREEN                // hide status bar
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        */
-        //---
+    }
 
-        
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        tv_log = new TextView(this);
+        tv_log.setTextColor(Color.WHITE);
+
+        //max_screen();
+
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -412,6 +458,9 @@ public class MainActivity extends AppCompatActivity
         create_bluetooth();
         setting_GRAY();
 
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
+
+        //TODO
         scan();
 
         //load_states();
@@ -440,39 +489,42 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void create_widgets()
     {
-        logging("create_widgets");
+        //---
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        WIDTH = p.x;
+        HEIGHT = p.x;
+
+        center_x = WIDTH / 2.0f;
+        center_y = HEIGHT / 2.0f;
+
+        center_r = WIDTH / 14.0f;
+
+        led_r = WIDTH / 17.0f;
+        min_r = center_r + led_r + 10.0f;
+        max_r = WIDTH / 2.0f - 20.0f;
+        inc_r = (int)((max_r - min_r) / 2.4f);
+        //---
 
         // создание LinearLayout
         linLayout = new LinearLayout(this);
         layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(10, 0, 10, 0);
 
-        // установим вертикальную ориентацию
         linLayout.setOrientation(LinearLayout.VERTICAL);
-        // создаем LayoutParams
-        // LinearLayout.LayoutParams linLayoutParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        // устанавливаем linLayout как корневой элемент экрана
-        // setContentView(linLayout, linLayoutParam);
         setContentView(linLayout);
 
-        //LinearLayout.LayoutParams stretch = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-
         bitmap = Bitmap.createBitmap(WIDTH, HEIGHT, Bitmap.Config.ARGB_8888);
-        //bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.imgpsh_fullsize).copy(Bitmap.Config.ARGB_8888, true);
-        logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
+        //logging("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         //---
         mPaint = new Paint();
         mPaint.setStrokeWidth(5);
         //---
         c = new Canvas(bitmap);
-        //---
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int screenWidth = displaymetrics.widthPixels;
-        int screenHeight = displaymetrics.heightPixels;
-        logging("screenWidth=" + screenWidth + " screenHeight=" + screenHeight);
         //---
         points = new ArrayList<LED>();
         new_draw_field();
@@ -483,6 +535,18 @@ public class MainActivity extends AppCompatActivity
         main_view.setOnTouchListener(this);
 
         //---
+        linLayout.addView(main_view, layoutParams);
+        linLayout.addView(add_sb_table(), layoutParams);
+
+        //linLayout.addView(add_btn());
+        linLayout.addView(add_log());
+    }
+    //---------------------------------------------------------------------------------------------
+    TextView add_log() {
+        return tv_log;
+    }
+    //---------------------------------------------------------------------------------------------
+    TableLayout add_sb_table() {
         TableLayout table = new TableLayout(this);
         table.setColumnStretchable(1, true);
 
@@ -520,9 +584,56 @@ public class MainActivity extends AppCompatActivity
 
         table.addView(row0);
         table.addView(row1);
-        //---
-        linLayout.addView(main_view, layoutParams);
-        linLayout.addView(table, layoutParams);
+
+        return table;
+    }
+    //---------------------------------------------------------------------------------------------
+    LinearLayout add_btn() {
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        p.weight = 1;
+
+        LinearLayout btn_layout = new LinearLayout(this);
+        btn_layout.setOrientation(LinearLayout.HORIZONTAL);
+
+        Button btn_apply = new Button(this);
+        Button btn_cancel = new Button(this);
+
+        //-------------------------------------------------------------------
+        //TODO
+        View.OnClickListener apply = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG, "apply");
+
+                //boolean ok = connect_remote_device("00:14:02:10:09:04");
+                boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
+                if(ok)
+                    logging("Соединение установлено");
+                else
+                    logging("Соединение не удалось");
+            }
+        };
+        //-------------------------------------------------------------------
+        View.OnClickListener cancel = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(LOG_TAG, "cancel");
+            }
+        };
+
+        btn_apply.setOnClickListener(apply);
+        btn_cancel.setOnClickListener(cancel);
+
+        btn_apply.setText("Применить");
+        btn_cancel.setText("Отменить");
+
+        btn_apply.setLayoutParams(p);
+        btn_cancel.setLayoutParams(p);
+
+        btn_layout.addView(btn_apply);
+        btn_layout.addView(btn_cancel);
+
+        return btn_layout;
     }
     //---------------------------------------------------------------------------------------------
     public void redraw_all_buttons(boolean is_filled) {
@@ -591,8 +702,8 @@ public class MainActivity extends AppCompatActivity
                     return true;
                 }
                 else {
-                    logging("line = " + line);
-                    logging("led.radius = " + led.radius);
+                    //logging("line = " + line);
+                    //logging("led.radius = " + led.radius);
                 }
             }
         }
@@ -633,7 +744,25 @@ public class MainActivity extends AppCompatActivity
         modbus.set_command(1);
         modbus.set_data(get_data());
 
-        send_modbus_data(modbus.get_string());
+        boolean ok = send_modbus_data(modbus.get_string());
+        if(!ok) {
+            ok = scan();
+            if(ok) {
+                ok = send_modbus_data(modbus.get_string());
+                if(ok) {
+                    logging("Данные переданы.");
+                }
+                else {
+                    logging("Ошибка соединения.");
+                }
+            }
+            else {
+                logging("Ошибка соединения.");
+            }
+        }
+        else {
+            logging("Данные переданы.");
+        }
     }
     //---------------------------------------------------------------------------------------------
     private void new_draw_field()
@@ -711,7 +840,6 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public boolean scan()
     {
-        logging("Scan begin!");
         if(bluetooth == null)
         {
             logging("Bluetooth модуль не найден");
@@ -724,66 +852,14 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
 
-        block_interface(true);
-        discoveredDevices.clear();
+        boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
+        if(ok)
+            logging("Соединение установлено");
+        else
+            logging("Соединение не удалось");
+        block_interface(!ok);
 
-        if (discoveryDevicesReceiver == null) {
-            discoveryDevicesReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    String action = intent.getAction();
-
-                    if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                        //BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_NAME);
-
-                        if (!discoveredDevices.contains(device))
-                        {
-                            String d_name = device.getName();
-                            if(d_name != null) {
-                                d_name = d_name.replaceAll("\n", "");
-                                logging("name = [" + d_name + "]");
-                                if (d_name.contains(DEVICE_NAME)) {
-                                    logging("[" + DEVICE_NAME + "] FOUND");
-                                    boolean ok = connect_remote_device(device.getAddress());
-                                    if(ok) {
-                                        block_interface(false);
-                                        discoveredDevices.add(device);
-                                        bluetooth.cancelDiscovery();
-
-                                        Toast toast = Toast.makeText(getApplicationContext(),
-                                                "Найден " + DEVICE_NAME,
-                                                Toast.LENGTH_SHORT);
-                                        toast.show();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-        }
-
-        if (discoveryFinishedReceiver == null) {
-            discoveryFinishedReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    logging("Scan end!");
-                    if (progressDialog != null) progressDialog.dismiss();
-                    unregisterReceiver(discoveryFinishedReceiver);
-                    unregisterReceiver(discoveryDevicesReceiver);
-                }
-            };
-        }
-
-        registerReceiver(discoveryDevicesReceiver,  new IntentFilter(BluetoothDevice.ACTION_FOUND));
-        registerReceiver(discoveryFinishedReceiver, new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED));
-
-        progressDialog = ProgressDialog.show(this, "Поиск устройств", "Подождите...");
-
-        bluetooth.startDiscovery();
-        logging("Scan begin...");
-        return true;
+        return ok;
     }
     //---------------------------------------------------------------------------------------------
     public boolean connect_remote_device(String MAC_address)
@@ -801,19 +877,19 @@ public class MainActivity extends AppCompatActivity
             Method m = r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             tmp = (BluetoothSocket) m.invoke(r_device, 1);
         } catch (IOException e) {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (NoSuchMethodException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (IllegalAccessException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         } catch (InvocationTargetException e)
         {
-            logging("create ERROR: " +e.getMessage());
+            logging("create ERROR: " + e.getMessage());
             return false;
         }
         //---
@@ -835,13 +911,12 @@ public class MainActivity extends AppCompatActivity
             tmpIn  = mmSocket.getInputStream();
             tmpOut = mmSocket.getOutputStream();
         } catch (IOException e) {
-            logging("Stream ERROR: " +e.getMessage());
+            logging("Stream ERROR: " + e.getMessage());
             return false;
         }
         //---
         inputStream = tmpIn;
         outputStream = tmpOut;
-        logging("OK");
         return true;
     }
     //---------------------------------------------------------------------------------------------
@@ -919,41 +994,10 @@ public class MainActivity extends AppCompatActivity
     }
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onStart() {
-        super.onStart();
-        logging("MainActivity: onStart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        logging("MainActivity: onRestart()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onResume() {
-        super.onResume();
-        logging("MainActivity: onResume()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onPause() {
-        super.onPause();
-        logging("MainActivity: onPause()");
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
     protected void onStop() {
         super.onStop();
-        logging("MainActivity: onStop()");
 
         //save_states();
-    }
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        logging("MainActivity: onDestroy()");
     }
     //---------------------------------------------------------------------------------------------
 }
