@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity
     Button btn_4;
     Button btn_5;
 
+    Button btn_get_param;
+    Button btn_set_param;
+
     BluetoothAdapter bluetooth;
     private BroadcastReceiver discoveryDevicesReceiver;
     private BroadcastReceiver discoveryFinishedReceiver;
@@ -78,8 +81,15 @@ public class MainActivity extends AppCompatActivity
     SeekBar sb_delay_ms;
     SeekBar sb_brightness;
 
+    SeekBar sb_delay_N_ms;
+    SeekBar sb_delay_K_ms;
+
     TextView tv_delay_ms;
     TextView tv_brightness;
+
+    TextView tv_delay_N_ms;
+    TextView tv_delay_K_ms;
+
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
@@ -112,6 +122,16 @@ public class MainActivity extends AppCompatActivity
         {
             tv_brightness.setText(String.valueOf(seekBar.getProgress()));
             set_brightness(seekBar.getProgress());
+        }
+        if(seekBar == sb_delay_N_ms)
+        {
+            tv_delay_N_ms.setText(String.valueOf(seekBar.getProgress()));
+            set_delay_N_ms(seekBar.getProgress());
+        }
+        if(seekBar == sb_delay_K_ms)
+        {
+            tv_delay_K_ms.setText(String.valueOf(seekBar.getProgress()));
+            set_delay_K_ms(seekBar.getProgress());
         }
     }
     //---------------------------------------------------------------------------------------------
@@ -281,11 +301,17 @@ public class MainActivity extends AppCompatActivity
         sb_delay_ms.setEnabled(!state);
         sb_brightness.setEnabled(!state);
 
+        sb_delay_N_ms.setEnabled(!state);
+        sb_delay_K_ms.setEnabled(!state);
+
         btn_1.setEnabled(!state);
         btn_2.setEnabled(!state);
         btn_3.setEnabled(!state);
         btn_4.setEnabled(!state);
         btn_5.setEnabled(!state);
+
+        btn_get_param.setEnabled(!state);
+        btn_set_param.setEnabled(!state);
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -302,11 +328,20 @@ public class MainActivity extends AppCompatActivity
         sb_delay_ms.setOnSeekBarChangeListener(this);
         sb_brightness.setOnSeekBarChangeListener(this);
 
+        sb_delay_N_ms = (SeekBar)findViewById(R.id.sb_delay_N_ms);
+        sb_delay_K_ms = (SeekBar)findViewById(R.id.sb_delay_K_ms);
+
         tv_delay_ms = (TextView)findViewById(R.id.tv_delay_ms);
         tv_brightness = (TextView)findViewById(R.id.tv_brightness);
 
+        tv_delay_N_ms = (TextView)findViewById(R.id.tv_delay_N);
+        tv_delay_N_ms = (TextView)findViewById(R.id.tv_delay_K);
+
         //sb_delay_ms.setMin(0);
         sb_delay_ms.setMax(1000);
+
+        sb_delay_N_ms.setMax(0xFFFF);
+        sb_delay_K_ms.setMax(0xFFFF);
 
         //sb_brightness.setMin(0);
         sb_brightness.setMax(150);
@@ -316,6 +351,9 @@ public class MainActivity extends AppCompatActivity
         btn_3 = (Button)findViewById(R.id.btn_cmd_3);
         btn_4 = (Button)findViewById(R.id.btn_cmd_4);
         btn_5 = (Button)findViewById(R.id.btn_cmd_5);
+
+        btn_get_param = (Button)findViewById(R.id.btn_get_param);
+        btn_set_param = (Button)findViewById(R.id.btn_set_param);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
         create_bluetooth();
@@ -384,6 +422,14 @@ public class MainActivity extends AppCompatActivity
         else {
             logging("Данные переданы.");
         }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_delay_N_ms(int value)
+    {
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_delay_K_ms(int value)
+    {
     }
     //---------------------------------------------------------------------------------------------
     public void set_brightness(int value)
@@ -547,6 +593,14 @@ public class MainActivity extends AppCompatActivity
         else {
             logging("Данные переданы.");
         }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void command_get(View view) {
+        logging("GET");
+    }
+    //---------------------------------------------------------------------------------------------
+    public void command_set(View view) {
+        logging("SET");
     }
     //---------------------------------------------------------------------------------------------
 }
