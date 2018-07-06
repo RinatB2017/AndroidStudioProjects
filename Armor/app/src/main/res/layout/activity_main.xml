@@ -22,9 +22,10 @@
                 android:text="mode" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spinner_mode"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow
@@ -47,8 +48,6 @@
                 android:layout_height="wrap_content"
                 android:text="0" />
         </TableRow>
-
-        />
 
         <TableRow
             android:layout_width="match_parent"
@@ -86,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <TextView
-                android:id="@+id/tv_delay_N"
+                android:id="@+id/tv_delay_N_ms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />
@@ -107,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <TextView
-                android:id="@+id/tv_delay_K"
+                android:id="@+id/tv_delay_K_ms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0" />

@@ -39,7 +39,7 @@ public class ModBus {
         res_str.append(':');
     }
     //---------------------------------------------------------------------------------------------
-    public void add_egnd_simvol()
+    public void add_end_simvol()
     {
         res_str.append('\n');
     }
@@ -51,7 +51,10 @@ public class ModBus {
     //---------------------------------------------------------------------------------------------
     public void add_uint16_t(int value)
     {
-        res_str.append(String.format("%04X", value));
+        int hi = (value >> 8) & 0xFF;
+        int lo = value & 0xFF;
+        res_str.append(String.format("%02X", lo));
+        res_str.append(String.format("%02X", hi));
     }
     //---------------------------------------------------------------------------------------------
     String get_string()

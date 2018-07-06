@@ -7,8 +7,8 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +17,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -57,8 +60,6 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog progressDialog;
 
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
-    //private static final String DEVICE_NAME = "20:15:10:19:62:52";
-    //private static final String DEVICE_NAME = "HC-05";
     private static InputStream inputStream;
     private static OutputStream outputStream;
 
@@ -93,12 +94,16 @@ public class MainActivity extends AppCompatActivity
     TextView tv_delay_N_ms;
     TextView tv_delay_K_ms;
 
+    Spinner spinner_mode;
+
     int addr;
     int mode;
     int brightness;
     int delay_N_ms;
     int delay_K_ms;
     int delay_ms;
+
+    int spinner_mode_position;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -322,6 +327,8 @@ public class MainActivity extends AppCompatActivity
 
         btn_get_param.setEnabled(!state);
         btn_set_param.setEnabled(!state);
+
+        spinner_mode.setEnabled(!state);
     }
     //---------------------------------------------------------------------------------------------
     @Override
@@ -335,26 +342,47 @@ public class MainActivity extends AppCompatActivity
         sb_delay_ms = (SeekBar)findViewById(R.id.sb_delay_ms);
         sb_brightness = (SeekBar)findViewById(R.id.sb_brightness);
 
-        sb_delay_ms.setOnSeekBarChangeListener(this);
-        sb_brightness.setOnSeekBarChangeListener(this);
-
         sb_delay_N_ms = (SeekBar)findViewById(R.id.sb_delay_N_ms);
         sb_delay_K_ms = (SeekBar)findViewById(R.id.sb_delay_K_ms);
 
         tv_delay_ms = (TextView)findViewById(R.id.tv_delay_ms);
         tv_brightness = (TextView)findViewById(R.id.tv_brightness);
 
-        tv_delay_N_ms = (TextView)findViewById(R.id.tv_delay_N);
-        tv_delay_N_ms = (TextView)findViewById(R.id.tv_delay_K);
+        tv_delay_N_ms = (TextView)findViewById(R.id.tv_delay_N_ms);
+        tv_delay_K_ms = (TextView)findViewById(R.id.tv_delay_K_ms);
 
-        //sb_delay_ms.setMin(0);
+        sb_delay_ms.setOnSeekBarChangeListener(this);
+        sb_brightness.setOnSeekBarChangeListener(this);
+        sb_delay_N_ms.setOnSeekBarChangeListener(this);
+        sb_delay_K_ms.setOnSeekBarChangeListener(this);
+
+        //---
+        String[] data = {"MODE 1", "MODE 2", "MODE 3", "MODE 4", "MODE 5"};
+        // адаптер
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, data);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_mode = (Spinner)findViewById(R.id.spinner_mode);
+        spinner_mode.setAdapter(adapter);
+
+        // устанавливаем обработчик нажатия
+        spinner_mode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                   @Override
+                                                   public void onItemSelected(AdapterView<?> parent, View view,
+                                                                              int position, long id) {
+                                                       spinner_mode_position = position + 1;
+                                                   }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        //---
+
         sb_delay_ms.setMax(1000);
-
+        sb_brightness.setMax(150);
         sb_delay_N_ms.setMax(0xFFFF);
         sb_delay_K_ms.setMax(0xFFFF);
-
-        //sb_brightness.setMin(0);
-        sb_brightness.setMax(150);
 
         btn_1 = (Button)findViewById(R.id.btn_cmd_1);
         btn_2 = (Button)findViewById(R.id.btn_cmd_2);
@@ -364,6 +392,9 @@ public class MainActivity extends AppCompatActivity
 
         btn_get_param = (Button)findViewById(R.id.btn_get_param);
         btn_set_param = (Button)findViewById(R.id.btn_set_param);
+
+        //TODO временный костыль
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
         create_bluetooth();
@@ -412,6 +443,11 @@ public class MainActivity extends AppCompatActivity
         return mode;
     }
     //---------------------------------------------------------------------------------------------
+    public int get_spinner_mode_position()
+    {
+        return spinner_mode_position;
+    }
+    //---------------------------------------------------------------------------------------------
     public int get_brightness()
     {
         return brightness;
@@ -457,20 +493,18 @@ public class MainActivity extends AppCompatActivity
         delay_ms = value;
     }
     //---------------------------------------------------------------------------------------------
-    public void cmd_set_param()
+    public void cmd_get_param()
     {
-        logging("set_param");
+        //logging("set_param");
 
         ModBus modbus = new ModBus();
         modbus.add_begin_simvol();
         modbus.add_uint8_t(get_addr());
-        modbus.add_uint8_t(CMD_SET_PARAM);
-        modbus.add_uint8_t(8); //sizeof struct P_DATA
-        modbus.add_uint8_t(get_mode());
-        modbus.add_uint8_t(get_brightness());
-        modbus.add_uint16_t(get_delay_N_ms());
-        modbus.add_uint16_t(get_delay_K_ms());
-        modbus.add_uint16_t(get_delay_ms());
+        modbus.add_uint8_t(CMD_GET_PARAM);
+        modbus.add_uint16_t(0); //данных нет
+        modbus.add_end_simvol();
+
+        //logging(modbus.get_string());
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
@@ -487,15 +521,23 @@ public class MainActivity extends AppCompatActivity
         }
     }
     //---------------------------------------------------------------------------------------------
-    public void cmd_get_param()
+    public void cmd_set_param()
     {
-        logging("set_param");
+        //logging("set_param");
 
         ModBus modbus = new ModBus();
         modbus.add_begin_simvol();
         modbus.add_uint8_t(get_addr());
-        modbus.add_uint8_t(CMD_GET_PARAM);
-        modbus.add_uint8_t(0); //данных нет
+        modbus.add_uint8_t(CMD_SET_PARAM);
+        modbus.add_uint16_t(8); //sizeof struct P_DATA
+        modbus.add_uint8_t(get_spinner_mode_position());
+        modbus.add_uint8_t(get_brightness());
+        modbus.add_uint16_t(get_delay_N_ms());
+        modbus.add_uint16_t(get_delay_K_ms());
+        modbus.add_uint16_t(get_delay_ms());
+        modbus.add_end_simvol();
+
+        //logging(modbus.get_string());
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
@@ -514,13 +556,16 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void cmd_get_mode()
     {
-        logging("get_mode");
+        //logging("get_mode");
 
         ModBus modbus = new ModBus();
         modbus.add_begin_simvol();
         modbus.add_uint8_t(get_addr());
         modbus.add_uint8_t(CMD_GET_MODE);
-        modbus.add_uint8_t(0); //данных нет
+        modbus.add_uint16_t(0); //данных нет
+        modbus.add_end_simvol();
+
+        //logging(modbus.get_string());
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
@@ -539,13 +584,17 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void cmd_set_mode()
     {
-        logging("set_mode");
+        //logging("set_mode");
 
         ModBus modbus = new ModBus();
         modbus.add_begin_simvol();
         modbus.add_uint8_t(get_addr());
         modbus.add_uint8_t(CMD_SET_MODE);
-        modbus.add_uint8_t(0); //данных нет
+        modbus.add_uint16_t(1);
+        modbus.add_uint8_t(get_mode());
+        modbus.add_end_simvol();
+
+        //logging(modbus.get_string());
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
