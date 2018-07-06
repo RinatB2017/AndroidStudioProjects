@@ -7,45 +7,56 @@ import java.io.ByteArrayOutputStream;
  * Created by tux on 31.03.16.
  */
 //---------------------------------------------------------------------------------------------
+/*
+typedef struct P_HEADER
+{
+    uint8_t   addr;
+    uint8_t   cmd;
+    uint16_t  len;
+    uint8_t   data[];
+} p_header_t;
+
+typedef struct P_DATA
+{
+    uint8_t     mode;
+    uint8_t     brightness;
+    uint16_t    delay_N_ms;
+    uint16_t    delay_K_ms;
+    uint16_t    delay_ms;
+} p_data_t;
+ */
+//---------------------------------------------------------------------------------------------
 public class ModBus {
-    int command;
-    ByteArrayOutputStream ba;
+    StringBuilder res_str;
     //---------------------------------------------------------------------------------------------
     public ModBus()
     {
-        this.command = 0;
-        ba = new ByteArrayOutputStream();
+        res_str = new StringBuilder();
     }
     //---------------------------------------------------------------------------------------------
-    public boolean set_command(int cmd)
+    public void add_begin_simvol()
     {
-        if(cmd < 0) return false;
-        if(cmd > 0xFF) return false;
-        this.command = cmd;
-        return true;
+        res_str.append(':');
     }
     //---------------------------------------------------------------------------------------------
-    public boolean set_data(ByteArrayOutputStream data)
+    public void add_egnd_simvol()
     {
-        if(data.size() == 0)  return false;
-        if(data.size() > 255) return false;
-        ba = data;
-        return true;
+        res_str.append('\n');
+    }
+    //---------------------------------------------------------------------------------------------
+    public void add_uint8_t(int value)
+    {
+        res_str.append(String.format("%02X", value));
+    }
+    //---------------------------------------------------------------------------------------------
+    public void add_uint16_t(int value)
+    {
+        res_str.append(String.format("%04X", value));
     }
     //---------------------------------------------------------------------------------------------
     String get_string()
     {
-        StringBuilder str = new StringBuilder();
-
-        str.append(':');
-        str.append(String.format("%02X", command));
-        for(int n=0; n<ba.size(); n++)
-        {
-            str.append(String.format("%02X", ba.toByteArray()[n]));
-        }
-        str.append('\n');
-
-        return str.toString();
+        return res_str.toString();
     }
     //---------------------------------------------------------------------------------------------
 }

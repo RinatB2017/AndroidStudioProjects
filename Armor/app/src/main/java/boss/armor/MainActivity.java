@@ -62,13 +62,16 @@ public class MainActivity extends AppCompatActivity
     private static InputStream inputStream;
     private static OutputStream outputStream;
 
-    private static final int CMD_SET_DELAY_MS   = 1;
-    private static final int CMD_SET_BRIGHTNESS = 2;
-    private static final int CMD_01 = 10;
-    private static final int CMD_02 = 20;
-    private static final int CMD_03 = 30;
-    private static final int CMD_04 = 40;
-    private static final int CMD_05 = 50;
+    private static final int CMD_GET_PARAM = 10;
+    private static final int CMD_SET_PARAM = 11;
+    private static final int CMD_GET_MODE  = 20;
+    private static final int CMD_SET_MODE  = 21;
+
+    private static final int MODE_01 = 1;
+    private static final int MODE_02 = 2;
+    private static final int MODE_03 = 3;
+    private static final int MODE_04 = 4;
+    private static final int MODE_05 = 5;
 
     BluetoothDevice r_device;
     BluetoothSocket tmp = null;
@@ -89,6 +92,13 @@ public class MainActivity extends AppCompatActivity
 
     TextView tv_delay_N_ms;
     TextView tv_delay_K_ms;
+
+    int addr;
+    int mode;
+    int brightness;
+    int delay_N_ms;
+    int delay_K_ms;
+    int delay_ms;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -392,22 +402,75 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
     //---------------------------------------------------------------------------------------------
+    public int get_addr()
+    {
+        return addr;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_mode()
+    {
+        return mode;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_brightness()
+    {
+        return brightness;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_delay_N_ms()
+    {
+        return delay_N_ms;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_delay_K_ms()
+    {
+        return delay_K_ms;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_delay_ms()
+    {
+        return delay_ms;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_mode(int value)
+    {
+        mode = value;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_brightness(int value)
+    {
+        brightness = value;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_delay_N_ms(int value)
+    {
+        delay_N_ms = value;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void set_delay_K_ms(int value)
+    {
+        delay_K_ms = value;
+    }
+    //---------------------------------------------------------------------------------------------
     public void set_delay_ms(int value)
     {
-        logging("set_delay_ms");
-
-        byte [] t_data = new byte [2];
-        t_data[0] = (byte) (value & 0xFF);
-        t_data[1] = (byte) ((value >> 8) & 0xFF);
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(t_data[1]);
-        data.write(t_data[0]);
+        delay_ms = value;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void cmd_set_param()
+    {
+        logging("set_param");
 
         ModBus modbus = new ModBus();
-        modbus.set_command(CMD_SET_DELAY_MS);
-        modbus.set_data(data);
+        modbus.add_begin_simvol();
+        modbus.add_uint8_t(get_addr());
+        modbus.add_uint8_t(CMD_SET_PARAM);
+        modbus.add_uint8_t(8); //sizeof struct P_DATA
+        modbus.add_uint8_t(get_mode());
+        modbus.add_uint8_t(get_brightness());
+        modbus.add_uint16_t(get_delay_N_ms());
+        modbus.add_uint16_t(get_delay_K_ms());
+        modbus.add_uint16_t(get_delay_ms());
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
@@ -424,26 +487,65 @@ public class MainActivity extends AppCompatActivity
         }
     }
     //---------------------------------------------------------------------------------------------
-    public void set_delay_N_ms(int value)
+    public void cmd_get_param()
     {
-    }
-    //---------------------------------------------------------------------------------------------
-    public void set_delay_K_ms(int value)
-    {
-    }
-    //---------------------------------------------------------------------------------------------
-    public void set_brightness(int value)
-    {
-        logging("set_brightness");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(value);
+        logging("set_param");
 
         ModBus modbus = new ModBus();
-        modbus.set_command(CMD_SET_BRIGHTNESS);
-        modbus.set_data(data);
+        modbus.add_begin_simvol();
+        modbus.add_uint8_t(get_addr());
+        modbus.add_uint8_t(CMD_GET_PARAM);
+        modbus.add_uint8_t(0); //данных нет
+
+        boolean ok = send_modbus_data(modbus.get_string());
+        if(!ok) {
+            ok = send_modbus_data(modbus.get_string());
+            if(ok) {
+                logging("Данные переданы.");
+            }
+            else {
+                logging("Ошибка соединения.");
+            }
+        }
+        else {
+            logging("Данные переданы.");
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void cmd_get_mode()
+    {
+        logging("get_mode");
+
+        ModBus modbus = new ModBus();
+        modbus.add_begin_simvol();
+        modbus.add_uint8_t(get_addr());
+        modbus.add_uint8_t(CMD_GET_MODE);
+        modbus.add_uint8_t(0); //данных нет
+
+        boolean ok = send_modbus_data(modbus.get_string());
+        if(!ok) {
+            ok = send_modbus_data(modbus.get_string());
+            if(ok) {
+                logging("Данные переданы.");
+            }
+            else {
+                logging("Ошибка соединения.");
+            }
+        }
+        else {
+            logging("Данные переданы.");
+        }
+    }
+    //---------------------------------------------------------------------------------------------
+    public void cmd_set_mode()
+    {
+        logging("set_mode");
+
+        ModBus modbus = new ModBus();
+        modbus.add_begin_simvol();
+        modbus.add_uint8_t(get_addr());
+        modbus.add_uint8_t(CMD_SET_MODE);
+        modbus.add_uint8_t(0); //данных нет
 
         boolean ok = send_modbus_data(modbus.get_string());
         if(!ok) {
@@ -462,145 +564,42 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void command_1(View view) {
         logging("CMD 1");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(0);
-
-        ModBus modbus = new ModBus();
-        modbus.set_command(CMD_01);
-        modbus.set_data(data);
-
-        boolean ok = send_modbus_data(modbus.get_string());
-        if(!ok) {
-            ok = send_modbus_data(modbus.get_string());
-            if(ok) {
-                logging("Данные переданы.");
-            }
-            else {
-                logging("Ошибка соединения.");
-            }
-        }
-        else {
-            logging("Данные переданы.");
-        }
+        set_mode(MODE_01);
+        cmd_set_mode();
     }
     //---------------------------------------------------------------------------------------------
     public void command_2(View view) {
         logging("CMD 2");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(0);
-
-        ModBus modbus = new ModBus();
-        modbus.set_command(CMD_02);
-        modbus.set_data(data);
-
-        boolean ok = send_modbus_data(modbus.get_string());
-        if(!ok) {
-            ok = send_modbus_data(modbus.get_string());
-            if(ok) {
-                logging("Данные переданы.");
-            }
-            else {
-                logging("Ошибка соединения.");
-            }
-        }
-        else {
-            logging("Данные переданы.");
-        }
+        set_mode(MODE_02);
+        cmd_set_mode();
     }
     //---------------------------------------------------------------------------------------------
     public void command_3(View view) {
         logging("CMD 3");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(0);
-
-        ModBus modbus = new ModBus();
-        modbus.set_command(CMD_03);
-        modbus.set_data(data);
-
-        boolean ok = send_modbus_data(modbus.get_string());
-        if(!ok) {
-            ok = send_modbus_data(modbus.get_string());
-            if(ok) {
-                logging("Данные переданы.");
-            }
-            else {
-                logging("Ошибка соединения.");
-            }
-        }
-        else {
-            logging("Данные переданы.");
-        }
+        set_mode(MODE_03);
+        cmd_set_mode();
     }
     //---------------------------------------------------------------------------------------------
     public void command_4(View view) {
         logging("CMD 4");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(0);
-
-        ModBus modbus = new ModBus();
-        modbus.set_command(CMD_04);
-        modbus.set_data(data);
-
-        boolean ok = send_modbus_data(modbus.get_string());
-        if(!ok) {
-            ok = send_modbus_data(modbus.get_string());
-            if(ok) {
-                logging("Данные переданы.");
-            }
-            else {
-                logging("Ошибка соединения.");
-            }
-        }
-        else {
-            logging("Данные переданы.");
-        }
+        set_mode(MODE_04);
+        cmd_set_mode();
     }
     //---------------------------------------------------------------------------------------------
     public void command_5(View view) {
         logging("CMD 5");
-
-        ByteArrayOutputStream data;
-        data = new ByteArrayOutputStream();
-        data.write(0);
-        data.write(0);
-
-        ModBus modbus = new ModBus();
-        modbus.set_command(CMD_05);
-        modbus.set_data(data);
-
-        boolean ok = send_modbus_data(modbus.get_string());
-        if(!ok) {
-            ok = send_modbus_data(modbus.get_string());
-            if(ok) {
-                logging("Данные переданы.");
-            }
-            else {
-                logging("Ошибка соединения.");
-            }
-        }
-        else {
-            logging("Данные переданы.");
-        }
+        set_mode(MODE_05);
+        cmd_set_mode();
     }
     //---------------------------------------------------------------------------------------------
     public void command_get(View view) {
         logging("GET");
+        cmd_get_param();
     }
     //---------------------------------------------------------------------------------------------
     public void command_set(View view) {
         logging("SET");
+        cmd_set_param();
     }
     //---------------------------------------------------------------------------------------------
 }
