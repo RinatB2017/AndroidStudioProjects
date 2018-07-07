@@ -154,7 +154,26 @@ public class MainActivity extends AppCompatActivity
     public void onProgressChanged(SeekBar seekBar,
                                   int progress,
                                   boolean fromUser) {
-    }
+        if(seekBar == sb_delay_ms)
+        {
+            tv_delay_ms.setText(String.valueOf(seekBar.getProgress()));
+            set_delay_ms(seekBar.getProgress());
+        }
+        if(seekBar == sb_brightness)
+        {
+            tv_brightness.setText(String.valueOf(seekBar.getProgress()));
+            set_brightness(seekBar.getProgress());
+        }
+        if(seekBar == sb_delay_N_ms)
+        {
+            tv_delay_N_ms.setText(String.valueOf(seekBar.getProgress()));
+            set_delay_N_ms(seekBar.getProgress());
+        }
+        if(seekBar == sb_delay_K_ms)
+        {
+            tv_delay_K_ms.setText(String.valueOf(seekBar.getProgress()));
+            set_delay_K_ms(seekBar.getProgress());
+        }}
     //---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -468,48 +487,55 @@ public class MainActivity extends AppCompatActivity
         }
 
         //byte begin = buffer[0];
-        int mode  = get_uint8_t(convert_ascii_to_byte(buffer[1]),
-                                convert_ascii_to_byte(buffer[2]));
-        int cmd   = get_uint8_t(convert_ascii_to_byte(buffer[3]),
-                                convert_ascii_to_byte(buffer[4]));
-        int len   = get_uint16_t(convert_ascii_to_byte(buffer[5]),
-                                 convert_ascii_to_byte(buffer[6]),
-                                 convert_ascii_to_byte(buffer[7]),
-                                 convert_ascii_to_byte(buffer[8]));
+        int addr  = get_uint8_t(modbus.convert_ascii_to_byte(buffer[1]),
+                modbus.convert_ascii_to_byte(buffer[2]));
+        int cmd   = get_uint8_t(modbus.convert_ascii_to_byte(buffer[3]),
+                modbus.convert_ascii_to_byte(buffer[4]));
+        int len   = get_uint16_t(modbus.convert_ascii_to_byte(buffer[5]),
+                modbus.convert_ascii_to_byte(buffer[6]),
+                modbus.convert_ascii_to_byte(buffer[7]),
+                modbus.convert_ascii_to_byte(buffer[8]));
 
         //char begin_s = (char)begin;
 
         //logging(String.valueOf(begin_s));
-        logging("mode = " + String.valueOf(mode));
+        logging("addr = " + String.valueOf(addr));
         logging("cmd = " + String.valueOf(cmd));
         logging("len = " + String.valueOf(len));
 
-        logging("answer is OK");
-    }
-    //---------------------------------------------------------------------------------------------
-    public byte convert_ascii_to_byte(byte ascii_data)
-    {
-        byte res = 0;
-        switch (ascii_data)
+        if(cmd == CMD_GET_PARAM)
         {
-            case '0':   res = 0x00;    break;
-            case '1':   res = 0x01;    break;
-            case '2':   res = 0x02;    break;
-            case '3':   res = 0x03;    break;
-            case '4':   res = 0x04;    break;
-            case '5':   res = 0x05;    break;
-            case '6':   res = 0x06;    break;
-            case '7':   res = 0x07;    break;
-            case '8':   res = 0x08;    break;
-            case '9':   res = 0x09;    break;
-            case 'A':   res = 0x0A;    break;
-            case 'B':   res = 0x0B;    break;
-            case 'C':   res = 0x0C;    break;
-            case 'D':   res = 0x0D;    break;
-            case 'E':   res = 0x0E;    break;
-            case 'F':   res = 0x0F;    break;
+            int mode = get_uint8_t(modbus.convert_ascii_to_byte(buffer[9]),
+                    modbus.convert_ascii_to_byte(buffer[10]));
+            int brightness = get_uint8_t(modbus.convert_ascii_to_byte(buffer[11]),
+                    modbus.convert_ascii_to_byte(buffer[12]));
+            int delay_N_ms = get_uint16_t(modbus.convert_ascii_to_byte(buffer[13]),
+                    modbus.convert_ascii_to_byte(buffer[14]),
+                    modbus.convert_ascii_to_byte(buffer[15]),
+                    modbus.convert_ascii_to_byte(buffer[16]));
+            int delay_K_ms = get_uint16_t(modbus.convert_ascii_to_byte(buffer[17]),
+                    modbus.convert_ascii_to_byte(buffer[18]),
+                    modbus.convert_ascii_to_byte(buffer[19]),
+                    modbus.convert_ascii_to_byte(buffer[20]));
+            int delay_ms = get_uint16_t(modbus.convert_ascii_to_byte(buffer[21]),
+                    modbus.convert_ascii_to_byte(buffer[22]),
+                    modbus.convert_ascii_to_byte(buffer[23]),
+                    modbus.convert_ascii_to_byte(buffer[24]));
+
+            spinner_mode.setSelection(mode);
+            sb_brightness.setProgress(brightness);
+            sb_delay_N_ms.setProgress(delay_N_ms);
+            sb_delay_K_ms.setProgress(delay_K_ms);
+            sb_delay_ms.setProgress(delay_ms);
+
+            logging("mode       = " + String.valueOf(mode));
+            logging("brightness = " + String.valueOf(brightness));
+            logging("delay_N_ms = " + String.valueOf(delay_N_ms));
+            logging("delay_K_ms = " + String.valueOf(delay_K_ms));
+            logging("delay_ms   = " + String.valueOf(delay_ms));
         }
-        return res;
+
+        logging("answer is OK");
     }
     //---------------------------------------------------------------------------------------------
     public int get_uint16_t(byte a, byte b, byte c, byte d)

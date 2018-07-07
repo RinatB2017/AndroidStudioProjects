@@ -62,4 +62,29 @@ public class ModBus {
         return res_str.toString();
     }
     //---------------------------------------------------------------------------------------------
+    public byte convert_ascii_to_byte(byte ascii_data)
+    {
+        byte res = 0;
+        switch (ascii_data)
+        {
+            case '0':   res = 0x00;    break;
+            case '1':   res = 0x01;    break;
+            case '2':   res = 0x02;    break;
+            case '3':   res = 0x03;    break;
+            case '4':   res = 0x04;    break;
+            case '5':   res = 0x05;    break;
+            case '6':   res = 0x06;    break;
+            case '7':   res = 0x07;    break;
+            case '8':   res = 0x08;    break;
+            case '9':   res = 0x09;    break;
+            case 'A':   res = 0x0A;    break;
+            case 'B':   res = 0x0B;    break;
+            case 'C':   res = 0x0C;    break;
+            case 'D':   res = 0x0D;    break;
+            case 'E':   res = 0x0E;    break;
+            case 'F':   res = 0x0F;    break;
+        }
+        return res;
+    }
+//---------------------------------------------------------------------------------------------
 }
