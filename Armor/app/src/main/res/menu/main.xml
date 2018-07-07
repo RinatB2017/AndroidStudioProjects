@@ -7,4 +7,6 @@
         android:title="@string/Disconnect" app:showAsAction="never" />
     <item android:id="@+id/action_settings_options" android:orderInCategory="100"
         android:title="@string/Options" app:showAsAction="never" />
+    <item android:id="@+id/action_clear_log" android:orderInCategory="100"
+        android:title="Очистка лога" app:showAsAction="never" />
 </menu>

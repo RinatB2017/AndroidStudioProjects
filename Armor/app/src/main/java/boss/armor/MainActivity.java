@@ -9,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -283,6 +283,10 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
 
+            case R.id.action_clear_log:
+                tv_log.setText("");
+                break;
+
             default:
                 break;
         }
@@ -337,6 +341,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         tv_log = (TextView)findViewById(R.id.logView);
+        tv_log.setTextColor(Color.BLACK);
         //tv_log.setTextColor(Color.WHITE);
 
         sb_delay_ms = (SeekBar)findViewById(R.id.sb_delay_ms);
@@ -419,7 +424,8 @@ public class MainActivity extends AppCompatActivity
                 bytesAvailableCount = inputStream.available();
                 if(bytesAvailableCount > 0) {
                     bytes = inputStream.read(buffer);
-                    logging("Получено " + String(bytes) + " байтов");
+                    logging("Получено " + bytes + " байтов");
+                    show_answer(buffer);
                 }
             } while(bytesAvailableCount > 0);
         } catch (IOException e) {
@@ -432,6 +438,90 @@ public class MainActivity extends AppCompatActivity
             return false;
         }
         return true;
+    }
+    //---------------------------------------------------------------------------------------------
+    /*
+    typedef struct P_HEADER
+    {
+        uint8_t   addr;
+        uint8_t   cmd;
+        uint16_t  len;
+        uint8_t   data[];
+    } p_header_t;
+
+    typedef struct P_DATA
+    {
+        uint8_t     mode;
+        uint8_t     brightness;
+        uint16_t    delay_N_ms;
+        uint16_t    delay_K_ms;
+        uint16_t    delay_ms;
+    } p_data_t;
+     */
+    public void show_answer(byte[] buffer)
+    {
+        // :AABBCC\n
+        if(buffer.length < (4 * 2 +2))   //sizeof(P_HEADER)
+        {
+            logging("answer too small");
+            return;
+        }
+
+        //byte begin = buffer[0];
+        int mode  = get_uint8_t(convert_ascii_to_byte(buffer[1]),
+                                convert_ascii_to_byte(buffer[2]));
+        int cmd   = get_uint8_t(convert_ascii_to_byte(buffer[3]),
+                                convert_ascii_to_byte(buffer[4]));
+        int len   = get_uint16_t(convert_ascii_to_byte(buffer[5]),
+                                 convert_ascii_to_byte(buffer[6]),
+                                 convert_ascii_to_byte(buffer[7]),
+                                 convert_ascii_to_byte(buffer[8]));
+
+        //char begin_s = (char)begin;
+
+        //logging(String.valueOf(begin_s));
+        logging("mode = " + String.valueOf(mode));
+        logging("cmd = " + String.valueOf(cmd));
+        logging("len = " + String.valueOf(len));
+
+        logging("answer is OK");
+    }
+    //---------------------------------------------------------------------------------------------
+    public byte convert_ascii_to_byte(byte ascii_data)
+    {
+        byte res = 0;
+        switch (ascii_data)
+        {
+            case '0':   res = 0x00;    break;
+            case '1':   res = 0x01;    break;
+            case '2':   res = 0x02;    break;
+            case '3':   res = 0x03;    break;
+            case '4':   res = 0x04;    break;
+            case '5':   res = 0x05;    break;
+            case '6':   res = 0x06;    break;
+            case '7':   res = 0x07;    break;
+            case '8':   res = 0x08;    break;
+            case '9':   res = 0x09;    break;
+            case 'A':   res = 0x0A;    break;
+            case 'B':   res = 0x0B;    break;
+            case 'C':   res = 0x0C;    break;
+            case 'D':   res = 0x0D;    break;
+            case 'E':   res = 0x0E;    break;
+            case 'F':   res = 0x0F;    break;
+        }
+        return res;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_uint16_t(byte a, byte b, byte c, byte d)
+    {
+        byte hi = (byte) ((a << 4) | b);
+        byte lo = (byte) ((c << 4) | d);
+        return (lo << 8) | hi;
+    }
+    //---------------------------------------------------------------------------------------------
+    public int get_uint8_t(byte a, byte b)
+    {
+        return (a << 4) | b;
     }
     //---------------------------------------------------------------------------------------------
     public int get_addr()
@@ -502,7 +592,8 @@ public class MainActivity extends AppCompatActivity
         modbus.add_begin_simvol();
         modbus.add_uint8_t(get_addr());
         modbus.add_uint8_t(CMD_GET_PARAM);
-        modbus.add_uint16_t(0); //данных нет
+        modbus.add_uint16_t(1);
+        modbus.add_uint8_t(get_spinner_mode_position());
         modbus.add_end_simvol();
 
         //logging(modbus.get_string());
