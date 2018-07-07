@@ -419,6 +419,7 @@ public class MainActivity extends AppCompatActivity
                 bytesAvailableCount = inputStream.available();
                 if(bytesAvailableCount > 0) {
                     bytes = inputStream.read(buffer);
+                    logging("Получено " + String(bytes) + " байтов");
                 }
             } while(bytesAvailableCount > 0);
         } catch (IOException e) {
