@@ -1,5 +1,4 @@
 # Built application files
-<<<<<<< HEAD
 /*/build/
 build
  
@@ -67,4 +66,3 @@ captures/
 
 # Keystore files
 *.jks
->>>>>>> 2825a231044d7a3f3b41dacfd435a8a047966001
