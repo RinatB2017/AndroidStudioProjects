@@ -2,15 +2,14 @@ package com.boss.bluetooth_test;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
@@ -19,14 +18,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static java.lang.Thread.*;
-
 public class MainActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
     private final static int REQUEST_ENABLE_BT = 1;
@@ -52,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver discoveryDevicesReceiver;
     private BroadcastReceiver discoveryFinishedReceiver;
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
-    private ProgressDialog progressDialog;
 
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
     private static InputStream inputStream;
@@ -237,6 +228,13 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
 
+        /*
+        if(bluetooth.isEnabled())
+        {
+            device_connect();
+        }
+        */
+
         Runnable runnable = new Runnable() {
             public void run() {
                 byte[] buffer = new byte[128];  // buffer store for the stream
@@ -268,6 +266,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    private String getScreenOrientation(){
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            return "Портретная ориентация";
+        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            return "Альбомная ориентация";
+        else
+            return "";
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -277,10 +285,74 @@ public class MainActivity extends AppCompatActivity {
         tv_log.setTextColor(Color.BLACK);
 
         //TODO временный костыль
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
+
         create_bluetooth();
+        logging(getScreenOrientation());
+
+        //logging("onCreate()");
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        //logging("onStart()");
+
+        if(mmSocket != null) {
+            if (!mmSocket.isConnected()) {
+                device_connect();
+            }
+        }
+    }
+
+    @Override
+    protected void onRestart()
+    {
+        super.onRestart();
+        //logging("onRestart()");
+
+        if(mmSocket != null) {
+            if (!mmSocket.isConnected()) {
+                device_connect();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        //logging("onResume()");
+    }
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        //logging("onPause()");
+
+        if(mmSocket != null) {
+            if (mmSocket.isConnected()) {
+                device_disconnect();
+            }
+        }
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
+        //logging("onStop()");
+    }
+
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        //logging("onDestroy()");
     }
 
     //---------------------------------------------------------------------------------------------
@@ -299,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     //---------------------------------------------------------------------------------------------
     void show_messagebox_alert(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
