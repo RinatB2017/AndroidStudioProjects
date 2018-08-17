@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/HDD/Dropbox/Work/Bluetooth_test" />
-            <option value="$USER_HOME$/HDD/Dropbox/Work/Bluetooth_test/app" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_test" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_test/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
