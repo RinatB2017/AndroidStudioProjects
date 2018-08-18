@@ -8,6 +8,7 @@ import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -18,11 +19,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -63,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 String log_text = bundle.getString("Log");
 
                 tv_log.append(log_text);
-                //TextView infoTextView = (TextView) findViewById(R.id.logView);
-                //infoTextView.append(date);
             }
         };
     }
@@ -285,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         tv_log.setTextColor(Color.BLACK);
 
         //TODO временный костыль
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
