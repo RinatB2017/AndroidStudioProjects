@@ -1,7 +1,9 @@
 package com.boss.template;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.wifi.WifiManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -18,20 +21,27 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
 // http://developer.alexanderklimov.ru/android/theory/lifecycle.php
 
 public class MainActivity extends AppCompatActivity{
-    final String LOG_TAG = "States";
+    static final String LOG_TAG = "States";
 
     //---
     String[] args = {"cat", "/proc/net/arp"};
     ArrayList<Node> listNote;
     String queryString = "https://www.macvendorlookup.com/api/v2/";
+    public static int AP_STATE_DISABLED = 11;
     //---
 
     TextView tv_log;
@@ -166,6 +176,20 @@ public class MainActivity extends AppCompatActivity{
     public void click(View view) {
         //tv_log.setText(toRead());
 
+        //logging(getIpAddress());
+
+        /*
+        List<String> array = getClientList();
+        for(int n=0; n<array.size(); n++)
+        {
+            String temp;
+            temp = array.get(n);
+            if(!temp.isEmpty()) {
+                logging(array.get(n));
+            }
+        }
+        */
+
         readAddresses();
         tv_log.setText("");
         for(int i=0; i<listNote.size(); i++){
@@ -175,6 +199,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    //---------------------------------------------------------------------------------------------
     private void readAddresses() {
         listNote.clear();
         BufferedReader bufferedReader = null;
@@ -219,6 +244,7 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    //---------------------------------------------------------------------------------------------
     private String sendQuery(String qMac) throws IOException{
         String result = "";
 
@@ -250,7 +276,7 @@ public class MainActivity extends AppCompatActivity{
         String ip;
         String mac;
 
-        Node(String ip, String mac){
+        Node(String ip, String mac) {
             this.ip = ip;
             this.mac = mac;
         }
@@ -259,8 +285,6 @@ public class MainActivity extends AppCompatActivity{
         public String toString() {
             return ip + " " + mac;
         }
-
     }
-
     //---------------------------------------------------------------------------------------------
 }
