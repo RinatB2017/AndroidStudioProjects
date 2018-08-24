@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         int minValue = 0;
         int maxValue = 100;
 
-        scanProgressDialog = new ProgressDialog(MainActivity.this);
+        scanProgressDialog = new ProgressDialog(MainActivity.this, R.style.DialogTheme);
         scanProgressDialog.setCancelable(false);
         scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
         scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity {
                 // и обновляем идикатор, пока шкала не заполнится
                 if (scanProgressDialog.getProgress() < scanProgressDialog.getMax()) {
                     //scanProgressDialog.setProgress(msg.what);
-                    // обновляем индикаторы на 3 пункта за 1 секунду (1000 милисекунд)
+                    // обновляем индикаторы на 1 пункт за 100 милисекунд
                     scanProgressDialog.incrementProgressBy(1);
-                    handler.sendEmptyMessageDelayed(0, 1000);
+                    handler.sendEmptyMessageDelayed(0, 100);
                 } else {
                     // когда шкала заполнилась, диалог пропадает
                     scanProgressDialog.dismiss();
@@ -158,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // имитируем подключение к удаленному серверу
-        // (ожидаем 1 секунду перед стартом обновления индикатора)
-        handler.sendEmptyMessageDelayed(0, 1000);
+        // (ожидаем 10 секунд перед стартом обновления индикатора)
+        handler.sendEmptyMessageDelayed(0, 10000);
 
         /*
         Thread t = new Thread(new Runnable() {
