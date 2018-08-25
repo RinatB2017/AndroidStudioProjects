@@ -1,3 +1,0 @@
-Compiles, runs, doesn't load map tiles; needs upgrading to osmdroid-android 5.5
-
-And this requires a few code changes.

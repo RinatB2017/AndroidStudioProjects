@@ -1,1 +1,0 @@
-Sends an SMS

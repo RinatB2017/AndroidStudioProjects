@@ -1,4 +1,0 @@
-#Sat Nov 11 21:05:53 MSK 2017
-base.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dexMerger/debug/9
-renamed.0=classes.dex
-file.0=/home/boss/HDD/Programming/AndroidStudioProjects/GitHub/QRCodeReaderView/samples/build/intermediates/transforms/dexMerger/debug/9/classes.dex

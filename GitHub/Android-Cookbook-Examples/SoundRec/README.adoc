@@ -1,5 +1,0 @@
-== soundrec
-
-A simple sound recording application. Works for me.
-
-Forked out of the voice recording add-on in my JPSTrack app.

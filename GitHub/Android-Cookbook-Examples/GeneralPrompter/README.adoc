@@ -1,3 +1,0 @@
-= GeneralPrompter 
-
-Prompts for recent files and others using the Storage Framework.
