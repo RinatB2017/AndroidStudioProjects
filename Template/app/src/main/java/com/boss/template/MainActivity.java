@@ -1,10 +1,7 @@
 package com.boss.template;
 
 import android.app.ProgressDialog;
-<<<<<<< HEAD
 import android.content.Context;
-=======
->>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
@@ -23,7 +20,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
-    //final ProgressDialog scanProgressDialog;
 
     private ProgressDialog scanProgressDialog;
     Handler handler;
@@ -31,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     final Random random = new Random();
 
     TextView tv_log;
-    static Context context;
-    ProgressDialog scanProgressDialog;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -78,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        context = this;
 
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
@@ -137,17 +129,6 @@ public class MainActivity extends AppCompatActivity {
     public void click_test(View view) {
         logging("test");
 
-<<<<<<< HEAD
-        int minValue = 1;
-        int maxValue = 10;
-
-        //final ProgressDialog scanProgressDialog;
-        scanProgressDialog = new ProgressDialog(context);
-        scanProgressDialog.setCancelable(false);
-        //scanProgressDialog.setIndeterminate(true);
-        scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
-        scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-=======
         // https://javadevblog.com/dialogi-v-android-primer-raboty-s-progressdialog.html
         // http://developer.alexanderklimov.ru/android/java/random.php
 
@@ -159,37 +140,10 @@ public class MainActivity extends AppCompatActivity {
         scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
         scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         scanProgressDialog.incrementProgressBy(1);
->>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
         scanProgressDialog.setProgress(minValue);
         scanProgressDialog.setMax(maxValue);
         scanProgressDialog.show();
 
-<<<<<<< HEAD
-        for(int n=minValue; n<maxValue; n++) {
-            if (scanProgressDialog != null) {
-                scanProgressDialog.setProgress(n);
-                logging(String.valueOf(n));
-            }
-
-            Runnable runnable = new Runnable() {
-                public void run() {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            Thread thread = new Thread(runnable);
-            thread.start();
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-        }
-        scanProgressDialog.dismiss();
-=======
         handler = new Handler() {
             public void handleMessage(Message msg) {
                 // и обновляем идикатор, пока шкала не заполнится
@@ -228,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
         });
         t.start();
         */
->>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
 
         logging("the end!");
     }
