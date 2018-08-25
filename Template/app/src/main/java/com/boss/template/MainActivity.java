@@ -1,5 +1,7 @@
 package com.boss.template;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.v4.app.ActivityCompat;
@@ -14,8 +16,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity{
     static final String LOG_TAG = "States";
+    //final ProgressDialog scanProgressDialog;
 
     TextView tv_log;
+    static Context context;
+    ProgressDialog scanProgressDialog;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = this;
 
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
@@ -115,8 +122,48 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //---------------------------------------------------------------------------------------------
-    public void click(View view) {
+    public void click_test(View view) {
         logging("test");
+
+        int minValue = 1;
+        int maxValue = 10;
+
+        //final ProgressDialog scanProgressDialog;
+        scanProgressDialog = new ProgressDialog(context);
+        scanProgressDialog.setCancelable(false);
+        //scanProgressDialog.setIndeterminate(true);
+        scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
+        scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        scanProgressDialog.setProgress(minValue);
+        scanProgressDialog.setMax(maxValue);
+        scanProgressDialog.show();
+
+        for(int n=minValue; n<maxValue; n++) {
+            if (scanProgressDialog != null) {
+                scanProgressDialog.setProgress(n);
+                logging(String.valueOf(n));
+            }
+
+            Runnable runnable = new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            Thread thread = new Thread(runnable);
+            thread.start();
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+        }
+        scanProgressDialog.dismiss();
+
+        logging("the end!");
     }
 
     //---------------------------------------------------------------------------------------------
