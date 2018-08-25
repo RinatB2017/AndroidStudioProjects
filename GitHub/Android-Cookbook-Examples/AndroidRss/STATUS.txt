@@ -1,4 +1,0 @@
-Works under Maven; Eclipse fails w/ Maven Configuration Problem
-
-org.codehaus.plexus.archiver.jar.Manifest.write(java.io.PrintWriter)	
-

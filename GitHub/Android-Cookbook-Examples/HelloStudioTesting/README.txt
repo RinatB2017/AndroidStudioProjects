@@ -1,1 +1,0 @@
-HelloWorld of StudioTesting

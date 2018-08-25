@@ -1,5 +1,0 @@
-Add "Pause" feature (will just do stop/start-append, since MediaRecorder can't pause).
-
-Can you spell "Graphics"?
-
-Some kind of File Manager integration?

@@ -1,2 +1,0 @@
-Simple Torchlight/Flashlight example.
-

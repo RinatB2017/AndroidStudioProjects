@@ -1,9 +1,14 @@
 package com.boss.template;
 
 import android.app.ProgressDialog;
+<<<<<<< HEAD
 import android.content.Context;
+=======
+>>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +19,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity{
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
     //final ProgressDialog scanProgressDialog;
+
+    private ProgressDialog scanProgressDialog;
+    Handler handler;
+
+    final Random random = new Random();
 
     TextView tv_log;
     static Context context;
@@ -125,6 +137,7 @@ public class MainActivity extends AppCompatActivity{
     public void click_test(View view) {
         logging("test");
 
+<<<<<<< HEAD
         int minValue = 1;
         int maxValue = 10;
 
@@ -134,10 +147,24 @@ public class MainActivity extends AppCompatActivity{
         //scanProgressDialog.setIndeterminate(true);
         scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
         scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+=======
+        // https://javadevblog.com/dialogi-v-android-primer-raboty-s-progressdialog.html
+        // http://developer.alexanderklimov.ru/android/java/random.php
+
+        int minValue = 0;
+        int maxValue = 100;
+
+        scanProgressDialog = new ProgressDialog(MainActivity.this, R.style.DialogTheme);
+        scanProgressDialog.setCancelable(false);
+        scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
+        scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        scanProgressDialog.incrementProgressBy(1);
+>>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
         scanProgressDialog.setProgress(minValue);
         scanProgressDialog.setMax(maxValue);
         scanProgressDialog.show();
 
+<<<<<<< HEAD
         for(int n=minValue; n<maxValue; n++) {
             if (scanProgressDialog != null) {
                 scanProgressDialog.setProgress(n);
@@ -162,6 +189,46 @@ public class MainActivity extends AppCompatActivity{
 //            }
         }
         scanProgressDialog.dismiss();
+=======
+        handler = new Handler() {
+            public void handleMessage(Message msg) {
+                // и обновляем идикатор, пока шкала не заполнится
+                if (scanProgressDialog.getProgress() < scanProgressDialog.getMax()) {
+                    //scanProgressDialog.setProgress(msg.what);
+                    // обновляем индикаторы на 1 пункт за 100 милисекунд
+                    scanProgressDialog.incrementProgressBy(1);
+                    handler.sendEmptyMessageDelayed(0, 100);
+                } else {
+                    // когда шкала заполнилась, диалог пропадает
+                    scanProgressDialog.dismiss();
+                }
+            }
+        };
+        // имитируем подключение к удаленному серверу
+        // (ожидаем 10 секунд перед стартом обновления индикатора)
+        handler.sendEmptyMessageDelayed(0, 10000);
+
+        /*
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                for (int i = 1; i <= 10; i++) {
+                    // долгий процесс
+                    try {
+                        int n = random.nextInt(10) * 1000;
+                        Thread.sleep(1000 + n);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    handler.sendEmptyMessage(i);
+                    // пишем лог
+                    Log.d(LOG_TAG, "i = " + i);
+                }
+            }
+        });
+        t.start();
+        */
+>>>>>>> 95cb769eef7e61763e3d31bec25829daabd75265
 
         logging("the end!");
     }

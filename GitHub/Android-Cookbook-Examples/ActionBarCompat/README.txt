@@ -1,1 +1,0 @@
-Simple ActionBar demo(s)
