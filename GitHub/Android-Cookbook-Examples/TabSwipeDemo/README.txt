@@ -1,1 +1,0 @@
-Tabbable and swipeable layout

@@ -1,3 +1,0 @@
-= IPCDemo
-
-Slightly-cleaned-up version of the IPCDemo program.

@@ -1,6 +1,0 @@
-<resources>
-        <string-array name="choices">
-        <item>One</item>
-        <item>Two</item>
-        </string-array>
-</resources>

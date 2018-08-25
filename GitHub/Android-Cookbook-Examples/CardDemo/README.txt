@@ -1,1 +1,0 @@
-Demonstation of Card widget.
