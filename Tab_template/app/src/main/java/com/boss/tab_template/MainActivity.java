@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+// http://developer.alexanderklimov.ru/android/views/tabhost-tabwidget.php
+
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
     TextView tv_log;
@@ -27,20 +29,18 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
-        setTitle("TabHost");
-
         TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
 
-        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tag1");
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tag_log");
 
-        tabSpec.setContent(R.id.tab1);
+        tabSpec.setContent(R.id.tab_test);
         tabSpec.setIndicator("Test");
         tabHost.addTab(tabSpec);
 
         tabSpec = tabHost.newTabSpec("log");
-        tabSpec.setContent(R.id.tab2);
+        tabSpec.setContent(R.id.tab_log);
         tabSpec.setIndicator("Log");
         tabHost.addTab(tabSpec);
 
@@ -109,4 +109,6 @@ public class MainActivity extends AppCompatActivity {
     public void click3(View view) {
         logging("3");
     }
+
+    //---------------------------------------------------------------------------------------------
 }

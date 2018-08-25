@@ -23,27 +23,28 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:id="@+id/tab1"
+                android:id="@+id/tab_test"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/button1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="click1"
                     android:text="Btn1" />
 
                 <Button
                     android:id="@+id/button2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="click2"
                     android:text="Btn2" />
 
                 <Button
                     android:id="@+id/button3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:onClick="click3"
                     android:text="Btn3" />
@@ -51,7 +52,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/tab2"
+                android:id="@+id/tab_log"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
