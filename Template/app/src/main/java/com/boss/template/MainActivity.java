@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -20,12 +21,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
+    TextView tv_log;
+
     private ProgressDialog scanProgressDialog;
     Handler handler;
 
-    final Random random = new Random();
-
-    TextView tv_log;
+    //final Random random = new Random();
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -74,6 +75,27 @@ public class MainActivity extends AppCompatActivity {
 
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
+
+        SeekBar sb = (SeekBar)findViewById(R.id.seekBar);
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+                logging("pos = " + seekBar.getProgress());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                // TODO Auto-generated method stub
+                //logging("pos = " + progress);
+            }
+        });
     }
 
     //---------------------------------------------------------------------------------------------
