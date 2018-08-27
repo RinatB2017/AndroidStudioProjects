@@ -1,7 +1,6 @@
 package com.boss.template;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
@@ -79,48 +78,42 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
         logging("onStart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onRestart()
-    {
+    protected void onRestart() {
         super.onRestart();
         logging("onRestart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         logging("onResume()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         logging("onPause()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
         logging("onStop()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
         logging("onDestroy()");
     }
@@ -136,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
         int maxValue = 100;
 
         scanProgressDialog = new ProgressDialog(MainActivity.this, R.style.DialogTheme);
-        scanProgressDialog.setCancelable(false);
+        scanProgressDialog.setCancelable(true);
+        scanProgressDialog.setCanceledOnTouchOutside(false);
         scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
         scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         scanProgressDialog.incrementProgressBy(1);
@@ -186,5 +180,5 @@ public class MainActivity extends AppCompatActivity {
         logging("the end!");
     }
 
-    //---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 }
