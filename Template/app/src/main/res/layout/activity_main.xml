@@ -19,6 +19,13 @@
         android:onClick="click_test"
         android:text="Button" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="click_test2"
+        android:text="Button2" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,6 +1,9 @@
 package com.boss.template;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
@@ -15,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -202,5 +206,42 @@ public class MainActivity extends AppCompatActivity {
         logging("the end!");
     }
 
-//---------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------
+    public void click_test2(View view) {
+        logging("test");
+
+        String title = "Выбор есть всегда";
+        String message = "Выбери пищу";
+        String button1String = "Вкусная пища";
+        String button2String = "Здоровая пища";
+
+        AlertDialog.Builder ad;
+        final Context context;
+        context = MainActivity.this;
+        ad = new AlertDialog.Builder(context);
+        ad.setTitle(title);  // заголовок
+        ad.setMessage(message); // сообщение
+        ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                Toast.makeText(context, "Вы сделали правильный выбор",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                Toast.makeText(context, "Возможно вы правы", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+        ad.setCancelable(true);
+        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+                Toast.makeText(context, "Вы ничего не выбрали",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        ad.show();
+    }
+
+    //---------------------------------------------------------------------------------------------
 }
