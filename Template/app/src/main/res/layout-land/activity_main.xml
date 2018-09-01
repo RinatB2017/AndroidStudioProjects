@@ -26,15 +26,15 @@
         android:onClick="click_test2"
         android:text="Button2" />
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="33sp"
+        android:layout_height="70sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="33sp"
-            android:layout_height="70sp" />
 
         <ToggleButton
             android:id="@+id/toggleButton"
@@ -43,6 +43,12 @@
             android:checked="false"
             android:clickable="true"
             android:theme="@style/YourThemeName" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button3" />
 
     </LinearLayout>
 
