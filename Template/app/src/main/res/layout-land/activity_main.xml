@@ -26,17 +26,24 @@
         android:onClick="click_test2"
         android:text="Button2" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="33sp"
-        android:layout_height="70sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:theme="@style/YourThemeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="33sp"
+            android:layout_height="70sp" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:theme="@style/YourThemeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
