@@ -25,15 +25,19 @@
         android:layout_height="wrap_content"
         android:onClick="click_test2"
         android:text="Button2" />
-		
-	<ToggleButton
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="33sp"
+        android:layout_height="70sp" />
+
+    <ToggleButton
         android:id="@+id/toggleButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="false"
-        android:text="ToggleButton"
-        android:textOff="Не гладить"
-        android:textOn="Гладить" />
+        android:clickable="true"
+        android:theme="@style/YourThemeName" />
 
     <ScrollView
         android:layout_width="match_parent"

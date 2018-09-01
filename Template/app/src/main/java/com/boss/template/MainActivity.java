@@ -16,9 +16,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.Random;
 
@@ -26,6 +29,11 @@ public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
+
+    ImageButton imageButton;
+    boolean flag = true;
+
+    ToggleButton toggleButton;
 
     private ProgressDialog scanProgressDialog;
     Handler handler;
@@ -98,6 +106,39 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 // TODO Auto-generated method stub
                 //logging("pos = " + progress);
+            }
+        });
+
+        imageButton = (ImageButton)findViewById(R.id.imageButton);
+        imageButton.setImageResource(R.drawable.power_off);
+        imageButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                // меняем изображение на кнопке
+                if (flag) {
+                    imageButton.setImageResource(R.drawable.power_on);
+                    logging("ON");
+                }
+                else {
+                    // возвращаем первую картинку
+                    imageButton.setImageResource(R.drawable.power_off);
+                    logging("OFF");
+                }
+                flag = !flag;
+            }
+        });
+
+        toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked) {
+                    logging("ON");
+                }
+                else {
+                    logging("OFF");
+                }
             }
         });
     }
