@@ -13,6 +13,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private LocationManager locationManager;
 
-    //---
+    //---------------------------------------------------------------------------------------------
     protected void requestPermission(String permissionType, int requestCode) {
         int permission = ContextCompat.checkSelfPermission(this,
                 permissionType);
@@ -45,11 +47,35 @@ public class MainActivity extends AppCompatActivity {
     //requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
     //---
 
+    //---------------------------------------------------------------------------------------------
     void logging(String text) {
         logView.append(text + "\n");
         Log.v(TAG, text);
     }
 
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+            case R.id.action_0:
+                onClickLocationSettings(MainActivity.this);
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
     }
 
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
@@ -82,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         checkEnabled();
     }
 
+    //---------------------------------------------------------------------------------------------
     public void update(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -99,12 +127,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onPause() {
         super.onPause();
         locationManager.removeUpdates(locationListener);
     }
 
+    //---------------------------------------------------------------------------------------------
     private LocationListener locationListener = new LocationListener() {
 
         @Override
@@ -136,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //---------------------------------------------------------------------------------------------
     private void showLocation(Location location) {
         if (location == null) {
             logging("showLocation: location is NULL");
@@ -146,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //---------------------------------------------------------------------------------------------
     private String formatLocation(Location location) {
         if (location == null) {
             logging("formatLocation: location is NULL");
@@ -158,13 +190,18 @@ public class MainActivity extends AppCompatActivity {
                 new Date(location.getTime()));
     }
 
+    //---------------------------------------------------------------------------------------------
     private void checkEnabled() {
         tvEnabledGPS.setText("Enabled: "
                 + locationManager
                 .isProviderEnabled(LocationManager.GPS_PROVIDER));
     }
 
-    public void onClickLocationSettings(View view) {
+    //---------------------------------------------------------------------------------------------
+    public void onClickLocationSettings(MainActivity view) {
         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     };
+
+    //---------------------------------------------------------------------------------------------
+
 }
