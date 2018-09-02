@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     Sensor sensorAccel;
     Sensor sensorLinAccel;
     Sensor sensorGravity;
+    Sensor sensorMagnet;
 
     BluetoothAdapter bluetooth;
     private BroadcastReceiver discoveryDevicesReceiver;
@@ -265,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
         sensorLinAccel = sensorManager
                 .getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         sensorGravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        sensorMagnet = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
         //TODO временный костыль
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -283,6 +285,8 @@ public class MainActivity extends AppCompatActivity {
                 SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(listener, sensorGravity,
                 SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(listener, sensorMagnet,
+                SensorManager.SENSOR_DELAY_NORMAL);
 
         timer = new Timer();
         TimerTask task = new TimerTask() {
@@ -291,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        getDeviceOrientation();
                         showInfo();
                     }
                 });
@@ -309,7 +314,9 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     String format(float values[]) {
-        return String.format("%1$.1f\t\t%2$.1f\t\t%3$.1f", values[0], values[1],
+        return String.format("%1$.1f\t\t%2$.1f\t\t%3$.1f",
+                values[0],
+                values[1],
                 values[2]);
     }
 
@@ -395,14 +402,29 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    void getDeviceOrientation() {
+        float[] r = new float[9];
+
+        SensorManager.getRotationMatrix(r, null, valuesAccel, valuesMagnet);
+        SensorManager.getOrientation(r, valuesResult);
+
+        valuesResult[0] = (float) Math.toDegrees(valuesResult[0]);
+        valuesResult[1] = (float) Math.toDegrees(valuesResult[1]);
+        valuesResult[2] = (float) Math.toDegrees(valuesResult[2]);
+
+        return;
+    }
+
     //---------------------------------------------------------------------------------------------
     void showInfo() {
         sb.setLength(0);
-        sb.append("Accelerometer: " + format(valuesAccel))
-                .append("\n\nAccel motion: " + format(valuesAccelMotion))
-                .append("\nAccel gravity : " + format(valuesAccelGravity))
-                .append("\n\nLin accel : " + format(valuesLinAccel))
-                .append("\nGravity : " + format(valuesGravity));
+        sb.append("Accelerometer: " + format(valuesAccel) + "\n");
+        sb.append("Orientation: " + format(valuesResult) + "\n");
+        sb.append("Accel motion: " + format(valuesAccelMotion) + "\n");
+        sb.append("Accel gravity : " + format(valuesAccelGravity) + "\n");
+        sb.append("Lin accel : " + format(valuesLinAccel) + "\n");
+        sb.append("Gravity : " + format(valuesGravity) + "\n");
+        sb.append("Magnetic : " + format(valuesMagnet) + "\n");
         tvText.setText(sb);
 
         if (bluetooth == null) {
@@ -428,6 +450,8 @@ public class MainActivity extends AppCompatActivity {
 
         temp_str += format2(valuesAccel);
         temp_str += ";";
+        temp_str += format2(valuesResult);
+        temp_str += ";";
         temp_str += format2(valuesAccelMotion);
         temp_str += ";";
         temp_str += format2(valuesAccelGravity);
@@ -435,6 +459,8 @@ public class MainActivity extends AppCompatActivity {
         temp_str += format2(valuesLinAccel);
         temp_str += ";";
         temp_str += format2(valuesGravity);
+        temp_str += ";";
+        temp_str += format2(valuesMagnet);
         temp_str += "\n";
 
         boolean ok = send_data(temp_str);
@@ -453,6 +479,8 @@ public class MainActivity extends AppCompatActivity {
     float[] valuesAccelGravity = new float[3];
     float[] valuesLinAccel = new float[3];
     float[] valuesGravity = new float[3];
+    float[] valuesMagnet = new float[3];
+    float[] valuesResult = new float[3];
 
     SensorEventListener listener = new SensorEventListener() {
 
@@ -479,6 +507,11 @@ public class MainActivity extends AppCompatActivity {
                 case Sensor.TYPE_GRAVITY:
                     for (int i = 0; i < 3; i++) {
                         valuesGravity[i] = event.values[i];
+                    }
+                    break;
+                case Sensor.TYPE_MAGNETIC_FIELD:
+                    for (int i=0; i < 3; i++){
+                        valuesMagnet[i] = event.values[i];
                     }
                     break;
             }
