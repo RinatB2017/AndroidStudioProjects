@@ -446,31 +446,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //---
-        String temp_str = "";
+		Runnable runnable = new Runnable() {
+			public void run() {
+				String temp_str = "";
 
-        temp_str += format2(valuesAccel);
-        temp_str += ";";
-        temp_str += format2(valuesResult);
-        temp_str += ";";
-        temp_str += format2(valuesAccelMotion);
-        temp_str += ";";
-        temp_str += format2(valuesAccelGravity);
-        temp_str += ";";
-        temp_str += format2(valuesLinAccel);
-        temp_str += ";";
-        temp_str += format2(valuesGravity);
-        temp_str += ";";
-        temp_str += format2(valuesMagnet);
-        temp_str += "\n";
+				temp_str += format2(valuesAccel);
+				temp_str += ";";
+				temp_str += format2(valuesResult);
+				temp_str += ";";
+				temp_str += format2(valuesAccelMotion);
+				temp_str += ";";
+				temp_str += format2(valuesAccelGravity);
+				temp_str += ";";
+				temp_str += format2(valuesLinAccel);
+				temp_str += ";";
+				temp_str += format2(valuesGravity);
+				temp_str += ";";
+				temp_str += format2(valuesMagnet);
+				temp_str += "\n";
 
-        boolean ok = send_data(temp_str);
-        if (ok) {
-            //logging("Данные переданы.");
-            //show_messagebox_info("Данные переданы.");
-        } else {
-            logging("Ошибка соединения.");
-            //show_messagebox_alert("Ошибка соединения.");
-        }
+				boolean ok = send_data(temp_str);
+				if (ok) {
+					//logging("Данные переданы.");
+					//show_messagebox_info("Данные переданы.");
+				} else {
+					logging("Ошибка соединения.");
+					//show_messagebox_alert("Ошибка соединения.");
+				}
+			}
+		};
+		Thread thread = new Thread(runnable);
+		thread.start();
         //---
     }
 
