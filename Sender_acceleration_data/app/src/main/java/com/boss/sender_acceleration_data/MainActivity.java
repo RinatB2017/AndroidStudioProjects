@@ -28,6 +28,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +37,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static java.lang.Thread.*;
 
@@ -75,12 +76,24 @@ public class MainActivity extends AppCompatActivity {
 
     StringBuilder sb = new StringBuilder();
 
+    Handler handler;
+
     Timer timer;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
         tv_log.append(text + "\n");
+    }
+
+    //----------------------------------------------------------------------------------------
+    public void send_log(String text) {
+        if (text == null) {
+            return;
+        }
+        Message msg = new Message();
+        msg.obj = text;
+        handler.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -100,14 +113,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings_scan:
-                if (device_connect()) {
-                    block_interface(false);
-                }
+                device_connect();
                 break;
 
             case R.id.action_settings_disconnect:
                 device_disconnect();
-                block_interface(true);
                 break;
 
             case R.id.action_settings_options:
@@ -128,32 +138,60 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public boolean device_connect() {
-        logging("connect");
-        if (bluetooth == null) {
-            logging(getString(R.string.bluetooth_not_found));
-            return false;
-        }
-        if (!bluetooth.isEnabled()) {
-            logging(getString(R.string.bluetooth_off));
-            block_interface(true);
-            return false;
-        }
+    public void device_connect() {
+        send_log("connect");
+        Runnable runnable = new Runnable() {
+            public void run() {
+                if (bluetooth == null) {
+                    send_log(getString(R.string.bluetooth_not_found));
+                    return;
+                }
+                if (!bluetooth.isEnabled()) {
+                    send_log(getString(R.string.bluetooth_off));
+                    block_interface(true);
+                    return;
+                }
 
-        boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
-        if (ok)
-            logging(getString(R.string.connection_on));
-        else
-            logging(getString(R.string.connection_fail));
-        block_interface(!ok);
+                boolean ok = connect_remote_device(BluetoothName.get_mac(getApplicationContext()));
+                if (ok)
+                    send_log(getString(R.string.connection_on));
+                else
+                    send_log(getString(R.string.connection_fail));
+                block_interface(!ok);
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
 
-        return ok;
+    //---------------------------------------------------------------------------------------------
+    public void device_disconnect() {
+        send_log("disconnect");
+        Runnable runnable = new Runnable() {
+            public void run() {
+                if (mmSocket == null) {
+                    return;
+                }
+
+                if (mmSocket.isConnected()) {
+                    try {
+                        mmSocket.close();
+                        send_log(getString(R.string.connection_breaks));
+                        block_interface(true);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     //---------------------------------------------------------------------------------------------
     public boolean connect_remote_device(String MAC_address) {
         if (MAC_address.isEmpty()) {
-            logging("MAC_address is empty!");
+            send_log("MAC_address is empty!");
             return false;
         }
 
@@ -164,16 +202,16 @@ public class MainActivity extends AppCompatActivity {
             Method m = r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             tmp = (BluetoothSocket) m.invoke(r_device, 1);
         } catch (IOException e) {
-            logging("create ERROR: " + e.getMessage());
+            send_log("create ERROR: " + e.getMessage());
             return false;
         } catch (NoSuchMethodException e) {
-            logging("create ERROR: " + e.getMessage());
+            send_log("create ERROR: " + e.getMessage());
             return false;
         } catch (IllegalAccessException e) {
-            logging("create ERROR: " + e.getMessage());
+            send_log("create ERROR: " + e.getMessage());
             return false;
         } catch (InvocationTargetException e) {
-            logging("create ERROR: " + e.getMessage());
+            send_log("create ERROR: " + e.getMessage());
             return false;
         }
         //---
@@ -185,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 mmSocket = (BluetoothSocket) r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class}).invoke(r_device, 1);
                 mmSocket.connect();
             } catch (Exception e2) {
-                logging("Stream ERROR: Couldn't establish Bluetooth connection!");
+                send_log("Stream ERROR: Couldn't establish Bluetooth connection!");
                 return false;
             }
         }
@@ -194,28 +232,13 @@ public class MainActivity extends AppCompatActivity {
             tmpIn = mmSocket.getInputStream();
             tmpOut = mmSocket.getOutputStream();
         } catch (IOException e) {
-            logging("Stream ERROR: " + e.getMessage());
+            send_log("Stream ERROR: " + e.getMessage());
             return false;
         }
         //---
         inputStream = tmpIn;
         outputStream = tmpOut;
         return true;
-    }
-
-    //---------------------------------------------------------------------------------------------
-    public void device_disconnect() {
-        logging("disconnect");
-
-        if (mmSocket.isConnected()) {
-            try {
-                mmSocket.close();
-                logging(getString(R.string.connection_breaks));
-                block_interface(true);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -239,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         modbus = new ModBus();
 
         if (bluetooth == null) {
-            logging(getString(R.string.bluetooth_not_found));
+            send_log(getString(R.string.bluetooth_not_found));
             return;
         }
         if (!bluetooth.isEnabled()) {
@@ -247,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         }
-        logging("OK");
+        send_log("OK");
     }
 
     //---------------------------------------------------------------------------------------------
@@ -259,6 +282,14 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
         //tv_log.setTextColor(Color.WHITE);
+
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                logging(text);
+            }
+        };
 
         tvText = (TextView) findViewById(R.id.tvText);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -330,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void show_answer(byte[] buffer) {
-        logging("show_answer");
+        send_log("show_answer");
     }
 
     //---------------------------------------------------------------------------------------------
@@ -340,7 +371,7 @@ public class MainActivity extends AppCompatActivity {
         int bytesAvailableCount = 0;
 
         if (outputStream == null) {
-            logging("outputStream not created!");
+            send_log("outputStream not created!");
             return false;
         }
         try {
@@ -350,17 +381,13 @@ public class MainActivity extends AppCompatActivity {
                 bytesAvailableCount = inputStream.available();
                 if (bytesAvailableCount > 0) {
                     bytes = inputStream.read(buffer);
-                    logging("Получено " + bytes + " байтов");
+                    send_log("Получено " + bytes + " байтов");
                     show_answer(buffer);
                 }
             } while (bytesAvailableCount > 0);
         } catch (IOException e) {
-            logging("send_data ERROR: " + e.getMessage());
+            send_log("send_data ERROR: " + e.getMessage());
             block_interface(true);
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    R.string.bluetooth_error,
-                    Toast.LENGTH_SHORT);
-            toast.show();
             return false;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -428,55 +455,53 @@ public class MainActivity extends AppCompatActivity {
         tvText.setText(sb);
 
         if (bluetooth == null) {
-            logging(getString(R.string.bluetooth_not_found));
+            send_log(getString(R.string.bluetooth_not_found));
             return;
         }
         if (!bluetooth.isEnabled()) {
-            logging(getString(R.string.bluetooth_off));
+            send_log(getString(R.string.bluetooth_off));
             block_interface(true);
             return;
         }
-        if(mmSocket == null)
-        {
+        if (mmSocket == null) {
             return;
         }
-        if(!mmSocket.isConnected())
-        {
+        if (!mmSocket.isConnected()) {
             return;
         }
 
         //---
-		Runnable runnable = new Runnable() {
-			public void run() {
-				String temp_str = "";
+        Runnable runnable = new Runnable() {
+            public void run() {
+                String temp_str = "";
 
-				temp_str += format2(valuesAccel);
-				temp_str += ";";
-				temp_str += format2(valuesResult);
-				temp_str += ";";
-				temp_str += format2(valuesAccelMotion);
-				temp_str += ";";
-				temp_str += format2(valuesAccelGravity);
-				temp_str += ";";
-				temp_str += format2(valuesLinAccel);
-				temp_str += ";";
-				temp_str += format2(valuesGravity);
-				temp_str += ";";
-				temp_str += format2(valuesMagnet);
-				temp_str += "\n";
+                temp_str += format2(valuesAccel);
+                temp_str += ";";
+                temp_str += format2(valuesResult);
+                temp_str += ";";
+                temp_str += format2(valuesAccelMotion);
+                temp_str += ";";
+                temp_str += format2(valuesAccelGravity);
+                temp_str += ";";
+                temp_str += format2(valuesLinAccel);
+                temp_str += ";";
+                temp_str += format2(valuesGravity);
+                temp_str += ";";
+                temp_str += format2(valuesMagnet);
+                temp_str += "\n";
 
-				boolean ok = send_data(temp_str);
-				if (ok) {
-					//logging("Данные переданы.");
-					//show_messagebox_info("Данные переданы.");
-				} else {
-					logging("Ошибка соединения.");
-					//show_messagebox_alert("Ошибка соединения.");
-				}
-			}
-		};
-		Thread thread = new Thread(runnable);
-		thread.start();
+                boolean ok = send_data(temp_str);
+                if (ok) {
+                    //send_log("Данные переданы.");
+                    //show_messagebox_info("Данные переданы.");
+                } else {
+                    send_log("Ошибка соединения.");
+                    //show_messagebox_alert("Ошибка соединения.");
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
         //---
     }
 
@@ -516,7 +541,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case Sensor.TYPE_MAGNETIC_FIELD:
-                    for (int i=0; i < 3; i++){
+                    for (int i = 0; i < 3; i++) {
                         valuesMagnet[i] = event.values[i];
                     }
                     break;
