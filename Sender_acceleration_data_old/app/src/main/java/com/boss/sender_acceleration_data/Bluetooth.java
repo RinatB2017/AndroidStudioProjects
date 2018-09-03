@@ -1,13 +1,11 @@
 package com.boss.sender_acceleration_data;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -22,19 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static java.lang.Thread.sleep;
-
 public class Bluetooth {
-
-    private final static int REQUEST_ENABLE_BT = 1;
 
     final String LOG_TAG = "States";
 
     BluetoothAdapter bluetooth;
-    //private BroadcastReceiver discoveryDevicesReceiver;
-    //private BroadcastReceiver discoveryFinishedReceiver;
-    //private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
-    //private ProgressDialog progressDialog;
+    private BroadcastReceiver discoveryDevicesReceiver;
+    private BroadcastReceiver discoveryFinishedReceiver;
+    private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
+    private ProgressDialog progressDialog;
 
     private static final UUID MY_UUID = UUID.fromString("00000001-0001-0001-0001-000000000001");
     private static InputStream inputStream;
@@ -49,8 +43,6 @@ public class Bluetooth {
     private Context context;
     private TextView tv_log;
     Handler handler;
-
-    ModBus modbus;
 
     //----------------------------------------------------------------------------------------
     private void block_interface(boolean state) {
@@ -69,23 +61,6 @@ public class Bluetooth {
                 tv_log.append(text + "\n");
             }
         };
-
-        bluetooth = BluetoothAdapter.getDefaultAdapter();
-
-        block_interface(true);
-
-        modbus = new ModBus();
-
-        if (bluetooth == null) {
-            send_log(context.getString(R.string.bluetooth_not_found));
-            return;
-        }
-        if (!bluetooth.isEnabled()) {
-            // Bluetooth выключен. Предложим пользователю включить его.
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            ((MainActivity) context).startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
-        send_log("OK");
     }
 
     //----------------------------------------------------------------------------------------
@@ -199,53 +174,6 @@ public class Bluetooth {
         //---
         inputStream = tmpIn;
         outputStream = tmpOut;
-        return true;
-    }
-
-    //---------------------------------------------------------------------------------------------
-    public boolean send_data(String message) {
-        if (bluetooth == null) {
-            send_log(context.getString(R.string.bluetooth_not_found));
-            return false;
-        }
-        if (!bluetooth.isEnabled()) {
-            send_log(context.getString(R.string.bluetooth_off));
-            block_interface(true);
-            return false;
-        }
-        if (mmSocket == null) {
-            return false;
-        }
-        if (!mmSocket.isConnected()) {
-            return false;
-        }
-
-        byte[] buffer = new byte[128];  // buffer store for the stream
-        int bytes = 0; // bytes returned from read()
-        int bytesAvailableCount = 0;
-
-        if (outputStream == null) {
-            send_log("outputStream not created!");
-            return false;
-        }
-        try {
-            outputStream.write(message.getBytes());
-            sleep(1000); //FIXME костыль
-            do {
-                bytesAvailableCount = inputStream.available();
-                if (bytesAvailableCount > 0) {
-                    bytes = inputStream.read(buffer);
-                    send_log("Получено " + bytes + " байтов");
-                    //TODO show_answer(buffer);
-                }
-            } while (bytesAvailableCount > 0);
-        } catch (IOException e) {
-            send_log("send_data ERROR: " + e.getMessage());
-            block_interface(true);
-            return false;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return true;
     }
 

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Sender_acceleration_data</string>
+
+    <string name="title_discover_devices">Найти устройства</string>
+    <string name="Connect">Соединиться</string>
+    <string name="Disconnect">Разьединиться</string>
+    <string name="Options">Опции</string>
+
+    <string name="bluetooth_not_found">Bluetooth модуль не найден</string>
+    <string name="bluetooth_off">Bluetooth выключен</string>
+    <string name="connection_on">Соединение установлено</string>
+    <string name="connection_fail">Соединение не удалось</string>
+
+    <string name="text_buttons">Режимы</string>
+    <string name="text_options">Настройки</string>
+    <string name="text_log">Лог</string>
+    <string name="connection_breaks">Соединение разорвано</string>
+    <string name="bluetooth_error">Ошибка связи</string>
+
+</resources>
