@@ -80,12 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
     Timer timer;
 
-    //---------------------------------------------------------------------------------------------
-    public void logging(String text) {
-        Log.i(LOG_TAG, text);
-        tv_log.append(text + "\n");
-    }
-
     //----------------------------------------------------------------------------------------
     public void send_log(String text) {
         if (text == null) {
@@ -287,7 +281,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 String text = (String) msg.obj;
-                logging(text);
+                Log.i(LOG_TAG, text);
+                tv_log.append(text + "\n");
             }
         };
 
