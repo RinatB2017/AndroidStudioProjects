@@ -52,6 +52,8 @@ public class Bluetooth {
 
     ModBus modbus;
 
+    byte[] buffer = new byte[128];  // buffer store for the stream
+
     //----------------------------------------------------------------------------------------
     private void block_interface(boolean state) {
 
@@ -220,7 +222,6 @@ public class Bluetooth {
             return false;
         }
 
-        byte[] buffer = new byte[128];  // buffer store for the stream
         int bytes = 0; // bytes returned from read()
         int bytesAvailableCount = 0;
 
@@ -236,7 +237,6 @@ public class Bluetooth {
                 if (bytesAvailableCount > 0) {
                     bytes = inputStream.read(buffer);
                     send_log("Получено " + bytes + " байтов");
-                    //TODO show_answer(buffer);
                 }
             } while (bytesAvailableCount > 0);
         } catch (IOException e) {
@@ -247,6 +247,11 @@ public class Bluetooth {
             e.printStackTrace();
         }
         return true;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public byte[] get_result() {
+        return buffer;
     }
 
     //---------------------------------------------------------------------------------------------

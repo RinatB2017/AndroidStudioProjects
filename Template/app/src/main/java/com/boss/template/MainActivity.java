@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -284,5 +285,19 @@ public class MainActivity extends AppCompatActivity {
         ad.show();
     }
 
+    //---------------------------------------------------------------------------------------------
+    public void click_test3(View view) {
+        Test_class tc = new Test_class();
+        String temp = "xxxxx";
+        tc.set(temp);
+
+        temp = "";
+        temp = tc.get_result();
+        logging(temp);
+
+        byte[] temp2 = tc.get_bytes();
+        String new_str = new String(temp2);
+        logging(new_str);
+    }
     //---------------------------------------------------------------------------------------------
 }

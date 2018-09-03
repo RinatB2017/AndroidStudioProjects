@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void show_answer(byte[] buffer) {
-        send_log("show_answer");
+        send_log("show_answer: " + buffer.toString());
     }
 
     //---------------------------------------------------------------------------------------------
@@ -284,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
                 boolean ok = bt.send_data(temp_str);
                 if (ok) {
                     //send_log("Данные переданы.");
+                    byte[] res = bt.get_result();
+                    show_answer(res);
                 } else {
                     //send_log("Ошибка соединения.");
                 }
