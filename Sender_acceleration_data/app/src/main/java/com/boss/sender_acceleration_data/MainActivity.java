@@ -286,6 +286,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //Bluetooth bt = new Bluetooth(MainActivity.this);
+        //bt.device_connect();
+        //bt.device_disconnect();
+
         tvText = (TextView) findViewById(R.id.tvText);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
