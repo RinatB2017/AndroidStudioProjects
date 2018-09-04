@@ -28,6 +28,14 @@
         android:layout_height="wrap_content">
     </TextView>
 
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="test"
+        android:text="Test">
+    </Button>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
