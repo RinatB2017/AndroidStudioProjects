@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv_log;
 
-    ImageButton imageButton;
-    boolean flag = true;
-
     ToggleButton toggleButton;
 
     private ProgressDialog scanProgressDialog;
@@ -107,26 +104,6 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 // TODO Auto-generated method stub
                 //logging("pos = " + progress);
-            }
-        });
-
-        imageButton = (ImageButton)findViewById(R.id.imageButton);
-        imageButton.setImageResource(R.drawable.power_off);
-        imageButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                // меняем изображение на кнопке
-                if (flag) {
-                    imageButton.setImageResource(R.drawable.power_on);
-                    logging("ON");
-                }
-                else {
-                    // возвращаем первую картинку
-                    imageButton.setImageResource(R.drawable.power_off);
-                    logging("OFF");
-                }
-                flag = !flag;
             }
         });
 
@@ -250,29 +227,27 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void click_test2(View view) {
-        logging("test");
+        logging("test2");
 
-        String title = "Выбор есть всегда";
-        String message = "Выбери пищу";
-        String button1String = "Вкусная пища";
-        String button2String = "Здоровая пища";
+        String title = "Заголовок";
+        String message = "Выберите вариант";
+        String button1String = "Да";
+        String button2String = "Нет";
 
         AlertDialog.Builder ad;
         final Context context;
         context = MainActivity.this;
         ad = new AlertDialog.Builder(context);
-        ad.setTitle(title);  // заголовок
+        ad.setTitle(title);     // заголовок
         ad.setMessage(message); // сообщение
         ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
-                Toast.makeText(context, "Вы сделали правильный выбор",
-                        Toast.LENGTH_LONG).show();
+                logging("Вы выбрали ДА");
             }
         });
         ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
-                Toast.makeText(context, "Возможно вы правы", Toast.LENGTH_LONG)
-                        .show();
+                logging("Вы выбрали НЕТ");
             }
         });
         ad.setCancelable(true);
@@ -287,6 +262,8 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void click_test3(View view) {
+        logging("test3");
+
         Test_class tc = new Test_class();
         String temp = "xxxxx";
         tc.set(temp);

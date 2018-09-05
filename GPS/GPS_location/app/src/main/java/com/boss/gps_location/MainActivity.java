@@ -237,6 +237,8 @@ public class MainActivity extends AppCompatActivity {
 
         logging("Test");
 
+        /*
+        // получение имен таблиц
         Cursor c = db.rawQuery("select * from sqlite_master where type = 'table'", null);
         if (c.moveToFirst()) {
             logging("found...");
@@ -246,15 +248,31 @@ public class MainActivity extends AppCompatActivity {
         } else {
             logging("0 rows");
         }
-
-        /*
-        logging("--- onCreate database ---");
-        // создаем таблицу с полями
-        db.execSQL("create table x_table_2 ("
-                + "id integer primary key autoincrement,"
-                + "name text,"
-                + "email text" + ");");
         */
+
+        // делаем запрос всех данных из таблицы mytable, получаем Cursor
+        Cursor c = db.query("mytable", null, null, null, null, null, null);
+
+        // ставим позицию курсора на первую строку выборки
+        // если в выборке нет строк, вернется false
+        if (c.moveToFirst()) {
+
+            // определяем номера столбцов по имени в выборке
+            int id_date_time = c.getColumnIndex("date_time");
+            int id_latitude = c.getColumnIndex("latitude");
+            int id_longitude = c.getColumnIndex("longitude");
+
+            do {
+                // получаем значения по номерам столбцов и пишем все в лог
+                logging("date_time = " + c.getString(id_date_time));
+                logging("latitude  = " + c.getDouble(id_latitude));
+                logging("longitude = " + c.getDouble(id_longitude));
+                // переход на следующую строку
+                // а если следующей нет (текущая - последняя), то false - выходим из цикла
+            } while (c.moveToNext());
+        } else
+            logging("0 rows");
+        c.close();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -277,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             counter++;
         }
-        cntRecord.setText("count record: " + String.valueOf(counter));
+        cntRecord.setText("count record: " + String.valueOf(counter) + " rowID: " + String.valueOf(rowID));
     }
 
     //---------------------------------------------------------------------------------------------
