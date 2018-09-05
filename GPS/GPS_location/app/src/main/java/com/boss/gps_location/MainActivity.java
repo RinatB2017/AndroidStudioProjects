@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView logView;
     private final String TAG = "States";
 
+    private TextView cntRecord;
+    int counter = 0;
+
     private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
@@ -98,6 +101,9 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         logView = (TextView)findViewById(R.id.logView);
+
+        cntRecord = (TextView)findViewById(R.id.cntRecord);
+        cntRecord.setText("count record: " + String.valueOf(counter));
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
@@ -268,6 +274,10 @@ public class MainActivity extends AppCompatActivity {
         if(rowID < 0) {
             logging("Error: ID = " + rowID);
         }
+        else {
+            counter++;
+        }
+        cntRecord.setText("count record: " + String.valueOf(counter));
     }
 
     //---------------------------------------------------------------------------------------------
