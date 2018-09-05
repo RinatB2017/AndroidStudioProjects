@@ -28,13 +28,39 @@
         android:layout_height="wrap_content">
     </TextView>
 
-    <Button
-        android:id="@+id/btnTest"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="test"
-        android:text="Test">
-    </Button>
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnCreateTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="create"
+            android:layout_weight="1"
+            android:text="Create table">
+        </Button>
+
+        <Button
+            android:id="@+id/btnDropTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="drop"
+            android:layout_weight="1"
+            android:text="Drop table">
+        </Button>
+
+        <Button
+            android:id="@+id/btnTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="test"
+            android:layout_weight="1"
+            android:text="Test">
+        </Button>
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
     private LocationManager locationManager;
 
+    ContentValues cv;
+    SQLiteDatabase db;
+
     DBHelper dbHelper;
 
     //---------------------------------------------------------------------------------------------
@@ -100,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         // создаем объект для создания и управления версиями БД
         dbHelper = new DBHelper(this);
+
+        // создаем объект для данных
+        cv = new ContentValues();
+
+        // подключаемся к БД
+        db = dbHelper.getWritableDatabase();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -219,11 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        // создаем объект для данных
-        ContentValues cv = new ContentValues();
-
-        // подключаемся к БД
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         logging("Test");
 
@@ -253,12 +257,6 @@ public class MainActivity extends AppCompatActivity {
                    Date dt) {
         String dt_str = dt.toString();
 
-        // создаем объект для данных
-        ContentValues cv = new ContentValues();
-
-        // подключаемся к БД
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         // делаем запрос всех данных из таблицы mytable, получаем Cursor
         Cursor c = db.query("mytable", null, null, null, null, null, null);
 
@@ -267,7 +265,34 @@ public class MainActivity extends AppCompatActivity {
         cv.put("longitude", longitude);
         // вставляем запись и получаем ее ID
         long rowID = db.insert("mytable", null, cv);
-        logging("row inserted, ID = " + rowID);
+        if(rowID < 0) {
+            logging("Error: ID = " + rowID);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void drop_table(String table_name) {
+        logging("drop table");
+        db.execSQL("DROP TABLE IF EXISTS " + table_name +";");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void create_table() {
+        logging("create table");
+        // создаем таблицу с полями
+        db.execSQL("create table mytable ("
+                + "date_time text,"
+                + "latitude float,"
+                + "longitude float" + ");");
+    }
+    //---------------------------------------------------------------------------------------------
+    public void drop(View view) {
+        drop_table("mytable");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void create(View view) {
+        create_table();
     }
 
     //---------------------------------------------------------------------------------------------
