@@ -82,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 onClickLocationSettings(MainActivity.this);
                 break;
 
+            case R.id.clear_log:
+                logView.setText("");
+                break;
+
             default:
                 break;
         }
