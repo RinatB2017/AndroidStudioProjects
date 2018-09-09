@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <EditText
+        android:id="@+id/et_first_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Здесь вводим первое число..."
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/et_second_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_first_num"
+        android:layout_marginTop="10dp"
+        android:hint="Здесь вводим второе число..."
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btn_sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_second_num"
+        android:layout_marginTop="10dp"
+        android:text="Посчитать сумму" />
+
+</RelativeLayout>
