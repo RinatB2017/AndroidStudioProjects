@@ -58,6 +58,7 @@ public class TestService extends Service {
 				
 				Log.i(MainActivity.TAG, "(service)...set count");
 				break;
+
 			case COUNT_PLUS:
 				count++;
 				
@@ -65,10 +66,9 @@ public class TestService extends Service {
 				break;
 				
 			case COUNT_MINUS:
-				
+                count--;
+
 				Log.i(MainActivity.TAG, "(service)...count minus");
-				count--;
-				
 				break;
 			}
 			

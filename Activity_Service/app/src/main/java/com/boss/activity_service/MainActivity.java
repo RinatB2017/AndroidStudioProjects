@@ -46,6 +46,7 @@ public class MainActivity extends Activity {
         unbindService(testServConn);
     }
 
+    //---
     public void countIncrClick(View button){
         Message msg = Message.obtain(null, TestService.COUNT_PLUS);
         msg.replyTo = messenger;
@@ -67,6 +68,7 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
     }
+    //---
 
     private class IncomingHandler extends Handler {
         @Override
