@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/MessengerExampleApp" />
-            <option value="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/MessengerExampleApp/app" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Service/MessengerExampleApp" />
+            <option value="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Service/MessengerExampleApp/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

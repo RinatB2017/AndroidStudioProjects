@@ -22,8 +22,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private final Messenger mActivityMessenger = new Messenger(new ResponseHandler(this));
-    private Button mButtonSend;
-    private EditText mEditTextMessage;
+    private Button mButtonSend1;
+    private Button mButtonSend2;
+    private EditText mEditTextMessage1;
+    private EditText mEditTextMessage2;
     private Messenger mMessenger;
     private boolean isBound;
 
@@ -46,17 +48,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mEditTextMessage = (EditText) findViewById(R.id.et_message);
-        mButtonSend = (Button) findViewById(R.id.btn_send);
-        mButtonSend.setOnClickListener(new View.OnClickListener() {
+        mEditTextMessage1 = (EditText) findViewById(R.id.et_message1);
+        mEditTextMessage2 = (EditText) findViewById(R.id.et_message2);
+
+        mButtonSend1 = (Button) findViewById(R.id.btn_send1);
+        mButtonSend1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String messageText = mEditTextMessage.getText().toString();
+                String messageText = mEditTextMessage1.getText().toString();
                 if (messageText.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Введите сообщение!", Toast.LENGTH_LONG).show();
                 } else {
                     Message message = Message.obtain(null, SimpleServiceIPC.TASK_1);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("message", messageText);
+                    message.setData(bundle);
+                    message.replyTo = mActivityMessenger;
+                    try {
+                        mMessenger.send(message);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        mButtonSend2 = (Button) findViewById(R.id.btn_send2);
+        mButtonSend2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String messageText = mEditTextMessage2.getText().toString();
+                if (messageText.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Введите сообщение!", Toast.LENGTH_LONG).show();
+                } else {
+                    Message message = Message.obtain(null, SimpleServiceIPC.TASK_2);
                     Bundle bundle = new Bundle();
                     bundle.putString("message", messageText);
                     message.setData(bundle);
@@ -100,13 +127,21 @@ public class MainActivity extends AppCompatActivity {
 
             switch (msg.what) {
                 case SimpleServiceIPC.TASK_RESPONSE_1:
-                    String result = msg.getData().getString("message_res");
-                    Toast.makeText(mContext, "Пришло из IPC службы: " + result, Toast.LENGTH_LONG).show();
+                    String result1 = msg.getData().getString("message_res");
+                    Toast.makeText(mContext, "Пришло из IPC службы: " + result1, Toast.LENGTH_LONG).show();
 
                     //TODO
-                    mEditTextMessage.setText(result);
-
+                    mEditTextMessage1.setText(result1);
                     break;
+
+                case SimpleServiceIPC.TASK_RESPONSE_2:
+                    String result2 = msg.getData().getString("message_res");
+                    Toast.makeText(mContext, "Пришло из IPC службы: " + result2, Toast.LENGTH_LONG).show();
+
+                    //TODO
+                    mEditTextMessage2.setText(result2);
+                    break;
+
                 default:
                     super.handleMessage(msg);
             }

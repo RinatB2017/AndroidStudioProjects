@@ -19,6 +19,9 @@ public class SimpleServiceIPC extends Service {
     public static final int TASK_1 = 1;
     public static final int TASK_RESPONSE_1 = 2;
 
+    public static final int TASK_2 = 3;
+    public static final int TASK_RESPONSE_2 = 4;
+
     final String LOG_TAG = "States";
 
     Messenger messenger = new Messenger(new IncomingHandler());
@@ -36,6 +39,8 @@ public class SimpleServiceIPC extends Service {
             Message message;
             Bundle bundle = new Bundle();
             String messageText;
+            int n = 0;
+            Messenger activityMessenger;
 
             switch (msg.what) {
                 case TASK_1:
@@ -44,10 +49,11 @@ public class SimpleServiceIPC extends Service {
                     message = Message.obtain(null, TASK_RESPONSE_1);
                     Toast.makeText(getApplicationContext(), "Пришло с Activity: " + messageText, Toast.LENGTH_SHORT).show();
 
-                    for(int n=0; n<10; n++) {
-                        bundle.putString("message_res", messageText + "_" + String.valueOf(n));
+                    n = 1;
+                    //for(int n=0; n<10; n++) {
+                        bundle.putString("message_res", messageText + "+" + String.valueOf(n));
                         message.setData(bundle);
-                        Messenger activityMessenger = msg.replyTo;
+                        activityMessenger = msg.replyTo;
                         try {
                             activityMessenger.send(message);
                         } catch (RemoteException e) {
@@ -58,8 +64,33 @@ public class SimpleServiceIPC extends Service {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                    }
+                    //}
                     break;
+
+                case TASK_2:
+                    messageText = msg.getData().getString("message");
+
+                    message = Message.obtain(null, TASK_RESPONSE_2);
+                    Toast.makeText(getApplicationContext(), "Пришло с Activity: " + messageText, Toast.LENGTH_SHORT).show();
+
+                    n = 2;
+                    //for(int n=0; n<10; n++) {
+                        bundle.putString("message_res", messageText + "-" + String.valueOf(n));
+                        message.setData(bundle);
+                        activityMessenger = msg.replyTo;
+                        try {
+                            activityMessenger.send(message);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            TimeUnit.SECONDS.sleep(1);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    //}
+                    break;
+
                 default:
                     super.handleMessage(msg);
             }
