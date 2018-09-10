@@ -21,9 +21,11 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -103,6 +105,19 @@ public class MainActivity extends AppCompatActivity {
 
         logging("WIDTH  " + WIDTH);
         logging("HEIGHT " + HEIGHT);
+
+        LinearLayout lll;
+        lll = (LinearLayout)findViewById(R.id.l_test);
+        lll.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        logging("l_test " + lll.getMeasuredHeight());
+
+        Button btn;
+        btn = (Button)findViewById(R.id.button);
+        btn.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        logging("btn " + btn.getMeasuredHeight());
+        btn.setText(String.valueOf(btn.getHeight()));
         //---
 
         Bitmap bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
