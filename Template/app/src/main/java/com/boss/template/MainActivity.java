@@ -108,8 +108,14 @@ public class MainActivity extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
         Paint mPaint = new Paint();
-        mPaint.setColor(Color.GREEN);
-        c.drawCircle(WIDTH / 2, WIDTH / 2, WIDTH / 2, mPaint);
+        float cx = WIDTH / 2;
+        float cy = WIDTH / 2;
+        int color = 0;
+        for(int radius = 0; radius < WIDTH / 2; radius += 10 ) {
+            mPaint.setColor(Color.rgb(0, 0, color));
+            c.drawCircle(cx, cx, radius, mPaint);
+            color += 50;
+        }
 
         imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
