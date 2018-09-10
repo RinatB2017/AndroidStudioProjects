@@ -111,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
         float cx = WIDTH / 2;
         float cy = WIDTH / 2;
         int color = 0;
-        for(int radius = 0; radius < WIDTH / 2; radius += 10 ) {
+        for(int radius = WIDTH / 2; radius > 0; radius -= 10 ) {
             mPaint.setColor(Color.rgb(0, 0, color));
             c.drawCircle(cx, cx, radius, mPaint);
-            color += 50;
+            color += 10;
         }
 
         imageView = (ImageView) findViewById(R.id.imageView);
