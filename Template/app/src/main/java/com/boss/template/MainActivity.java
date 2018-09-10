@@ -5,7 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -13,11 +17,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_log;
 
     ToggleButton toggleButton;
+
+    ImageView imageView;
 
     private ProgressDialog scanProgressDialog;
     Handler handler;
@@ -85,6 +93,27 @@ public class MainActivity extends AppCompatActivity {
 
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
+
+        //---
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        int WIDTH  = p.x - 1;
+        int HEIGHT = p.y - 1;
+
+        logging("WIDTH  " + WIDTH);
+        logging("HEIGHT " + HEIGHT);
+        //---
+
+        Bitmap bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bitmap);
+        Paint mPaint = new Paint();
+        mPaint.setColor(Color.GREEN);
+        c.drawCircle(WIDTH / 2, WIDTH / 2, WIDTH / 2, mPaint);
+
+        imageView = (ImageView) findViewById(R.id.imageView);
+        imageView.setImageBitmap(bitmap);
+        //---
 
         SeekBar sb = (SeekBar)findViewById(R.id.seekBar);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
