@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvEnabledNet;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView logView;
     private final String TAG = "States";
 
+    private final int CODE_PERMISSIONS = 0;
     private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
@@ -61,15 +64,19 @@ public class MainActivity extends AppCompatActivity {
 
         logView = (TextView)findViewById(R.id.logView);
 
-        requestPermission(Manifest.permission.ACCESS_COARSE_LOCATION, RECORD_REQUEST_CODE);
+        //locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        //---
+        String[] neededPermissions = {
+                Manifest.permission.CHANGE_WIFI_STATE,
+                Manifest.permission.ACCESS_WIFI_STATE,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        };
+        ActivityCompat.requestPermissions( this, neededPermissions, CODE_PERMISSIONS );
+        //---
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        /*
-        List<String> matchingProviders = locationManager.getAllProviders();
-        for (String provider: matchingProviders) {
-            logging("Provider: " + provider);
-            }
-        */
+
+        //requestPermission(ACCESS_COARSE_LOCATION, RECORD_REQUEST_CODE);
     }
 
     //---
@@ -100,20 +107,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             logging("onResume: error permission");
             return;
         }
+        logging("requestLocationUpdates");
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
                 0, //10 * 1000,
-                1, //10,
+                0, //10,
                 locationListener);
         checkEnabled();
     }
 
     public void update(View view) {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             logging("onResume: error permission");
             return;
         }
@@ -124,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
                 0, //10 * 1000,
-                1, //10,
+                0, //10,
                 locationListener);
         checkEnabled();
         logging("OK");
@@ -151,11 +163,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onProviderEnabled(String provider) {
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(getApplicationContext(), ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 logging("onProviderEnabled: error permission");
                 return;
             }
-            checkEnabled();
+            //checkEnabled();
             showLocation(locationManager.getLastKnownLocation(provider));
         }
 
