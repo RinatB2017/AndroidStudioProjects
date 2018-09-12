@@ -106,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
-                60 * 1000,
-                10,
+                0, //10 * 1000,
+                1, //10,
                 locationListener);
         checkEnabled();
     }
@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
-                60 * 1000,
-                10,
+                0, //10 * 1000,
+                1, //10,
                 locationListener);
         checkEnabled();
         logging("OK");
@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         public void onStatusChanged(String provider, int status, Bundle extras) {
             if (provider.equals(LocationManager.NETWORK_PROVIDER)) {
                 tvStatusNet.setText("Status: " + String.valueOf(status));
+                logging("Status: " + String.valueOf(status));
             }
         }
     };
@@ -174,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (location.getProvider().equals(LocationManager.NETWORK_PROVIDER)) {
             tvLocationNet.setText(formatLocation(location));
+            logging(formatLocation(location));
         }
     }
 
@@ -191,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkEnabled() {
         tvEnabledNet.setText("Enabled: "
+                + locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
+        logging("Enabled: "
                 + locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
     }
 
