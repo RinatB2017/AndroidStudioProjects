@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -23,16 +24,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-
-import java.util.Arrays;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
@@ -326,5 +323,12 @@ public class MainActivity extends AppCompatActivity {
         String new_str = new String(temp2);
         logging(new_str);
     }
+
+    //---------------------------------------------------------------------------------------------
+    public void test(View view) {
+        Intent intent = new Intent(this, PrefActivity.class);
+        startActivity(intent);
+    }
+
     //---------------------------------------------------------------------------------------------
 }
