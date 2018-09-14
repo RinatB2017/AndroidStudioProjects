@@ -1,9 +1,5 @@
 package com.boss.template;
 
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,10 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
 
-    private ProgressDialog scanProgressDialog;
-    Handler handler;
-
-    //final Random random = new Random();
+    Runnable runnable;
 
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
@@ -92,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
 
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
+
+        if(savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+            logging("NULL");
+        }
 
         //---
         Display display = getWindowManager().getDefaultDisplay();
@@ -187,6 +183,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         logging("onResume()");
+
+        //flag_is_running = false;
+        Bundle bundle = getIntent().getExtras(); //new Bundle();
+        bundle.putBoolean("flag_is_running", false);
+        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -211,123 +212,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void click_test(View view) {
-        logging("test");
-
-        // https://javadevblog.com/dialogi-v-android-primer-raboty-s-progressdialog.html
-        // http://developer.alexanderklimov.ru/android/java/random.php
-
-        int minValue = 0;
-        int maxValue = 100;
-
-        scanProgressDialog = new ProgressDialog(MainActivity.this, R.style.DialogTheme);
-        scanProgressDialog.setCancelable(true);
-        scanProgressDialog.setCanceledOnTouchOutside(false);
-        scanProgressDialog.setTitle("Scanning: " + minValue + " to " + maxValue);
-        scanProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        scanProgressDialog.incrementProgressBy(1);
-        scanProgressDialog.setProgress(minValue);
-        scanProgressDialog.setMax(maxValue);
-        scanProgressDialog.show();
-
-        handler = new Handler() {
-            public void handleMessage(Message msg) {
-                // и обновляем идикатор, пока шкала не заполнится
-                if (scanProgressDialog.getProgress() < scanProgressDialog.getMax()) {
-                    //scanProgressDialog.setProgress(msg.what);
-                    // обновляем индикаторы на 1 пункт за 100 милисекунд
-                    scanProgressDialog.incrementProgressBy(1);
-                    handler.sendEmptyMessageDelayed(0, 100);
-                } else {
-                    // когда шкала заполнилась, диалог пропадает
-                    scanProgressDialog.dismiss();
-                }
-            }
-        };
-        // имитируем подключение к удаленному серверу
-        // (ожидаем 10 секунд перед стартом обновления индикатора)
-        handler.sendEmptyMessageDelayed(0, 10000);
-
-        /*
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                for (int i = 1; i <= 10; i++) {
-                    // долгий процесс
-                    try {
-                        int n = random.nextInt(10) * 1000;
-                        Thread.sleep(1000 + n);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    handler.sendEmptyMessage(i);
-                    // пишем лог
-                    Log.d(LOG_TAG, "i = " + i);
-                }
-            }
-        });
-        t.start();
-        */
-
-        logging("the end!");
-    }
-
-    //---------------------------------------------------------------------------------------------
-    public void click_test2(View view) {
-        logging("test2");
-
-        String title = "Заголовок";
-        String message = "Выберите вариант";
-        String button1String = "Да";
-        String button2String = "Нет";
-
-        AlertDialog.Builder ad;
-        final Context context;
-        context = MainActivity.this;
-        ad = new AlertDialog.Builder(context);
-        ad.setTitle(title);     // заголовок
-        ad.setMessage(message); // сообщение
-        ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-                logging("Вы выбрали ДА");
-            }
-        });
-        ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-                logging("Вы выбрали НЕТ");
-            }
-        });
-        ad.setCancelable(true);
-        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-                Toast.makeText(context, "Вы ничего не выбрали",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        ad.show();
-    }
-
-    //---------------------------------------------------------------------------------------------
-    public void click_test3(View view) {
-        logging("test3");
-
-        Test_class tc = new Test_class();
-        String temp = "xxxxx";
-        tc.set(temp);
-
-        temp = "";
-        temp = tc.get_result();
-        logging(temp);
-
-        byte[] temp2 = tc.get_bytes();
-        String new_str = new String(temp2);
-        logging(new_str);
-    }
-
-    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         Intent intent = new Intent(this, PrefActivity.class);
         startActivity(intent);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void start(View view) {
+        Bundle bundle = getIntent().getExtras(); //new Bundle();
+        bundle.putBoolean("flag_is_running", true);
+        getIntent().putExtras(bundle);
+
+        runnable = new Runnable() {
+            public void run() {
+                int n = 0;
+                boolean flag_is_running = true;
+				while(true) {
+                    Bundle bundle = getIntent().getExtras();
+                    if(bundle != null)
+                    {
+                        flag_is_running = bundle.getBoolean("flag_is_running");
+                    }
+				    if(!flag_is_running) {
+				        Log.i(LOG_TAG, "thread is stoped!");
+				        return;
+                    }
+				    Log.i(LOG_TAG, "n = " + n);
+				    n++;
+
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void stop(View view) {
+        //flag_is_running = false;
+        Bundle bundle = getIntent().getExtras();    //new Bundle();
+        bundle.putBoolean("flag_is_running", false);
+        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
