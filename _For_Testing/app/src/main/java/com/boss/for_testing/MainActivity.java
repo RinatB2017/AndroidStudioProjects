@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,17 +30,23 @@ public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
-
     ToggleButton toggleButton;
-
     ImageView imageView;
-
     Runnable runnable;
 
+    int WIDTH;
+    int HEIGHT;
+
+    Handler handler;
+
     //---------------------------------------------------------------------------------------------
-    public void logging(String text) {
-        Log.i(LOG_TAG, text);
-        tv_log.append(text + "\n");
+    public void send_log(String text) {
+        if (text == null) {
+            return;
+        }
+        Message msg = new Message();
+        msg.obj = text;
+        handler.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -83,43 +91,57 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                Log.i(LOG_TAG, text);
+                tv_log.append(text + "\n");
+            }
+        };
+
         if(savedInstanceState == null) {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
-            logging("NULL");
         }
 
         //---
         Display display = getWindowManager().getDefaultDisplay();
         Point p = new Point();
         display.getSize(p);
-        int WIDTH  = p.x - 1;
-        int HEIGHT = p.y - 1;
+        WIDTH  = p.x - 1;
+        HEIGHT = p.y - 1;
 
-        logging("WIDTH  " + WIDTH);
-        logging("HEIGHT " + HEIGHT);
+        send_log("WIDTH  " + WIDTH);
+        send_log("HEIGHT " + HEIGHT);
 
         LinearLayout lll;
         lll = (LinearLayout)findViewById(R.id.l_test);
         lll.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        logging("l_test " + lll.getMeasuredHeight());
+        send_log("l_test " + lll.getMeasuredHeight());
 
         Button btn;
         btn = (Button)findViewById(R.id.button);
         btn.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        logging("btn " + btn.getMeasuredHeight());
+        send_log("btn " + btn.getMeasuredHeight());
         btn.setText(String.valueOf(btn.getHeight()));
         //---
 
-        Bitmap bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
+        add_bitmap();
+        add_seekBar();
+        add_toggleButton();
+    }
+    //---------------------------------------------------------------------------------------------
+    void add_bitmap() {
+        Bitmap bitmap = Bitmap.createBitmap(WIDTH / 2, WIDTH / 2, Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(bitmap);
         Paint mPaint = new Paint();
-        float cx = WIDTH / 2;
-        float cy = WIDTH / 2;
+        float cx = bitmap.getWidth() / 2;
+        float cy = bitmap.getHeight() / 2;
         int color = 0;
-        for(int radius = WIDTH / 2; radius > 0; radius -= 10 ) {
+        for(int radius = bitmap.getWidth() / 2; radius > 0; radius -= 10 ) {
             mPaint.setColor(Color.rgb(0, 0, color));
             c.drawCircle(cx, cx, radius, mPaint);
             color += 10;
@@ -127,15 +149,18 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
-        //---
 
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void add_seekBar() {
         SeekBar sb = (SeekBar)findViewById(R.id.seekBar);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
-                logging("pos = " + seekBar.getProgress());
+                send_log("pos = " + seekBar.getProgress());
             }
 
             @Override
@@ -149,16 +174,19 @@ public class MainActivity extends AppCompatActivity {
                 //logging("pos = " + progress);
             }
         });
+    }
 
+    //---------------------------------------------------------------------------------------------
+    void add_toggleButton() {
         toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            if (isChecked) {
-                    logging("ON");
+                if (isChecked) {
+                    send_log("ON");
                 }
                 else {
-                    logging("OFF");
+                    send_log("OFF");
                 }
             }
         });
@@ -168,21 +196,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        logging("onStart()");
+        send_log("onStart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onRestart() {
         super.onRestart();
-        logging("onRestart()");
+        send_log("onRestart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
-        logging("onResume()");
+        send_log("onResume()");
 
         //flag_is_running = false;
         Bundle bundle = getIntent().getExtras(); //new Bundle();
@@ -194,21 +222,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        logging("onPause()");
+        send_log("onPause()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onStop() {
         super.onStop();
-        logging("onStop()");
+        send_log("onStop()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        logging("onDestroy()");
+        send_log("onDestroy()");
     }
 
     //---------------------------------------------------------------------------------------------
@@ -234,10 +262,10 @@ public class MainActivity extends AppCompatActivity {
                         flag_is_running = bundle.getBoolean("flag_is_running");
                     }
 				    if(!flag_is_running) {
-				        Log.i(LOG_TAG, "thread is stoped!");
+                        send_log("thread is stoped!");
 				        return;
                     }
-				    Log.i(LOG_TAG, "n = " + n);
+                    send_log("n = " + n);
 				    n++;
 
                     try {
@@ -254,8 +282,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void stop(View view) {
-        //flag_is_running = false;
-        Bundle bundle = getIntent().getExtras();    //new Bundle();
+        Bundle bundle = getIntent().getExtras();
         bundle.putBoolean("flag_is_running", false);
         getIntent().putExtras(bundle);
     }

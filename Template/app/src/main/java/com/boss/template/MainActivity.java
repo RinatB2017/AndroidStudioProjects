@@ -2,6 +2,8 @@ package com.boss.template;
 
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +18,16 @@ public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
+    Handler handler;
 
     //---------------------------------------------------------------------------------------------
-    public void logging(String text) {
-        Log.i(LOG_TAG, text);
-        tv_log.append(text + "\n");
+    public void send_log(String text) {
+        if (text == null) {
+            return;
+        }
+        Message msg = new Message();
+        msg.obj = text;
+        handler.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -65,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                Log.i(LOG_TAG, text);
+                tv_log.append(text + "\n");
+            }
+        };
+
         if(savedInstanceState == null) {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
@@ -76,21 +92,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        logging("onStart()");
+        send_log("onStart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onRestart() {
         super.onRestart();
-        logging("onRestart()");
+        send_log("onRestart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
-        logging("onResume()");
+        send_log("onResume()");
 
         Bundle bundle = getIntent().getExtras();
         String temp = bundle.getString("log");
@@ -105,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        logging("onPause()");
+        send_log("onPause()");
 
         Bundle bundle = getIntent().getExtras();
         bundle.putString("log", tv_log.getText().toString());
@@ -116,19 +132,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        logging("onStop()");
+        send_log("onStop()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        logging("onDestroy()");
+        send_log("onDestroy()");
     }
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        logging("test");
+        send_log("test");
     }
 
     //---------------------------------------------------------------------------------------------
