@@ -1,4 +1,4 @@
-package com.boss.template;
+package com.boss.for_testing;
 
 public class Test_class {
     private String res;

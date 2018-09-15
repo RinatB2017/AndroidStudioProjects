@@ -1,4 +1,4 @@
-package com.boss.template;
+package com.boss.for_testing;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;

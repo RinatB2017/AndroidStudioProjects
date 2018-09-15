@@ -1,4 +1,4 @@
-package com.boss.template;
+package com.boss.for_testing;
 
 import android.app.AlertDialog;
 import android.content.Context;
