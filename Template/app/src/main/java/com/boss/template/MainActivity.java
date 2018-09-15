@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
-    Handler handler;
+    Handler h_print;
 
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Message msg = new Message();
         msg.obj = text;
-        handler.sendMessage(msg);
+        h_print.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
-        handler = new Handler() {
+        h_print = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 String text = (String) msg.obj;

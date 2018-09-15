@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     int WIDTH;
     int HEIGHT;
 
-    Handler handler;
+    Handler h_print;
 
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         }
         Message msg = new Message();
         msg.obj = text;
-        handler.sendMessage(msg);
+        h_print.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
-        handler = new Handler() {
+        h_print = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 String text = (String) msg.obj;
@@ -109,8 +109,13 @@ public class MainActivity extends AppCompatActivity {
         Display display = getWindowManager().getDefaultDisplay();
         Point p = new Point();
         display.getSize(p);
-        WIDTH  = p.x - 1;
-        HEIGHT = p.y - 1;
+        int min_size = 0;
+        if(p.x > p.y)
+            min_size = p.y - 1;
+        else
+            min_size = p.x - 1;
+        WIDTH  = min_size;
+        HEIGHT = min_size;
 
         send_log("WIDTH  " + WIDTH);
         send_log("HEIGHT " + HEIGHT);
