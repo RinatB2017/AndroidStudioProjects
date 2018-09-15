@@ -19,12 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tv_log;
 
-    ToggleButton toggleButton;
-
-    ImageView imageView;
-
-    Runnable runnable;
-
     //---------------------------------------------------------------------------------------------
     public void logging(String text) {
         Log.i(LOG_TAG, text);
@@ -101,8 +95,12 @@ public class MainActivity extends AppCompatActivity {
         logging("onResume()");
 
         Bundle bundle = getIntent().getExtras();
-        bundle.putBoolean("flag_is_running", false);
-        getIntent().putExtras(bundle);
+        String temp = bundle.getString("log");
+        if(temp != null) {
+            if(!temp.isEmpty()) {
+                tv_log.setText(temp);
+            }
+        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -110,6 +108,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         logging("onPause()");
+
+        Bundle bundle = getIntent().getExtras();
+        bundle.putString("log", tv_log.getText().toString());
+        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -128,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-
+        logging("test");
     }
 
     //---------------------------------------------------------------------------------------------
