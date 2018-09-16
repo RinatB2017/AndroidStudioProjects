@@ -23,6 +23,8 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggleButton;
     ImageView imageView;
     Runnable runnable;
+
+    Bitmap bitmap;
 
     int WIDTH;
     int HEIGHT;
@@ -117,30 +121,49 @@ public class MainActivity extends AppCompatActivity {
         WIDTH  = min_size;
         HEIGHT = min_size;
 
-        send_log("WIDTH  " + WIDTH);
-        send_log("HEIGHT " + HEIGHT);
-
-        LinearLayout lll;
-        lll = (LinearLayout)findViewById(R.id.l_test);
-        lll.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        send_log("l_test " + lll.getMeasuredHeight());
-
-        Button btn;
-        btn = (Button)findViewById(R.id.button);
-        btn.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        send_log("btn " + btn.getMeasuredHeight());
-        btn.setText(String.valueOf(btn.getHeight()));
+        //---
+        imageView = (ImageView) findViewById(R.id.imageView);
         //---
 
-        add_bitmap();
-        add_seekBar();
-        add_toggleButton();
+        //---
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec;
+
+        tabSpec = tabHost.newTabSpec("tab_main");
+        tabSpec.setContent(R.id.tab_main);
+        tabSpec.setIndicator(getString(R.string.main));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tab_log");
+        tabSpec.setContent(R.id.tab_log);
+        tabSpec.setIndicator(getString(R.string.log));
+        tabHost.addTab(tabSpec);
+
+        tabHost.setCurrentTab(0);
+
+        //---
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.weight = 1;
+
+        TabWidget tabWidget = tabHost.getTabWidget();
+        for(int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            //tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#CCCCCC"));
+            tabHost.getTabWidget().getChildAt(i).setLayoutParams(layoutParams);
+            TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
+            textView.setTextColor(Color.BLACK);
+        }
+        //---
     }
     //---------------------------------------------------------------------------------------------
     void add_bitmap() {
-        Bitmap bitmap = Bitmap.createBitmap(WIDTH / 2, WIDTH / 2, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
+        //send_log("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
+
         Canvas c = new Canvas(bitmap);
         Paint mPaint = new Paint();
         float cx = bitmap.getWidth() / 2;
@@ -152,9 +175,7 @@ public class MainActivity extends AppCompatActivity {
             color += 10;
         }
 
-        imageView = (ImageView) findViewById(R.id.imageView);
         imageView.setImageBitmap(bitmap);
-
     }
 
     //---------------------------------------------------------------------------------------------
@@ -201,21 +222,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        send_log("onStart()");
+        //send_log("onStart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onRestart() {
         super.onRestart();
-        send_log("onRestart()");
+        //send_log("onRestart()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
-        send_log("onResume()");
+        //send_log("onResume()");
+
+        add_bitmap();
+        add_seekBar();
+        add_toggleButton();
 
         //flag_is_running = false;
         Bundle bundle = getIntent().getExtras(); //new Bundle();
@@ -225,29 +250,41 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
+        send_log("FOCUS imageView: w " + imageView.getWidth());
+        send_log("FOCUS imageView: h " + imageView.getHeight());
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
     protected void onPause() {
         super.onPause();
-        send_log("onPause()");
+        //send_log("onPause()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onStop() {
         super.onStop();
-        send_log("onStop()");
+        //send_log("onStop()");
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        send_log("onDestroy()");
+        //send_log("onDestroy()");
     }
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        Intent intent = new Intent(this, PrefActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, PrefActivity.class);
+        //startActivity(intent);
+
+        send_log("TEST imageView: w " + imageView.getMeasuredWidth());
+        send_log("TEST imageView: h " + imageView.getMeasuredHeight());
     }
 
     //---------------------------------------------------------------------------------------------
