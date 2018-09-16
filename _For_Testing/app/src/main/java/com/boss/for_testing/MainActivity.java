@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -28,7 +29,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
@@ -36,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     Runnable runnable;
 
+    TextView coords;
+
     Bitmap bitmap;
+    Canvas c_bitmap;
+    Paint mPaint;
 
     int WIDTH;
     int HEIGHT;
@@ -95,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
+        coords = (TextView) findViewById(R.id.coords);
+
         h_print = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -118,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
             min_size = p.y - 1;
         else
             min_size = p.x - 1;
+        min_size = 344;
+
         WIDTH  = min_size;
         HEIGHT = min_size;
 
@@ -159,19 +168,42 @@ public class MainActivity extends AppCompatActivity {
         }
         //---
     }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onTouch(View view, MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            float x = event.getX();
+            float y = event.getY();
+
+            send_log("x=" + x + " y=" + y);
+            coords.setText("x=" + x + " y=" + y);
+
+            mPaint.setColor(Color.YELLOW);
+            mPaint.setStyle(Paint.Style.STROKE);
+            mPaint.setAntiAlias(true);
+            c_bitmap.drawCircle(x, y, 10, mPaint);
+
+            imageView.setImageBitmap(bitmap);
+        }
+        return true;
+    }
+
     //---------------------------------------------------------------------------------------------
     void add_bitmap() {
         bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
         //send_log("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
-        Canvas c = new Canvas(bitmap);
-        Paint mPaint = new Paint();
+        c_bitmap = new Canvas(bitmap);
+        mPaint = new Paint();
+
         float cx = bitmap.getWidth() / 2;
         float cy = bitmap.getHeight() / 2;
         int color = 0;
         for(int radius = bitmap.getWidth() / 2; radius > 0; radius -= 10 ) {
             mPaint.setColor(Color.rgb(0, 0, color));
-            c.drawCircle(cx, cx, radius, mPaint);
+            c_bitmap.drawCircle(cx, cx, radius, mPaint);
             color += 10;
         }
 
@@ -238,11 +270,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //send_log("onResume()");
 
-        add_bitmap();
-        add_seekBar();
-        add_toggleButton();
-
-        //flag_is_running = false;
         Bundle bundle = getIntent().getExtras(); //new Bundle();
         bundle.putBoolean("flag_is_running", false);
         getIntent().putExtras(bundle);
@@ -255,6 +282,12 @@ public class MainActivity extends AppCompatActivity {
 
         send_log("FOCUS imageView: w " + imageView.getWidth());
         send_log("FOCUS imageView: h " + imageView.getHeight());
+
+        add_bitmap();
+        add_seekBar();
+        add_toggleButton();
+
+        imageView.setOnTouchListener(this);
     }
 
     //---------------------------------------------------------------------------------------------
