@@ -2,6 +2,7 @@ package com.boss.for_testing;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -18,6 +19,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -44,9 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     Bitmap bitmap;
     Canvas c_bitmap;
     Paint mPaint;
-
-    int WIDTH;
-    int HEIGHT;
 
     Handler h_print;
 
@@ -119,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
 
         //---
+        /*
         Display display = getWindowManager().getDefaultDisplay();
         Point p = new Point();
         display.getSize(p);
@@ -127,10 +127,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             min_size = p.y - 1;
         else
             min_size = p.x - 1;
-        min_size = 344;
+        //min_size = 344;
 
         WIDTH  = min_size;
         HEIGHT = min_size;
+        */
 
         //---
         imageView = (ImageView) findViewById(R.id.imageView);
@@ -153,7 +154,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         tabSpec.setIndicator(getString(R.string.log));
         tabHost.addTab(tabSpec);
 
-        tabHost.setCurrentTab(0);
+        //tabHost.setCurrentTab(0);
+
+        //add_bitmap();
+        //add_seekBar();
+        //add_toggleButton();
+
+        //imageView.setOnTouchListener(this);
 
         //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -182,10 +189,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             send_log("x=" + x + " y=" + y);
             coords.setText("x=" + x + " y=" + y);
 
-            mPaint.setColor(Color.YELLOW);
+            //mPaint.setColor(Color.YELLOW);
+            mPaint.setColor(Color.WHITE);
             mPaint.setStyle(Paint.Style.STROKE);
             mPaint.setAntiAlias(true);
             c_bitmap.drawCircle(x, y, 10, mPaint);
+
+            mPaint.setColor(Color.BLACK);
+            c_bitmap.drawRect(0, 0, c_bitmap.getWidth(), c_bitmap.getHeight(), mPaint);
 
             imageView.setImageBitmap(bitmap);
         }
@@ -194,7 +205,45 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     //---------------------------------------------------------------------------------------------
     void add_bitmap() {
-        bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        display.getSize(p);
+        send_log("p.x " + p.x);
+        send_log("p.y " + p.y);
+
+        tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        int s_tabHost = tabHost.getMeasuredHeight();
+        send_log("measuredHeight " + s_tabHost);
+
+        int hhh = tabHost.getTabWidget().getMeasuredHeight();
+
+        int size = 0;
+
+        int color = 0;
+        int rotate = getWindowManager().getDefaultDisplay().getRotation();
+        switch (rotate) {
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_180:
+                // ORIENTATION_PORTRAIT
+                color = Color.BLUE;
+                size = p.x;
+                break;
+
+            case Surface.ROTATION_90:
+            case Surface.ROTATION_270:
+                // ORIENTATION_LANDSCAPE
+                color = Color.RED;
+                size = p.y - hhh;
+                //size = p.y - s_tabHost;
+                break;
+        }
+
+        send_log("size " + size);
+
+        bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        //bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
         //send_log("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         c_bitmap = new Canvas(bitmap);
@@ -202,12 +251,16 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         float cx = bitmap.getWidth() / 2;
         float cy = bitmap.getHeight() / 2;
-        int color = 0;
         for(int radius = bitmap.getWidth() / 2; radius > 0; radius -= 10 ) {
-            mPaint.setColor(Color.rgb(0, 0, color));
+            //mPaint.setColor(Color.rgb(0, 0, color));
+            mPaint.setColor(color);
             c_bitmap.drawCircle(cx, cx, radius, mPaint);
-            color += 10;
         }
+
+        //---
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(size, size);
+        imageView.setLayoutParams(layoutParams);
+        //---
 
         imageView.setImageBitmap(bitmap);
     }
@@ -282,18 +335,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-        LinearLayout.LayoutParams.WRAP_CONTENT);
-        send_log("measuredHeight " + tabHost.getMeasuredHeight());
-
-        send_log("FOCUS imageView: w " + imageView.getWidth());
-        send_log("FOCUS imageView: h " + imageView.getHeight());
-
         add_bitmap();
         add_seekBar();
         add_toggleButton();
 
         imageView.setOnTouchListener(this);
+
+        imageView.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        send_log("imageView: w " + imageView.getMeasuredWidth());
+        send_log("imageView: h " + imageView.getMeasuredHeight());
+
+        send_log("tabWidget: w " + tabHost.getTabWidget().getMeasuredWidth());
+        send_log("tabWidget: h " + tabHost.getTabWidget().getMeasuredHeight());
     }
 
     //---------------------------------------------------------------------------------------------
