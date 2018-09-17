@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     ImageView imageView;
     Runnable runnable;
 
+    TabHost tabHost;
+
     TextView coords;
 
     Bitmap bitmap;
@@ -135,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         //---
 
         //---
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
 
@@ -279,6 +281,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+
+        tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+        LinearLayout.LayoutParams.WRAP_CONTENT);
+        send_log("measuredHeight " + tabHost.getMeasuredHeight());
 
         send_log("FOCUS imageView: w " + imageView.getWidth());
         send_log("FOCUS imageView: h " + imageView.getHeight());
