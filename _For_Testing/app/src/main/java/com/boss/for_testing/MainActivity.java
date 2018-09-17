@@ -173,9 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             mPaint.setAntiAlias(true);
             c_bitmap.drawCircle(x, y, 10, mPaint);
 
-            mPaint.setColor(Color.BLACK);
-            c_bitmap.drawRect(0, 0, c_bitmap.getWidth(), c_bitmap.getHeight(), mPaint);
-
             imageView.setImageBitmap(bitmap);
         }
         return true;
@@ -193,10 +190,10 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         int s_tabHost = tabHost.getMeasuredHeight();
-        send_log("measuredHeight " + s_tabHost);
+        send_log("s_tabHost " + s_tabHost);
 
-        int hhh = tabHost.getTabWidget().getMeasuredHeight();
-        send_log("hhh " + hhh);
+        int c_view = tabHost.getTabContentView().getHeight();
+        send_log("c_view " + c_view);
 
         int size = 0;
 
@@ -214,9 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             case Surface.ROTATION_270:
                 // ORIENTATION_LANDSCAPE
                 color = Color.RED;
-                //size = p.y;
-                size = p.y - (int)(hhh * 2.5);
-                //size = p.y - s_tabHost;
+                size = c_view;
                 break;
         }
 
@@ -317,14 +312,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         add_toggleButton();
 
         imageView.setOnTouchListener(this);
-
-        imageView.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        send_log("imageView: w " + imageView.getMeasuredWidth());
-        send_log("imageView: h " + imageView.getMeasuredHeight());
-
-        send_log("tabWidget: w " + tabHost.getTabWidget().getMeasuredWidth());
-        send_log("tabWidget: h " + tabHost.getTabWidget().getMeasuredHeight());
     }
 
     //---------------------------------------------------------------------------------------------
