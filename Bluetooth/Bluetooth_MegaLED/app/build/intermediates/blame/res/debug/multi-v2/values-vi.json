@@ -1,23 +1,33 @@
 {
     "logs": [
         {
-            "outputFile": "/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
+            "outputFile": "/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-vi/values-vi.xml",
             "map": [
                 {
-                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/9300abee02e7c862cdfcdf341ca2786b/res/values-vi/values-vi.xml",
+                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/55c3e4d96160d3095c7b1d57a86e91ad/res/values-vi/values-vi.xml",
                     "from": {
-                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "280,394,502,625,733,842,926,1029,1148,1232,1336,1445,1546,1651,1765,1870,1990,2089",
-                        "endColumns": "113,107,122,107,108,83,102,118,83,103,108,100,104,113,104,119,98,100",
-                        "endOffsets": "389,497,620,728,837,921,1024,1143,1227,1331,1440,1541,1646,1760,1865,1985,2084,2185"
-                    },
-                    "to": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,169,277,400,508,617,701,804,923,1007,1111,1220,1321,1426,1540,1645,1765,1864",
-                        "endColumns": "113,107,122,107,108,83,102,118,83,103,108,100,104,113,104,119,98,100",
-                        "endOffsets": "164,272,395,503,612,696,799,918,1002,1106,1215,1316,1421,1535,1640,1760,1859,1960"
+                        "startOffsets": "105,219,327,436,520,623,742,819,896,980,1084,1193,1294,1399,1513,1618,1775,1874",
+                        "endColumns": "113,107,108,83,102,118,76,76,83,103,108,100,104,113,104,156,98,83",
+                        "endOffsets": "214,322,431,515,618,737,814,891,975,1079,1188,1289,1394,1508,1613,1770,1869,1953"
+                    }
+                },
+                {
+                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.0.aar/83e721d969bd9d779a56b6dd3af45597/res/values-vi/values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "1958",
+                        "endColumns": "100",
+                        "endOffsets": "2054"
                     }
                 }
             ]

@@ -1,18 +1,11 @@
 {
     "logs": [
         {
-            "outputFile": "/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
+            "outputFile": "/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v18/values-v18.xml",
             "map": [
                 {
-                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/9300abee02e7c862cdfcdf341ca2786b/res/values-v18/values-v18.xml",
+                    "source": "/home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.0.aar/55c3e4d96160d3095c7b1d57a86e91ad/res/values-v18/values-v18.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "280",
-                        "endColumns": "48",
-                        "endOffsets": "324"
-                    },
-                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
