@@ -118,22 +118,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         }
 
         //---
-        /*
-        Display display = getWindowManager().getDefaultDisplay();
-        Point p = new Point();
-        display.getSize(p);
-        int min_size = 0;
-        if(p.x > p.y)
-            min_size = p.y - 1;
-        else
-            min_size = p.x - 1;
-        //min_size = 344;
-
-        WIDTH  = min_size;
-        HEIGHT = min_size;
-        */
-
-        //---
         imageView = (ImageView) findViewById(R.id.imageView);
         //---
 
@@ -155,12 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         tabHost.addTab(tabSpec);
 
         //tabHost.setCurrentTab(0);
-
-        //add_bitmap();
-        //add_seekBar();
-        //add_toggleButton();
-
-        //imageView.setOnTouchListener(this);
 
         //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
@@ -218,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         send_log("measuredHeight " + s_tabHost);
 
         int hhh = tabHost.getTabWidget().getMeasuredHeight();
+        send_log("hhh " + hhh);
 
         int size = 0;
 
@@ -235,7 +214,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             case Surface.ROTATION_270:
                 // ORIENTATION_LANDSCAPE
                 color = Color.RED;
-                size = p.y - hhh;
+                //size = p.y;
+                size = p.y - (int)(hhh * 2.5);
                 //size = p.y - s_tabHost;
                 break;
         }
@@ -243,8 +223,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         send_log("size " + size);
 
         bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-        //bitmap = Bitmap.createBitmap(WIDTH, WIDTH, Bitmap.Config.ARGB_8888);
-        //send_log("w=" + bitmap.getWidth() +" h=" + bitmap.getHeight());
 
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
@@ -260,9 +238,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(size, size);
         imageView.setLayoutParams(layoutParams);
-        //---
-
         imageView.setImageBitmap(bitmap);
+        //---
     }
 
     //---------------------------------------------------------------------------------------------
