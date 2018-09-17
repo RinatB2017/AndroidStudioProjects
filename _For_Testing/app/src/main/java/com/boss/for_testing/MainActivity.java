@@ -1,5 +1,6 @@
 package com.boss.for_testing;
 
+import android.app.ActivityManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -30,6 +31,8 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
     static final String LOG_TAG = "States";
@@ -343,8 +346,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         //send_log("TEST imageView: w " + imageView.getMeasuredWidth());
         //send_log("TEST imageView: h " + imageView.getMeasuredHeight());
 
-        Child_class cc = new Child_class();
-        cc.test();
+        //Child_class cc = new Child_class();
+        //cc.test();
+
+        //---
+        // Список всех запущенных сервисов
+        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningServiceInfo> rs = am.getRunningServices(50);
+
+        send_log("Found " + rs.size() + " services");
+        for (int i = 0; i < rs.size(); i++) {
+            ActivityManager.RunningServiceInfo rsi = rs.get(i);
+            send_log("Process " + rsi.process + " with component " + rsi.service.getClassName());
+        }
+        //---
     }
 
     //---------------------------------------------------------------------------------------------
