@@ -340,8 +340,11 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         //Intent intent = new Intent(this, PrefActivity.class);
         //startActivity(intent);
 
-        send_log("TEST imageView: w " + imageView.getMeasuredWidth());
-        send_log("TEST imageView: h " + imageView.getMeasuredHeight());
+        //send_log("TEST imageView: w " + imageView.getMeasuredWidth());
+        //send_log("TEST imageView: h " + imageView.getMeasuredHeight());
+
+        Child_class cc = new Child_class();
+        cc.test();
     }
 
     //---------------------------------------------------------------------------------------------
