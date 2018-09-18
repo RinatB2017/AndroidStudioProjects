@@ -3,8 +3,13 @@ package com.boss.gps_location;
 import java.util.Date;
 
 import android.Manifest;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -27,9 +32,17 @@ public class MainActivity extends AppCompatActivity {
     private TextView logView;
     private final String TAG = "States";
 
+    private TextView cntRecord;
+    int counter = 0;
+
     private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
+
+    ContentValues cv;
+    SQLiteDatabase db;
+
+    DBHelper dbHelper;
 
     //---------------------------------------------------------------------------------------------
     protected void requestPermission(String permissionType, int requestCode) {
@@ -92,6 +105,20 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         logView = (TextView)findViewById(R.id.logView);
+
+        cntRecord = (TextView)findViewById(R.id.cntRecord);
+        cntRecord.setText("count record: " + String.valueOf(counter));
+
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
+
+        // создаем объект для создания и управления версиями БД
+        dbHelper = new DBHelper(this);
+
+        // создаем объект для данных
+        cv = new ContentValues();
+
+        // подключаемся к БД
+        db = dbHelper.getWritableDatabase();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -186,6 +213,10 @@ public class MainActivity extends AppCompatActivity {
             return "";
         }
 
+        save_data(location.getLatitude(),
+                location.getLongitude(),
+                new Date(location.getTime()));
+
         return String.format(
                 "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
                 location.getLatitude(),
@@ -209,6 +240,115 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
 
         logging("Test");
+
+        /*
+        // получение имен таблиц
+        Cursor c = db.rawQuery("select * from sqlite_master where type = 'table'", null);
+        if (c.moveToFirst()) {
+            logging("found...");
+            do {
+                logging(c.getString(0) + " " + c.getString(1));
+            } while (c.moveToNext());
+        } else {
+            logging("0 rows");
+        }
+        */
+
+        // делаем запрос всех данных из таблицы mytable, получаем Cursor
+        Cursor c = db.query("mytable", null, null, null, null, null, null);
+
+        // ставим позицию курсора на первую строку выборки
+        // если в выборке нет строк, вернется false
+        if (c.moveToFirst()) {
+
+            // определяем номера столбцов по имени в выборке
+            int id_date_time = c.getColumnIndex("date_time");
+            int id_latitude = c.getColumnIndex("latitude");
+            int id_longitude = c.getColumnIndex("longitude");
+
+            do {
+                // получаем значения по номерам столбцов и пишем все в лог
+                logging("date_time = " + c.getString(id_date_time));
+                logging("latitude  = " + c.getDouble(id_latitude));
+                logging("longitude = " + c.getDouble(id_longitude));
+                // переход на следующую строку
+                // а если следующей нет (текущая - последняя), то false - выходим из цикла
+            } while (c.moveToNext());
+        } else
+            logging("0 rows");
+        c.close();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void save_data(double latitude,
+                   double longitude,
+                   Date dt) {
+        String dt_str = dt.toString();
+
+        // делаем запрос всех данных из таблицы mytable, получаем Cursor
+        Cursor c = db.query("mytable", null, null, null, null, null, null);
+
+        cv.put("date_time", dt_str);
+        cv.put("latitude",  latitude);
+        cv.put("longitude", longitude);
+        // вставляем запись и получаем ее ID
+        long rowID = db.insert("mytable", null, cv);
+        if(rowID < 0) {
+            logging("Error: ID = " + rowID);
+        }
+        else {
+            counter++;
+        }
+        cntRecord.setText("count record: " + String.valueOf(counter) + " rowID: " + String.valueOf(rowID));
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void drop_table(String table_name) {
+        logging("drop table");
+        db.execSQL("DROP TABLE IF EXISTS " + table_name +";");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void create_table() {
+        logging("create table");
+        // создаем таблицу с полями
+        db.execSQL("create table mytable ("
+                + "date_time text,"
+                + "latitude float,"
+                + "longitude float" + ");");
+    }
+    //---------------------------------------------------------------------------------------------
+    public void drop(View view) {
+        drop_table("mytable");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void create(View view) {
+        create_table();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    class DBHelper extends SQLiteOpenHelper {
+
+        public DBHelper(Context context) {
+            // конструктор суперкласса
+            super(context, "myDB", null, 1);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            logging("--- onCreate database ---");
+            // создаем таблицу с полями
+            db.execSQL("create table mytable ("
+                    + "date_time text,"
+                    + "latitude float,"
+                    + "longitude float" + ");");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        }
     }
 
     //---------------------------------------------------------------------------------------------
