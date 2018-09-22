@@ -105,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
         }
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                1000,
-                1,
+                0, //1000,
+                0, //1,
                 locationListener);
         checkEnabled();
     }
@@ -121,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         logging("update");
         locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                1000,
-                1,
+                0, //1000,
+                0, //1,
                 locationListener);
         checkEnabled();
         logging("OK");

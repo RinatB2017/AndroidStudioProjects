@@ -1,14 +1,7 @@
 package com.boss.for_testing;
 
-import android.app.ActivityManager;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -16,15 +9,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TabHost;
@@ -34,21 +22,15 @@ import android.widget.ToggleButton;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     TextView tv_log;
     ToggleButton toggleButton;
-    ImageView imageView;
-    Runnable runnable;
 
     TabHost tabHost;
 
-    TextView coords;
-
-    Bitmap bitmap;
-    Canvas c_bitmap;
-    Paint mPaint;
+    Runnable runnable;
 
     Handler h_print;
 
@@ -104,8 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
-        coords = (TextView) findViewById(R.id.coords);
-
         h_print = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -119,10 +99,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
-
-        //---
-        imageView = (ImageView) findViewById(R.id.imageView);
-        //---
 
         //---
         tabHost = (TabHost) findViewById(R.id.tabHost);
@@ -156,87 +132,6 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.BLACK);
         }
-        //---
-    }
-
-    //---------------------------------------------------------------------------------------------
-    @Override
-    public boolean onTouch(View view, MotionEvent event) {
-
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            float x = event.getX();
-            float y = event.getY();
-
-            send_log("x=" + x + " y=" + y);
-            coords.setText("x=" + x + " y=" + y);
-
-            //mPaint.setColor(Color.YELLOW);
-            mPaint.setColor(Color.WHITE);
-            mPaint.setStyle(Paint.Style.STROKE);
-            mPaint.setAntiAlias(true);
-            c_bitmap.drawCircle(x, y, 10, mPaint);
-
-            imageView.setImageBitmap(bitmap);
-        }
-        return true;
-    }
-
-    //---------------------------------------------------------------------------------------------
-    void add_bitmap() {
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point p = new Point();
-        display.getSize(p);
-        send_log("p.x " + p.x);
-        send_log("p.y " + p.y);
-
-        tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        int s_tabHost = tabHost.getMeasuredHeight();
-        send_log("s_tabHost " + s_tabHost);
-
-        int c_view = tabHost.getTabContentView().getHeight();
-        send_log("c_view " + c_view);
-
-        int size = 0;
-
-        int color = 0;
-        int rotate = getWindowManager().getDefaultDisplay().getRotation();
-        switch (rotate) {
-            case Surface.ROTATION_0:
-            case Surface.ROTATION_180:
-                // ORIENTATION_PORTRAIT
-                color = Color.BLUE;
-                size = p.x;
-                break;
-
-            case Surface.ROTATION_90:
-            case Surface.ROTATION_270:
-                // ORIENTATION_LANDSCAPE
-                color = Color.RED;
-                size = c_view;
-                break;
-        }
-
-        send_log("size " + size);
-
-        bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
-
-        c_bitmap = new Canvas(bitmap);
-        mPaint = new Paint();
-
-        float cx = bitmap.getWidth() / 2;
-        float cy = bitmap.getHeight() / 2;
-        for(int radius = bitmap.getWidth() / 2; radius > 0; radius -= 10 ) {
-            //mPaint.setColor(Color.rgb(0, 0, color));
-            mPaint.setColor(color);
-            c_bitmap.drawCircle(cx, cx, radius, mPaint);
-        }
-
-        //---
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(size, size);
-        imageView.setLayoutParams(layoutParams);
-        imageView.setImageBitmap(bitmap);
         //---
     }
 
@@ -310,11 +205,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
 
-        add_bitmap();
         add_seekBar();
         add_toggleButton();
-
-        imageView.setOnTouchListener(this);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -340,26 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        //Intent intent = new Intent(this, PrefActivity.class);
-        //startActivity(intent);
-
-        //send_log("TEST imageView: w " + imageView.getMeasuredWidth());
-        //send_log("TEST imageView: h " + imageView.getMeasuredHeight());
-
-        //Child_class cc = new Child_class();
-        //cc.test();
-
-        //---
-        // Список всех запущенных сервисов
-        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> rs = am.getRunningServices(50);
-
-        send_log("Found " + rs.size() + " services");
-        for (int i = 0; i < rs.size(); i++) {
-            ActivityManager.RunningServiceInfo rsi = rs.get(i);
-            send_log("Process " + rsi.process + " with component " + rsi.service.getClassName());
-        }
-        //---
+        send_log("test");
     }
 
     //---------------------------------------------------------------------------------------------

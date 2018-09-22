@@ -118,10 +118,6 @@ public class Main_class extends AppCompatActivity implements View.OnTouchListene
         }
 
         //---
-        imageView = (ImageView) findViewById(R.id.imageView);
-        //---
-
-        //---
         tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
