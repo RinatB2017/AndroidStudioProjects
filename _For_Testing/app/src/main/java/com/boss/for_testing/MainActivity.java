@@ -1,7 +1,9 @@
 package com.boss.for_testing;
 
+import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -20,10 +22,13 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.io.File;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
+
+    private static final int RECORD_REQUEST_CODE = 101;
 
     TextView tv_log;
     ToggleButton toggleButton;
@@ -133,6 +138,9 @@ public class MainActivity extends AppCompatActivity {
             textView.setTextColor(Color.BLACK);
         }
         //---
+
+
+        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -231,11 +239,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void test(View view) {
-        send_log("test");
-    }
-
-    //---------------------------------------------------------------------------------------------
     public void start(View view) {
         Bundle bundle = getIntent().getExtras(); //new Bundle();
         bundle.putBoolean("flag_is_running", true);
@@ -275,6 +278,57 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         bundle.putBoolean("flag_is_running", false);
         getIntent().putExtras(bundle);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    /* Проверяет, доступно ли external storage как минимум для чтения */
+    public boolean isExternalStorageReadable()
+    {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void list_files(File path) {
+        if(path == null) {
+            return;
+        }
+
+        send_log("DIR: " + path);
+
+        File[] l_files = path.listFiles();
+        if(l_files == null) {
+            return;
+        }
+        for(int n=0; n<l_files.length; n++) {
+            if(l_files[n].isDirectory()) {
+                list_files(l_files[n]);
+            }
+            else {
+                send_log("   file: " + l_files[n].getName());
+            }
+        }
+    }
+    public void test(View view) {
+        send_log("test");
+
+        tv_log.setText("");
+
+        if(!isExternalStorageReadable()) {
+            send_log("ERROR: external storage no readable");
+            return;
+        }
+
+        String basePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        //basePath = "/storage/emulated/0/Android/data/com.mendhak.gpslogger/files";
+        send_log("basePath " + basePath);
+        list_files(new File(basePath));
+
+        //File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
     }
 
     //---------------------------------------------------------------------------------------------
