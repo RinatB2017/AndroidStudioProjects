@@ -1,4 +1,0 @@
-#Tue Sep 18 01:11:59 MSK 2018
-base.0=/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/build/intermediates/transforms/dexMerger/debug/4
-path.0=classes.dex
-renamed.0=classes.dex
