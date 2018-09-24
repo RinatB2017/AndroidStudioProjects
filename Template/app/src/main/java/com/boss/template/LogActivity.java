@@ -49,6 +49,16 @@ public class LogActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString("log", tv_log.getText().toString());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -65,7 +75,15 @@ public class LogActivity extends AppCompatActivity {
             }
         };
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if(temp != null) {
+                if(!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+        }
+        else {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
@@ -92,14 +110,6 @@ public class LogActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         send_log("onResume()");
-
-        Bundle bundle = getIntent().getExtras();
-        String temp = bundle.getString("log");
-        if(temp != null) {
-            if(!temp.isEmpty()) {
-                tv_log.setText(temp);
-            }
-        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -107,10 +117,6 @@ public class LogActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         send_log("onPause()");
-
-        Bundle bundle = getIntent().getExtras();
-        bundle.putString("log", tv_log.getText().toString());
-        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
