@@ -1,6 +1,7 @@
 package com.boss.for_testing;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Environment;
@@ -316,6 +317,7 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log("test");
 
+        /*
         tv_log.setText("");
 
         if(!isExternalStorageReadable()) {
@@ -329,6 +331,17 @@ public class MainActivity extends AppCompatActivity {
         list_files(new File(basePath));
 
         //File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
+        */
+
+        String name = "name";
+        String company = "company";
+        int price = 100500;
+
+        Product product = new Product(name, company, price);
+
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(Product.class.getSimpleName(), product);
+        startActivity(intent);
     }
 
     //---------------------------------------------------------------------------------------------
