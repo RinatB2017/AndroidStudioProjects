@@ -77,13 +77,12 @@ public class LogActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
             String temp = savedInstanceState.getString("log");
-            if(temp != null) {
-                if(!temp.isEmpty()) {
+            if (temp != null) {
+                if (!temp.isEmpty()) {
                     tv_log.setText(temp);
                 }
             }
-        }
-        else {
+        } else {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }

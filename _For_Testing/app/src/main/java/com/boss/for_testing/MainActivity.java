@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         layoutParams.weight = 1;
 
         TabWidget tabWidget = tabHost.getTabWidget();
-        for(int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
             //tabHost.getTabWidget().getChildAt(i).setBackgroundColor(Color.parseColor("#CCCCCC"));
             tabHost.getTabWidget().getChildAt(i).setLayoutParams(layoutParams);
             TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     void add_seekBar() {
-        SeekBar sb = (SeekBar)findViewById(R.id.seekBar);
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // TODO Auto-generated method stub
                 //logging("pos = " + progress);
             }
@@ -170,14 +170,13 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     void add_toggleButton() {
-        toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
+        toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
                     send_log("ON");
-                }
-                else {
+                } else {
                     send_log("OFF");
                 }
             }
@@ -249,18 +248,17 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 int n = 0;
                 boolean flag_is_running = true;
-				while(true) {
+                while (true) {
                     Bundle bundle = getIntent().getExtras();
-                    if(bundle != null)
-                    {
+                    if (bundle != null) {
                         flag_is_running = bundle.getBoolean("flag_is_running");
                     }
-				    if(!flag_is_running) {
+                    if (!flag_is_running) {
                         send_log("thread is stoped!");
-				        return;
+                        return;
                     }
                     send_log("n = " + n);
-				    n++;
+                    n++;
 
                     try {
                         Thread.sleep(1000);
@@ -283,37 +281,35 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     /* Проверяет, доступно ли external storage как минимум для чтения */
-    public boolean isExternalStorageReadable()
-    {
+    public boolean isExternalStorageReadable() {
         String state = Environment.getExternalStorageState();
         if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state))
-        {
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
             return true;
         }
         return false;
     }
 
     private void list_files(File path) {
-        if(path == null) {
+        if (path == null) {
             return;
         }
 
         send_log("DIR: " + path);
 
         File[] l_files = path.listFiles();
-        if(l_files == null) {
+        if (l_files == null) {
             return;
         }
-        for(int n=0; n<l_files.length; n++) {
-            if(l_files[n].isDirectory()) {
+        for (int n = 0; n < l_files.length; n++) {
+            if (l_files[n].isDirectory()) {
                 list_files(l_files[n]);
-            }
-            else {
+            } else {
                 send_log("   file: " + l_files[n].getName());
             }
         }
     }
+
     public void test(View view) {
         send_log("test");
 
