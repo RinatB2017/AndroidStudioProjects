@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.nfc.NfcAdapter;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     Runnable runnable;
 
     Handler h_print;
+
+    private NfcAdapter nfc;
 
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
