@@ -87,11 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    private void init_log() {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
@@ -103,13 +99,10 @@ public class MainActivity extends AppCompatActivity {
                 tv_log.append(text + "\n");
             }
         };
+    }
 
-        if (savedInstanceState == null) {
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
-
-        //---
+    //---------------------------------------------------------------------------------------------
+    private void init_tabs() {
         tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
@@ -128,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
         //tabHost.setCurrentTab(0);
 
-        //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -141,8 +133,22 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.BLACK);
         }
-        //---
+    }
 
+    //---------------------------------------------------------------------------------------------
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        init_log();
+
+        if (savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
+
+        init_tabs();
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
     }
@@ -293,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    //---------------------------------------------------------------------------------------------
     private void list_files(File path) {
         if (path == null) {
             return;
@@ -313,6 +320,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log("test");
 
