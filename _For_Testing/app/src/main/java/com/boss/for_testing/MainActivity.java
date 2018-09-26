@@ -137,13 +137,30 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString("log", tv_log.getText().toString());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init_log();
 
-        if (savedInstanceState == null) {
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if (temp != null) {
+                if (!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+        } else {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
@@ -211,10 +228,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //send_log("onResume()");
-
-        Bundle bundle = getIntent().getExtras(); //new Bundle();
-        bundle.putBoolean("flag_is_running", false);
-        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
