@@ -15,6 +15,8 @@ import java.io.IOException;
 
 public class MainActivity extends LogActivity {
 
+    private static final int RECORD_REQUEST_CODE = 101;
+
     private NfcAdapter nfc;
     private Tag tag;
     private String[][] nfctechfilter = new String[][]{new String[]{NfcA.class.getName()}};

@@ -353,6 +353,7 @@ public class MainActivity extends AppCompatActivity {
         //File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
         */
 
+        /*
         String name = "name";
         String company = "company";
         int price = 100500;
@@ -362,6 +363,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra(Product.class.getSimpleName(), product);
         startActivity(intent);
+        */
+
+        int i = 5; i = ++i + ++i;
+        send_log("i = " + String.valueOf(i));
     }
 
     //---------------------------------------------------------------------------------------------
