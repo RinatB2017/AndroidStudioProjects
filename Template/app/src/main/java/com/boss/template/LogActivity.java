@@ -58,11 +58,7 @@ public class LogActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+    void init_log() {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
@@ -74,6 +70,15 @@ public class LogActivity extends AppCompatActivity {
                 tv_log.append(text + "\n");
             }
         };
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        init_log();
 
         if (savedInstanceState != null) {
             String temp = savedInstanceState.getString("log");

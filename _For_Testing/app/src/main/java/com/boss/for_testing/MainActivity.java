@@ -2,6 +2,7 @@ package com.boss.for_testing;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -39,9 +40,7 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton toggleButton;
 
     TabHost tabHost;
-
     Runnable runnable;
-
     Handler h_print;
 
     private NfcAdapter nfc;
@@ -105,19 +104,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        init_log();
-
-        if (savedInstanceState == null) {
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
-
-        //---
+    void init_tabs()
+    {
         tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
@@ -136,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
         //tabHost.setCurrentTab(0);
 
-        //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -149,8 +136,39 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.BLACK);
         }
-        //---
+    }
 
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString("log", tv_log.getText().toString());
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        init_log();
+
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if (temp != null) {
+                if (!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+        } else {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
+
+        init_tabs();
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
     }
@@ -184,7 +202,6 @@ public class MainActivity extends AppCompatActivity {
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (isChecked) {
                     send_log("ON");
                 } else {
@@ -337,6 +354,13 @@ public class MainActivity extends AppCompatActivity {
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setTitle(R.string.app_name);
         builder.setView(messageView);
+        builder.setCancelable(false);
+        builder.setNegativeButton("ОК",
+                new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
         builder.create();
         builder.show();
     }
