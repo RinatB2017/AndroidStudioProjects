@@ -27,7 +27,6 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.io.File;
-import java.util.List;
 
 import android.view.LayoutInflater;
 
@@ -80,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_clear_log:
                 tv_log.setText("");
+                break;
+
+            case R.id.about:
+                showAbout();
                 break;
 
             default:
@@ -366,12 +369,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void test(View view) {
-        send_log("test");
+    void new_intent() {
+        String name = "name";
+        String company = "company";
+        int price = 100500;
 
-        showAbout();
+        Product product = new Product(name, company, price);
 
-        /*
+        Intent intent = new Intent(this, SecondActivity.class);
+        intent.putExtra(Product.class.getSimpleName(), product);
+        startActivity(intent);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void show_list_files() {
         tv_log.setText("");
 
         if(!isExternalStorageReadable()) {
@@ -385,19 +396,14 @@ public class MainActivity extends AppCompatActivity {
         list_files(new File(basePath));
 
         //File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
-        */
+    }
 
-        /*
-        String name = "name";
-        String company = "company";
-        int price = 100500;
+    //---------------------------------------------------------------------------------------------
+    public void test(View view) {
+        send_log("test");
 
-        Product product = new Product(name, company, price);
-
-        Intent intent = new Intent(this, SecondActivity.class);
-        intent.putExtra(Product.class.getSimpleName(), product);
-        startActivity(intent);
-        */
+        //show_list_files();
+        new_intent();
     }
 
     //---------------------------------------------------------------------------------------------

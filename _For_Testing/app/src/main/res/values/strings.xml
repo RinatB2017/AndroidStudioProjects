@@ -3,6 +3,8 @@
     <string name="app_name">For_Testing</string>
     <string name="main">Главная</string>
     <string name="log">Лог</string>
+    <string name="clear_log">Очистка лога</string>
+    <string name="about">О программе...</string>
 
     <string-array name="entries">
         <item>one</item>
