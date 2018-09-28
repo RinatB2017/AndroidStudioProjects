@@ -1,6 +1,7 @@
 package com.boss.for_testing;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -26,6 +27,8 @@ import android.widget.ToggleButton;
 
 import java.io.File;
 import java.util.List;
+
+import android.view.LayoutInflater;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
@@ -87,7 +90,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    private void init_log() {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
@@ -99,10 +106,13 @@ public class MainActivity extends AppCompatActivity {
                 tv_log.append(text + "\n");
             }
         };
-    }
 
-    //---------------------------------------------------------------------------------------------
-    private void init_tabs() {
+        if (savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
+
+        //---
         tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
@@ -121,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         //tabHost.setCurrentTab(0);
 
+        //---
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -133,39 +144,8 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
             textView.setTextColor(Color.BLACK);
         }
-    }
+        //---
 
-    //---------------------------------------------------------------------------------------------
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-
-        savedInstanceState.putString("log", tv_log.getText().toString());
-
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    //---------------------------------------------------------------------------------------------
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        init_log();
-
-        if (savedInstanceState != null) {
-            String temp = savedInstanceState.getString("log");
-            if (temp != null) {
-                if (!temp.isEmpty()) {
-                    tv_log.setText(temp);
-                }
-            }
-        } else {
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
-
-        init_tabs();
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
     }
@@ -228,6 +208,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //send_log("onResume()");
+
+        Bundle bundle = getIntent().getExtras(); //new Bundle();
+        bundle.putBoolean("flag_is_running", false);
+        getIntent().putExtras(bundle);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -312,7 +296,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    //---------------------------------------------------------------------------------------------
     private void list_files(File path) {
         if (path == null) {
             return;
@@ -334,8 +317,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    void showAbout() {
+        // Inflate the about message contents
+        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
+
+        // When linking text, force to always use default color. This works
+        // around a pressed color state bug.
+        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+        int defaultColor = textView.getTextColors().getDefaultColor();
+        textView.setTextColor(defaultColor);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        //builder.setIcon(R.drawable.app_icon);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle(R.string.app_name);
+        builder.setView(messageView);
+        builder.create();
+        builder.show();
+    }
+
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log("test");
+
+        showAbout();
 
         /*
         tv_log.setText("");
@@ -364,9 +369,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Product.class.getSimpleName(), product);
         startActivity(intent);
         */
-
-        int i = 5; i = ++i + ++i;
-        send_log("i = " + String.valueOf(i));
     }
 
     //---------------------------------------------------------------------------------------------

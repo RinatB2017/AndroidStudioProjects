@@ -15,4 +15,7 @@
         <item>3</item>
     </string-array>
 
+    <string name="app_descrip">descrip</string>
+    <string name="app_credits">credits</string>
+
 </resources>
