@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/Tab_template" />
+            <option value="$PROJECT_DIR$/../../_GitHub/AndroidStudioProjects/Tab_template/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

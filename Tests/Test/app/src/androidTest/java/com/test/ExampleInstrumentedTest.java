@@ -27,6 +27,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
         assertEquals("com.test", appContext.getPackageName());
 
-        onView(withId(R.id.editText)).perform(typeText("MyLogin"));
+        //onView(withId(R.id.editText)).perform(typeText("MyLogin"));
     }
 }
