@@ -23,4 +23,8 @@ public class Test_class extends AppCompatActivity {
     public int get_count() {
         return cnt;
     }
+
+    public float calc(float a, float b) {
+        return a / b;
+    }
 }
