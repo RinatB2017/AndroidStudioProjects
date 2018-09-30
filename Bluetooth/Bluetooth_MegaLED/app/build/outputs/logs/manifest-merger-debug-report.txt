@@ -1,0 +1,122 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/4e01d77608fcff5ae40bf977078ad343/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/a25918e06defb08466e1b6253e2bff58/AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:gridlayout-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/gridlayout-v7-27.1.1.aar/ce7632270860d0d1248bdede6e6ab6a2/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/1b77ccb28a34bbb71c4aa54364a6e670/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/ed7ed5b07f1d010b97bb52c838fc6484/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/faaef5b8b6e693a5632377585568be46/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/b11b63a23282ee0ff2ddb26fd1e2d944/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/af83df0226a1bb62450463e554f6fc97/AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/5e3b964af550eeb12ee32e939358eb3f/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/8a3009327761fe51672db7fa73c16c80/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6a4f1d7133505a78c63815dee86c6ec3/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/b7ad14dfdd36f67e5ba4139ddd052385/AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/a275619abea468186ceeedd911bdcdac/AndroidManifest.xml:17:1-22:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+	package
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:4:5-49
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:2:1-27:12
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:3:5-63
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:6:22-65
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:7:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:8:5-78
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:8:22-76
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:9:5-73
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:9:22-71
+application
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:11:5-25:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/a25918e06defb08466e1b6253e2bff58/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/a25918e06defb08466e1b6253e2bff58/AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:14:9-41
+	android:roundIcon
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:15:9-54
+	android:icon
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:17:9-40
+activity#com.example.boss.bluetooth_megaled.MainActivity
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:18:9-24:20
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:18:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:19:13-23:29
+action#android.intent.action.MAIN
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:22:17-77
+	android:name
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml:22:27-74
+uses-sdk
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/4e01d77608fcff5ae40bf977078ad343/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/4e01d77608fcff5ae40bf977078ad343/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/a25918e06defb08466e1b6253e2bff58/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] /home/boss/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.3.aar/a25918e06defb08466e1b6253e2bff58/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:gridlayout-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/gridlayout-v7-27.1.1.aar/ce7632270860d0d1248bdede6e6ab6a2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:gridlayout-v7:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/gridlayout-v7-27.1.1.aar/ce7632270860d0d1248bdede6e6ab6a2/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/1b77ccb28a34bbb71c4aa54364a6e670/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-fragment-27.1.1.aar/1b77ccb28a34bbb71c4aa54364a6e670/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/ed7ed5b07f1d010b97bb52c838fc6484/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-27.1.1.aar/ed7ed5b07f1d010b97bb52c838fc6484/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/faaef5b8b6e693a5632377585568be46/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-ui-27.1.1.aar/faaef5b8b6e693a5632377585568be46/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/b11b63a23282ee0ff2ddb26fd1e2d944/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-core-utils-27.1.1.aar/b11b63a23282ee0ff2ddb26fd1e2d944/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/af83df0226a1bb62450463e554f6fc97/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-27.1.1.aar/af83df0226a1bb62450463e554f6fc97/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/5e3b964af550eeb12ee32e939358eb3f/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] /home/boss/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/5e3b964af550eeb12ee32e939358eb3f/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/8a3009327761fe51672db7fa73c16c80/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/livedata-core-1.1.0.aar/8a3009327761fe51672db7fa73c16c80/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6a4f1d7133505a78c63815dee86c6ec3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.0.aar/6a4f1d7133505a78c63815dee86c6ec3/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/b7ad14dfdd36f67e5ba4139ddd052385/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/b7ad14dfdd36f67e5ba4139ddd052385/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/a275619abea468186ceeedd911bdcdac/AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] /home/boss/.gradle/caches/transforms-1/files-1.1/runtime-1.1.0.aar/a275619abea468186ceeedd911bdcdac/AndroidManifest.xml:20:5-44
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/Bluetooth_MegaLED/app/src/main/AndroidManifest.xml
