@@ -1,30 +1,51 @@
 package com.boss.cyberbiology;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.widget.ImageView;
 
 class World {
-    public static World simulation;
-    public int width;
-    public int height;
-    public Bot[][] matrix;    //Матрица мира
+    //public static World simulation;
+    public static int width;
+    public static int height;
+    public static Bot[][] matrix;    //Матрица мира
     public int generation;
     public int population;
     public int organic;
+    private ImageView view;
+    private Bitmap bitmap;
 
     Paint mPaint;
     Canvas g;
 
-    public World() {
-        simulation = this;
+    public World(ImageView view, Bitmap bitmap, int w, int h) {
+        this.view = view;
+        this.bitmap = bitmap;
+        this.width = w;
+        this.height = h;
+
         mPaint = new Paint();
-        g = new Canvas();
+        g = new Canvas(bitmap);
+        view.setImageBitmap(bitmap);
+
+        matrix = new Bot[width][height];
+
+        generateAdam();
+        run();
     }
 
     public void paint() {
 
-        g.drawRect(49, 49, simulation.width * 4 + 1, simulation.height * 4 + 1, mPaint);
+        /*
+        mPaint.setColor(Color.RED);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setAntiAlias(true);
+        g.drawLine(0, 0, width, height, mPaint);
+        */
+
+        g.drawRect(49, 49, width * 4 + 1, height * 4 + 1, mPaint);
 
         population = 0;
         organic = 0;
@@ -68,6 +89,61 @@ class World {
         g.drawRect(350, 30, 140, 16, mPaint);
         mPaint.setColor(Color.BLACK);
         g.drawText("Organic: " + String.valueOf(organic), 354, 44, mPaint);
+
+        view.setImageBitmap(bitmap);
     }
 
+    // делает паузу
+    public void sleep() {
+        try {
+            int delay = 1000;
+            Thread.sleep(delay);
+        } catch (InterruptedException e) {
+        }
+    }
+
+    // Основной цикл ------------------------------------------------------------------------
+    public void run() {
+        //пока не остановят симуляцию
+        generation = 0;
+        while (true) {
+            //Обновляем матрицу мира
+            for (int yw = 0; yw < height; yw++) {
+                for (int xw = 0; xw < width; xw++) {
+                    if (matrix[xw][yw] != null) {
+                        matrix[xw][yw].step();      //Выполняем ход бота
+                    }
+                }
+            }
+            generation = generation + 1;
+            if (generation % 10 == 0) {
+                paint();        //отображаем текущее состояние симуляции на экран
+            }
+            //sleep();        //пауза между ходами
+        }
+    }
+
+    public void generateAdam() {
+        //==========  1  ==============
+        // бот номер 1 - это уже реальный бот
+        Bot bot = new Bot();
+
+        bot.adr = 0;
+        bot.x = width / 2;      // координаты бота
+        bot.y = height / 2;
+        bot.health = 990;       // энергия
+        bot.mineral = 0;        // минералы
+        bot.alive = 3;          // отмечаем, что бот живой
+        bot.c_red = 170;        // задаем цвет бота
+        bot.c_blue = 170;
+        bot.c_green = 170;
+        bot.direction = 5;      // направление
+        bot.mprev = null;       // бот не входит в многоклеточные цепочки, поэтому ссылки
+        bot.mnext = null;       // на предыдущего, следующего в многоклеточной цепочке пусты
+        for (int i = 0; i < 64; i++) {        // заполняем геном командой 25 - фотосинтез
+            bot.mind[i] = 25;
+        }
+
+        matrix[bot.x][bot.y] = bot;            // даём ссылку на бота в массиве world[]
+    }
 }

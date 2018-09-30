@@ -166,7 +166,7 @@ public class Bot {
             if (command == 37) {   // у меня поле высотой в 96 клеток
                 // байт в геноме может иметь значение от 0 до 63
                 // умножая значение байта на 1,5 получаем значение от 0 до 95
-                int param = botGetParam(this) * World.simulation.height / MIND_SIZE;   // берем следующий за командой байт и умножаем на 1,5
+                int param = botGetParam(this) * World.height / MIND_SIZE;   // берем следующий за командой байт и умножаем на 1,5
                 // если уровень бота ниже, чем полученное значение,
                 // то прибавляем к указатели текущей команды значение 2-го байта, после выполняемой команды
                 if (y < param) {
@@ -240,7 +240,7 @@ public class Bot {
 //******************************************************************
 //............... минералы прибавляются? ............................
             if (command == 45) {  // если глубина больше половины, то он начинает накапливать минералы
-                if (y > (World.simulation.height / 2)) {
+                if (y > (World.height / 2)) {
                     botIndirectIncCmdAddress(this, 1);
                 } else {
                     botIndirectIncCmdAddress(this, 2);
@@ -380,10 +380,10 @@ public class Bot {
             }
             // если бот находится на глубине ниже 48 уровня
             // то он автоматом накапливает минералы, но не более 999
-            if (y > World.simulation.height / 2) {
+            if (y > World.height / 2) {
                 mineral = mineral + 1;
-                if (y > World.simulation.height / 6 * 4) { mineral = mineral + 1; }
-                if (y > World.simulation.height / 6 * 5) { mineral = mineral + 1; }
+                if (y > World.height / 6 * 4) { mineral = mineral + 1; }
+                if (y > World.height / 6 * 5) { mineral = mineral + 1; }
                 if (mineral > 999) { mineral = 999; }
             }
         }
@@ -406,11 +406,11 @@ public class Bot {
         if (n == 0 || n == 6 || n == 7) {
             xt = xt - 1;
             if (xt == -1) {
-                xt = World.simulation.width - 1;
+                xt = World.width - 1;
             }
         } else if (n == 2 || n == 3 || n == 4) {
             xt = xt + 1;
-            if (xt == World.simulation.width) {
+            if (xt == World.width) {
                 xt = 0;
             }
         }
@@ -427,11 +427,11 @@ public class Bot {
         if (n == 0 || n == 6 || n == 7) {
             xt = xt - 1;
             if (xt == -1) {
-                xt = World.simulation.width - 1;
+                xt = World.width - 1;
             }
         } else if (n == 2 || n == 3 || n == 4) {
             xt = xt + 1;
-            if (xt == World.simulation.width) {
+            if (xt == World.width) {
                 xt = 0;
             }
         }
@@ -480,8 +480,8 @@ public class Bot {
         for (int i = 0; i < 8; i++) {
             int xt = xFromVektorR(bot, i);
             int yt = yFromVektorR(bot, i);
-            if ((yt >= 0) && (yt < World.simulation.height)) {
-                if (World.simulation.matrix[xt][yt] == null) {
+            if ((yt >= 0) && (yt < World.height)) {
+                if (World.matrix[xt][yt] == null) {
                     return 2;
                 }
             }
@@ -501,8 +501,8 @@ public class Bot {
         for (int i = 0; i < 8; i++) {
             int xt = xFromVektorR(bot, i);
             int yt = yFromVektorR(bot, i);
-            if ((yt >= 0) && (yt < World.simulation.height)) {
-                if (World.simulation.matrix[xt][yt] == null) {
+            if ((yt >= 0) && (yt < World.height)) {
+                if (World.matrix[xt][yt] == null) {
                     return i;
                 }
             }
@@ -581,8 +581,8 @@ public class Bot {
     //===== без проверок                    ==============
     //===== in - номер бота и новые координаты ===========
     public void moveBot(Bot bot, int xt, int yt) {
-        World.simulation.matrix[xt][yt] = bot;
-        World.simulation.matrix[bot.x][bot.y] = null;
+        World.matrix[xt][yt] = bot;
+        World.matrix[bot.x][bot.y] = null;
         bot.x = xt;
         bot.y = yt;
     }
@@ -597,7 +597,7 @@ public class Bot {
         if (nbot != null){ nbot.mprev = null; }
         bot.mprev = null;
         bot.mnext = null;
-        World.simulation.matrix[bot.x][bot.y] = null; // удаление бота с карты
+        World.matrix[bot.x][bot.y] = null; // удаление бота с карты
     }
 
 
@@ -623,8 +623,8 @@ public class Bot {
         if (bot.mnext != null) {
             a = a + 4;
         }
-        int hlt = a + 1 * (11 - (15 * bot.y / World.simulation.height) + t); // формула вычисления энергии ============================= SEZON!!!!!!!!!!
-//        System.out.println(World.simulation.generation + ": " + bot.health + " + " + hlt);
+        int hlt = a + 1 * (11 - (15 * bot.y / World.height) + t); // формула вычисления энергии ============================= SEZON!!!!!!!!!!
+//        System.out.println(World.generation + ": " + bot.health + " + " + hlt);
         if (hlt > 0) {
             bot.health = bot.health + hlt;   // прибавляем полученную энергия к энергии бота
             goGreen(bot, hlt);                                     // бот от этого зеленеет
@@ -657,18 +657,18 @@ public class Bot {
             xt = xFromVektorA(bot, direction);
             yt = yFromVektorA(bot, direction);
         }
-        if ((yt < 0) || (yt >= World.simulation.height)) {  // если там ... стена
+        if ((yt < 0) || (yt >= World.height)) {  // если там ... стена
             return 3;                       // то возвращаем 3
         }
-        if (World.simulation.matrix[xt][yt] == null) {  // если клетка была пустая,
+        if (World.matrix[xt][yt] == null) {  // если клетка была пустая,
             moveBot(bot, xt, yt);    // то перемещаем бота
             return 2;                       // и функция возвращает 2
         }
         // осталось 2 варианта: ограника или бот
-        if (World.simulation.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если на клетке находится органика
+        if (World.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если на клетке находится органика
             return 4;                       // то возвращаем 4
         }
-        if (isRelative(bot, World.simulation.matrix[xt][yt]) == 1) {  // если на клетке родня
+        if (isRelative(bot, World.matrix[xt][yt]) == 1) {  // если на клетке родня
             return 6;                      // то возвращаем 6
         }
         return 5;                         // остался только один вариант - на клетке какой-то бот возвращаем 5
@@ -687,28 +687,28 @@ public class Bot {
             xt = xFromVektorA(bot, direction);
             yt = yFromVektorA(bot, direction);
         }
-        if ((yt < 0) || (yt >= World.simulation.height)) {  // если там стена возвращаем 3
+        if ((yt < 0) || (yt >= World.height)) {  // если там стена возвращаем 3
             return 3;
         }
-        if (World.simulation.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
+        if (World.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
             return 2;
         }
         // осталось 2 варианта: ограника или бот
-        else if (World.simulation.matrix[xt][yt].alive <= LV_ORGANIC_SINK) {   // если там оказалась органика
-            deleteBot(World.simulation.matrix[xt][yt]);                           // то удаляем её из списков
+        else if (World.matrix[xt][yt].alive <= LV_ORGANIC_SINK) {   // если там оказалась органика
+            deleteBot(World.matrix[xt][yt]);                           // то удаляем её из списков
             bot.health = bot.health + 100; //здоровье увеличилось на 100
             goRed(this, 100);                                     // бот покраснел
             return 4;                                               // возвращаем 4
         }
         //--------- дошли до сюда, значит впереди живой бот -------------------
         int min0 = bot.mineral;  // определим количество минералов у бота
-        int min1 = World.simulation.matrix[xt][yt].mineral;  // определим количество минералов у потенциального обеда
-        int hl = World.simulation.matrix[xt][yt].health;  // определим энергию у потенциального обеда
+        int min1 = World.matrix[xt][yt].mineral;  // определим количество минералов у потенциального обеда
+        int hl = World.matrix[xt][yt].health;  // определим энергию у потенциального обеда
         // если у бота минералов больше
         if (min0 >= min1) {
             bot.mineral = min0 - min1; // количество минералов у бота уменьшается на количество минералов у жертвы
             // типа, стесал свои зубы о панцирь жертвы
-            deleteBot(World.simulation.matrix[xt][yt]);          // удаляем жертву из списков
+            deleteBot(World.matrix[xt][yt]);          // удаляем жертву из списков
             int cl = 100 + (hl / 2);           // количество энергии у бота прибавляется на 100+(половина от энергии жертвы)
             bot.health = bot.health + cl;
             goRed(this, cl);                    // бот краснеет
@@ -717,11 +717,11 @@ public class Bot {
         //если у жертвы минералов больше ----------------------
         bot.mineral = 0; // то бот израсходовал все свои минералы на преодоление защиты
         min1 = min1 - min0;       // у жертвы количество минералов тоже уменьшилось
-        World.simulation.matrix[xt][yt].mineral = min1 - min0;       // перезаписали минералы жертве =========================ЗАПЛАТКА!!!!!!!!!!!!
+        World.matrix[xt][yt].mineral = min1 - min0;       // перезаписали минералы жертве =========================ЗАПЛАТКА!!!!!!!!!!!!
         //------ если здоровья в 2 раза больше, чем минералов у жертвы  ------
         //------ то здоровьем проламываем минералы ---------------------------
         if (bot.health >= 2 * min1) {
-            deleteBot(World.simulation.matrix[xt][yt]);         // удаляем жертву из списков
+            deleteBot(World.matrix[xt][yt]);         // удаляем жертву из списков
             int cl = 100 + (hl / 2) - 2 * min1; // вычисляем, сколько энергии смог получить бот
             bot.health = bot.health + cl;
             if (cl < 0) { cl = 0; } //========================================================================================ЗАПЛАТКА!!!!!!!!!!! - энергия не должна быть отрицательной
@@ -730,7 +730,7 @@ public class Bot {
             return 5;                             // возвращаем 5
         }
         //--- если здоровья меньше, чем (минералов у жертвы)*2, то бот погибает от жертвы
-        World.simulation.matrix[xt][yt].mineral = min1 - (bot.health / 2);  // у жертвы минералы истраченны
+        World.matrix[xt][yt].mineral = min1 - (bot.health / 2);  // у жертвы минералы истраченны
         bot.health = 0;  // здоровье уходит в ноль
         return 5;                       // возвращаем 5
     }
@@ -747,13 +747,13 @@ public class Bot {
             xt = xFromVektorA(bot, direction);
             yt = yFromVektorA(bot, direction);
         }
-        if (yt < 0 || yt >= World.simulation.height) {  // если там стена возвращаем 3
+        if (yt < 0 || yt >= World.height) {  // если там стена возвращаем 3
             return 3;
-        } else if (World.simulation.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
+        } else if (World.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
             return 2;
-        } else if (World.simulation.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
+        } else if (World.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
             return 4;
-        } else if (isRelative(bot, World.simulation.matrix[xt][yt]) == 1) {  // если родня, то возвращаем 6
+        } else if (isRelative(bot, World.matrix[xt][yt]) == 1) {  // если родня, то возвращаем 6
             return 6;
         } else { // если какой-то бот, то возвращаем 5
             return 5;
@@ -765,13 +765,13 @@ public class Bot {
     public void botGenAttack(Bot bot) {   // вычисляем кто у нас перед ботом (используется только относительное направление вперед)
         int xt = xFromVektorR(bot, 0);
         int yt = yFromVektorR(bot, 0);
-        if ((yt >= 0) && (yt < World.simulation.height) && (World.simulation.matrix[xt][yt] != null)) {
-            if (World.simulation.matrix[xt][yt].alive == LV_ALIVE) { // если там живой бот
+        if ((yt >= 0) && (yt < World.height) && (World.matrix[xt][yt] != null)) {
+            if (World.matrix[xt][yt].alive == LV_ALIVE) { // если там живой бот
                 bot.health = bot.health - 10; // то атакуюий бот теряет на атаку 10 энергии
                 if (bot.health > 0) {                    // если он при этом не умер
                     int ma = (int) (Math.random() * 64);  // 0..63 // то у жертвы случайным образом меняется один ген
                     int mc = (int) (Math.random() * 64);  // 0..63
-                    World.simulation.matrix[xt][yt].mind[ma] = mc;
+                    World.matrix[xt][yt].mind[ma] = mc;
                 }
             }
         }
@@ -792,27 +792,27 @@ public class Bot {
             xt = xFromVektorA(bot, direction);
             yt = yFromVektorA(bot, direction);
         }
-        if (yt < 0 || yt >= World.simulation.height) {  // если там стена возвращаем 3
+        if (yt < 0 || yt >= World.height) {  // если там стена возвращаем 3
             return 3;
-        } else if (World.simulation.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
+        } else if (World.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
             return 2;
-        } else if (World.simulation.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
+        } else if (World.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
             return 4;
         }
         //------- если мы здесь, то в данном направлении живой ----------
         int hlt0 = bot.health;         // определим количество энергии и минералов
-        int hlt1 = World.simulation.matrix[xt][yt].health;  // у бота и его соседа
+        int hlt1 = World.matrix[xt][yt].health;  // у бота и его соседа
         int min0 = bot.mineral;
-        int min1 = World.simulation.matrix[xt][yt].mineral;
+        int min1 = World.matrix[xt][yt].mineral;
         if (hlt0 > hlt1) {              // если у бота больше энергии, чем у соседа
             int hlt = (hlt0 - hlt1) / 2;   // то распределяем энергию поровну
             bot.health = bot.health - hlt;
-            World.simulation.matrix[xt][yt].health = World.simulation.matrix[xt][yt].health + hlt;
+            World.matrix[xt][yt].health = World.matrix[xt][yt].health + hlt;
         }
         if (min0 > min1) {              // если у бота больше минералов, чем у соседа
             int min = (min0 - min1) / 2;   // то распределяем их поровну
             bot.mineral = bot.mineral - min;
-            World.simulation.matrix[xt][yt].mineral = World.simulation.matrix[xt][yt].mineral + min;
+            World.matrix[xt][yt].mineral = World.matrix[xt][yt].mineral + min;
         }
         return 5;
     }
@@ -830,26 +830,26 @@ public class Bot {
             xt = xFromVektorA(bot, direction);
             yt = yFromVektorA(bot, direction);
         }
-        if (yt < 0 || yt >= World.simulation.height) {  // если там стена возвращаем 3
+        if (yt < 0 || yt >= World.height) {  // если там стена возвращаем 3
             return 3;
-        } else if (World.simulation.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
+        } else if (World.matrix[xt][yt] == null) {  // если клетка пустая возвращаем 2
             return 2;
-        } else if (World.simulation.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
+        } else if (World.matrix[xt][yt].alive <= LV_ORGANIC_SINK) { // если органика возвращаем 4
             return 4;
         }
         //------- если мы здесь, то в данном направлении живой ----------
         int hlt0 = bot.health;  // бот отдает четверть своей энергии
         int hlt = hlt0 / 4;
         bot.health = hlt0 - hlt;
-        World.simulation.matrix[xt][yt].health = World.simulation.matrix[xt][yt].health + hlt;
+        World.matrix[xt][yt].health = World.matrix[xt][yt].health + hlt;
 
         int min0 = bot.mineral;  // бот отдает четверть своих минералов
         if (min0 > 3) {                 // только если их у него не меньше 4
             int min = min0 / 4;
             bot.mineral = min0 - min;
-            World.simulation.matrix[xt][yt].mineral = World.simulation.matrix[xt][yt].mineral + min;
-            if (World.simulation.matrix[xt][yt].mineral > 999) {
-                World.simulation.matrix[xt][yt].mineral = 999;
+            World.matrix[xt][yt].mineral = World.matrix[xt][yt].mineral + min;
+            if (World.matrix[xt][yt].mineral > 999) {
+                World.matrix[xt][yt].mineral = 999;
             }
         }
         return 5;
@@ -901,7 +901,7 @@ public class Bot {
 
         newbot.direction = (int) (Math.random() * 8);   // направление, куда повернут новорожденный, генерируется случайно
 
-        World.simulation.matrix[xt][yt] = newbot;    // отмечаем нового бота в массиве matrix
+        World.matrix[xt][yt] = newbot;    // отмечаем нового бота в массиве matrix
     }
 
     // ======       рождение новой клетки многоклеточного    ==========================================
@@ -954,7 +954,7 @@ public class Bot {
 
         newbot.direction = (int) (Math.random() * 8);   // направление, куда повернут новорожденный, генерируется случайно
 
-        World.simulation.matrix[xt][yt] = newbot;    // отмечаем нового бота в массиве matrix
+        World.matrix[xt][yt] = newbot;    // отмечаем нового бота в массиве matrix
 
         if (nbot == null) {                      // если у бота-предка ссылка на следующего бота в многоклеточной цепочке пуста
             bot.mnext = newbot; // то вставляем туда новорожденного бота
@@ -983,7 +983,7 @@ public class Bot {
                 t = 2;
             }
         }
-        int hlt = 10 - (15 * bot.y / World.simulation.height) + t; // ====================================================== SEZON!!!!!!!!!!!!!!!!!!
+        int hlt = 10 - (15 * bot.y / World.height) + t; // ====================================================== SEZON!!!!!!!!!!!!!!!!!!
         if (hlt >= 3) {
             return 1;
         } else {
