@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.nfc.NfcAdapter;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -207,9 +209,13 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
+        Display display = getWindowManager().getDefaultDisplay();
+        final Point p = new Point();
+        display.getSize(p);
+
         Runnable runnable = new Runnable() {
             public void run() {
-				World world = new World(h_view, 800, 400);
+				World world = new World(h_view, p.x, 400);
             }
         };
         Thread thread = new Thread(runnable);
