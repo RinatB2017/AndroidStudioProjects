@@ -5,7 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.nfc.NfcAdapter;
 import android.os.Environment;
 import android.os.Handler;
@@ -19,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TabHost;
@@ -41,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
     TabHost tabHost;
     Runnable runnable;
     Handler h_print;
+
+    private Paint mPaint;
+    Bitmap bitmap;
+    Canvas c_bitmap;
+    ImageView main_view;
+    Handler h_view;
 
     private NfcAdapter nfc;
 
@@ -171,9 +181,39 @@ public class MainActivity extends AppCompatActivity {
             getIntent().putExtras(bundle);
         }
 
+        //---
+        main_view = (ImageView) findViewById(R.id.main_view);
+        bitmap = Bitmap.createBitmap(800, 400, Bitmap.Config.ARGB_8888);
+        c_bitmap = new Canvas(bitmap);
+
+        mPaint = new Paint();
+        mPaint.setStrokeWidth(5);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setStyle(Paint.Style.STROKE);
+        c_bitmap.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), mPaint);
+
+        main_view.setImageBitmap(bitmap);
+
+        h_view = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                Bitmap bitmap = (Bitmap) msg.obj;
+                main_view.setImageBitmap(bitmap);
+            }
+        };
+        //---
+
         init_tabs();
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+				World world = new World(h_view, 800, 400);
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     //---------------------------------------------------------------------------------------------

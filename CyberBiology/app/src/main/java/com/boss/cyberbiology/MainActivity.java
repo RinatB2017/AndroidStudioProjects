@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout linLayout;
     LinearLayout.LayoutParams layoutParams;
     ImageView main_view;
+
+    Handler h_view;
 
     //---------------------------------------------------------------------------------------------
     void max_screen() {
@@ -64,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
         main_view = new ImageView(this);
         linLayout.addView(main_view, layoutParams);
 
+        h_view = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                Bitmap bitmap = (Bitmap) msg.obj;
+                main_view.setImageBitmap(bitmap);
+            }
+        };
+
         linLayout.setOrientation(LinearLayout.VERTICAL);
         setContentView(linLayout);
     }
@@ -87,35 +99,14 @@ public class MainActivity extends AppCompatActivity {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setAntiAlias(true);
 
-        //c_bitmap.drawLine(0, 0, width, height, mPaint);
-        //c_bitmap.drawLine(0, height, width, 0, mPaint);
-        //---
-
-//        mPaint.setStyle(Paint.Style.FILL);
-//        boolean is_black = false;
-//        int size = height / 32;
-//        for(int pos_y = 0; pos_y<height; pos_y+=size) {
-//            //is_black = !is_black;
-//            for(int pos_x=0; pos_x<width; pos_x+=size) {
-//                is_black = !is_black;
-//                if(is_black)
-//                    mPaint.setColor(Color.BLACK);
-//                else
-//                    mPaint.setColor(Color.WHITE);
-//                c_bitmap.drawRect(pos_x, pos_y, pos_x+size, pos_y+size, mPaint);
-//            }
-//        }
-
         main_view.setImageBitmap(bitmap);
 
         Runnable runnable = new Runnable() {
             public void run() {
-				World world = new World(main_view, bitmap, 400, 200);
+				World world = new World(h_view, 400, 200);
             }
         };
         Thread thread = new Thread(runnable);
         thread.start();
-
-//        World world = new World(mPaint, c_bitmap);
     }
 }
