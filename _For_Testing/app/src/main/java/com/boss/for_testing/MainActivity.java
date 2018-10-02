@@ -10,7 +10,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.nfc.NfcAdapter;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -33,6 +32,11 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.view.LayoutInflater;
 
@@ -54,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView main_view;
     Handler h_view;
 
-    private NfcAdapter nfc;
+    private Timer mTimer;
+    private MyTimerTask mMyTimerTask;
 
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
@@ -449,7 +454,42 @@ public class MainActivity extends AppCompatActivity {
         send_log("test");
 
         //show_list_files();
-        new_intent();
+        //new_intent();
+
+
+        if (mTimer != null) {
+            mTimer.cancel();
+        }
+
+        // re-schedule timer here
+        // otherwise, IllegalStateException of
+        // "TimerTask is scheduled already"
+        // will be thrown
+        mTimer = new Timer();
+        mMyTimerTask = new MyTimerTask();
+
+        // delay 1000ms, repeat in 1000ms
+        mTimer.schedule(mMyTimerTask, 1000, 1000);
+
+    }
+
+    class MyTimerTask extends TimerTask {
+
+        @Override
+        public void run() {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+                    "dd:MMMM:yyyy HH:mm:ss a", Locale.getDefault());
+            final String strDate = simpleDateFormat.format(calendar.getTime());
+
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    send_log(strDate);
+                }
+            });
+        }
     }
 
     //---------------------------------------------------------------------------------------------
