@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private Timer mTimer;
     private MyTimerTask mMyTimerTask;
 
+    int width;
+
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
         if (text == null) {
@@ -218,9 +220,15 @@ public class MainActivity extends AppCompatActivity {
         final Point p = new Point();
         display.getSize(p);
 
+        //draw_lines(p.x);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void draw_lines(int value) {
+        width = value;
         Runnable runnable = new Runnable() {
             public void run() {
-				World world = new World(h_view, p.x, 400);
+                World world = new World(h_view, width, 400);
             }
         };
         Thread thread = new Thread(runnable);
@@ -426,6 +434,7 @@ public class MainActivity extends AppCompatActivity {
         int price = 100500;
 
         Product product = new Product(name, company, price);
+        product.setText(tv_log.getText().toString());
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra(Product.class.getSimpleName(), product);
@@ -449,14 +458,9 @@ public class MainActivity extends AppCompatActivity {
         //File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
     }
 
+
     //---------------------------------------------------------------------------------------------
-    public void test(View view) {
-        send_log("test");
-
-        //show_list_files();
-        //new_intent();
-
-
+    void run_timer() {
         if (mTimer != null) {
             mTimer.cancel();
         }
@@ -470,7 +474,15 @@ public class MainActivity extends AppCompatActivity {
 
         // delay 1000ms, repeat in 1000ms
         mTimer.schedule(mMyTimerTask, 1000, 1000);
+    }
 
+    //---------------------------------------------------------------------------------------------
+    public void test(View view) {
+        send_log("test");
+
+        //show_list_files();
+        new_intent();
+        //run_timer();
     }
 
     class MyTimerTask extends TimerTask {

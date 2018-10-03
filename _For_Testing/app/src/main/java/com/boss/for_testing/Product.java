@@ -7,6 +7,7 @@ public class Product implements Serializable {
     private String name;
     private String company;
     private int price;
+    private String text;
 
     public Product(String name, String company, int price) {
         this.name = name;
@@ -36,5 +37,13 @@ public class Product implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
     }
 }
