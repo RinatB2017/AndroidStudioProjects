@@ -2,6 +2,9 @@ package com.boss.for_testing;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -477,12 +480,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    void add_fragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Fragment fo = new FragmentOne();
+
+        fragmentTransaction.add(R.id.l_temp, fo);
+        fragmentTransaction.commit();
+
+    }
+
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log("test");
 
         //show_list_files();
-        new_intent();
+        //new_intent();
         //run_timer();
+        add_fragment();
     }
 
     class MyTimerTask extends TimerTask {
