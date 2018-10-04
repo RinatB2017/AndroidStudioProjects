@@ -31,6 +31,10 @@ public class FragmentOne extends Fragment {
         port = bundle.getInt("port");
         pwm_value = bundle.getInt("pwm_value");
 
+        spin = new SeekBar(getActivity());
+        spin.setMax(1023);
+        spin.setProgress(pwm_value);
+
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -50,6 +54,7 @@ public class FragmentOne extends Fragment {
                 data.ip = ip;
                 data.port = port;
                 data.pwm_value = 1023;
+                spin.setProgress(1023);
                 ((MainActivity) getActivity()).exec_task(data);
             }
         });
@@ -65,13 +70,11 @@ public class FragmentOne extends Fragment {
                 data.ip = ip;
                 data.port = port;
                 data.pwm_value = 0;
+                spin.setProgress(0);
                 ((MainActivity) getActivity()).exec_task(data);
             }
         });
 
-        spin = new SeekBar(getActivity());
-        spin.setMax(1023);
-        spin.setProgress(pwm_value);
         ((MainActivity) getActivity()).send_log("value " + String.valueOf(pwm_value));
         spin.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -83,6 +86,7 @@ public class FragmentOne extends Fragment {
                 data.ip = ip;
                 data.port = port;
                 data.pwm_value = seekBar.getProgress();
+                spin.setProgress(seekBar.getProgress());
                 ((MainActivity) getActivity()).exec_task(data);
             }
 
