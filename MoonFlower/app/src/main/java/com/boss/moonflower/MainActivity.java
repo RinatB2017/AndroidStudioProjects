@@ -888,10 +888,11 @@ public class MainActivity extends AppCompatActivity
 
                 //FIXME исправить позже
 
+                /*
                 s_led.text = String.valueOf(s_led.number);
                 s_led.draw_text = true;
+                */
 
-                /*
                 if (n == 2) {
                     if (angle == 270) s_led.text = "1";
                     if (angle == -30) s_led.text = "2";
@@ -903,7 +904,6 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     s_led.draw_text = false;
                 }
-                */
                 //---
 
                 points.get(number).number = s_led.number;
