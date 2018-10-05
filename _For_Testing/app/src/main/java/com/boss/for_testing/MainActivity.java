@@ -484,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        Fragment fo = new FragmentOne();
+        Test_fragment fo = new Test_fragment();
 
         fragmentTransaction.add(R.id.l_temp, fo);
         fragmentTransaction.commit();
