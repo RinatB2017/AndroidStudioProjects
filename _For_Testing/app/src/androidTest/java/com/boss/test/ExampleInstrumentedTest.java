@@ -14,7 +14,6 @@ import android.support.test.rule.ActivityTestRule;
 
 import com.boss.for_testing.MainActivity;
 import com.boss.for_testing.R;
-import com.boss.for_testing.SecondActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -39,9 +38,6 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
-    //private static final String MESSAGE = "This is a test";
-    //private static final String PACKAGE_NAME = "com.example.myfirstapp";
-
     //---
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -58,7 +54,7 @@ public class ExampleInstrumentedTest {
         //onView(withId(R.id.textViewInfo)).check(matches(withText("Hello")));
 
         // можно поискать существующий UI-обхект с данными и проверить, есть ли ав нёи заданный текст
-        onView(withId(R.id.editText)).check(matches(withText("Name")));
+        onView(withId(R.id.name)).check(matches(withText("name")));
     }
     //---
 
