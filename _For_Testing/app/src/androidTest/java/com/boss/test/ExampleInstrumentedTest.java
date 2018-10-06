@@ -54,10 +54,11 @@ public class ExampleInstrumentedTest {
     @Test
     public void onClick() throws Exception {
         onView(withId(R.id.btn_test)).perform(click());
-        onView(withId(R.id.textViewInfo)).check(matches(withText("Hello")));
+
+        //onView(withId(R.id.textViewInfo)).check(matches(withText("Hello")));
 
         // можно поискать существующий UI-обхект с данными и проверить, есть ли ав нёи заданный текст
-        //onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
+        onView(withId(R.id.editText)).check(matches(withText("Name")));
     }
     //---
 

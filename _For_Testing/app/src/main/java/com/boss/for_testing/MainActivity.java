@@ -447,11 +447,16 @@ public class MainActivity extends AppCompatActivity {
         String company = "company";
         int price = 100500;
 
+        /*
         Product product = new Product(name, company, price);
         product.setText(tv_log.getText().toString());
 
         Intent intent = new Intent(this, SecondActivity.class);
         intent.putExtra(Product.class.getSimpleName(), product);
+        */
+
+        Intent intent = new Intent(this, Activity2.class);
+
         startActivity(intent);
     }
 
@@ -509,7 +514,7 @@ public class MainActivity extends AppCompatActivity {
         textViewInfo.setText("Hello");
 
         //show_list_files();
-        //new_intent();
+        new_intent();
         //run_timer();
         //add_fragment();
     }
