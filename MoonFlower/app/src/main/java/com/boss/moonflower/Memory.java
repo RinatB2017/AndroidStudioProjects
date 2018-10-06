@@ -46,13 +46,17 @@ public class Memory {
     }
 
     //---------------------------------------------------------------------------------------------
-    public boolean get_int_value(String name, int def_value, int value) {
+    public int get_int_value(String name) {
+        /*
+        лучше возвращать класс, чем def_value
+         */
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        if (sp.contains(name)) {
-            return false;
+        int def_value = -999999999;
+        if (!sp.contains(name)) {
+            return def_value;
         }
-        value = sp.getInt(name, def_value);
-        return true;
+        int value = sp.getInt(name, def_value);
+        return value;
     }
 
     //---------------------------------------------------------------------------------------------

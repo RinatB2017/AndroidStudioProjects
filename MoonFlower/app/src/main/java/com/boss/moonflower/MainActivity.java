@@ -114,12 +114,10 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void draw_led(int num) {
         if (bitmap == null) {
-            send_log("X1");
             return;
         }
 
         if (c_bitmap == null) {
-            send_log("X2");
             return;
         }
 
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity
             mPaint.setColor(led.color_border_off);
 
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setAntiAlias(true);
+        //mPaint.setAntiAlias(true);
 
         c_bitmap.drawCircle(led.center_x,
                 led.center_y,
@@ -145,26 +143,26 @@ public class MainActivity extends AppCompatActivity
                 led.center_x + led.radius,
                 led.center_y + led.radius);
 
-        // hot
-        mPaint.setColor(Color.rgb(led.hot_color, 0, 0));
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setAntiAlias(true);
-        c_bitmap.drawArc(circle,
-                90, 180,
-                true,
-                mPaint);
-        //---
+        if(num != 0) {  //центр без полукругов
+            // hot
+            mPaint.setColor(Color.rgb(led.hot_color, 0, 0));
+            mPaint.setStyle(Paint.Style.FILL);
+            c_bitmap.drawArc(circle,
+                    90, 180,
+                    true,
+                    mPaint);
+            //---
 
-        // cold
-        mPaint.setColor(Color.rgb(0, 0, led.cold_color));
-        mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setAntiAlias(true);
-        c_bitmap.drawArc(circle,
-                270, 180,
-                true,
-                mPaint);
-        //sweepAngle - на сколько градусов рисуем от startAngle
-        //---
+            // cold
+            mPaint.setColor(Color.rgb(0, 0, led.cold_color));
+            mPaint.setStyle(Paint.Style.FILL);
+            c_bitmap.drawArc(circle,
+                    270, 180,
+                    true,
+                    mPaint);
+            //sweepAngle - на сколько градусов рисуем от startAngle
+            //---
+        }
 
         //FIXME исправить позже
         if (points.get(num).draw_text) {
@@ -174,7 +172,6 @@ public class MainActivity extends AppCompatActivity
             mPaint.setColor(points.get(num).color_text);
 
             mPaint.setStyle(Paint.Style.FILL);
-            mPaint.setAntiAlias(true);
             mPaint.setTextSize(fontSize);
 
             Paint fontPaint;
@@ -261,7 +258,7 @@ public class MainActivity extends AppCompatActivity
 
     //---------------------------------------------------------------------------------------------
     void setting_RED() {
-        background = Color.BLACK;
+        background = Color.RED;
         color_border_on = Color.GREEN;
         color_border_off = Color.GRAY;
 
@@ -270,7 +267,7 @@ public class MainActivity extends AppCompatActivity
 
     //---------------------------------------------------------------------------------------------
     void setting_GREEN() {
-        background = Color.BLACK;
+        background = Color.GREEN;
         color_border_on = Color.YELLOW;
         color_border_off = Color.GRAY;
 
@@ -279,7 +276,7 @@ public class MainActivity extends AppCompatActivity
 
     //---------------------------------------------------------------------------------------------
     void setting_BLUE() {
-        background = Color.BLACK;
+        background = Color.BLUE;
         color_border_on = Color.GREEN;
         color_border_off = Color.GRAY;
 
@@ -496,6 +493,10 @@ public class MainActivity extends AppCompatActivity
 
         init_log();
 
+        modbus = new ModBus();
+        bt = new Bluetooth(MainActivity.this, tv_log);
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
+
         mPaint = new Paint();
 
         if (savedInstanceState != null) {
@@ -514,12 +515,6 @@ public class MainActivity extends AppCompatActivity
 
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        modbus = new ModBus();
-
-        bt = new Bluetooth(MainActivity.this, tv_log);
-
-        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
         //TODO отладка без bluetooth
         //block_interface(false);
@@ -694,7 +689,7 @@ public class MainActivity extends AppCompatActivity
                         mPaint.setColor(color_border_off);
 
                     mPaint.setStyle(Paint.Style.STROKE);
-                    mPaint.setAntiAlias(true);
+                    //mPaint.setAntiAlias(true);
                     c_bitmap.drawCircle(led.center_x,
                             led.center_y,
                             led.radius - 1,
@@ -708,7 +703,6 @@ public class MainActivity extends AppCompatActivity
                         mPaint.setColor(points.get(index).color_text);
 
                         mPaint.setStyle(Paint.Style.FILL);
-                        mPaint.setAntiAlias(true);
                         mPaint.setTextSize(fontSize);
 
                         Paint fontPaint;
@@ -941,10 +935,10 @@ public class MainActivity extends AppCompatActivity
     //---------------------------------------------------------------------------------------------
     public void block_interface(boolean state) {
         flag_is_enable = !state;
-        sb_cold.setEnabled(!state);
-        sb_hot.setEnabled(!state);
-        btn_power_on.setEnabled(!state);
-        btn_power_off.setEnabled(!state);
+        if(sb_cold != null) sb_cold.setEnabled(!state);
+        if(sb_hot != null)  sb_hot.setEnabled(!state);
+        if(btn_power_on != null)  btn_power_on.setEnabled(!state);
+        if(btn_power_off != null) btn_power_off.setEnabled(!state);
     }
 
     //---------------------------------------------------------------------------------------------
