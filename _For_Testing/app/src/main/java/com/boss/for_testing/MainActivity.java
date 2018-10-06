@@ -25,6 +25,7 @@ import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     TabHost tabHost;
     Runnable runnable;
     Handler h_print;
+
+    //---
+    Button btn_test;
+    TextView textViewInfo;
+    //---
 
     private Paint mPaint;
     Bitmap bitmap;
@@ -192,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
+
+        //---
+        btn_test = (Button) findViewById(R.id.btn_test);
+        textViewInfo = (TextView) findViewById(R.id.textViewInfo);
+        //---
 
         //---
         main_view = (ImageView) findViewById(R.id.main_view);
@@ -495,10 +506,12 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log("test");
 
+        textViewInfo.setText("Hello");
+
         //show_list_files();
-        //new_intent();
+        new_intent();
         //run_timer();
-        add_fragment();
+        //add_fragment();
     }
 
     class MyTimerTask extends TimerTask {
