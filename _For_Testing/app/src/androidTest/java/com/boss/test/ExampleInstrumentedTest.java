@@ -39,6 +39,9 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
+    //private static final String MESSAGE = "This is a test";
+    //private static final String PACKAGE_NAME = "com.example.myfirstapp";
+
     //---
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
@@ -53,8 +56,8 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.btn_test)).perform(click());
         onView(withId(R.id.textViewInfo)).check(matches(withText("Hello")));
 
-        //onView(withId(R.id).check(matches(isDisplayed())));
-        //intended(hasComponent(SecondActivity.class.getName()));
+        // можно поискать существующий UI-обхект с данными и проверить, есть ли ав нёи заданный текст
+        //onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
     }
     //---
 

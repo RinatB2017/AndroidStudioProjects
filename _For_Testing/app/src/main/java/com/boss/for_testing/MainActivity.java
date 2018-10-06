@@ -509,7 +509,7 @@ public class MainActivity extends AppCompatActivity {
         textViewInfo.setText("Hello");
 
         //show_list_files();
-        new_intent();
+        //new_intent();
         //run_timer();
         //add_fragment();
     }
