@@ -28,94 +28,19 @@
                 android:id="@+id/tab_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/btn_test"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:onClick="test"
+                    android:text="Button" />
 
-                    <ImageView
-                        android:id="@+id/main_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <SeekBar
-                        android:id="@+id/seekBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <LinearLayout
-                        android:id="@+id/l_test"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ToggleButton
-                            android:id="@+id/toggleButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:checked="false"
-                            android:clickable="true"
-                            android:theme="@style/YourThemeName" />
-
-                        <Button
-                            android:id="@+id/btn_test"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="test"
-                            android:text="Button"
-                            android:theme="@style/MyButton" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_start"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:onClick="start"
-                            android:text="START" />
-
-                        <Button
-                            android:id="@+id/btn_stop"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:onClick="stop"
-                            android:text="STOP" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/coords"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:id="@+id/l_temp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                        </LinearLayout>
-                    </ScrollView>
-
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/textViewInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

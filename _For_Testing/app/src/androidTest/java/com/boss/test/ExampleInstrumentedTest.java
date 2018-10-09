@@ -54,7 +54,7 @@ public class ExampleInstrumentedTest {
         //onView(withId(R.id.textViewInfo)).check(matches(withText("Hello")));
 
         // можно поискать существующий UI-обхект с данными и проверить, есть ли ав нёи заданный текст
-        onView(withId(R.id.name)).check(matches(withText("name")));
+        //onView(withId(R.id.name)).check(matches(withText("name")));
     }
     //---
 

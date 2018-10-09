@@ -12,14 +12,4 @@
         <!-- Perhaps more theme items here...? -->
     </style>
 
-    <style name="MyButton" parent="android:Widget.Button">
-        <item name="android:textColor">@color/red</item>
-        <item name="android:colorButtonNormal">@color/green</item>
-        <item name="android:textAlignment">textStart</item>
-    </style>
-
-    <style name="MyStyle" parent="android:Widget.Button">
-        <item name="android:colorButtonNormal">@color/red</item>
-    </style>
-
 </resources>
