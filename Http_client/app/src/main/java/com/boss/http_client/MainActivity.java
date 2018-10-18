@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -171,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
                 Fragment fo = new FragmentOne();
 
                 Data data = (Data) msg.obj;
@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
                 fo.setArguments(bundle);
 
                 fragmentTransaction.add(R.id.lv_container, fo);
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             };
         };
@@ -237,11 +238,13 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     void remove_all_fragments() {
-        if(getFragmentManager().findFragmentById(R.id.lv_container) != null) {
+        send_log("cnt " + String.valueOf(getFragmentManager().getBackStackEntryCount()));
+        for (int i = 0; i < getFragmentManager().getBackStackEntryCount(); i++) {
+            getFragmentManager().popBackStack();
+
             getFragmentManager()
                     .beginTransaction().
                     remove(getFragmentManager().findFragmentById(R.id.lv_container)).commit();
-
         }
     }
 

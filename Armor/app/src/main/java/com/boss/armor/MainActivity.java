@@ -394,16 +394,33 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     //---------------------------------------------------------------------------------------------
     @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("log", tv_log.getText().toString());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init_log();
+
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if (temp != null) {
+                if (!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+        } else {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
+
         init_widgets();
         init_tabs();
-
-        //TODO временный костыль
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
