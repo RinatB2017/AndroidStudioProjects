@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     ToggleButton btn_wifi;
     Button btn_scan;
 
+    TabHost tabHost;
+
     int port = 15000;
 
     Hosts hosts;
@@ -106,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------
     private void init_tabs() {
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
 
@@ -121,15 +123,13 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setContent(R.id.tab_log);
         tabSpec.setIndicator("Log");
         tabHost.addTab(tabSpec);
-
-        tabHost.setCurrentTab(0);
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-
+        savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
         savedInstanceState.putSerializable("hosts", hosts);
     }
 
@@ -143,15 +143,6 @@ public class MainActivity extends AppCompatActivity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         init_log();
-
-        if (savedInstanceState != null) {
-            hosts = (Hosts) savedInstanceState.getSerializable("hosts");
-        } else {
-            hosts = new Hosts();
-
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
 
         lv_container = (LinearLayout) findViewById(R.id.lv_container);
 
@@ -219,6 +210,17 @@ public class MainActivity extends AppCompatActivity {
         btn_scan.setEnabled(wifiManager.isWifiEnabled());
 
         init_tabs();
+
+        if (savedInstanceState != null) {
+            hosts = (Hosts) savedInstanceState.getSerializable("hosts");
+            int current_tab = savedInstanceState.getInt("current_tab");
+            tabHost.setCurrentTab(current_tab);
+        } else {
+            hosts = new Hosts();
+
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
 
         send_log("Init...");
     }

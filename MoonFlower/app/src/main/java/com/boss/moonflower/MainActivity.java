@@ -458,6 +458,8 @@ public class MainActivity extends AppCompatActivity
         //send_log("onSaveInstanceState");
 
         // Always call the superclass so it can save the view hierarchy state
+        savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
+
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -521,7 +523,12 @@ public class MainActivity extends AppCompatActivity
 
         init_tabs();
 
-        //send_log("onCreate()");
+        if (savedInstanceState != null) {
+            int current_tab = savedInstanceState.getInt("current_tab");
+            tabHost.setCurrentTab(current_tab);
+        }
+
+            //send_log("onCreate()");
     }
 
     //---------------------------------------------------------------------------------------------

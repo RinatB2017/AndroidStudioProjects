@@ -37,6 +37,9 @@
                     android:onClick="test"
                     android:text="Button" />
 
+                //---
+                //---
+
                 <TextView
                     android:id="@+id/textViewInfo"
                     android:layout_width="match_parent"

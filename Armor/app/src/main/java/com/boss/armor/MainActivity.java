@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     TextView tv_log;
 
+    TabHost tabHost;
+
     Button btn_1;
     Button btn_2;
     Button btn_3;
@@ -293,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
 
     //---------------------------------------------------------------------------------------------
     private void init_tabs() {
-        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
+        tabHost = (TabHost) findViewById(R.id.tabHost);
 
         tabHost.setup();
 
@@ -396,6 +398,7 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString("log", tv_log.getText().toString());
+        savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -406,19 +409,6 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         setContentView(R.layout.activity_main);
 
         init_log();
-
-        if (savedInstanceState != null) {
-            String temp = savedInstanceState.getString("log");
-            if (temp != null) {
-                if (!temp.isEmpty()) {
-                    tv_log.setText(temp);
-                }
-            }
-        } else {
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
-
         init_widgets();
         init_tabs();
 
@@ -427,6 +417,20 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         modbus = new ModBus();
 
         bt = new Bluetooth(MainActivity.this, tv_log);
+
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if (temp != null) {
+                if (!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+            int current_tab = savedInstanceState.getInt("current_tab");
+            tabHost.setCurrentTab(current_tab);
+        } else {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
 
         block_interface(true);
     }

@@ -20,11 +20,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_brightness_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="brightness" />
 
                 <SeekBar
@@ -37,13 +39,15 @@
                     android:id="@+id/tv_brightness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="0" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_delay_N_text"
                     android:layout_width="wrap_content"
@@ -66,7 +70,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/tv_delay_K_text"
                     android:layout_width="wrap_content"
@@ -91,29 +96,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10px">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-                <TextView
-                    android:id="@+id/tv_delay_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="delay_ms" />
-
-                <SeekBar
-                    android:id="@+id/sb_delay_ms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <TextView
-                    android:id="@+id/tv_delay_ms"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -161,13 +143,6 @@
                     android:text="0" />
             </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10px">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -190,6 +165,13 @@
                     android:layout_height="wrap_content"
                     android:text="0" />
             </LinearLayout>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10px">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -236,6 +218,29 @@
                     android:layout_height="wrap_content"
                     android:text="0" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+                <TextView
+                    android:id="@+id/tv_background_B_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="background_B" />
+
+                <SeekBar
+                    android:id="@+id/sb_background_B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_background_B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
+            </LinearLayout>
         </TableRow>
 
         <TableRow
@@ -247,23 +252,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-            <TextView
-                android:id="@+id/tv_background_B_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="background_B" />
+                <TextView
+                    android:id="@+id/tv_delay_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="delay_ms" />
 
-            <SeekBar
-                android:id="@+id/sb_background_B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                <SeekBar
+                    android:id="@+id/sb_delay_ms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/tv_background_B"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0" />
+                <TextView
+                    android:id="@+id/tv_delay_ms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0" />
             </LinearLayout>
 
         <LinearLayout

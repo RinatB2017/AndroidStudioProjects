@@ -147,10 +147,9 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-
         savedInstanceState.putString("log", tv_log.getText().toString());
-
-        // Always call the superclass so it can save the view hierarchy state
+        savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
+        savedInstanceState.putString("info", textViewInfo.getText().toString());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -162,18 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
         init_log();
 
-        if (savedInstanceState != null) {
-            String temp = savedInstanceState.getString("log");
-            if (temp != null) {
-                if (!temp.isEmpty()) {
-                    tv_log.setText(temp);
-                }
-            }
-        } else {
-            Bundle bundle = new Bundle();
-            getIntent().putExtras(bundle);
-        }
-
         //---
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
@@ -183,9 +170,24 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
-        //Display display = getWindowManager().getDefaultDisplay();
-        //final Point p = new Point();
-        //display.getSize(p);
+        if (savedInstanceState != null) {
+            String temp = savedInstanceState.getString("log");
+            if (temp != null) {
+                if (!temp.isEmpty()) {
+                    tv_log.setText(temp);
+                }
+            }
+            String info = savedInstanceState.getString("info");
+            if(info != null) {
+                textViewInfo.setText(info);
+            }
+            int current_tab = savedInstanceState.getInt("current_tab");
+            tabHost.setCurrentTab(current_tab);
+        } else {
+            Bundle bundle = new Bundle();
+            getIntent().putExtras(bundle);
+        }
+
     }
 
     //---------------------------------------------------------------------------------------------
@@ -300,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     void show_list_files() {
-        tv_log.setText("");
+        //tv_log.setText("");
 
         if(!isExternalStorageReadable()) {
             send_log("ERROR: external storage no readable");
