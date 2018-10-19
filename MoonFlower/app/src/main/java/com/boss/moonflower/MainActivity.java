@@ -502,10 +502,8 @@ public class MainActivity extends AppCompatActivity
         mPaint = new Paint();
 
         if (savedInstanceState != null) {
-            //send_log("savedInstanceState != null");
             points = (LED_points) savedInstanceState.getSerializable("led_points");
         } else {
-            //send_log("savedInstanceState == null");
             points = new LED_points();
 
             Bundle bundle = new Bundle();
@@ -515,20 +513,12 @@ public class MainActivity extends AppCompatActivity
 
         init_widgets();
 
-        //TODO временный костыль
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        //TODO отладка без bluetooth
-        //block_interface(false);
-
         init_tabs();
 
         if (savedInstanceState != null) {
             int current_tab = savedInstanceState.getInt("current_tab");
             tabHost.setCurrentTab(current_tab);
         }
-
-            //send_log("onCreate()");
     }
 
     //---------------------------------------------------------------------------------------------
