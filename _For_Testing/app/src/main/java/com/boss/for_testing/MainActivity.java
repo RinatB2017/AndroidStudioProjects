@@ -128,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
         tabSpec.setIndicator(getString(R.string.log));
         tabHost.addTab(tabSpec);
 
-        //tabHost.setCurrentTab(0);
-
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    final String LOG_TAG = "Log";
+    //final String LOG_TAG = "Log";
 
     int width = 0;
     int height = 0;
