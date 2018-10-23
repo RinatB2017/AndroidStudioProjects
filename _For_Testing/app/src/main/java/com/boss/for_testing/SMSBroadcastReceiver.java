@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
-import android.widget.Toast;
 
 public class SMSBroadcastReceiver extends BroadcastReceiver {
     private Bundle bundle;
@@ -22,16 +21,13 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
             if (bundle != null) {
                 Object[] pdu_Objects = (Object[]) bundle.get("pdus");
                 if (pdu_Objects != null) {
-
                     for (Object aObject : pdu_Objects) {
-
                         currentSMS = getIncomingMessage(aObject, bundle);
 
                         String senderNo = currentSMS.getDisplayOriginatingAddress();
 
                         message = currentSMS.getDisplayMessageBody();
                         Log.i("States", "senderNum: " + senderNo + " :\n message: " + message);
-                        //Toast.makeText(OtpActivity.this, "senderNum: " + senderNo + " :\n message: " + message, Toast.LENGTH_LONG).show();
                     }
                     this.abortBroadcast();
                     // End of loop
