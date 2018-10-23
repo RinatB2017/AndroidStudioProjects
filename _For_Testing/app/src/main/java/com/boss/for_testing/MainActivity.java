@@ -70,6 +70,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    private void requestSmsPermission(String permission) {
+        //String permission = Manifest.permission.RECEIVE_SMS;
+        int grant = ContextCompat.checkSelfPermission(this, permission);
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            String[] permission_list = new String[1];
+            permission_list[0] = permission;
+            ActivityCompat.requestPermissions(this, permission_list, 1);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -159,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
         init_log();
 
+        requestSmsPermission(Manifest.permission.RECEIVE_SMS);
+
         //---
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
@@ -185,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
-
     }
 
     //---------------------------------------------------------------------------------------------

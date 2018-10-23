@@ -8,6 +8,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 public class ServiceReceiver extends BroadcastReceiver {
+    static final String LOG_TAG = "States";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -16,8 +17,10 @@ public class ServiceReceiver extends BroadcastReceiver {
             @Override
             public void onCallStateChanged(int state, String incomingNumber) {
                 super.onCallStateChanged(state, incomingNumber);
-                Log.i("States", "incomingNumber : " + incomingNumber);
+
+                //((MainActivity) getActivity()).send_log("incomingNumber : " + incomingNumber);
+                Log.i(LOG_TAG, "incomingNumber : " + incomingNumber);
             }
-        },PhoneStateListener.LISTEN_CALL_STATE);
+        }, PhoneStateListener.LISTEN_CALL_STATE);
     }
 }

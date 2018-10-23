@@ -30,6 +30,7 @@ public class SMSBroadcastReceiver extends BroadcastReceiver {
                         String senderNo = currentSMS.getDisplayOriginatingAddress();
 
                         message = currentSMS.getDisplayMessageBody();
+                        Log.i("States", "senderNum: " + senderNo + " :\n message: " + message);
                         //Toast.makeText(OtpActivity.this, "senderNum: " + senderNo + " :\n message: " + message, Toast.LENGTH_LONG).show();
                     }
                     this.abortBroadcast();
