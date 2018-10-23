@@ -4,6 +4,7 @@
     package="com.boss.for_testing">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +21,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity2"></activity>
+
+        <receiver android:name=".ServiceReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
