@@ -311,10 +311,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 break;
 
-            case R.id.action_settings_test:
-                test();
-                break;
-
             case R.id.clear_log:
                 tv_log.setText("");
                 break;
