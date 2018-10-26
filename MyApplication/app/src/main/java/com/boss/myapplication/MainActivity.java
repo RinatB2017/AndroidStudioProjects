@@ -1,5 +1,9 @@
 package com.boss.myapplication;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -115,13 +120,66 @@ public class MainActivity extends AppCompatActivity {
             return fragment;
         }
 
+        View get_bitmap(int color) {
+            int w = 200;
+            int h = 400;
+            Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            Canvas c_bitmap = new Canvas(bitmap);
+            ImageView main_view = new ImageView(getContext());
+
+            Paint mPaint = new Paint();
+            mPaint.setColor(color);
+
+            mPaint.setStyle(Paint.Style.FILL);
+            c_bitmap.drawCircle(w / 2,
+                    h / 2,
+                    50,
+                    mPaint);
+
+            main_view.setImageBitmap(bitmap);
+
+            return main_view;
+        }
+
+        View get_text() {
+            TextView tv = new TextView(getContext());
+            tv.setText("It's TEXT");
+
+            return tv;
+        }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            /*
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
+            */
+
+            View view;
+            int x = getArguments().getInt(ARG_SECTION_NUMBER);
+            switch (x) {
+                case 1:
+                    view = get_bitmap(Color.RED);
+                    break;
+
+                case 2:
+                    view = get_bitmap(Color.GREEN);
+                    //view = get_text();
+                    break;
+
+                case 3:
+                    view = get_bitmap(Color.BLUE);
+                    break;
+
+                default:
+                    view = get_bitmap(Color.BLACK);
+                    break;
+            }
+
+            return view;
         }
     }
 
