@@ -149,7 +149,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public void onSaveInstanceState(Bundle savedInstanceState) {
+            // Always call the superclass so it can save the view hierarchy state
+            super.onSaveInstanceState(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater,
+                                 ViewGroup container,
                                  Bundle savedInstanceState) {
             /*
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
