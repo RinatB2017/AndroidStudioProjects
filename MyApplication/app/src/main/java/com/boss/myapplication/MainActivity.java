@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -120,10 +122,18 @@ public class MainActivity extends AppCompatActivity {
             Paint mPaint = new Paint();
             mPaint.setColor(color);
 
+            float r = 0;
+            if(w > h) {
+                r = h / 4;
+            }
+            else {
+                r = w / 4;
+            }
+
             mPaint.setStyle(Paint.Style.FILL);
             c_bitmap.drawCircle(w / 2,
                     h / 2,
-                    w / 4,
+                    r,
                     mPaint);
 
             main_view.setImageBitmap(bitmap);
@@ -154,15 +164,51 @@ public class MainActivity extends AppCompatActivity {
             int width  = displaymetrics.widthPixels;
             int height = displaymetrics.heightPixels;
 
+            int a_w = -1;
+            int a_h = -1;
+            View v = (View)getActivity().findViewById(R.id.appbar);
+            if(v != null) {
+                v.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                //a_w = v.getMeasuredWidth();
+                a_h = v.getMeasuredHeight();
+            }
+
+            /*
+            int c_w = width;
+            int c_h = height;
+            if(container != null) {
+                c_w = container.getMeasuredWidth();
+                c_h = container.getMeasuredHeight();
+            }
+            */
+
+            /*
+            AppBarLayout al = (AppBarLayout)
+            tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            int m_w = tabHost.getMeasuredWidth();
+            int m_h = tabHost.getMeasuredHeight();
+            */
+
+            if(a_h > 0) {
+                if(width < height) {
+                    height = height - a_h;
+                }
+                else {
+                    width = width - a_h;
+                }
+            }
+
             View view;
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
-                    view = inflater.inflate(R.layout.fragment_main, container, false);
-                    TextView textView = (TextView) view.findViewById(R.id.section_label);
-                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                    //view = inflater.inflate(R.layout.fragment_main, container, false);
+                    //TextView textView = (TextView) view.findViewById(R.id.section_label);
+                    //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
-                    //view = get_bitmap(width, height, Color.RED);
+                    view = get_bitmap(width, height, Color.RED);
                     break;
 
                 case 2:
