@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,15 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
     }
 
@@ -120,9 +112,7 @@ public class MainActivity extends AppCompatActivity {
             return fragment;
         }
 
-        View get_bitmap(int color) {
-            int w = 200;
-            int h = 400;
+        View get_bitmap(int w, int h, int color) {
             Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
             Canvas c_bitmap = new Canvas(bitmap);
             ImageView main_view = new ImageView(getContext());
@@ -133,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             mPaint.setStyle(Paint.Style.FILL);
             c_bitmap.drawCircle(w / 2,
                     h / 2,
-                    50,
+                    w / 4,
                     mPaint);
 
             main_view.setImageBitmap(bitmap);
@@ -158,31 +148,34 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater,
                                  ViewGroup container,
                                  Bundle savedInstanceState) {
-            /*
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-            */
+
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            int width  = displaymetrics.widthPixels;
+            int height = displaymetrics.heightPixels;
 
             View view;
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
-                    view = get_bitmap(Color.RED);
+                    view = inflater.inflate(R.layout.fragment_main, container, false);
+                    TextView textView = (TextView) view.findViewById(R.id.section_label);
+                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+
+                    //view = get_bitmap(width, height, Color.RED);
                     break;
 
                 case 2:
-                    view = get_bitmap(Color.GREEN);
+                    view = get_bitmap(width, height, Color.GREEN);
                     //view = get_text();
                     break;
 
                 case 3:
-                    view = get_bitmap(Color.BLUE);
+                    view = get_bitmap(width, height, Color.BLUE);
                     break;
 
                 default:
-                    view = get_bitmap(Color.BLACK);
+                    view = get_bitmap(width, height, Color.BLACK);
                     break;
             }
 
