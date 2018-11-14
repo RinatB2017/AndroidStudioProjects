@@ -2,15 +2,12 @@ package com.boss.for_testing;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
+import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
+import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -19,18 +16,27 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
@@ -328,13 +334,146 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    void read_file(String filename) {
+        File file = new File(filename); //"/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx");
+
+        //Read text from file
+        StringBuilder text = new StringBuilder();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                send_log(line);
+            }
+            br.close();
+        }
+        catch (IOException e) {
+            //You'll need to add proper error handling here
+        }
+    }
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log("test");
 
         textViewInfo.setText("Hello");
 
-        show_list_files();
+        String filename = "/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx";
+
+        //show_list_files();
+        //read_file(filename);
+
+        //XmlDocument xDoc = new XmlDocument();
+        //Stream xmlStream = Assets.Open(filename);
+        //xDoc.Load(xmlStream);
+
+        //read_XML(filename);
+
+        //read_simple(filename);
+
+        /*
+        AssetManager assetManager = getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open(filename);
+            String s = readTextFile(inputStream);
+            send_log(s);
+        } catch (IOException e) {
+            send_log("ERROR: " + e.getMessage());
+        }
+        */
+
+        //send_email("");
+
+        send_log("the end");
     }
 
+    void send_email(String text) {
+        Intent i = new Intent(Intent.ACTION_SENDTO);
+        i.setType("message/rfc822");
+        i.setData(Uri.parse("mailto:"));
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"test@gmail.com"});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        i.putExtra(Intent.EXTRA_TEXT   , "body of email");
+        try {
+            startActivity(Intent.createChooser(i, "Send mail..."));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void read_simple(String filename) {
+        File file = new File(filename); //"/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx");
+
+        //Read text from file
+        //StringBuilder text = new StringBuilder();
+        InputStream inputStream = null;
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                send_log(line);
+            }
+            br.close();
+        }
+        catch (IOException e) {
+            send_log("ERROR: " + e.getMessage());
+        }
+    }
+
+    void read_XML(String filename) {
+        send_log("XML: " + filename);
+
+        ArrayList<String> list = new ArrayList<>();
+
+        AssetManager assetManager = getAssets();
+        InputStream inputStream = null;
+        try {
+            inputStream = assetManager.open(filename);
+            String s = readTextFile(inputStream);
+            send_log(s);
+        } catch (IOException e) {
+            send_log("ERROR: " + e.getMessage());
+            return;
+        }
+
+        try {
+            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+            XmlPullParser parser = factory.newPullParser();
+            parser.setInput(new InputStreamReader(inputStream));
+
+            while (parser.getEventType() != XmlPullParser.END_DOCUMENT) {
+                if (parser.getEventType() == XmlPullParser.START_TAG
+                        && parser.getName().equals("contact")) {
+                    list.add(parser.getAttributeValue(0) + " "
+                            + parser.getAttributeValue(1) + "\n"
+                            + parser.getAttributeValue(2));
+                }
+                parser.next();
+            }
+        } catch (Throwable t) {
+            send_log("Error: " + t.toString());
+        }
+    }
+
+    private String readTextFile(InputStream inputStream) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+        byte buf[] = new byte[1024];
+        int len;
+        try {
+            while ((len = inputStream.read(buf)) != -1) {
+                outputStream.write(buf, 0, len);
+            }
+            outputStream.close();
+            inputStream.close();
+        } catch (IOException e) {
+
+        }
+        return outputStream.toString();
+    }
     //---------------------------------------------------------------------------------------------
 }
