@@ -259,37 +259,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    /* Проверяет, доступно ли external storage как минимум для чтения */
-    public boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
-        return false;
-    }
-
-    private void list_files(File path) {
-        if (path == null) {
-            return;
-        }
-
-        //send_log("DIR: " + path);
-
-        File[] l_files = path.listFiles();
-        if (l_files == null) {
-            return;
-        }
-        for (int n = 0; n < l_files.length; n++) {
-            if (l_files[n].isDirectory()) {
-                list_files(l_files[n]);
-            } else {
-                send_log("   file: " + l_files[n].getName() + " size: " + l_files[n].length());
-            }
-        }
-    }
-
-    //---------------------------------------------------------------------------------------------
     void showAbout() {
         // Inflate the about message contents
         View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
@@ -317,74 +286,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    void show_list_files() {
-        //tv_log.setText("");
-
-        if(!isExternalStorageReadable()) {
-            send_log("ERROR: external storage no readable");
-            return;
-        }
-
-        //String basePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-        //send_log("basePath " + basePath);
-        //list_files(new File(basePath));
-
-        File file = new File("/storage/emulated/0/Android/data/com.mendhak.gpslogger/files");
-        list_files(file);
-    }
-
-    //---------------------------------------------------------------------------------------------
-    void read_file(String filename) {
-        File file = new File(filename); //"/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx");
-
-        //Read text from file
-        StringBuilder text = new StringBuilder();
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                send_log(line);
-            }
-            br.close();
-        }
-        catch (IOException e) {
-            //You'll need to add proper error handling here
-        }
-    }
-    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log("test");
 
         textViewInfo.setText("Hello");
-
-        String filename = "/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx";
-
-        //show_list_files();
-        //read_file(filename);
-
-        //XmlDocument xDoc = new XmlDocument();
-        //Stream xmlStream = Assets.Open(filename);
-        //xDoc.Load(xmlStream);
-
-        //read_XML(filename);
-
-        //read_simple(filename);
-
-        /*
-        AssetManager assetManager = getAssets();
-        InputStream inputStream = null;
-        try {
-            inputStream = assetManager.open(filename);
-            String s = readTextFile(inputStream);
-            send_log(s);
-        } catch (IOException e) {
-            send_log("ERROR: " + e.getMessage());
-        }
-        */
-
-        //send_email("");
 
         send_log("the end");
     }
@@ -403,77 +308,5 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void read_simple(String filename) {
-        File file = new File(filename); //"/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/20180919.gpx");
-
-        //Read text from file
-        //StringBuilder text = new StringBuilder();
-        InputStream inputStream = null;
-
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                send_log(line);
-            }
-            br.close();
-        }
-        catch (IOException e) {
-            send_log("ERROR: " + e.getMessage());
-        }
-    }
-
-    void read_XML(String filename) {
-        send_log("XML: " + filename);
-
-        ArrayList<String> list = new ArrayList<>();
-
-        AssetManager assetManager = getAssets();
-        InputStream inputStream = null;
-        try {
-            inputStream = assetManager.open(filename);
-            String s = readTextFile(inputStream);
-            send_log(s);
-        } catch (IOException e) {
-            send_log("ERROR: " + e.getMessage());
-            return;
-        }
-
-        try {
-            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = factory.newPullParser();
-            parser.setInput(new InputStreamReader(inputStream));
-
-            while (parser.getEventType() != XmlPullParser.END_DOCUMENT) {
-                if (parser.getEventType() == XmlPullParser.START_TAG
-                        && parser.getName().equals("contact")) {
-                    list.add(parser.getAttributeValue(0) + " "
-                            + parser.getAttributeValue(1) + "\n"
-                            + parser.getAttributeValue(2));
-                }
-                parser.next();
-            }
-        } catch (Throwable t) {
-            send_log("Error: " + t.toString());
-        }
-    }
-
-    private String readTextFile(InputStream inputStream) {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-        byte buf[] = new byte[1024];
-        int len;
-        try {
-            while ((len = inputStream.read(buf)) != -1) {
-                outputStream.write(buf, 0, len);
-            }
-            outputStream.close();
-            inputStream.close();
-        } catch (IOException e) {
-
-        }
-        return outputStream.toString();
-    }
     //---------------------------------------------------------------------------------------------
 }
