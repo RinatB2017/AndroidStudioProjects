@@ -289,7 +289,10 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log("test");
 
-        textViewInfo.setText("Hello");
+        //textViewInfo.setText("Hello");
+
+        Intent intent = new Intent(this, FileExplore.class);
+        startActivity(intent);
 
         send_log("the end");
     }
