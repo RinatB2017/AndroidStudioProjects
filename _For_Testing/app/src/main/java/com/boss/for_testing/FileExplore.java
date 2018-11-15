@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+// https://github.com/mburman/Android-File-Explore
+
 public class FileExplore extends Activity {
 
 	// Stores names of traversed directories
