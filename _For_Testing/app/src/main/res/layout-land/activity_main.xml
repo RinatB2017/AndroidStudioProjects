@@ -37,6 +37,14 @@
                     android:onClick="test"
                     android:text="Button" />
 
+                //---
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+                </ListView>
+                //---
+
                 <TextView
                     android:id="@+id/textViewInfo"
                     android:layout_width="match_parent"
