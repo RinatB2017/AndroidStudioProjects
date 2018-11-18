@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewInfo;
     //---
 
-    String path;
-
     //---------------------------------------------------------------------------------------------
     public void send_log(String text) {
         if (text == null) {
@@ -296,53 +294,7 @@ public class MainActivity extends AppCompatActivity {
 
         //textViewInfo.setText("Hello");
 
-        //Intent intent = new Intent(this, FileExplore.class);
-        //startActivity(intent);
-
-        path = "/storage/emulated/0/Android/data/com.mendhak.gpslogger/files/";
-        File file = new File(path);
-        ArrayList<String> fileNames = list_files(file);
-
-        // получаем экземпляр элемента ListView
-        ListView listView = (ListView)findViewById(R.id.listView);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                send_log("itemClick: position = " + position + ", id = " + id);
-                send_log(path + parent.getItemAtPosition(position).toString());
-            }
-        });
-
-        // используем адаптер данных
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, fileNames);
-
-        listView.setAdapter(adapter);
-
         send_log("the end");
-    }
-
-    private ArrayList<String> list_files(File path) {
-        ArrayList<String> list = new ArrayList<>();
-        if (path == null) {
-            send_log("path == null");
-            return list;
-        }
-
-        File[] l_files = path.listFiles();
-        if (l_files == null) {
-            send_log("l_files == null");
-            return list;
-        }
-        for (int n = 0; n < l_files.length; n++) {
-            if (l_files[n].isDirectory()) {
-                list_files(l_files[n]);
-            } else {
-                //send_log("   file: " + l_files[n].getName() + " size: " + l_files[n].length());
-                list.add(l_files[n].getName());
-            }
-        }
-        return list;
     }
 
     void send_email(String text) {
