@@ -57,11 +57,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    private void block_interface(boolean state) {
-
-    }
-
-    //---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -135,9 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 .getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         sensorGravity = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         sensorMagnet = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-
-        //TODO временный костыль
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
