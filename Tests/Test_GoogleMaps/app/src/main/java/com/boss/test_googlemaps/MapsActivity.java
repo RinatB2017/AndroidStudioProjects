@@ -1,7 +1,11 @@
 package com.boss.test_googlemaps;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -90,9 +94,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Location myLocation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            if(myLocation != null) {
+                LatLng my = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(my).title("HERE"));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(my));
+            }
+        }
+
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //LatLng sydney = new LatLng(-34, 151);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }
