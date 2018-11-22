@@ -1,8 +1,11 @@
 package com.boss.test_googlemaps;
 
+import android.graphics.Color;
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,7 +14,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -38,8 +43,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_test:
-                LatLng sydney = new LatLng(-33, 151);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in 2"));
+                LatLng marker2 = new LatLng(-34, 150);
+                LatLng marker3 = new LatLng(-33, 149);
+
+                Marker m1 = mMap.addMarker(new MarkerOptions().position(marker2).title("Marker2"));
+                Marker m2 = mMap.addMarker(new MarkerOptions().position(marker3).title("Marker3"));
+
+                Location markerLocation1 = new Location("");
+                markerLocation1.setLatitude(marker2.latitude);
+                markerLocation1.setLongitude(marker2.longitude);
+
+                Location markerLocation2 = new Location("");
+                markerLocation2.setLatitude(marker3.latitude);
+                markerLocation2.setLongitude(marker3.longitude);
+
+                PolylineOptions options = new PolylineOptions()
+                        .add(m1.getPosition())
+                        .add(m2.getPosition())
+                        .color(Color.GREEN);
+                mMap.addPolyline(options);
+
+                float dist = markerLocation1.distanceTo(markerLocation2);
+                Log.i("States", "dist " + dist);
                 break;
 
             default:
@@ -62,6 +87,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
