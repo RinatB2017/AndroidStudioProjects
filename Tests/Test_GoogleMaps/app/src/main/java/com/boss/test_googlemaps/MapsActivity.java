@@ -132,16 +132,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     //---
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -166,19 +156,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         }
-
-        /*
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Location myLocation = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-
-            if(myLocation != null) {
-                LatLng my = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-                mMap.addMarker(new MarkerOptions().position(my).title("HERE"));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(my));
-            }
-        }
-        */
 
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);

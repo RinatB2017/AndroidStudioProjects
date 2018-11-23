@@ -27,7 +27,6 @@ public class FileActivity extends AppCompatActivity {
         File file = new File(path);
         ArrayList<String> fileNames = list_files(file);
 
-        // получаем экземпляр элемента ListView
         listView = (ListView)findViewById(R.id.listView);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,9 +70,6 @@ public class FileActivity extends AppCompatActivity {
 
 
     public void go_main(View view) {
-        //Intent intent = new Intent(this, PhoneMainActivity.class);
-        //startActivity(intent);
-
         if(pos >= 0) {
             Log.i("States", String.valueOf(pos));
             Log.i("States", filename);
