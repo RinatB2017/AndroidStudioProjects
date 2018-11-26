@@ -293,14 +293,18 @@ public class MainActivity extends AppCompatActivity {
         send_log("test");
 
         //textViewInfo.setText("Hello");
+        send_email("test");
 
         send_log("the end");
     }
 
     void send_email(String text) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
+
         i.setType("message/rfc822");
         i.setData(Uri.parse("mailto:"));
+        //i.setDataAndType(Uri.parse("mailto:"), "message/rfc822");
+
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"test@gmail.com"});
         i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
         i.putExtra(Intent.EXTRA_TEXT   , "body of email");
