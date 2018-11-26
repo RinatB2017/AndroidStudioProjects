@@ -101,6 +101,25 @@ public class Bluetooth {
     }
 
     //---------------------------------------------------------------------------------------------
+    public  boolean is_enabled() {
+        if(bluetooth == null) {
+            return false;
+        }
+        return bluetooth.isEnabled();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public boolean is_connected() {
+        if (mmSocket == null) {
+            return false;
+        }
+        if (!mmSocket.isConnected()) {
+            return false;
+        }
+        return true;
+    }
+
+    //---------------------------------------------------------------------------------------------
     public void device_connect() {
         send_log("connect");
         Runnable runnable = new Runnable() {

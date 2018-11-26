@@ -253,6 +253,10 @@ public class MainActivity extends AppCompatActivity {
         sb.append("Magnetic : " + format(valuesMagnet) + "\n");
         tvText.setText(sb);
 
+        if(bt.is_connected() == false) {
+            return;
+        }
+
         //---
         Runnable runnable = new Runnable() {
             public void run() {
@@ -279,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
                     byte[] res = bt.get_result();
                     show_answer(res);
                 } else {
-                    //send_log("Ошибка соединения.");
+                    send_log("Ошибка соединения.");
                 }
             }
         };
