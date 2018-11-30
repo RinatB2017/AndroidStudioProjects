@@ -228,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    //---------------------------------------------------------------------------------------------
     void getDeviceOrientation() {
         float[] r = new float[9];
 
@@ -237,8 +238,6 @@ public class MainActivity extends AppCompatActivity {
         valuesResult[0] = (float) Math.toDegrees(valuesResult[0]);
         valuesResult[1] = (float) Math.toDegrees(valuesResult[1]);
         valuesResult[2] = (float) Math.toDegrees(valuesResult[2]);
-
-        return;
     }
 
     //---------------------------------------------------------------------------------------------
