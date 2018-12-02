@@ -298,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
         send_log("the end");
     }
 
+    //---------------------------------------------------------------------------------------------
     void send_email(String text) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
 
