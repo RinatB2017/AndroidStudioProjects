@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
     TabHost tabHost;
     Handler h_print;
+
+    CheckBox cb_flag_mail;
 
     //---
     Button btn_test;
@@ -168,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString("log", tv_log.getText().toString());
         savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
         savedInstanceState.putString("info", textViewInfo.getText().toString());
+        savedInstanceState.putBoolean("flag_mail", cb_flag_mail.isChecked());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -184,6 +188,8 @@ public class MainActivity extends AppCompatActivity {
         //---
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
+
+        cb_flag_mail = (CheckBox)findViewById(R.id.cb_mail);
         //---
 
         init_tabs();
@@ -197,10 +203,15 @@ public class MainActivity extends AppCompatActivity {
                     tv_log.setText(temp);
                 }
             }
+
             String info = savedInstanceState.getString("info");
             if(info != null) {
                 textViewInfo.setText(info);
             }
+
+            boolean is_checked = savedInstanceState.getBoolean("flag_mail");
+            cb_flag_mail.setChecked(is_checked);
+
             int current_tab = savedInstanceState.getInt("current_tab");
             tabHost.setCurrentTab(current_tab);
         } else {
@@ -302,9 +313,12 @@ public class MainActivity extends AppCompatActivity {
     void send_email(String text) {
         Intent i = new Intent(Intent.ACTION_SENDTO);
 
-        i.setType("message/rfc822");
-        i.setData(Uri.parse("mailto:"));
-        //i.setDataAndType(Uri.parse("mailto:"), "message/rfc822");
+        if(cb_flag_mail.isChecked()) {
+            i.setType("message/rfc822");
+            i.setData(Uri.parse("mailto:"));
+        } else {
+            i.setDataAndType(Uri.parse("mailto:"), "message/rfc822");
+        }
 
         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"test@gmail.com"});
         i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
