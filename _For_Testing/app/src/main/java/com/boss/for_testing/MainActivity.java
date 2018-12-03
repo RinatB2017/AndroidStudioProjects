@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RECORD_REQUEST_CODE = 101;
 
+    private static final String s_log = "s_log";
+    private static final String s_current_tab = "s_current_tab";
+    private static final String s_info = "s_info";
+    private static final String s_flag_mail = "s_flag_mail";
+
     TextView tv_log;
 
     TabHost tabHost;
@@ -54,11 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     CheckBox cb_flag_mail;
 
-
-    static String s_log = "s_log";
-    static String s_current_tab = "s_current_tab";
-    static String s_info = "s_info";
-    static String s_flag_mail = "s_flag_mail";
     //---
     Button btn_test;
     TextView textViewInfo;
