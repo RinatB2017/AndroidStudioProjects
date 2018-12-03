@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
     CheckBox cb_flag_mail;
 
+
+    static String s_log = "s_log";
+    static String s_current_tab = "s_current_tab";
+    static String s_info = "s_info";
+    static String s_flag_mail = "s_flag_mail";
     //---
     Button btn_test;
     TextView textViewInfo;
@@ -168,10 +173,10 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("log", tv_log.getText().toString());
-        savedInstanceState.putInt("current_tab", tabHost.getCurrentTab());
-        savedInstanceState.putString("info", textViewInfo.getText().toString());
-        savedInstanceState.putBoolean("flag_mail", cb_flag_mail.isChecked());
+        savedInstanceState.putString(s_log, tv_log.getText().toString());
+        savedInstanceState.putInt(s_current_tab, tabHost.getCurrentTab());
+        savedInstanceState.putString(s_info, textViewInfo.getText().toString());
+        savedInstanceState.putBoolean(s_flag_mail, cb_flag_mail.isChecked());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -197,22 +202,22 @@ public class MainActivity extends AppCompatActivity {
         requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
         if (savedInstanceState != null) {
-            String temp = savedInstanceState.getString("log");
+            String temp = savedInstanceState.getString(s_log);
             if (temp != null) {
                 if (!temp.isEmpty()) {
                     tv_log.setText(temp);
                 }
             }
 
-            String info = savedInstanceState.getString("info");
+            String info = savedInstanceState.getString(s_info);
             if(info != null) {
                 textViewInfo.setText(info);
             }
 
-            boolean is_checked = savedInstanceState.getBoolean("flag_mail");
+            boolean is_checked = savedInstanceState.getBoolean(s_flag_mail);
             cb_flag_mail.setChecked(is_checked);
 
-            int current_tab = savedInstanceState.getInt("current_tab");
+            int current_tab = savedInstanceState.getInt(s_current_tab);
             tabHost.setCurrentTab(current_tab);
         } else {
             Bundle bundle = new Bundle();
