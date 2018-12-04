@@ -13,15 +13,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WaveGeneratorStackOverflow sound = new WaveGeneratorStackOverflow(440);
+        WaveGeneratorStackOverflow sound = new WaveGeneratorStackOverflow(20000); //440);
         sound.start();
     }
 
     public class WaveGeneratorStackOverflow {
 
-        private float frequency = 1500;
+        private float frequency = 0;
 
-        private final int numSamples = 8000;
+        private final int numSamples = 16000;
         private final double sample[] = new double[numSamples];
         private final byte generatedSnd[] = new byte[2 * numSamples];
         private AudioTrack audioTrack;

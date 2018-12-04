@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     void logging(String text) {
         logView.append(text + "\n");
-        Log.v(TAG, text);
+        Log.i(TAG, text);
     }
     //---------------------------------------------------------------------------------------------
     void clean_log() {
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
             mSession.setRepeatingRequest(mBuilder.build(), null, null);
         }
         catch (CameraAccessException e) {
-            logging("(ameraAccessException) turnOffFlashLight: " + e.getMessage() + " Reason " + String.valueOf(e.getReason()));
+            logging("(ameraAccessException) turnOnFlashLight: " + e.getMessage() + " Reason " + String.valueOf(e.getReason()));
             e.printStackTrace();
         }
         catch (Exception e)
