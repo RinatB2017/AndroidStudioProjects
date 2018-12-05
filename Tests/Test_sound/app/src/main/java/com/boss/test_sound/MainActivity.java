@@ -1,24 +1,97 @@
 package com.boss.test_sound;
 
+import android.graphics.Color;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    static final String LOG_TAG = "States";
+    WaveGeneratorStackOverflow sound;
+
+    EditText et_freq;
+    Button btn_on;
+    Button btn_off;
+
+    TextView tv_log;
+    Handler h_print;
+
+    public void send_log(String text) {
+        if (text == null) {
+            return;
+        }
+        Message msg = new Message();
+        msg.obj = text;
+        h_print.sendMessage(msg);
+    }
+
+    void init_log() {
+        tv_log = (TextView) findViewById(R.id.logView);
+        tv_log.setTextColor(Color.BLACK);
+
+        h_print = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                Log.i(LOG_TAG, text);
+                tv_log.append(text + "\n");
+            }
+        };
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        WaveGeneratorStackOverflow sound = new WaveGeneratorStackOverflow(20000); //440);
+        init_log();
+
+        et_freq = (EditText)findViewById(R.id.et_freq);
+        btn_on = (Button)findViewById(R.id.btn_on);
+        btn_off = (Button)findViewById(R.id.btn_off);
+
+        et_freq.setText("440");
+    }
+
+    public void sound_on(View view) {
+        String temp = et_freq.getText().toString();
+        if(temp.isEmpty()) {
+            send_log("freq is emtpy");
+            return;
+        }
+
+        int value = Integer.valueOf(temp);
+
+        if(sound != null) {
+            sound.stop();
+        }
+
+        sound = new WaveGeneratorStackOverflow(value);
+        if(sound == null) {
+            send_log("sound is NULL");
+            return;
+        }
         sound.start();
     }
 
-    public class WaveGeneratorStackOverflow {
+    public void sound_off(View view) {
+        if(sound == null) {
+            send_log("sound is NULL");
+            return;
+        }
+        sound.stop();
+    }
 
+    public class WaveGeneratorStackOverflow {
         private float frequency = 0;
 
         private final int numSamples = 16000;
