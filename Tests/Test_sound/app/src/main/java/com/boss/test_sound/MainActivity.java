@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
+    static final int FREQ = 20000;
     WaveGeneratorStackOverflow sound;
 
     EditText et_freq;
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         btn_on = (Button)findViewById(R.id.btn_on);
         btn_off = (Button)findViewById(R.id.btn_off);
 
-        et_freq.setText("440");
+        et_freq.setText(String.valueOf(FREQ));
+        sound = new WaveGeneratorStackOverflow(FREQ);
     }
 
     public void sound_on(View view) {
@@ -71,15 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         int value = Integer.valueOf(temp);
 
-        if(sound != null) {
-            sound.stop();
-        }
-
-        sound = new WaveGeneratorStackOverflow(value);
-        if(sound == null) {
-            send_log("sound is NULL");
-            return;
-        }
+        sound.set_freq(value);
         sound.start();
     }
 
@@ -94,18 +88,23 @@ public class MainActivity extends AppCompatActivity {
     public class WaveGeneratorStackOverflow {
         private float frequency = 0;
 
-        private final int numSamples = 16000;
+        private final int numSamples = 44100;
         private final double sample[] = new double[numSamples];
         private final byte generatedSnd[] = new byte[2 * numSamples];
         private AudioTrack audioTrack;
-
 
         public WaveGeneratorStackOverflow (float freq) {
             frequency = freq;
             generateSound();
         }
 
-        private void generateSound() {
+        public void set_freq(float freq) {
+            stop();
+            frequency = freq;
+            generateSound();
+        }
+
+        public void generateSound() {
             for (int i = 0; i < numSamples; ++i) {
                 sample[i] = Math.sin(2 * Math.PI * i / (numSamples/frequency));
             }
@@ -124,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
                         numSamples,
                         AudioFormat.CHANNEL_OUT_MONO,
                         AudioFormat.ENCODING_PCM_16BIT,
-                        generatedSnd.length, AudioTrack.MODE_STATIC);
+                        generatedSnd.length,
+                        AudioTrack.MODE_STATIC);
 
                 audioTrack.write(generatedSnd, 0, generatedSnd.length);
                 audioTrack.setLoopPoints(0, generatedSnd.length/2, -1);
