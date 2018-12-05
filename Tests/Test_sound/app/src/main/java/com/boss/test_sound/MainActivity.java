@@ -1,9 +1,6 @@
 package com.boss.test_sound;
 
 import android.graphics.Color;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.media.AudioTrack;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
-    static final int FREQ = 20000;
+    static final int FREQ = 440;
     WaveGeneratorStackOverflow sound;
 
     EditText et_freq;
@@ -85,61 +82,17 @@ public class MainActivity extends AppCompatActivity {
         sound.stop();
     }
 
-    public class WaveGeneratorStackOverflow {
-        private float frequency = 0;
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-        private final int numSamples = 44100;
-        private final double sample[] = new double[numSamples];
-        private final byte generatedSnd[] = new byte[2 * numSamples];
-        private AudioTrack audioTrack;
+        sound.start();
+    }
 
-        public WaveGeneratorStackOverflow (float freq) {
-            frequency = freq;
-            generateSound();
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
 
-        public void set_freq(float freq) {
-            stop();
-            frequency = freq;
-            generateSound();
-        }
-
-        public void generateSound() {
-            for (int i = 0; i < numSamples; ++i) {
-                sample[i] = Math.sin(2 * Math.PI * i / (numSamples/frequency));
-            }
-            int idx = 0;
-            for (final double dVal : sample) {
-                final short val = (short) ((dVal * 32767));
-                generatedSnd[idx++] = (byte) (val & 0x00ff);
-                generatedSnd[idx++] = (byte) ((val & 0xff00) >>> 8);
-            }
-        }
-
-        public void start() {
-            if (audioTrack == null) {
-                audioTrack = new AudioTrack(
-                        AudioManager.STREAM_MUSIC,
-                        numSamples,
-                        AudioFormat.CHANNEL_OUT_MONO,
-                        AudioFormat.ENCODING_PCM_16BIT,
-                        generatedSnd.length,
-                        AudioTrack.MODE_STATIC);
-
-                audioTrack.write(generatedSnd, 0, generatedSnd.length);
-                audioTrack.setLoopPoints(0, generatedSnd.length/2, -1);
-
-                audioTrack.play();
-            }
-        }
-
-        public void stop() {
-            if (audioTrack != null) {
-                audioTrack.stop();
-                audioTrack.release();
-                audioTrack = null;
-            }
-        }
-
+        sound.stop();
     }
 }
