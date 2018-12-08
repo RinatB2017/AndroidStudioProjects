@@ -135,10 +135,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (mMap != null) {
             mMap.clear();
             LatLng gps = new LatLng(location.getLatitude(), location.getLongitude());
-            mMap.addMarker(new MarkerOptions()
+            Marker m_test = mMap.addMarker(new MarkerOptions()
                     .position(gps)
-                    .title("Current position"));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(gps, 12));
+                    .title("Lat: " + gps.latitude + " long: " + gps.longitude));
+            m_test.showInfoWindow();
+            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(gps, DEFAULT_ZOOM);
+            mMap.moveCamera(update);
         }
 
     }
