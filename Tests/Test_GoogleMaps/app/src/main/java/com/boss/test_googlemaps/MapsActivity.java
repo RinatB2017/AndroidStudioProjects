@@ -247,6 +247,28 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+        //---
+        // поставить маркер по тапу
+        if(mMap != null) {
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+                @Override
+                public void onMapClick(LatLng point) {
+
+                    MarkerOptions marker = new MarkerOptions().position(
+                            new LatLng(point.latitude, point.longitude)).title("New Marker");
+
+                    mMap.addMarker(marker);
+
+                    //System.out.println(point.latitude + "---" + point.longitude);
+                }
+            });
+        }
+        else {
+            Log.i("States", "Ooops");
+        }
+        //---
+
         if(places.size() > 0) {
             MarkerOptions[] markers = new MarkerOptions[places.size()];
             for (int i = 0; i < places.size(); i++) {
