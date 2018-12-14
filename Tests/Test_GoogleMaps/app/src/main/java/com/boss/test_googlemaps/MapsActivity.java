@@ -241,33 +241,32 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
     //---
 
+    boolean tap_on_map() {
+        // поставить маркер по тапу
+        if(mMap == null) {
+            return false;
+        }
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+                MarkerOptions marker = new MarkerOptions().position(
+                        new LatLng(point.latitude, point.longitude)).title("New Marker");
+
+                mMap.addMarker(marker);
+                //System.out.println(point.latitude + "---" + point.longitude);
+            }
+        });
+        return true;
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
-        //---
-        // поставить маркер по тапу
-        if(mMap != null) {
-            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-
-                @Override
-                public void onMapClick(LatLng point) {
-
-                    MarkerOptions marker = new MarkerOptions().position(
-                            new LatLng(point.latitude, point.longitude)).title("New Marker");
-
-                    mMap.addMarker(marker);
-
-                    //System.out.println(point.latitude + "---" + point.longitude);
-                }
-            });
-        }
-        else {
-            Log.i("States", "Ooops");
-        }
-        //---
+        tap_on_map();
 
         if(places.size() > 0) {
             MarkerOptions[] markers = new MarkerOptions[places.size()];
