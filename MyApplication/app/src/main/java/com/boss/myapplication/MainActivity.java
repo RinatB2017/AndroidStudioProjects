@@ -1,13 +1,8 @@
 package com.boss.myapplication;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -23,9 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -114,40 +107,6 @@ public class MainActivity extends AppCompatActivity {
             return fragment;
         }
 
-        View get_bitmap(int w, int h, int color) {
-            Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-            Canvas c_bitmap = new Canvas(bitmap);
-            ImageView main_view = new ImageView(getContext());
-
-            Paint mPaint = new Paint();
-            mPaint.setColor(color);
-
-            float r = 0;
-            if(w > h) {
-                r = h / 4;
-            }
-            else {
-                r = w / 4;
-            }
-
-            mPaint.setStyle(Paint.Style.FILL);
-            c_bitmap.drawCircle(w / 2,
-                    h / 2,
-                    r,
-                    mPaint);
-
-            main_view.setImageBitmap(bitmap);
-
-            return main_view;
-        }
-
-        View get_text() {
-            TextView tv = new TextView(getContext());
-            tv.setText("It's TEXT");
-
-            return tv;
-        }
-
         @Override
         public void onSaveInstanceState(Bundle savedInstanceState) {
             // Always call the superclass so it can save the view hierarchy state
@@ -174,23 +133,6 @@ public class MainActivity extends AppCompatActivity {
                 a_h = v.getMeasuredHeight();
             }
 
-            /*
-            int c_w = width;
-            int c_h = height;
-            if(container != null) {
-                c_w = container.getMeasuredWidth();
-                c_h = container.getMeasuredHeight();
-            }
-            */
-
-            /*
-            AppBarLayout al = (AppBarLayout)
-            tabHost.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            int m_w = tabHost.getMeasuredWidth();
-            int m_h = tabHost.getMeasuredHeight();
-            */
-
             if(a_h > 0) {
                 if(width < height) {
                     height = height - a_h;
@@ -201,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             View view;
+            MyView vvv = new MyView(getContext());
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
@@ -208,20 +151,20 @@ public class MainActivity extends AppCompatActivity {
                     //TextView textView = (TextView) view.findViewById(R.id.section_label);
                     //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
-                    view = get_bitmap(width, height, Color.RED);
+                    view = vvv.getView(width, height);
                     break;
 
                 case 2:
-                    view = get_bitmap(width, height, Color.GREEN);
-                    //view = get_text();
+                    view = vvv.get_bitmap(width, height, Color.GREEN);
+                    //view = vvv.get_text();
                     break;
 
                 case 3:
-                    view = get_bitmap(width, height, Color.BLUE);
+                    view = vvv.get_bitmap(width, height, Color.BLUE);
                     break;
 
                 default:
-                    view = get_bitmap(width, height, Color.BLACK);
+                    view = vvv.get_bitmap(width, height, Color.BLACK);
                     break;
             }
 
