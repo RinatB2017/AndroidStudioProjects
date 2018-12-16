@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             View view;
-            MyView vvv = new MyView(getContext());
+            MyView my_view = new MyView(getContext());
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
@@ -151,20 +151,20 @@ public class MainActivity extends AppCompatActivity {
                     //TextView textView = (TextView) view.findViewById(R.id.section_label);
                     //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
-                    view = vvv.getView(width, height);
+                    view = my_view.getView(width, height);
                     break;
 
                 case 2:
-                    view = vvv.get_bitmap(width, height, Color.GREEN);
-                    //view = vvv.get_text();
+                    view = my_view.get_bitmap(width, height, Color.GREEN);
+                    //view = my_view.get_text();
                     break;
 
                 case 3:
-                    view = vvv.get_bitmap(width, height, Color.BLUE);
+                    view = my_view.get_bitmap(width, height, Color.BLUE);
                     break;
 
                 default:
-                    view = vvv.get_bitmap(width, height, Color.BLACK);
+                    view = my_view.get_bitmap(width, height, Color.BLACK);
                     break;
             }
 

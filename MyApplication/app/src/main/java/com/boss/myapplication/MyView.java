@@ -37,7 +37,7 @@ public class MyView extends View {
         return main_view;
     }
 
-    View get_bitmap(int w, int h, int color) {
+    public View get_bitmap(int w, int h, int color) {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas c_bitmap = new Canvas(bitmap);
         ImageView main_view = new ImageView(getContext());
@@ -64,7 +64,7 @@ public class MyView extends View {
         return main_view;
     }
 
-    View get_text() {
+    public View get_text() {
         TextView tv = new TextView(getContext());
         tv.setText("It's TEXT");
 

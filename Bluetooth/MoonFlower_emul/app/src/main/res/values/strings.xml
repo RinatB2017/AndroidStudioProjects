@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MoonFlower_emul</string>
+
+    <string name="Clear">Очиска лога</string>
+
+    <string name="bluetooth_not_found">Bluetooth модуль не найден</string>
+    <string name="bluetooth_off">Bluetooth выключен</string>
+    <string name="connection_on">Соединение установлено</string>
+    <string name="connection_fail">Соединение не удалось</string>
+
+    <string name="connection_breaks">Соединение разорвано</string>
+    <string name="bluetooth_error">Ошибка связи</string>
+
+    <string name="main">Главная</string>
+    <string name="log">Лог</string>
+
+</resources>
