@@ -505,6 +505,9 @@ public class MainActivity extends ListActivity {
     protected void onResume() {
         super.onResume();
         //send_log("onResume()");
+        
+        discoveredDevices.clear();
+        listAdapter.notifyDataSetChanged();
     }
 
     //---------------------------------------------------------------------------------------------
