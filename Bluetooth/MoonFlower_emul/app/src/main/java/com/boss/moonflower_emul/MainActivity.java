@@ -394,8 +394,12 @@ public class MainActivity extends ListActivity {
             return false;
         }
 
+        if(hex_str.length() != 39 * 2) {
+            return false;
+        }
+
         int cnt = 0;
-        for (int n = 0; n < hex_str.length(); n += 2) {
+        for (int n = 6; n < hex_str.length(); n += 2) {
             String str = hex_str.substring(n, n + 2);
             int x = Integer.parseInt(str, 16);
             //send_log(String.valueOf(x));
@@ -403,9 +407,6 @@ public class MainActivity extends ListActivity {
             cnt++;
         }
         send_log("cnt " + cnt);
-        if(cnt != 39) {
-            return false;
-        }
         return true;
     }
 
