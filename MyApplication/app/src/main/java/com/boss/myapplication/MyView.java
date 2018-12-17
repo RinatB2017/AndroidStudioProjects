@@ -43,6 +43,12 @@ public class MyView extends View {
             r = w / 4;
         }
 
+        mPaint.setStrokeWidth(3);
+
+        int b = 10;
+        mPaint.setStyle(Paint.Style.STROKE);
+        c_bitmap.drawRect(b, b, w-b, h-b, mPaint);
+
         mPaint.setStyle(Paint.Style.FILL);
         c_bitmap.drawCircle(w / 2,
                 h / 2,

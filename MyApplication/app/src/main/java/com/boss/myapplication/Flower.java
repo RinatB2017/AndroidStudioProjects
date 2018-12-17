@@ -12,8 +12,12 @@ import android.widget.TextView;
 
 public class Flower extends View {
 
+    Context f_context;
+
     public Flower(Context context) {
         super(context);
+
+        f_context = context;
     }
 
 //    public Flower(Context context, AttributeSet attrs) {
@@ -29,7 +33,24 @@ public class Flower extends View {
     }
 
     public View get_view(int w, int h) {
-        return null;
+        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas c_bitmap = new Canvas(bitmap);
+        ImageView main_view = new ImageView(f_context);
+
+        Paint mPaint = new Paint();
+        mPaint.setColor(Color.RED);
+
+        mPaint.setStrokeWidth(10);
+
+        int b = 10;
+        mPaint.setStyle(Paint.Style.STROKE);
+        c_bitmap.drawRect(b, b, w-b, h-b, mPaint);
+        c_bitmap.drawLine(0, 0, w, h, mPaint);
+        c_bitmap.drawLine(0, h, w, 0, mPaint);
+
+        main_view.setImageBitmap(bitmap);
+
+        return main_view;
     }
 
     public boolean set_led_color(int num_led, int hot_color, int cold_color) {
@@ -44,37 +65,4 @@ public class Flower extends View {
         return 0;
     }
 
-    public View get_bitmap(int w, int h, int color) {
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Canvas c_bitmap = new Canvas(bitmap);
-        ImageView main_view = new ImageView(getContext());
-
-        Paint mPaint = new Paint();
-        mPaint.setColor(color);
-
-        float r = 0;
-        if(w > h) {
-            r = h / 4;
-        }
-        else {
-            r = w / 4;
-        }
-
-        mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(w / 2,
-                h / 2,
-                r,
-                mPaint);
-
-        main_view.setImageBitmap(bitmap);
-
-        return main_view;
-    }
-
-    public View get_text() {
-        TextView tv = new TextView(getContext());
-        tv.setText("It's TEXT");
-
-        return tv;
-    }
 }

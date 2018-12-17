@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -124,13 +125,13 @@ public class MainActivity extends AppCompatActivity {
             int width  = displaymetrics.widthPixels;
             int height = displaymetrics.heightPixels;
 
-            int a_w = -1;
-            int a_h = -1;
+            int a_w = 0;
+            int a_h = 0;
             View v = (View)getActivity().findViewById(R.id.appbar);
             if(v != null) {
                 v.measure(LinearLayout.LayoutParams.WRAP_CONTENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-                //a_w = v.getMeasuredWidth();
+                a_w = v.getMeasuredWidth();
                 a_h = v.getMeasuredHeight();
             }
 
@@ -139,12 +140,15 @@ public class MainActivity extends AppCompatActivity {
                     height = height - a_h;
                 }
                 else {
-                    width = width - a_h;
+                    width = width - a_w;
                 }
             }
 
             View view;
+
             MyView my_view = new MyView(getContext());
+            Flower flower  = new Flower(getContext());
+
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
@@ -152,14 +156,17 @@ public class MainActivity extends AppCompatActivity {
                     //TextView textView = (TextView) view.findViewById(R.id.section_label);
                     //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
-                    view = my_view.get_bitmap(width, height, Color.RED);
+                    view = flower.get_view(width, height);
 
+                    /*
+                    view = my_view.get_bitmap(width, height, Color.RED);
                     try {
                         int temp = my_view.test(6);
                         Log.i("States", "temp=" + temp);
                     } catch (MyView.MyException e) {
                         Log.i("States", "ERROR");
                     }
+                    */
 
                     break;
 
