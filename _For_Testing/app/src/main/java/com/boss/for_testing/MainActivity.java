@@ -309,7 +309,13 @@ public class MainActivity extends AppCompatActivity {
         send_log("test");
 
         //textViewInfo.setText("Hello");
-        send_email("test");
+        //send_email("test");
+
+        ConvertBytes cb = new ConvertBytes();
+        send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
+
+        byte x = cb.to_byte("1F");
+        send_log("byte = " + String.format("%02X", x));
 
         send_log("the end");
     }
