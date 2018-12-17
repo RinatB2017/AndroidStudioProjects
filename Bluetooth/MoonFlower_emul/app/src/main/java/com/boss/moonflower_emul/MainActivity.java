@@ -104,6 +104,7 @@ public class MainActivity extends ListActivity {
     Handler h_print;
 
     private BluetoothAdapter bluetoothAdapter;
+    private ServerThread serverThread;
 
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
     private ArrayAdapter<BluetoothDevice> listAdapter;
@@ -392,9 +393,9 @@ public class MainActivity extends ListActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            send_log(tv_log.getText().toString());
-                            send_log(message + "\n");
-                            send_log(socket.getRemoteDevice().getName() + "\n");
+                            //send_log(tv_log.getText().toString());
+                            send_log(message);
+                            //send_log(socket.getRemoteDevice().getName() + "\n");
 
                             // отвечаем эхом
                             try {
@@ -504,8 +505,10 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //send_log("onResume()");
-        
+
+        serverThread = new ServerThread(communicatorService);
+        serverThread.start();
+
         discoveredDevices.clear();
         listAdapter.notifyDataSetChanged();
     }
