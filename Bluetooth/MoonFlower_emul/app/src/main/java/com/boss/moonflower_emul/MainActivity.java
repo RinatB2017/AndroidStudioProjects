@@ -399,13 +399,22 @@ public class MainActivity extends ListActivity {
         }
 
         int cnt = 0;
+        int x = 0;
+        int y = 0;
         for (int n = 6; n < hex_str.length(); n += 2) {
             String str = hex_str.substring(n, n + 2);
-            int x = Integer.parseInt(str, 16);
+            int val = Integer.parseInt(str, 16);
             //send_log(String.valueOf(x));
+            leds[x][y] = (byte)val;
+            x++;
+            if(x >= 6) {
+                x = 0;
+                y++;
+            }
 
             cnt++;
         }
+        redraw_all_buttons();   //FIXME
         send_log("cnt " + cnt);
         return true;
     }

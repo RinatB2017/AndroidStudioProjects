@@ -15,28 +15,6 @@ public class MyView extends View {
         super(context);
     }
 
-    public View getView(int w, int h)
-    {
-        int r = w / 4;
-
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        Canvas c_bitmap = new Canvas(bitmap);
-        ImageView main_view = new ImageView(getContext());
-
-        Paint mPaint = new Paint();
-        mPaint.setColor(Color.RED);
-
-        mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(w / 2,
-                h / 2,
-                r,
-                mPaint);
-
-        main_view.setImageBitmap(bitmap);
-
-        return main_view;
-    }
-
     public View get_bitmap(int w, int h, int color) {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas c_bitmap = new Canvas(bitmap);

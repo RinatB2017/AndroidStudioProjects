@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     //TextView textView = (TextView) view.findViewById(R.id.section_label);
                     //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
-                    view = my_view.getView(width, height);
+                    view = my_view.get_bitmap(width, height, Color.RED);
                     break;
 
                 case 2:
