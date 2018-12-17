@@ -70,16 +70,16 @@ public class MainActivity extends ListActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            send_log(tv_log.getText().toString());
-                            send_log(message + "\n");
-                            send_log(socket.getRemoteDevice().getName() + "\n");
+                            //send_log(tv_log.getText().toString());
+                            send_log(message);
+                            send_log(socket.getRemoteDevice().getName());
                             
                             // отвечаем эхом
                             try {
                                 OutputStream o_stream = socket.getOutputStream();
                                 o_stream.write(message.getBytes());
                             } catch (IOException e) {
-                                send_log("Stream ERROR: " +e.getMessage() + " \n");
+                                send_log("Stream ERROR: " + e.getMessage());
                             }
                         }
                     });
