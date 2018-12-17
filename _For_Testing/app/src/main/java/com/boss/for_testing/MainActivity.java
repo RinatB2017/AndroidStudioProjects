@@ -312,10 +312,19 @@ public class MainActivity extends AppCompatActivity {
         //send_email("test");
 
         ConvertBytes cb = new ConvertBytes();
-        send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
+        //send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
 
-        byte x = cb.to_byte("1F");
-        send_log("byte = " + String.format("%02X", x));
+        //byte x = cb.to_byte("1F");
+        //send_log("byte = " + String.format("%02X", x));
+
+        String temp = ":000102030405060708090A0B0C0D0E0F\n";
+        String hex_str = temp.substring(1, temp.length() - 1);
+
+        for(int n=0; n<hex_str.length(); n+=2) {
+            String str = hex_str.substring(n, n + 2);
+            int x = Integer.parseInt(str, 16);
+            send_log(String.valueOf(x));
+        }
 
         send_log("the end");
     }

@@ -18,29 +18,73 @@ public class ConvertBytes {
         byte res = 0;
 
         switch (value) {
-            case '0': res = 0x00; break;
-            case '1': res = 0x01; break;
-            case '2': res = 0x02; break;
-            case '3': res = 0x03; break;
-            case '4': res = 0x04; break;
-            case '5': res = 0x05; break;
-            case '6': res = 0x06; break;
-            case '7': res = 0x07; break;
-            case '8': res = 0x08; break;
-            case '9': res = 0x09; break;
-            case 'A': res = 0x0A; break;
-            case 'B': res = 0x0B; break;
-            case 'C': res = 0x0C; break;
-            case 'D': res = 0x0D; break;
-            case 'E': res = 0x0E; break;
-            case 'F': res = 0x0F; break;
+            case '0':
+                res = 0x00;
+                break;
+            case '1':
+                res = 0x01;
+                break;
+            case '2':
+                res = 0x02;
+                break;
+            case '3':
+                res = 0x03;
+                break;
+            case '4':
+                res = 0x04;
+                break;
+            case '5':
+                res = 0x05;
+                break;
+            case '6':
+                res = 0x06;
+                break;
+            case '7':
+                res = 0x07;
+                break;
+            case '8':
+                res = 0x08;
+                break;
+            case '9':
+                res = 0x09;
+                break;
+            case 'A':
+                res = 0x0A;
+                break;
+            case 'B':
+                res = 0x0B;
+                break;
+            case 'C':
+                res = 0x0C;
+                break;
+            case 'D':
+                res = 0x0D;
+                break;
+            case 'E':
+                res = 0x0E;
+                break;
+            case 'F':
+                res = 0x0F;
+                break;
 
-            case 'a': res = 0x0A; break;
-            case 'b': res = 0x0B; break;
-            case 'c': res = 0x0C; break;
-            case 'd': res = 0x0D; break;
-            case 'e': res = 0x0E; break;
-            case 'f': res = 0x0F; break;
+            case 'a':
+                res = 0x0A;
+                break;
+            case 'b':
+                res = 0x0B;
+                break;
+            case 'c':
+                res = 0x0C;
+                break;
+            case 'd':
+                res = 0x0D;
+                break;
+            case 'e':
+                res = 0x0E;
+                break;
+            case 'f':
+                res = 0x0F;
+                break;
         }
         return res;
     }
@@ -54,6 +98,24 @@ public class ConvertBytes {
 
         int res = (hi_res << 4) | lo_res;
 
-        return (byte)res;
+        return (byte) res;
+    }
+
+    public static String asciiToHex(String asciiValue) {
+        char[] chars = asciiValue.toCharArray();
+        StringBuffer hex = new StringBuffer();
+        for (int i = 0; i < chars.length; i++) {
+            hex.append(Integer.toHexString((int) chars[i]));
+        }
+        return hex.toString();
+    }
+
+    public static String hexToASCII(String hexValue) {
+        StringBuilder output = new StringBuilder("");
+        for (int i = 0; i < hexValue.length(); i += 2) {
+            String str = hexValue.substring(i, i + 2);
+            output.append((char) Integer.parseInt(str, 16));
+        }
+        return output.toString();
     }
 }

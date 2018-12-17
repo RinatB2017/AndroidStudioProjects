@@ -397,6 +397,18 @@ public class MainActivity extends ListActivity {
                             send_log(message);
                             //send_log(socket.getRemoteDevice().getName() + "\n");
 
+                            //TODO hex
+
+                            if(message.length() > 2) {
+                                String hex_str = message.substring(1, message.length() - 1);
+
+                                for (int n = 0; n < hex_str.length(); n += 2) {
+                                    String str = hex_str.substring(n, n + 2);
+                                    int x = Integer.parseInt(str, 16);
+                                    send_log(String.valueOf(x));
+                                }
+                            }
+
                             // отвечаем эхом
                             try {
                                 OutputStream o_stream = socket.getOutputStream();
