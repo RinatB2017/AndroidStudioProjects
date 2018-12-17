@@ -384,6 +384,32 @@ public class MainActivity extends ListActivity {
     }
 
     //----------------------------------------------------------------------------------------
+    private boolean analize(String message) {
+        if(message.length() < 2) {
+            return false;
+        }
+        String hex_str = message.substring(1, message.length() - 1);
+        if((hex_str.length() % 2) != 0) {
+            //send_log("error len " + hex_str.length());
+            return false;
+        }
+
+        int cnt = 0;
+        for (int n = 0; n < hex_str.length(); n += 2) {
+            String str = hex_str.substring(n, n + 2);
+            int x = Integer.parseInt(str, 16);
+            //send_log(String.valueOf(x));
+
+            cnt++;
+        }
+        send_log("cnt " + cnt);
+        if(cnt != 39) {
+            return false;
+        }
+        return true;
+    }
+
+    //----------------------------------------------------------------------------------------
     private final CommunicatorService communicatorService = new CommunicatorService() {
         @Override
         public Communicator createCommunicatorThread(final BluetoothSocket socket) {
@@ -398,16 +424,7 @@ public class MainActivity extends ListActivity {
                             //send_log(socket.getRemoteDevice().getName() + "\n");
 
                             //TODO hex
-
-                            if(message.length() > 2) {
-                                String hex_str = message.substring(1, message.length() - 1);
-
-                                for (int n = 0; n < hex_str.length(); n += 2) {
-                                    String str = hex_str.substring(n, n + 2);
-                                    int x = Integer.parseInt(str, 16);
-                                    send_log(String.valueOf(x));
-                                }
-                            }
+                            analize(message);
 
                             // отвечаем эхом
                             try {
