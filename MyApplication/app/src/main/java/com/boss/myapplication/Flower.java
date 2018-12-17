@@ -3,28 +3,45 @@ package com.boss.myapplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MyView extends View {
+public class Flower extends View {
 
-    public MyView(Context context) {
+    public Flower(Context context) {
         super(context);
     }
 
-    public class MyException extends Exception {
-        MyException(String message) {
-            super(message);
-        }
+//    public Flower(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//    }
+
+    public void set_color(Color color) {
+
     }
 
-    public int test(int value) throws MyException {
-        if(value > 5) {
-            throw new MyException("");
-        }
-        return value;
+    public void set_background_color(Color color) {
+
+    }
+
+    public View get_view(int w, int h) {
+        return null;
+    }
+
+    public boolean set_led_color(int num_led, int hot_color, int cold_color) {
+        return true;
+    }
+
+    public int get_hot_color(int num_led) {
+        return 0;
+    }
+
+    public int get_cold_color(int num_led) {
+        return 0;
     }
 
     public View get_bitmap(int w, int h, int color) {
