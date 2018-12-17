@@ -5,10 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Flower extends View {
 
@@ -40,7 +39,7 @@ public class Flower extends View {
         Paint mPaint = new Paint();
         mPaint.setColor(Color.RED);
 
-        mPaint.setStrokeWidth(10);
+        mPaint.setStrokeWidth(3);
 
         int b = 10;
         mPaint.setStyle(Paint.Style.STROKE);
@@ -49,6 +48,7 @@ public class Flower extends View {
         c_bitmap.drawLine(0, h, w, 0, mPaint);
 
         main_view.setImageBitmap(bitmap);
+        //main_view.setAdjustViewBounds(true);
 
         return main_view;
     }

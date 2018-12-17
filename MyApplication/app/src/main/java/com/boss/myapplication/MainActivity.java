@@ -1,6 +1,7 @@
 package com.boss.myapplication;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
     }
 
 
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             View view;
+            View temp;
 
             MyView my_view = new MyView(getContext());
             Flower flower  = new Flower(getContext());
@@ -152,12 +155,28 @@ public class MainActivity extends AppCompatActivity {
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
-                    //view = inflater.inflate(R.layout.fragment_main, container, false);
-                    //TextView textView = (TextView) view.findViewById(R.id.section_label);
-                    //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//                    view = inflater.inflate(R.layout.fragment_main, container, false);
+//                    TextView textView = (TextView) view.findViewById(R.id.section_label);
+//                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+//                    return textView;
 
-                    view = flower.get_view(width, height);
+                    //view = flower.get_view(width, height);
+                    //view = flower.get_view(200, 200);
 
+                    ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                    temp = new LinearLayout(getContext());
+                    temp.setLayoutParams(lp);
+//                    temp.measure(LinearLayout.LayoutParams.MATCH_PARENT,
+//                            LinearLayout.LayoutParams.MATCH_PARENT);
+
+//                    ((LinearLayout) temp).setOrientation(LinearLayout.HORIZONTAL);
+                    ((LinearLayout) temp).addView(flower.get_view(width, height), lp);
+                    view = temp;
+
+                    break;
                     /*
                     view = my_view.get_bitmap(width, height, Color.RED);
                     try {
@@ -168,11 +187,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                     */
 
-                    break;
+
 
                 case 2:
-                    view = my_view.get_bitmap(width, height, Color.GREEN);
+                    //view = my_view.get_bitmap(width, height, Color.GREEN);
                     //view = my_view.get_text();
+
+                    temp = new LinearLayout(getContext());
+                    temp.measure(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT);
+                    ((LinearLayout) temp).setOrientation(LinearLayout.VERTICAL);
+                    ((LinearLayout) temp).addView(my_view.get_bitmap(width, height, Color.GREEN));
+                    view = temp;
+
                     break;
 
                 case 3:

@@ -3,6 +3,7 @@ package com.boss.myapplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,6 +55,10 @@ public class MyView extends View {
                 h / 2,
                 r,
                 mPaint);
+
+        mPaint.setColor(Color.BLACK);
+        c_bitmap.drawLine(0, 0, w, h, mPaint);
+        c_bitmap.drawLine(0, h, w, 0, mPaint);
 
         main_view.setImageBitmap(bitmap);
 
