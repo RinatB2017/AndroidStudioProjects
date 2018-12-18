@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -100,7 +101,18 @@ public class Flower extends View {
             size = h;
         else
             size = w;
+
         bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        center_x = bitmap.getWidth() / 2.0f;
+        center_y = bitmap.getHeight() / 2.0f;
+
+        center_r = bitmap.getWidth() / 14.0f;
+
+        led_r = bitmap.getWidth() / 17.0f;
+        min_r = center_r + led_r + 10.0f;
+        max_r = bitmap.getWidth() / 2.0f - 20.0f;
+        inc_r = (int) ((max_r - min_r) / 2.4f);
+
         mPaint = new Paint();
         c_bitmap = new Canvas(bitmap);
 
@@ -133,6 +145,10 @@ public class Flower extends View {
         }
         if(bitmap != null) {
             for (int n = 0; n < points.size(); n++) {
+                points.get(n).color_border_on = color_border_on;
+                points.get(n).color_border_off = color_border_off;
+                points.get(n).color_text = text_color;
+
                 draw_led(n);
             }
             main_view.setImageBitmap(bitmap);
@@ -180,8 +196,8 @@ public class Flower extends View {
                 if (n == 2) {
                     if (angle == 270) s_led.text = "1";
                     if (angle == -30) s_led.text = "2";
-                    if (angle == 30) s_led.text = "3";
-                    if (angle == 90) s_led.text = "4";
+                    if (angle == 30)  s_led.text = "3";
+                    if (angle == 90)  s_led.text = "4";
                     if (angle == 150) s_led.text = "5";
                     if (angle == 210) s_led.text = "6";
                     s_led.draw_text = true;
