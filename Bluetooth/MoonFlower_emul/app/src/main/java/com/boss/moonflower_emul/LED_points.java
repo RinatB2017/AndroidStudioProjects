@@ -42,7 +42,7 @@ public class LED_points implements Serializable {
 
     //---------------------------------------------------------------------------------------------
     public int size() {
-        return points.size();
+        return max_led;
     }
 
 }
