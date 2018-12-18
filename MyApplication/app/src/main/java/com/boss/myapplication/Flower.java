@@ -108,6 +108,14 @@ public class Flower extends View {
     }
 
     public boolean set_led_color(int num_led, int hot_color, int cold_color) {
+        if(points == null) {
+            return false;
+        }
+        points.get(num_led).hot_color = hot_color;
+        points.get(num_led).cold_color = cold_color;
+
+        redraw();
+
         return true;
     }
 
@@ -140,6 +148,8 @@ public class Flower extends View {
         points.get(0).hot_color = DEFAULT_HOT_COLOR;
         points.get(0).cold_color = DEFAULT_COLD_COLOR;
         points.get(0).address = 0;
+        points.get(0).text = "0";
+        points.get(0).draw_text = true;
 
         min_angle = -30.0f;
         max_angle = 330.0f;
@@ -169,6 +179,7 @@ public class Flower extends View {
                 s_led.address = leds_arr[n][x];
 
                 //FIXME исправить позже
+                /*
                 if (n == 2) {
                     if (angle == 270) s_led.text = "1";
                     if (angle == -30) s_led.text = "2";
@@ -180,6 +191,10 @@ public class Flower extends View {
                 } else {
                     s_led.draw_text = false;
                 }
+                */
+
+                s_led.text = String.valueOf(number);
+                s_led.draw_text = true;
                 //---
 
                 points.get(number).number = s_led.number;

@@ -151,29 +151,22 @@ public class MainActivity extends AppCompatActivity {
 
             MyView my_view = new MyView(getContext());
             Flower flower  = new Flower(getContext());
+            View flower_view;
 
             int x = getArguments().getInt(ARG_SECTION_NUMBER);
             switch (x) {
                 case 1:
-//                    view = inflater.inflate(R.layout.fragment_main, container, false);
-//                    TextView textView = (TextView) view.findViewById(R.id.section_label);
-//                    textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-//                    return textView;
-
-                    //view = flower.get_view(width, height);
-                    //view = flower.get_view(200, 200);
-
                     ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT);
 
                     temp = new LinearLayout(getContext());
                     temp.setLayoutParams(lp);
-//                    temp.measure(LinearLayout.LayoutParams.MATCH_PARENT,
-//                            LinearLayout.LayoutParams.MATCH_PARENT);
 
-//                    ((LinearLayout) temp).setOrientation(LinearLayout.HORIZONTAL);
-                    ((LinearLayout) temp).addView(flower.get_view(width, height), lp);
+                    flower_view = flower.get_view(width, height);
+                    flower.set_led_color(15, 128, 128);
+
+                    ((LinearLayout) temp).addView(flower_view, lp);
                     view = temp;
 
                     break;
