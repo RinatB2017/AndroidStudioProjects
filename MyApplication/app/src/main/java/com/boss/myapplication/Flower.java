@@ -77,25 +77,6 @@ public class Flower extends View {
     }
 
     public View get_view(int w, int h) {
-//        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-//        Canvas c_bitmap = new Canvas(bitmap);
-//        ImageView main_view = new ImageView(f_context);
-//
-//        Paint mPaint = new Paint();
-//        mPaint.setColor(Color.RED);
-//
-//        mPaint.setStrokeWidth(3);
-//
-//        int b = 10;
-//        mPaint.setStyle(Paint.Style.STROKE);
-//        c_bitmap.drawRect(b, b, w-b, h-b, mPaint);
-//        c_bitmap.drawLine(0, 0, w, h, mPaint);
-//        c_bitmap.drawLine(0, h, w, 0, mPaint);
-//
-//        main_view.setImageBitmap(bitmap);
-        //main_view.setAdjustViewBounds(true);
-
-        //---
         int size = 0;
         if(w > h)
             size = h;
@@ -122,7 +103,6 @@ public class Flower extends View {
         main_view.setImageBitmap(bitmap);
 
         new_draw_field();
-        //---
 
         return main_view;
     }
@@ -145,10 +125,6 @@ public class Flower extends View {
         }
         if(bitmap != null) {
             for (int n = 0; n < points.size(); n++) {
-                points.get(n).color_border_on = color_border_on;
-                points.get(n).color_border_off = color_border_off;
-                points.get(n).color_text = text_color;
-
                 draw_led(n);
             }
             main_view.setImageBitmap(bitmap);
@@ -222,6 +198,12 @@ public class Flower extends View {
             angle += 60.0f;
             x--;
         }
+        for (int n = 0; n < points.size(); n++) {
+            points.get(n).color_border_on = color_border_on;
+            points.get(n).color_border_off = color_border_off;
+            points.get(n).color_text = text_color;
+        }
+
         redraw();
     }
 
