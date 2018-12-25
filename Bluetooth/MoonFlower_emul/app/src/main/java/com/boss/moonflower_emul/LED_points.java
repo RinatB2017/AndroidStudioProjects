@@ -33,7 +33,7 @@ public class LED_points implements Serializable {
         if(index < 0) {
             return null;
         }
-        if(index > max_led) {
+        if(index >= max_led) {
             return null;
         }
 

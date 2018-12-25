@@ -112,10 +112,12 @@ public class MainActivity extends ListActivity {
     //---------------------------------------------------------------------------------------------
     public void draw_led(int num) {
         if (bitmap == null) {
+            send_log("bitmap == null");
             return;
         }
 
         if (c_bitmap == null) {
+            send_log("c_bitmap == null");
             return;
         }
 
@@ -386,36 +388,55 @@ public class MainActivity extends ListActivity {
     //----------------------------------------------------------------------------------------
     private boolean analize(String message) {
         if(message.length() < 2) {
+            send_log("message too short");
             return false;
         }
         String hex_str = message.substring(1, message.length() - 1);
         if((hex_str.length() % 2) != 0) {
-            //send_log("error len " + hex_str.length());
+            send_log("error len " + hex_str.length());
             return false;
         }
 
         if(hex_str.length() != 39 * 2) {
+            send_log("ERROR: hex_str.length() = " + String.valueOf(hex_str.length()));
             return false;
         }
 
         int cnt = 0;
         int x = 0;
         int y = 0;
-        for (int n = 6; n < hex_str.length(); n += 2) {
-            String str = hex_str.substring(n, n + 2);
-            int val = Integer.parseInt(str, 16);
+
+        int index_led = 0;
+        for (int n = 6; n < hex_str.length(); n += 4) {
+            String h_str = hex_str.substring(n, n + 2);
+            String c_str = hex_str.substring(n+2, n + 4);
+            int h_val = Integer.parseInt(h_str, 16);
+            int c_val = Integer.parseInt(c_str, 16);
             //send_log(String.valueOf(x));
+            /*
             leds[x][y] = (byte)val;
             x++;
             if(x >= 6) {
                 x = 0;
                 y++;
             }
+            */
+            //FIXME
+            LED led = points.get(index_led);
+            if(led == null) {
+                send_log("ERROR: index " + String.valueOf(index_led) + " is bad");
+            }
+            else {
+                led.hot_color  = h_val;
+                led.cold_color = c_val;
+                points.set(index_led, led);
+            }
+            index_led++;
 
             cnt++;
         }
         redraw_all_buttons();   //FIXME
-        send_log("cnt " + cnt);
+        //send_log("cnt " + cnt);
         return true;
     }
 
@@ -429,9 +450,7 @@ public class MainActivity extends ListActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //send_log(tv_log.getText().toString());
-                            send_log(message);
-                            //send_log(socket.getRemoteDevice().getName() + "\n");
+                            //send_log(message);
 
                             //TODO hex
                             analize(message);
@@ -509,6 +528,10 @@ public class MainActivity extends ListActivity {
         };
         setListAdapter(listAdapter);
 
+        if(bluetoothAdapter == null) {
+            return;
+        }
+
         if (!bluetoothAdapter.isEnabled()) {
             // Bluetooth выключен. Предложим пользователю включить его.
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -545,11 +568,13 @@ public class MainActivity extends ListActivity {
     protected void onResume() {
         super.onResume();
 
-        serverThread = new ServerThread(communicatorService);
-        serverThread.start();
+        if(bluetoothAdapter != null) {
+            serverThread = new ServerThread(communicatorService);
+            serverThread.start();
 
-        discoveredDevices.clear();
-        listAdapter.notifyDataSetChanged();
+            discoveredDevices.clear();
+            listAdapter.notifyDataSetChanged();
+        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -637,6 +662,7 @@ public class MainActivity extends ListActivity {
 
     //---------------------------------------------------------------------------------------------
     public void redraw_all_buttons() {
+        send_log("redraw_all_buttons");
         for (int n = 0; n < points.size(); n++) {
             draw_led(n);
         }
@@ -653,6 +679,9 @@ public class MainActivity extends ListActivity {
         points.get(0).hot_color = DEFAULT_HOT_COLOR;
         points.get(0).cold_color = DEFAULT_COLD_COLOR;
         points.get(0).address = 0;
+
+        points.get(0).text = "0";
+        points.get(0).draw_text = true;
 
         min_angle = -30.0f;
         max_angle = 330.0f;
@@ -689,25 +718,8 @@ public class MainActivity extends ListActivity {
                 s_led.radius = led_r;
                 s_led.address = leds_arr[n][x];
 
-                //FIXME исправить позже
-
-                /*
                 s_led.text = String.valueOf(s_led.number);
                 s_led.draw_text = true;
-                */
-
-                if (n == 2) {
-                    if (angle == 270) s_led.text = "1";
-                    if (angle == -30) s_led.text = "2";
-                    if (angle == 30)  s_led.text = "3";
-                    if (angle == 90)  s_led.text = "4";
-                    if (angle == 150) s_led.text = "5";
-                    if (angle == 210) s_led.text = "6";
-                    s_led.draw_text = true;
-                } else {
-                    s_led.draw_text = false;
-                }
-                //---
 
                 points.get(number).number = s_led.number;
                 points.get(number).address = s_led.address;
