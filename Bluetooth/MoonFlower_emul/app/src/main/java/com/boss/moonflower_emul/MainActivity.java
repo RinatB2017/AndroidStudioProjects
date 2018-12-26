@@ -54,6 +54,9 @@ public class MainActivity extends ListActivity {
     private static final int RECORD_REQUEST_CODE = 101;
     final String LOG_TAG = "States";
 
+    private static final int MAX_SCREEN_X = 6;
+    private static final int MAX_SCREEN_Y = 6;
+
     TextView tv_log;
 
     private Paint mPaint;
@@ -92,11 +95,20 @@ public class MainActivity extends ListActivity {
     int DEFAULT_HOT_COLOR = 10;
     int DEFAULT_COLD_COLOR = 10;
 
-    byte[][] leds = new byte[6][6];
+    byte[][] leds = new byte[MAX_SCREEN_X][MAX_SCREEN_Y];
     int[][] leds_arr = {
             {0x2112, 0x2255, 0x4223, 0x4314, 0x5415, 0x2001},
             {0x4151, 0x3245, 0x5213, 0x5334, 0x0510, 0x4011},
             {0x3102, 0x2535, 0x0333, 0x0424, 0x4400, 0x3050}};
+
+    int[][] x_buf = {
+            {0x00, 0x01, 0x02, 0x03, 0x04, 0x05},
+            {0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B},
+            {0x0C, 0x0D, 0x0E, 0x0F, 0x10, 0x11},
+            {0x12, 0x13, 0x14, 0x15, 0x16, 0x17},
+            {0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D},
+            {0x1E, 0x1F, 0x20, 0x21, 0x22, 0x23}
+    };
     //---
 
     ModBus modbus;
@@ -386,11 +398,28 @@ public class MainActivity extends ListActivity {
     }
 
     //----------------------------------------------------------------------------------------
+    /*
+    F_01 *packet = (F_01 *)buf_modbus;
+    uint8_t addr = packet->body.header.addr;
+    uint8_t cmd = packet->body.header.cmd;
+    uint8_t len = packet->body.header.len;
+
+    for(int y=0; y<MAX_SCREEN_Y; y++)
+    {
+        {
+        for(int x=0; x<MAX_SCREEN_X; x++)
+          set(x, y, packet->body.data_t.leds[x][y]);
+        }
+    }
+    */
+
     private boolean analize(String message) {
+        send_log("analize");
         if(message.length() < 2) {
             send_log("message too short");
             return false;
         }
+        send_log(message);
         String hex_str = message.substring(1, message.length() - 1);
         if((hex_str.length() % 2) != 0) {
             send_log("error len " + hex_str.length());
@@ -408,19 +437,20 @@ public class MainActivity extends ListActivity {
 
         int index_led = 0;
         for (int n = 6; n < hex_str.length(); n += 4) {
-            String h_str = hex_str.substring(n, n + 2);
+            String h_str = hex_str.substring(n,   n + 2);
             String c_str = hex_str.substring(n+2, n + 4);
             int h_val = Integer.parseInt(h_str, 16);
             int c_val = Integer.parseInt(c_str, 16);
             //send_log(String.valueOf(x));
-            /*
-            leds[x][y] = (byte)val;
-            x++;
-            if(x >= 6) {
-                x = 0;
-                y++;
+            //leds[x][y] = (byte)val;
+
+            y++;
+            if(y >= MAX_SCREEN_Y) {
+                y = 0;
+                x++;
             }
-            */
+            index_led = x_buf[x][y];
+
             //FIXME
             LED led = points.get(index_led);
             if(led == null) {
@@ -431,7 +461,6 @@ public class MainActivity extends ListActivity {
                 led.cold_color = c_val;
                 points.set(index_led, led);
             }
-            index_led++;
 
             cnt++;
         }
@@ -770,8 +799,8 @@ public class MainActivity extends ListActivity {
     public ByteArrayOutputStream get_data() {
         ByteArrayOutputStream data;
         data = new ByteArrayOutputStream();
-        for (int y = 0; y < 6; y++) {
-            for (int x = 0; x < 6; x++) {
+        for (int y = 0; y < MAX_SCREEN_Y; y++) {
+            for (int x = 0; x < MAX_SCREEN_X; x++) {
                 data.write(leds[x][y]);
             }
         }
