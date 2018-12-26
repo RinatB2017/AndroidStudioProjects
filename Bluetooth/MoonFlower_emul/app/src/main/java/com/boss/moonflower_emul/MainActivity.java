@@ -57,6 +57,10 @@ public class MainActivity extends ListActivity {
     private static final int MAX_SCREEN_X = 6;
     private static final int MAX_SCREEN_Y = 6;
 
+    static String hex_str;
+    static byte[] data;
+    static byte[][] data_arr;
+
     TextView tv_log;
 
     private Paint mPaint;
@@ -413,6 +417,23 @@ public class MainActivity extends ListActivity {
     }
     */
 
+    private int get_led_value(int address)
+    {
+        int c = address >> 12 & 0xF;
+        int d = address >> 8 & 0xF;
+        int a = address >> 4 & 0xF;
+        int b = address & 0xF;
+
+        return data_arr[a][b] << 8 | data_arr[c][d];
+    }
+
+    private void set_led(int index_led, int value) {
+        LED led = points.get(index_led);
+        led.hot_color  = (value >> 8) & 0xFF;
+        led.cold_color = value & 0xFF;
+        points.set(index_led, led);
+    }
+
     private boolean analize(String message) {
         send_log("analize");
         if(message.length() < 2) {
@@ -420,7 +441,7 @@ public class MainActivity extends ListActivity {
             return false;
         }
         send_log(message);
-        String hex_str = message.substring(1, message.length() - 1);
+        hex_str = message.substring(1, message.length() - 1);
         if((hex_str.length() % 2) != 0) {
             send_log("error len " + hex_str.length());
             return false;
@@ -431,39 +452,75 @@ public class MainActivity extends ListActivity {
             return false;
         }
 
-        int cnt = 0;
-        int x = 0;
-        int y = 0;
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        int addr = 6;
+        for(int n=addr; n<hex_str.length(); n+=2) {
+            String str = hex_str.substring(n, n+2);
+            int value = Integer.parseInt(str, 16);
 
-        int index_led = 0;
-        for (int n = 6; n < hex_str.length(); n += 4) {
-            String h_str = hex_str.substring(n,   n + 2);
-            String c_str = hex_str.substring(n+2, n + 4);
-            int h_val = Integer.parseInt(h_str, 16);
-            int c_val = Integer.parseInt(c_str, 16);
-            //send_log(String.valueOf(x));
-            //leds[x][y] = (byte)val;
-
-            y++;
-            if(y >= MAX_SCREEN_Y) {
-                y = 0;
-                x++;
-            }
-            index_led = x_buf[x][y];
-
-            //FIXME
-            LED led = points.get(index_led);
-            if(led == null) {
-                send_log("ERROR: index " + String.valueOf(index_led) + " is bad");
-            }
-            else {
-                led.hot_color  = h_val;
-                led.cold_color = c_val;
-                points.set(index_led, led);
-            }
-
-            cnt++;
+            output.write((byte)value);
         }
+        data = output.toByteArray();
+
+        int index = 0;
+        data_arr = new byte[MAX_SCREEN_X][MAX_SCREEN_Y];
+        for(int y=0; y<MAX_SCREEN_Y; y++) {
+            for(int x=0; x<MAX_SCREEN_X; x++) {
+                data_arr[x][y] = data[index];
+                index++;
+            }
+        }
+
+        int led_15 = get_led_value(0x2112);
+        int led_16 = get_led_value(0x4151);
+        int led_17 = get_led_value(0x3102);
+
+        int led_12 = get_led_value(0x2255);
+        int led_13 = get_led_value(0x3245);
+        int led_14 = get_led_value(0x2535);
+
+        int led_09 = get_led_value(0x4223);
+        int led_10 = get_led_value(0x5213);
+        int led_11 = get_led_value(0x0333);
+
+        int led_06 = get_led_value(0x4314);
+        int led_07 = get_led_value(0x5334);
+        int led_08 = get_led_value(0x0424);
+
+        int led_03 = get_led_value(0x5415);
+        int led_04 = get_led_value(0x0510);
+        int led_05 = get_led_value(0x4400);
+
+        int led_00 = get_led_value(0x2001);
+        int led_01 = get_led_value(0x4011);
+        int led_02 = get_led_value(0x3050);
+
+        set_led(0,  led_00);
+        set_led(1,  led_01);
+        set_led(2,  led_02);
+        set_led(3,  led_03);
+        set_led(4,  led_04);
+        set_led(5,  led_05);
+        set_led(6,  led_06);
+        set_led(7,  led_07);
+        set_led(8,  led_08);
+        set_led(9,  led_09);
+        set_led(10, led_10);
+        set_led(11, led_11);
+        set_led(12, led_12);
+        set_led(13, led_13);
+        set_led(14, led_14);
+        set_led(15, led_15);
+        set_led(16, led_16);
+        set_led(17, led_17);
+
+//        LED led = points.get(0);
+//        led.hot_color  = led_00 >> 8 & 0xFF;
+//        led.cold_color = led_00 & 0xFF;
+//        points.set(0, led);
+//
+//        points.set(0, points.get(0));
+
         redraw_all_buttons();   //FIXME
         //send_log("cnt " + cnt);
         return true;
