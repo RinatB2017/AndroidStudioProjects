@@ -34,7 +34,9 @@ public class ServerThread extends Thread {
 
         while (true) {
             try {
-                  socket = bluetoothServerSocket.accept();
+                if(bluetoothServerSocket != null) {
+                    socket = bluetoothServerSocket.accept();
+                }
             } catch (IOException e) {
                 Log.d(LOG_TAG, "Stop: " + e.getLocalizedMessage());
                 break;

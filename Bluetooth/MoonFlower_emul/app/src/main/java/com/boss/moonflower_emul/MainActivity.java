@@ -387,6 +387,8 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     void init_widgets() {
         main_view = (ImageView) findViewById(R.id.main_view);
+
+        redraw_all_buttons();
     }
 
     //---------------------------------------------------------------------------------------------
