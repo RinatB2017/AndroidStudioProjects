@@ -624,20 +624,6 @@ public class MainActivity extends AppCompatActivity {
         send_log("create_bluetooth");
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
-
-        /*
-        listAdapter = new ArrayAdapter<BluetoothDevice>(getBaseContext(), android.R.layout.simple_list_item_1, discoveredDevices) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                final BluetoothDevice device = getItem(position);
-                ((TextView) view.findViewById(android.R.id.text1)).setText(device.getName());
-                return view;
-            }
-        };
-        setListAdapter(listAdapter);
-        */
-
         if(bluetoothAdapter == null) {
             return;
         }
@@ -679,6 +665,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if(bluetoothAdapter != null) {
+            if (!bluetoothAdapter.isEnabled()) {
+                // Bluetooth выключен. Предложим пользователю включить его.
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }
+            
             serverThread = new ServerThread(communicatorService);
             serverThread.start();
 
