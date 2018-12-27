@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">MoonFlower_emul</string>
 
-    <string name="Clear">Очиска лога</string>
+    <string name="Discovery">Разрешить поиск устройства</string>
+    <string name="Clear">Очистка лога</string>
 
     <string name="bluetooth_not_found">Bluetooth модуль не найден</string>
     <string name="bluetooth_off">Bluetooth выключен</string>

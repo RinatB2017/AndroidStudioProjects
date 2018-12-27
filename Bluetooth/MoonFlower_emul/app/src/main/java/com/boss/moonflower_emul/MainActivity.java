@@ -19,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -46,7 +47,7 @@ import java.util.List;
 // Flawors Target SDK Version API22
 // иначе bluetooth не будет находить устройства
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
 
     public final static String UUID = "00001101-0000-1000-8000-00805F9B34FB";
     private final static int REQUEST_ENABLE_BT = 1;
@@ -96,8 +97,8 @@ public class MainActivity extends ListActivity {
     int color_border_off = Color.GRAY;
     int text_color = Color.WHITE;
 
-    int DEFAULT_HOT_COLOR = 10;
-    int DEFAULT_COLD_COLOR = 10;
+    int DEFAULT_HOT_COLOR  = 0;
+    int DEFAULT_COLD_COLOR = 0;
 
     byte[][] leds = new byte[MAX_SCREEN_X][MAX_SCREEN_Y];
     int[][] leds_arr = {
@@ -123,7 +124,7 @@ public class MainActivity extends ListActivity {
     private ServerThread serverThread;
 
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
-    private ArrayAdapter<BluetoothDevice> listAdapter;
+    //private ArrayAdapter<BluetoothDevice> listAdapter;
 
     //---------------------------------------------------------------------------------------------
     public void draw_led(int num) {
@@ -173,7 +174,7 @@ public class MainActivity extends ListActivity {
             mPaint.setColor(Color.rgb(0, 0, led.cold_color));
             mPaint.setStyle(Paint.Style.FILL);
             c_bitmap.drawArc(circle,
-                    270, 180,
+                    -90, 180,   //270, 180,
                     true,
                     mPaint);
             //sweepAngle - на сколько градусов рисуем от startAngle
@@ -293,6 +294,12 @@ public class MainActivity extends ListActivity {
 
             case R.id.clear_log:
                 tv_log.setText("");
+                break;
+
+            case R.id.discovery:
+                Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                i.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+                startActivity(i);
                 break;
 
             default:
@@ -419,18 +426,31 @@ public class MainActivity extends ListActivity {
 
     private int get_led_value(int address)
     {
-        int c = address >> 12 & 0xF;
-        int d = address >> 8 & 0xF;
-        int a = address >> 4 & 0xF;
+        int c = (address >> 12) & 0xF;
+        int d = (address >> 8)  & 0xF;
+        int a = (address >> 4)  & 0xF;
         int b = address & 0xF;
 
-        return data_arr[a][b] << 8 | data_arr[c][d];
+        int ab = (data_arr[a][b] & 0xFF) << 8;
+        int cd = data_arr[c][d] & 0xFF;
+        //int val = (data_arr[a][b] << 8) | data_arr[c][d];
+        int val = ab | cd;
+        if(val < 0) {
+            send_log("get_led_value " + val);
+        }
+
+        return val;
     }
 
     private void set_led(int index_led, int value) {
         LED led = points.get(index_led);
-        led.hot_color  = (value >> 8) & 0xFF;
-        led.cold_color = value & 0xFF;
+        led.hot_color   = (value >> 8) & 0xFF;
+        led.cold_color  = value & 0xFF;
+        //led.cold_color = (value >> 8) & 0xFF;
+        //led.hot_color  = value & 0xFF;
+        if(value < 0) {
+            send_log("hot " + led.hot_color + " cold " + led.cold_color);
+        }
         points.set(index_led, led);
     }
 
@@ -495,24 +515,24 @@ public class MainActivity extends ListActivity {
         int led_01 = get_led_value(0x4011);
         int led_02 = get_led_value(0x3050);
 
-        set_led(0,  led_00);
-        set_led(1,  led_01);
-        set_led(2,  led_02);
-        set_led(3,  led_03);
-        set_led(4,  led_04);
-        set_led(5,  led_05);
-        set_led(6,  led_06);
-        set_led(7,  led_07);
-        set_led(8,  led_08);
-        set_led(9,  led_09);
-        set_led(10, led_10);
-        set_led(11, led_11);
-        set_led(12, led_12);
-        set_led(13, led_13);
-        set_led(14, led_14);
-        set_led(15, led_15);
-        set_led(16, led_16);
-        set_led(17, led_17);
+        set_led(1,  led_00);
+        set_led(2,  led_01);
+        set_led(3,  led_02);
+        set_led(4,  led_03);
+        set_led(5,  led_04);
+        set_led(6,  led_05);
+        set_led(7,  led_06);
+        set_led(8,  led_07);
+        set_led(9,  led_08);
+        set_led(10, led_09);
+        set_led(11, led_10);
+        set_led(12, led_11);
+        set_led(13, led_12);
+        set_led(14, led_13);
+        set_led(15, led_14);
+        set_led(16, led_15);
+        set_led(17, led_16);
+        set_led(18, led_17);
 
 //        LED led = points.get(0);
 //        led.hot_color  = led_00 >> 8 & 0xFF;
@@ -603,6 +623,7 @@ public class MainActivity extends ListActivity {
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
+        /*
         listAdapter = new ArrayAdapter<BluetoothDevice>(getBaseContext(), android.R.layout.simple_list_item_1, discoveredDevices) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -613,6 +634,7 @@ public class MainActivity extends ListActivity {
             }
         };
         setListAdapter(listAdapter);
+        */
 
         if(bluetoothAdapter == null) {
             return;
@@ -659,7 +681,7 @@ public class MainActivity extends ListActivity {
             serverThread.start();
 
             discoveredDevices.clear();
-            listAdapter.notifyDataSetChanged();
+            //listAdapter.notifyDataSetChanged();
         }
     }
 
