@@ -411,21 +411,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //----------------------------------------------------------------------------------------
-    /*
-    F_01 *packet = (F_01 *)buf_modbus;
-    uint8_t addr = packet->body.header.addr;
-    uint8_t cmd = packet->body.header.cmd;
-    uint8_t len = packet->body.header.len;
-
-    for(int y=0; y<MAX_SCREEN_Y; y++)
-    {
-        {
-        for(int x=0; x<MAX_SCREEN_X; x++)
-          set(x, y, packet->body.data_t.leds[x][y]);
-        }
-    }
-    */
-
     private int get_led_value(int address)
     {
         int c = (address >> 12) & 0xF;
@@ -444,6 +429,7 @@ public class MainActivity extends AppCompatActivity {
         return val;
     }
 
+    //----------------------------------------------------------------------------------------
     private void set_led(int index_led, int value) {
         LED led = points.get(index_led);
         led.hot_color   = (value >> 8) & 0xFF;
@@ -456,6 +442,7 @@ public class MainActivity extends AppCompatActivity {
         points.set(index_led, led);
     }
 
+    //----------------------------------------------------------------------------------------
     private boolean analize(String message) {
         send_log("analize");
         if(message.length() < 2) {
@@ -536,13 +523,6 @@ public class MainActivity extends AppCompatActivity {
         set_led(17, led_16);
         set_led(18, led_17);
 
-//        LED led = points.get(0);
-//        led.hot_color  = led_00 >> 8 & 0xFF;
-//        led.cold_color = led_00 & 0xFF;
-//        points.set(0, led);
-//
-//        points.set(0, points.get(0));
-
         redraw_all_buttons();   //FIXME
         //send_log("cnt " + cnt);
         return true;
@@ -558,9 +538,6 @@ public class MainActivity extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            //send_log(message);
-
-                            //TODO hex
                             analize(message);
 
                             // отвечаем эхом
@@ -794,13 +771,6 @@ public class MainActivity extends AppCompatActivity {
         рисуем по часовой стрелке
         */
         int number = 1; //центр уже нарисовали ранее
-
-//        calc_line(center_x,
-//                center_y,
-//                45.0f,
-//                1000);
-//        mPaint.setColor(Color.GREEN);
-//        c_bitmap.drawLine(center_x, center_y, temp_x, temp_y, mPaint);
 
         while (angle < max_angle) {
             for (int n = 0; n < 3; n++) {
