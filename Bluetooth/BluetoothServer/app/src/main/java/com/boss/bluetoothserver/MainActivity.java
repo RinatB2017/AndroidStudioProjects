@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class MainActivity extends ListActivity {
 
     //public final static String UUID = "e91521df-92b9-47bf-96d5-c52ee838f6f6";
     public final static String UUID = "00001101-0000-1000-8000-00805F9B34FB";
+
+    public boolean is_hex = false;
 
     private BluetoothAdapter bluetoothAdapter;
 
@@ -71,8 +74,26 @@ public class MainActivity extends ListActivity {
                         @Override
                         public void run() {
                             //send_log(tv_log.getText().toString());
-                            send_log(message);
-                            send_log(socket.getRemoteDevice().getName());
+                            if(is_hex) {
+                                byte[] array = new byte[0];
+                                try {
+                                    array = message.getBytes("UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                };
+                                StringBuffer hexString = new StringBuffer();
+                                for (byte b : array) {
+                                    int intVal = b & 0xff;
+                                    if (intVal < 0x10)
+                                        hexString.append("0");
+                                    hexString.append(Integer.toHexString(intVal));
+                                }
+                                send_log(hexString.toString());
+                            }
+                            else {
+                                send_log(message);
+                            }
+                            //send_log(socket.getRemoteDevice().getName());
                             
                             // отвечаем эхом
                             try {
