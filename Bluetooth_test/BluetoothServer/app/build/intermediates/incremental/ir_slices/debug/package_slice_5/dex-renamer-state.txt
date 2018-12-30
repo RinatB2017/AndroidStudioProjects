@@ -1,0 +1,4 @@
+#Sun Dec 16 23:44:55 MSK 2018
+base.0=/home/boss/Programming/_GitHub/AndroidStudioProjects/Bluetooth/BluetoothServer/app/build/intermediates/transforms/dexMerger/debug/5
+path.0=classes.dex
+renamed.0=classes.dex
