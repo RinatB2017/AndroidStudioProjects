@@ -167,8 +167,6 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------------
     public void type_log() {
-        send_log("type_log");
-
         final String[] mChooseCats = { "TEXT", "HEX" };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Выберите вид логилования");
@@ -181,15 +179,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        builder.setNegativeButton("Отмена",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
         // добавляем переключатели
-        builder.setSingleChoiceItems(mChooseCats, 0,
+        builder.setSingleChoiceItems(mChooseCats, (is_hex ? 1 : 0),
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int item)
