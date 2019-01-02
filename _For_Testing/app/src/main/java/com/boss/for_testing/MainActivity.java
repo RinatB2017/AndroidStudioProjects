@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -317,6 +318,7 @@ public class MainActivity extends AppCompatActivity {
         //byte x = cb.to_byte("1F");
         //send_log("byte = " + String.format("%02X", x));
 
+        /*
         String temp = ":000102030405060708090A0B0C0D0E0F\n";
         String hex_str = temp.substring(1, temp.length() - 1);
 
@@ -325,6 +327,25 @@ public class MainActivity extends AppCompatActivity {
             int x = Integer.parseInt(str, 16);
             send_log(String.valueOf(x));
         }
+        */
+
+        double lat1 = 1.0;
+        double lon1 = 1.0;
+
+        double lat2 = 1.0;
+        double lon2 = 1.00001; //1.1130265 meters
+
+        Location loc1 = new Location("");
+        loc1.setLatitude(lat1);
+        loc1.setLongitude(lon1);
+
+        Location loc2 = new Location("");
+        loc2.setLatitude(lat2);
+        loc2.setLongitude(lon2);
+
+        float distanceInMeters = loc1.distanceTo(loc2);
+
+        send_log("dist = " + distanceInMeters + " meters");
 
         send_log("the end");
     }
