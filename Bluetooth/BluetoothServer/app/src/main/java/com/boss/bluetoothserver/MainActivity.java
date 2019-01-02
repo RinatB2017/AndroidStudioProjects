@@ -1,17 +1,19 @@
 package com.boss.bluetoothserver;
 
-import android.app.ListActivity;
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
     //public final static String UUID = "e91521df-92b9-47bf-96d5-c52ee838f6f6";
@@ -31,7 +33,7 @@ public class MainActivity extends ListActivity {
     private BluetoothAdapter bluetoothAdapter;
 
     private final List<BluetoothDevice> discoveredDevices = new ArrayList<BluetoothDevice>();
-    private ArrayAdapter<BluetoothDevice> listAdapter;
+//    private ArrayAdapter<BluetoothDevice> listAdapter;
 
     private ServerThread serverThread;
 
@@ -61,6 +63,31 @@ public class MainActivity extends ListActivity {
                 tv_log.append(text + "\n");
             }
         };
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.type_log:
+                type_log();
+                break;
+
+            case R.id.action_clear_log:
+                tv_log.setText("");
+                break;
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //----------------------------------------------------------------------------------------
@@ -128,7 +155,7 @@ public class MainActivity extends ListActivity {
         serverThread.start();
 
         discoveredDevices.clear();
-        listAdapter.notifyDataSetChanged();
+//        listAdapter.notifyDataSetChanged();
     }
 
     //----------------------------------------------------------------------------------------
@@ -139,18 +166,56 @@ public class MainActivity extends ListActivity {
     }
 
     //----------------------------------------------------------------------------------------
+    public void type_log() {
+        send_log("type_log");
+
+        final String[] mChooseCats = { "TEXT", "HEX" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Выберите вид логилования");
+        builder.setCancelable(false);
+
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        builder.setNegativeButton("Отмена",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        // добавляем переключатели
+        builder.setSingleChoiceItems(mChooseCats, 0,
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item)
+            {
+                is_hex = (item != 0);
+            }
+        });
+        builder.create();
+        builder.show();
+    }
+
+    //----------------------------------------------------------------------------------------
     public void create_bluetooth() {
         send_log("create_bluetooth");
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        listAdapter = new ArrayAdapter<BluetoothDevice>(getBaseContext(), android.R.layout.simple_list_item_1, discoveredDevices) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view = super.getView(position, convertView, parent);
-                final BluetoothDevice device = getItem(position);
-                ((TextView) view.findViewById(android.R.id.text1)).setText(device.getName());
-                return view;
-            }
-        };
-        setListAdapter(listAdapter);
+//        listAdapter = new ArrayAdapter<BluetoothDevice>(getBaseContext(), android.R.layout.simple_list_item_1, discoveredDevices) {
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                View view = super.getView(position, convertView, parent);
+//                final BluetoothDevice device = getItem(position);
+//                ((TextView) view.findViewById(android.R.id.text1)).setText(device.getName());
+//                return view;
+//            }
+//        };
+//        setListAdapter(listAdapter);
     }
+
+    //----------------------------------------------------------------------------------------
 }

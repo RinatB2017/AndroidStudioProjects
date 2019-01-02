@@ -17,9 +17,12 @@ public class ServerThread extends Thread {
     public ServerThread(CommunicatorService communicatorService) {
         this.communicatorService = communicatorService;
         final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
         BluetoothServerSocket tmp = null;
         try {
-            tmp = bluetoothAdapter.listenUsingRfcommWithServiceRecord("BluetoothApp", UUID.fromString(MainActivity.UUID));
+            if(bluetoothAdapter != null) {
+                tmp = bluetoothAdapter.listenUsingRfcommWithServiceRecord("BluetoothApp", UUID.fromString(MainActivity.UUID));
+            }
         } catch (IOException e) {
             Log.d(LOG_TAG, e.getLocalizedMessage());
         }
@@ -31,6 +34,10 @@ public class ServerThread extends Thread {
         BluetoothSocket socket = null;
 
         Log.d("ServerThread", "Started");
+
+        if(bluetoothServerSocket == null) {
+            return;
+        }
 
         while (true) {
             try {
