@@ -332,8 +332,8 @@ public class MainActivity extends AppCompatActivity {
         double lat1 = 1.0;
         double lon1 = 1.0;
 
-        double lat2 = 1.0;
-        double lon2 = 1.00001; //1.1130265 meters
+        double lat2 = 1.00001;  //1.1057462 meters
+        double lon2 = 1.0; //1.1130265 meters
 
         Location loc1 = new Location("");
         loc1.setLatitude(lat1);
