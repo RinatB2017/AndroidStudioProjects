@@ -18,7 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
+
+    Location begin_loc;
+    double diff_dist = 0;
+    boolean first_loc = false;
 
     //---
     protected void requestPermission(String permissionType, int requestCode) {
@@ -64,17 +68,17 @@ public class MainActivity extends AppCompatActivity {
 
         logView = (TextView)findViewById(R.id.logView);
 
-        //locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         //---
         String[] neededPermissions = {
                 Manifest.permission.CHANGE_WIFI_STATE,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION
         };
         ActivityCompat.requestPermissions( this, neededPermissions, CODE_PERMISSIONS );
         //---
 
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        //locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         //requestPermission(ACCESS_COARSE_LOCATION, RECORD_REQUEST_CODE);
     }
@@ -109,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             logging("onResume: error permission");
             return;
         }
@@ -125,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     public void update(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             logging("onResume: error permission");
             return;
         }
@@ -165,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         public void onProviderEnabled(String provider) {
             if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
                     ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
-                    ActivityCompat.checkSelfPermission(getApplicationContext(), ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.checkSelfPermission(getApplicationContext(), ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 logging("onProviderEnabled: error permission");
                 return;
             }
@@ -198,10 +202,24 @@ public class MainActivity extends AppCompatActivity {
             logging("formatLocation: location is NULL");
             return "";
         }
+        //TODO
+        if(!first_loc) {
+            begin_loc = location;
+            first_loc = true;
+        }
+        else {
+            double temp_diff_lat = begin_loc.distanceTo(location);
+            if(temp_diff_lat != diff_dist)
+            {
+                diff_dist = temp_diff_lat;
+            }
+        }
+        //---
         return String.format(
-                "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ntime = %3$tF %3$tT",
+                "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ndiff = %3$.4f\ntime = %4$tF %4$tT",
                 location.getLatitude(),
                 location.getLongitude(),
+                diff_dist,
                 new Date(location.getTime()));
     }
 
