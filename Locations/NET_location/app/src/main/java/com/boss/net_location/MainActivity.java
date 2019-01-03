@@ -30,27 +30,12 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = "States";
 
     private final int CODE_PERMISSIONS = 0;
-    private static final int RECORD_REQUEST_CODE = 101;
 
     private LocationManager locationManager;
 
     Location begin_loc;
     double diff_dist = 0;
     boolean first_loc = false;
-
-    //---
-    protected void requestPermission(String permissionType, int requestCode) {
-        int permission = ContextCompat.checkSelfPermission(this,
-                permissionType);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{permissionType},
-                    requestCode );
-        }
-    }
-    //---
 
     void logging(String text) {
         logView.append(text + "\n");
@@ -77,10 +62,7 @@ public class MainActivity extends AppCompatActivity {
         };
         ActivityCompat.requestPermissions( this, neededPermissions, CODE_PERMISSIONS );
         //---
-
         //locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        //requestPermission(ACCESS_COARSE_LOCATION, RECORD_REQUEST_CODE);
     }
 
     //---
