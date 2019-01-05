@@ -197,12 +197,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         //---
-        return String.format(
-                "Coordinates: \nlat = %1$.4f\nlon = %2$.4f\ndiff = %3$.4f\ntime = %4$tF %4$tT",
-                location.getLatitude(),
-                location.getLongitude(),
-                diff_dist,
-                new Date(location.getTime()));
+        StringBuilder temp = new StringBuilder();
+        temp.append("Coordinates: \n");
+        temp.append(String.format("lat = %1$.4f\n", location.getLatitude()));
+        temp.append(String.format("lon = %1$.4f\n", location.getLongitude()));
+        temp.append(String.format("accuracy = %1$.4f\n", location.getAccuracy()));
+        temp.append(String.format("diff = %1$.4f\n", diff_dist));
+        temp.append(String.format("time = %1$tF %1$tT", new Date(location.getTime())));
+        return temp.toString();
     }
 
     private void checkEnabled() {
