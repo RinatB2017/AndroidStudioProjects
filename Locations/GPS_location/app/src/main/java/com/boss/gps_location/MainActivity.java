@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvStatusGPS;
     private TextView tvLocationGPS;
 
+    Location begin_loc;
+    double diff_dist = 0;
+    boolean first_loc = false;
+
     private TextView logView;
     private final String TAG = "States";
 
@@ -186,11 +190,29 @@ public class MainActivity extends AppCompatActivity {
             return "";
         }
 
+        //TODO
+        if(!first_loc) {
+            begin_loc = location;
+            first_loc = true;
+        }
+        else {
+            double temp_diff_lat = begin_loc.distanceTo(location);
+            if(temp_diff_lat != diff_dist)
+            {
+                diff_dist = temp_diff_lat;
+            }
+        }
+        //---
+
         StringBuilder temp = new StringBuilder();
         temp.append("Coordinates: \n");
         temp.append(String.format("lat = %1$.4f\n", location.getLatitude()));
         temp.append(String.format("lon = %1$.4f\n", location.getLongitude()));
         temp.append(String.format("accuracy = %1$.4f\n", location.getAccuracy()));
+        temp.append(String.format("speed = %1$.4f\n", location.getSpeed()));
+        temp.append(String.format("altitude = %1$.4f\n", location.getAltitude()));
+        temp.append(String.format("bearing = %1$.4f\n", location.getBearing()));
+        temp.append(String.format("diff = %1$.4f\n", diff_dist));
         temp.append(String.format("time = %1$tF %1$tT", new Date(location.getTime())));
         return temp.toString();
     }

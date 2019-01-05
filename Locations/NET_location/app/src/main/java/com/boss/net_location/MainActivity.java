@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         checkEnabled();
     }
 
+    /*
     public void update(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         checkEnabled();
         logging("OK");
     }
+    */
 
 
     @Override
@@ -202,6 +204,9 @@ public class MainActivity extends AppCompatActivity {
         temp.append(String.format("lat = %1$.4f\n", location.getLatitude()));
         temp.append(String.format("lon = %1$.4f\n", location.getLongitude()));
         temp.append(String.format("accuracy = %1$.4f\n", location.getAccuracy()));
+        temp.append(String.format("speed = %1$.4f\n", location.getSpeed()));
+        temp.append(String.format("altitude = %1$.4f\n", location.getAltitude()));
+        temp.append(String.format("bearing = %1$.4f\n", location.getBearing()));
         temp.append(String.format("diff = %1$.4f\n", diff_dist));
         temp.append(String.format("time = %1$tF %1$tT", new Date(location.getTime())));
         return temp.toString();
