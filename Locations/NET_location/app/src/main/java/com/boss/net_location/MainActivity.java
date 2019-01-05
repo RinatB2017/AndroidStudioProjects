@@ -5,6 +5,7 @@ import java.util.Date;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -16,6 +17,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -33,15 +37,52 @@ public class MainActivity extends AppCompatActivity {
 
     private LocationManager locationManager;
 
+    TabHost tabHost;
+
     Location begin_loc;
     double diff_dist = 0;
     boolean first_loc = false;
 
+    //---------------------------------------------------------------------------------------------
     void logging(String text) {
         logView.append(text + "\n");
         Log.i(TAG, text);
     }
 
+    //---------------------------------------------------------------------------------------------
+    void init_tabs() {
+        tabHost = (TabHost) findViewById(R.id.tabHost);
+
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec;
+
+        tabSpec = tabHost.newTabSpec("tab_main");
+        tabSpec.setContent(R.id.tab_main);
+        tabSpec.setIndicator(getString(R.string.main));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tab_log");
+        tabSpec.setContent(R.id.tab_log);
+        tabSpec.setIndicator(getString(R.string.log));
+        tabHost.addTab(tabSpec);
+
+        tabHost.setCurrentTab(0);
+        //---
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.weight = 1;
+
+        TabWidget tabWidget = tabHost.getTabWidget();
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            tabHost.getTabWidget().getChildAt(i).setLayoutParams(layoutParams);
+            TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,14 +104,18 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions( this, neededPermissions, CODE_PERMISSIONS );
         //---
         //locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        init_tabs();
     }
 
-    //---
+    //---------------------------------------------------------------------------------------------
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId())
@@ -88,8 +133,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    //---
 
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
@@ -108,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         checkEnabled();
     }
 
-    /*
+    //---------------------------------------------------------------------------------------------
     public void update(View view) {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CHANGE_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_WIFI_STATE) != PackageManager.PERMISSION_GRANTED &&
@@ -128,15 +174,15 @@ public class MainActivity extends AppCompatActivity {
         checkEnabled();
         logging("OK");
     }
-    */
 
-
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onPause() {
         super.onPause();
         locationManager.removeUpdates(locationListener);
     }
 
+    //---------------------------------------------------------------------------------------------
     private LocationListener locationListener = new LocationListener() {
 
         @Override
@@ -170,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //---------------------------------------------------------------------------------------------
     private void showLocation(Location location) {
         if (location == null) {
             logging("showLocation: location is NULL");
@@ -181,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //---------------------------------------------------------------------------------------------
     private String formatLocation(Location location) {
         if (location == null) {
             logging("formatLocation: location is NULL");
@@ -212,6 +260,7 @@ public class MainActivity extends AppCompatActivity {
         return temp.toString();
     }
 
+    //---------------------------------------------------------------------------------------------
     private void checkEnabled() {
         tvEnabledNet.setText("Enabled: "
                 + locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
@@ -219,7 +268,9 @@ public class MainActivity extends AppCompatActivity {
                 + locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
     }
 
+    //---------------------------------------------------------------------------------------------
     public void onClickLocationSettings(MainActivity view) {
         startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
     };
+
 }

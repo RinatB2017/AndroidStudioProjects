@@ -16,6 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvEnabledGPS;
     private TextView tvStatusGPS;
     private TextView tvLocationGPS;
+
+    TabHost tabHost;
 
     Location begin_loc;
     double diff_dist = 0;
@@ -84,6 +89,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    void init_tabs() {
+        tabHost = (TabHost) findViewById(R.id.tabHost);
+
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec;
+
+        tabSpec = tabHost.newTabSpec("tab_main");
+        tabSpec.setContent(R.id.tab_main);
+        tabSpec.setIndicator(getString(R.string.main));
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("tab_log");
+        tabSpec.setContent(R.id.tab_log);
+        tabSpec.setIndicator(getString(R.string.log));
+        tabHost.addTab(tabSpec);
+
+        tabHost.setCurrentTab(0);
+        //---
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        layoutParams.weight = 1;
+
+        TabWidget tabWidget = tabHost.getTabWidget();
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            tabHost.getTabWidget().getChildAt(i).setLayoutParams(layoutParams);
+            TextView textView = (TextView) tabWidget.getChildAt(i).findViewById(android.R.id.title);
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         logView = (TextView)findViewById(R.id.logView);
+
+        init_tabs();
+
+        logging("Init");
     }
 
     //---------------------------------------------------------------------------------------------
