@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                     metaInfo += "Sector " + j + ": Verified failuren";
                 }
             }
-            log.append(metaInfo);
+            log.append(metaInfo  + "\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         tagcomm = IsoDep.get(tag);
         if(tagcomm ==  null) {
-            log.append("tagcomm is null");
+            log.append("tagcomm is null" +"\n");
         }
         else {
             try {
