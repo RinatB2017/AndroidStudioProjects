@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity {
         }
         */
 
-        calc_dist();
+        //calc_dist();
 
         send_log("the end");
     }
