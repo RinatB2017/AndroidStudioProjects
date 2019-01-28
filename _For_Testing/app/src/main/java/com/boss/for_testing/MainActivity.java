@@ -38,6 +38,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -306,29 +307,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void test(View view) {
-        send_log("test");
-
-        //textViewInfo.setText("Hello");
-        //send_email("test");
-
-        ConvertBytes cb = new ConvertBytes();
-        //send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
-
-        //byte x = cb.to_byte("1F");
-        //send_log("byte = " + String.format("%02X", x));
-
-        /*
-        String temp = ":000102030405060708090A0B0C0D0E0F\n";
-        String hex_str = temp.substring(1, temp.length() - 1);
-
-        for(int n=0; n<hex_str.length(); n+=2) {
-            String str = hex_str.substring(n, n + 2);
-            int x = Integer.parseInt(str, 16);
-            send_log(String.valueOf(x));
+    public void ledControl(String name, int brightness) {
+        try {
+                FileWriter fw = new FileWriter("/sys/class/leds/" + name + "/brightness");
+                fw.write(Integer.toString(brightness));
+                fw.close();
+        } catch (Exception e) {
+            send_log("Управление LED недоступно");
         }
-        */
+    }
 
+    public void calc_dist() {
         double lat1 = 1.0;
         double lon1 = 1.0;
 
@@ -346,6 +335,34 @@ public class MainActivity extends AppCompatActivity {
         float distanceInMeters = loc1.distanceTo(loc2);
 
         send_log("dist = " + distanceInMeters + " meters");
+    }
+
+    public void test(View view) {
+        send_log("test");
+
+        //textViewInfo.setText("Hello");
+        //send_email("test");
+
+        ledControl("blue",  255);
+
+        //ConvertBytes cb = new ConvertBytes();
+        //send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
+
+        //byte x = cb.to_byte("1F");
+        //send_log("byte = " + String.format("%02X", x));
+
+        /*
+        String temp = ":000102030405060708090A0B0C0D0E0F\n";
+        String hex_str = temp.substring(1, temp.length() - 1);
+
+        for(int n=0; n<hex_str.length(); n+=2) {
+            String str = hex_str.substring(n, n + 2);
+            int x = Integer.parseInt(str, 16);
+            send_log(String.valueOf(x));
+        }
+        */
+
+        calc_dist();
 
         send_log("the end");
     }
