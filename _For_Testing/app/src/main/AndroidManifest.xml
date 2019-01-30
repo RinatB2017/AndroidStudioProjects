@@ -25,21 +25,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity2">
-        </activity>
-
-        <receiver android:name=".ServiceReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".SMSBroadcastReceiver" >
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>
