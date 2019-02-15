@@ -25,7 +25,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     //public final static String UUID = "e91521df-92b9-47bf-96d5-c52ee838f6f6";
-    public final static String UUID = "00001101-0000-1000-8000-00805F9B34FB";
+    public final static String UUID = "8ce255c0-200a-11e0-ac64-0800200c9a66";
+    //public final static String UUID = "00001101-0000-1000-8000-00805F9B34FB";
 
     private static final int RECORD_REQUEST_CODE = 101;
     final String LOG_TAG = "States";

@@ -30,10 +30,9 @@ public class ServerThread extends Thread {
     }
 
     public void run() {
-
         BluetoothSocket socket;
 
-        Log.d("ServerThread", "Started");
+        Log.d(LOG_TAG, "Started");
 
         if(bluetoothServerSocket == null) {
             return;
@@ -48,6 +47,7 @@ public class ServerThread extends Thread {
             }
             if (socket != null) {
                 communicatorService.createCommunicatorThread(socket).startCommunication();
+                Log.d(LOG_TAG, "socket != null");
             } else {
                 Log.d(LOG_TAG, "socket == null");
             }
