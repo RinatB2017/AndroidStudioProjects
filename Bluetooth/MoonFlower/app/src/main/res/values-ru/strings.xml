@@ -4,7 +4,7 @@
     <string name="Connect">Соединиться</string>
     <string name="Disconnect">Разьединиться</string>
     <string name="Options">Опции</string>
-    <string name="Clear">Очиска лога</string>
+    <string name="Clear">Очистка лога</string>
 
     <string name="bluetooth_not_found">Bluetooth модуль не найден</string>
     <string name="bluetooth_off">Bluetooth выключен</string>

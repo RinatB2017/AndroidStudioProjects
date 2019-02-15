@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/type_log" android:orderInCategory="100"
-        android:title="Тип лога" app:showAsAction="never" />
+        android:title="@string/type_log" app:showAsAction="never" />
     <item android:id="@+id/action_clear_log" android:orderInCategory="100"
-        android:title="Очистка лога" app:showAsAction="never" />
+        android:title="@string/clear_log" app:showAsAction="never" />
 </menu>
