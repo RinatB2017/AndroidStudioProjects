@@ -31,7 +31,7 @@ public class ServerThread extends Thread {
 
     public void run() {
 
-        BluetoothSocket socket = null;
+        BluetoothSocket socket;
 
         Log.d("ServerThread", "Started");
 
@@ -41,7 +41,7 @@ public class ServerThread extends Thread {
 
         while (true) {
             try {
-                  socket = bluetoothServerSocket.accept();
+                socket = bluetoothServerSocket.accept();
             } catch (IOException e) {
                 Log.d(LOG_TAG, "Stop: " + e.getLocalizedMessage());
                 break;
