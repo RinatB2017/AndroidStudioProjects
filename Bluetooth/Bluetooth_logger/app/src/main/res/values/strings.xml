@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Bluetooth_logger</string>
+    <string name="title_discover_devices">Найти устройства</string>
+    <string name="Connect">Соединиться</string>
+    <string name="Disconnect">Разьединиться</string>
+    <string name="Options">Опции</string>
+    <string name="Clear">Очистка лога</string>
+
+    <string name="bluetooth_not_found">Bluetooth not found</string>
+    <string name="bluetooth_off">Bluetooth off</string>
+    <string name="connection_on">Connection on</string>
+    <string name="connection_fail">Connection fail</string>
+    <string name="connection_breaks">Connection break</string>
+    <string name="bluetooth_error">Error connection</string>
+</resources>

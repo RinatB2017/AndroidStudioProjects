@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_settings_connect" android:orderInCategory="100"
+        android:title="@string/Connect" app:showAsAction="never" />
+    <item android:id="@+id/action_settings_disconnect" android:orderInCategory="100"
+        android:title="@string/Disconnect" app:showAsAction="never" />
+    <item android:id="@+id/action_settings_options" android:orderInCategory="100"
+        android:title="@string/Options" app:showAsAction="never" />
+    <item android:id="@+id/clear_log" android:orderInCategory="100"
+        android:title="@string/Clear" app:showAsAction="never" />
+</menu>
