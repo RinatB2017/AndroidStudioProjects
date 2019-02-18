@@ -1,0 +1,4 @@
+#Fri Dec 28 12:22:13 MSK 2018
+base.0=C\:\\Users\\User\\Programming\\GitHub\\AndroidStudioProjects\\Bluetooth\\MoonFlower_emul\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
