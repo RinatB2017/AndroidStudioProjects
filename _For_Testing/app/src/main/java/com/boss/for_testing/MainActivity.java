@@ -14,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     //---
 
     //---------------------------------------------------------------------------------------------
-    public void send_log(String text) {
+    public void send_log(int color, String text) {
         if (text == null) {
             return;
         }
         Message msg = new Message();
+        msg.arg1 = color;
         msg.obj = text;
         h_print.sendMessage(msg);
     }
@@ -117,8 +119,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 String text = (String) msg.obj;
+                int color = msg.arg1;
                 Log.i(LOG_TAG, text);
-                tv_log.append(text + "\n");
+
+                //tv_log.append(text + "\n");
+
+                String c_text = "<font color=#" + Integer.toHexString(color).substring(2) + ">" + text + "</font><br>";
+                tv_log.append(Html.fromHtml(c_text));
             }
         };
     }
@@ -297,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                 fw.write(Integer.toString(brightness));
                 fw.close();
         } catch (Exception e) {
-            send_log("Управление LED недоступно");
+            send_log(Color.BLACK, "Управление LED недоступно");
         }
     }
 
@@ -318,16 +325,16 @@ public class MainActivity extends AppCompatActivity {
 
         float distanceInMeters = loc1.distanceTo(loc2);
 
-        send_log("dist = " + distanceInMeters + " meters");
+        send_log(Color.BLACK, "dist = " + distanceInMeters + " meters");
     }
 
     public void test(View view) {
-        send_log("test");
+        send_log(Color.BLACK, "test");
 
         //textViewInfo.setText("Hello");
         //send_email("test");
 
-        ledControl("blue",  255);
+        //ledControl("blue",  255);
 
         //ConvertBytes cb = new ConvertBytes();
         //send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
@@ -348,7 +355,11 @@ public class MainActivity extends AppCompatActivity {
 
         //calc_dist();
 
-        send_log("the end");
+        send_log(Color.RED,   "red");
+        send_log(Color.GREEN, "green");
+        send_log(Color.BLUE,  "blue");
+
+        send_log(Color.BLACK, "the end");
     }
 
     //---------------------------------------------------------------------------------------------
