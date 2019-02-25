@@ -1,11 +1,16 @@
 package com.boss.for_testing;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,6 +25,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int RECORD_REQUEST_CODE = 101;
     static final String LOG_TAG = "States";
 
     private static final String s_log = "s_log";
@@ -35,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
     Button btn_test;
     TextView textViewInfo;
     //---
+
+    //---------------------------------------------------------------------------------------------
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{permissionType}, requestCode
+            );
+        }
+    }
 
     //---------------------------------------------------------------------------------------------
     public void send_log(int color, String text) {
@@ -84,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
     private void addShortcut() {
         send_log(Color.BLACK, "addShortcut");
 
+        requestPermission(Manifest.permission.INSTALL_SHORTCUT, RECORD_REQUEST_CODE);
+
         //Adding shortcut for MainActivity
         //on Home screen
         Intent shortcutIntent = new Intent(getApplicationContext(),
@@ -105,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     private void removeShortcut() {
         send_log(Color.BLACK, "removeShortcut");
+
+        requestPermission(Manifest.permission.UNINSTALL_SHORTCUT, RECORD_REQUEST_CODE);
 
         //Deleting shortcut for MainActivity
         //on Home screen
