@@ -1,17 +1,11 @@
 package com.boss.for_testing;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.location.Location;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,31 +14,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.FileWriter;
 
 public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
 
-    private static final int RECORD_REQUEST_CODE = 101;
-
     private static final String s_log = "s_log";
     private static final String s_current_tab = "s_current_tab";
     private static final String s_info = "s_info";
-    private static final String s_flag_mail = "s_flag_mail";
 
     TextView tv_log;
 
     TabHost tabHost;
     Handler h_print;
-
-    CheckBox cb_flag_mail;
 
     //---
     Button btn_test;
@@ -60,29 +45,6 @@ public class MainActivity extends AppCompatActivity {
         msg.arg1 = color;
         msg.obj = text;
         h_print.sendMessage(msg);
-    }
-
-    //---------------------------------------------------------------------------------------------
-    protected void requestPermission(String permissionType, int requestCode) {
-        int permission = ContextCompat.checkSelfPermission(this,
-                permissionType);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{permissionType}, requestCode
-            );
-        }
-    }
-
-    //---------------------------------------------------------------------------------------------
-    private void requestSmsPermission(String permission) {
-        //String permission = Manifest.permission.RECEIVE_SMS;
-        int grant = ContextCompat.checkSelfPermission(this, permission);
-        if (grant != PackageManager.PERMISSION_GRANTED) {
-            String[] permission_list = new String[1];
-            permission_list[0] = permission;
-            ActivityCompat.requestPermissions(this, permission_list, 1);
-        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -104,10 +66,58 @@ public class MainActivity extends AppCompatActivity {
                 showAbout();
                 break;
 
+            case R.id.add_icon:
+                addShortcut();
+                break;
+
+            case R.id.remove_icon:
+                removeShortcut();
+                break;
+
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private void addShortcut() {
+        send_log(Color.BLACK, "addShortcut");
+
+        //Adding shortcut for MainActivity
+        //on Home screen
+        Intent shortcutIntent = new Intent(getApplicationContext(),
+                MainActivity.class);
+
+        shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+        Intent addIntent = new Intent();
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                Intent.ShortcutIconResource.fromContext(getApplicationContext(),
+                        R.mipmap.ic_launcher));
+
+        addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        getApplicationContext().sendBroadcast(addIntent);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    private void removeShortcut() {
+        send_log(Color.BLACK, "removeShortcut");
+
+        //Deleting shortcut for MainActivity
+        //on Home screen
+        Intent shortcutIntent = new Intent(getApplicationContext(),
+                MainActivity.class);
+        shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+        Intent addIntent = new Intent();
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
+
+        addIntent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
+        getApplicationContext().sendBroadcast(addIntent);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -169,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putString(s_log, tv_log.getText().toString());
         savedInstanceState.putInt(s_current_tab, tabHost.getCurrentTab());
         savedInstanceState.putString(s_info, textViewInfo.getText().toString());
-        savedInstanceState.putBoolean(s_flag_mail, cb_flag_mail.isChecked());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -181,18 +190,12 @@ public class MainActivity extends AppCompatActivity {
 
         init_log();
 
-        requestSmsPermission(Manifest.permission.RECEIVE_SMS);
-
         //---
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
-
-        cb_flag_mail = (CheckBox)findViewById(R.id.cb_mail);
         //---
 
         init_tabs();
-
-        requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
         if (savedInstanceState != null) {
             String temp = savedInstanceState.getString(s_log);
@@ -206,9 +209,6 @@ public class MainActivity extends AppCompatActivity {
             if(info != null) {
                 textViewInfo.setText(info);
             }
-
-            boolean is_checked = savedInstanceState.getBoolean(s_flag_mail);
-            cb_flag_mail.setChecked(is_checked);
 
             int current_tab = savedInstanceState.getInt(s_current_tab);
             tabHost.setCurrentTab(current_tab);
@@ -298,89 +298,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void ledControl(String name, int brightness) {
-        try {
-                FileWriter fw = new FileWriter("/sys/class/leds/" + name + "/brightness");
-                fw.write(Integer.toString(brightness));
-                fw.close();
-        } catch (Exception e) {
-            send_log(Color.BLACK, "Управление LED недоступно");
-        }
-    }
-
-    public void calc_dist() {
-        double lat1 = 1.0;
-        double lon1 = 1.0;
-
-        double lat2 = 1.00001;  //1.1057462 meters
-        double lon2 = 1.0; //1.1130265 meters
-
-        Location loc1 = new Location("");
-        loc1.setLatitude(lat1);
-        loc1.setLongitude(lon1);
-
-        Location loc2 = new Location("");
-        loc2.setLatitude(lat2);
-        loc2.setLongitude(lon2);
-
-        float distanceInMeters = loc1.distanceTo(loc2);
-
-        send_log(Color.BLACK, "dist = " + distanceInMeters + " meters");
-    }
-
     public void test(View view) {
         send_log(Color.BLACK, "test");
-
-        //textViewInfo.setText("Hello");
-        //send_email("test");
-
-        //ledControl("blue",  255);
-
-        //ConvertBytes cb = new ConvertBytes();
-        //send_log(cb.to_sting((byte)0x0A, (byte)0x0B));
-
-        //byte x = cb.to_byte("1F");
-        //send_log("byte = " + String.format("%02X", x));
-
-        /*
-        String temp = ":000102030405060708090A0B0C0D0E0F\n";
-        String hex_str = temp.substring(1, temp.length() - 1);
-
-        for(int n=0; n<hex_str.length(); n+=2) {
-            String str = hex_str.substring(n, n + 2);
-            int x = Integer.parseInt(str, 16);
-            send_log(String.valueOf(x));
-        }
-        */
-
-        //calc_dist();
 
         send_log(Color.RED,   "red");
         send_log(Color.GREEN, "green");
         send_log(Color.BLUE,  "blue");
 
         send_log(Color.BLACK, "the end");
-    }
-
-    //---------------------------------------------------------------------------------------------
-    void send_email(String text) {
-        Intent i = new Intent(Intent.ACTION_SENDTO);
-
-        if(cb_flag_mail.isChecked()) {
-            i.setType("message/rfc822");
-            i.setData(Uri.parse("mailto:"));
-        } else {
-            i.setDataAndType(Uri.parse("mailto:"), "message/rfc822");
-        }
-
-        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"test@gmail.com"});
-        i.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        i.putExtra(Intent.EXTRA_TEXT   , "body of email");
-        try {
-            startActivity(Intent.createChooser(i, "Send mail..."));
-        } catch (android.content.ActivityNotFoundException ex) {
-            Toast.makeText(this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-        }
     }
 
     //---------------------------------------------------------------------------------------------
