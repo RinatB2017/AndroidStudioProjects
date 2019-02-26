@@ -29,9 +29,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     TabHost tabHost;
     Handler h_print;
+
+    Spinner spinner;
+    Button btn_set_color;
 
     //---
     Button btn_test;
@@ -227,6 +232,21 @@ public class MainActivity extends AppCompatActivity {
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
+        //---
+        // Получаем экземпляр элемента Spinner
+        spinner = (Spinner)findViewById(R.id.spinner);
+
+        // Настраиваем адаптер
+        ArrayAdapter<?> adapter =
+                ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Вызываем адаптер
+        spinner.setAdapter(adapter);
+
+        btn_set_color = (Button)findViewById(R.id.btn_set_color);
+        //---
+
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
@@ -342,6 +362,52 @@ public class MainActivity extends AppCompatActivity {
         send_log(Color.BLUE,  "blue");
 
         send_log(Color.BLACK, "the end");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void set_color(View view) {
+        String color_str = spinner.getSelectedItem().toString();
+        send_log(Color.BLACK, spinner.getSelectedItem().toString());
+        switch (color_str)
+        {
+            case "BLACK":
+                btn_set_color.setBackgroundColor(Color.BLACK);
+                break;
+            case "DKGRAY":
+                btn_set_color.setBackgroundColor(Color.DKGRAY);
+                break;
+            case "GRAY":
+                btn_set_color.setBackgroundColor(Color.GRAY);
+                break;
+            case "LTGRAY":
+                btn_set_color.setBackgroundColor(Color.LTGRAY);
+                break;
+            case "WHITE":
+                btn_set_color.setBackgroundColor(Color.WHITE);
+                break;
+            case "RED":
+                btn_set_color.setBackgroundColor(Color.RED);
+                break;
+            case "GREEN":
+                btn_set_color.setBackgroundColor(Color.GREEN);
+                break;
+            case "BLUE":
+                btn_set_color.setBackgroundColor(Color.BLUE);
+                break;
+            case "YELLOW":
+                btn_set_color.setBackgroundColor(Color.YELLOW);
+                break;
+            case "CYAN":
+                btn_set_color.setBackgroundColor(Color.CYAN);
+                break;
+            case "MAGENTA":
+                btn_set_color.setBackgroundColor(Color.MAGENTA);
+                break;
+
+            default:
+                send_log(Color.RED, "unknown color [" + color_str + "]");
+                break;
+        }
     }
 
     //---------------------------------------------------------------------------------------------

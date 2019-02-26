@@ -11,4 +11,18 @@
 
     <string name="test">Test</string>
 
+    <string-array name="colors">
+        <item>BLACK</item>
+        <item>DKGRAY</item>
+        <item>GRAY</item>
+        <item>LTGRAY</item>
+        <item>WHITE</item>
+        <item>RED</item>
+        <item>GREEN</item>
+        <item>BLUE</item>
+        <item>YELLOW</item>
+        <item>CYAN</item>
+        <item>MAGENTA</item>
+    </string-array>
+
 </resources>
