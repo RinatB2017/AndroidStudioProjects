@@ -4,12 +4,14 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
@@ -22,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -227,15 +230,28 @@ public class MainActivity extends AppCompatActivity
 
         init_log();
 
-        //---
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
         main_view = (ImageView) findViewById(R.id.main_view);
         main_view.setOnTouchListener(this);
+
+        //TODO временный костыль
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
-        int width  = 600;
-        int heigth = 600;
+        Display display = getWindowManager().getDefaultDisplay();
+        Point p = new Point();
+        int s = 600;
+        display.getSize(p);
+        int w = p.x;
+        int h = p.y;
+        if(w < h)
+            s = w;
+        else
+            s = h;
+
+        int width  = s;
+        int heigth = s;
         bitmap = Bitmap.createBitmap(width, heigth, Bitmap.Config.ARGB_8888);
         main_view.setImageBitmap(bitmap);
 
