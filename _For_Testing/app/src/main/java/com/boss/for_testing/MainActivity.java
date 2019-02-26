@@ -36,8 +36,7 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity
-        implements View.OnTouchListener {
+public class MainActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
     static final String LOG_TAG = "States";
 
@@ -53,11 +52,6 @@ public class MainActivity extends AppCompatActivity
     //---
     Button btn_test;
     TextView textViewInfo;
-
-    private Paint mPaint;
-    Canvas c_bitmap;
-    ImageView main_view;
-    Bitmap bitmap;
     //---
 
     //---------------------------------------------------------------------------------------------
@@ -233,38 +227,8 @@ public class MainActivity extends AppCompatActivity
         btn_test = (Button) findViewById(R.id.btn_test);
         textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
-        main_view = (ImageView) findViewById(R.id.main_view);
-        main_view.setOnTouchListener(this);
-
         //TODO временный костыль
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //---
-        Display display = getWindowManager().getDefaultDisplay();
-        Point p = new Point();
-        int s = 600;
-        display.getSize(p);
-        int w = p.x;
-        int h = p.y;
-        if(w < h)
-            s = w;
-        else
-            s = h;
-
-        int width  = s;
-        int heigth = s;
-        bitmap = Bitmap.createBitmap(width, heigth, Bitmap.Config.ARGB_8888);
-        main_view.setImageBitmap(bitmap);
-
-        c_bitmap = new Canvas(bitmap);
-        mPaint = new Paint();
-
-        final int[] colors = new int[] { Color.RED, Color.CYAN, Color.MAGENTA, Color.YELLOW };
-        Shader shader = new SweepGradient(width / 2, heigth / 2, colors, null);
-        mPaint.setShader(shader);
-        c_bitmap.drawCircle(width / 2, heigth / 2, width / 2, mPaint);
-
-        //c_bitmap.drawRect(0, 0, width, heigth, mPaint);
-        c_bitmap.drawCircle(width / 2, heigth / 2, width / 2, mPaint);
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
 
         init_tabs();
@@ -378,27 +342,6 @@ public class MainActivity extends AppCompatActivity
         send_log(Color.BLUE,  "blue");
 
         send_log(Color.BLACK, "the end");
-    }
-
-    //---------------------------------------------------------------------------------------------
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            float x = event.getX();
-            float y = event.getY();
-
-            int pixelColor = bitmap.getPixel((int)x, (int)y);
-            int pixelRed = Color.red(pixelColor);
-            int pixelGreen = Color.green(pixelColor);
-            int pixelBlue = Color.blue(pixelColor);
-
-            send_log(Color.BLACK,   "R " + String.valueOf(pixelRed));
-            send_log(Color.BLACK,   "G " + String.valueOf(pixelGreen));
-            send_log(Color.BLACK,   "B " + String.valueOf(pixelBlue));
-        }
-
-        return false;
     }
 
     //---------------------------------------------------------------------------------------------

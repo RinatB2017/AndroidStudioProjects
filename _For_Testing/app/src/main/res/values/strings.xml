@@ -9,4 +9,6 @@
     <string name="add_icon">Добавить иконку</string>
     <string name="remove_icon">Удалить иконку</string>
 
+    <string name="test">Test</string>
+
 </resources>
