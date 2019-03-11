@@ -11,6 +11,8 @@ import static org.junit.Assert.*;
 
 //---
 import android.support.test.rule.ActivityTestRule;
+import android.widget.Button;
+import android.widget.SeekBar;
 
 import com.boss.for_testing.MainActivity;
 import com.boss.for_testing.R;
@@ -64,5 +66,16 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.boss.for_testing", appContext.getPackageName());
+
+        //---
+        MainActivity activity = mActivityRule.getActivity();
+
+        Button btn = (Button)activity.findViewById(R.id.btn_test);
+        btn.setText("XXX");
+
+        onView(withId(R.id.btn_test)).check(matches(withText("XXX")));
+
+        SeekBar sb = (SeekBar)activity.findViewById(R.id.sb_test);
+        assertEquals(sb.getMax(), 0xFF);
     }
 }
