@@ -21,7 +21,10 @@ public class MagicCircle extends AppCompatImageView
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int s = 200;
+    int width  = 200;
+    int height = 200;
+    int center_x = width / 2;
+    int center_y = height / 2;
 
     public MagicCircle(Context context) {
         super(context);
@@ -38,18 +41,13 @@ public class MagicCircle extends AppCompatImageView
     }
 
     public void init() {
-        bitmap = Bitmap.createBitmap(s, s, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
-        mPaint.setColor(Color.RED);
-        mPaint.setStrokeWidth(2);
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-
         //---
         int fontSize = 60;
-        String text = "Text";
+        String text = "Test";
 
         mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
@@ -58,25 +56,30 @@ public class MagicCircle extends AppCompatImageView
         Paint fontPaint;
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fontPaint.setTextSize(fontSize);
-        float width = fontPaint.measureText(text);
+        float text_width = fontPaint.measureText(text);
 
         Rect bounds = new Rect();
         fontPaint.getTextBounds(text, 0, 1, bounds);
 
-        float height = bounds.height();
+        float text_height = bounds.height();
 
         c_bitmap.drawText(text,
-                s / 2 - width / 2,
-                s / 2 + height / 2,
+                center_x - text_width / 2,
+                center_y + text_height / 2,
                 mPaint);
         //---
+
+        mPaint.setColor(Color.RED);
+        mPaint.setStrokeWidth(2);
+        mPaint.setAntiAlias(true);
+        mPaint.setStyle(Paint.Style.STROKE);
 
         //c_bitmap.drawCircle(s / 2, s / 2, s / 2 - 1, mPaint);
         //c_bitmap.drawCircle(s / 2, s / 2, s / 2 - 20, mPaint);
 
-        RectF rectf1 = new RectF(0, 0, s, s);
-        RectF rectf2 = new RectF(20, 20, s-20, s-20);
-        c_bitmap.rotate(90, s / 2, s / 2);
+        RectF rectf1 = new RectF(0,  0,  width,     height);
+        RectF rectf2 = new RectF(20, 20, width-20,  height-20);
+        c_bitmap.rotate(90, center_x, center_y);
         c_bitmap.drawArc(rectf1, 20, 320, false, mPaint);
         c_bitmap.drawArc(rectf2, 20, 320, false, mPaint);
 
@@ -95,7 +98,7 @@ public class MagicCircle extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(bitmap.getPixel((int)x, (int)y));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 5, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 5, mPaint);
 
         setImageBitmap(bitmap);
 
@@ -104,6 +107,6 @@ public class MagicCircle extends AppCompatImageView
     }
 
     public int get_color() {
-        return bitmap.getPixel(s / 2, s / 2);
+        return bitmap.getPixel(center_x, center_y);
     }
 }

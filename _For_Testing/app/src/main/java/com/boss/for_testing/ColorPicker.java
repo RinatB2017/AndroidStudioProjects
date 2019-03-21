@@ -20,8 +20,12 @@ public class ColorPicker extends AppCompatImageView
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int s = 600;
+    int width = 600;
+    int height = 600;
     int sw = 150;
+    int center_x = width / 2;
+    int center_y = height / 2;
+    int radius = width / 2;
 
     public ColorPicker(Context context) {
         super(context);
@@ -38,7 +42,7 @@ public class ColorPicker extends AppCompatImageView
     }
 
     public void init() {
-        bitmap = Bitmap.createBitmap(s, s, Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
@@ -47,12 +51,12 @@ public class ColorPicker extends AppCompatImageView
         mPaint.setStyle(Paint.Style.STROKE);
 
         final int[] colors = new int[] { Color.CYAN, Color.MAGENTA, Color.YELLOW };
-        Shader shader = new SweepGradient(s / 2, s / 2, colors, null);
+        Shader shader = new SweepGradient(center_x, center_x, colors, null);
         mPaint.setShader(shader);
 
-        RectF rectf = new RectF((sw / 2), (sw / 2), s-(sw / 2), s-(sw / 2));
+        RectF rectf = new RectF(center_x, center_y, width-center_x, height-center_y);
         c_bitmap.rotate(90, 300, 300);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 2 - (sw / 2), mPaint);
+        c_bitmap.drawCircle(center_x, center_y, radius - (sw / 2), mPaint);
         //c_bitmap.drawArc(rectf, 20, 320, false, mPaint);
 
         //mPaint.setStrokeWidth(2);
@@ -61,7 +65,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(Color.BLUE);
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 5, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 5, mPaint);
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);
@@ -78,7 +82,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(bitmap.getPixel((int)x, (int)y));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 5, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 5, mPaint);
 
         setImageBitmap(bitmap);
 
@@ -87,6 +91,6 @@ public class ColorPicker extends AppCompatImageView
     }
 
     public int get_color() {
-        return bitmap.getPixel(s / 2, s / 2);
+        return bitmap.getPixel(center_x, center_y);
     }
 }
