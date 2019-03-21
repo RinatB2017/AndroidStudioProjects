@@ -129,6 +129,13 @@ public class MagicCircle extends AppCompatImageView
         float x = event.getX();
         float y = event.getY();
 
+        //---
+        float correct_x = (getWidth() - bitmap.getWidth()) / 2;
+        float correct_y = (getHeight() - bitmap.getHeight()) / 2;
+        x -= correct_x;
+        y -= correct_y;
+        //---
+
         double dist = calc_dist(x, y);
         if(dist > radius_1) {
             return false;
@@ -146,9 +153,17 @@ public class MagicCircle extends AppCompatImageView
                 10,
                 width - 10,
                 height - 10);
-        mPaint.setColor(Color.RED);
+
+        mPaint.setStrokeWidth(18);
+        mPaint.setColor(Color.WHITE);
+        c_bitmap.drawArc(rectf1,
+                begin_angle,
+                end_angle,
+                false,
+                mPaint);
+
         mPaint.setStrokeWidth(20);
-        //c_bitmap.rotate(90, center_x, center_y);
+        mPaint.setColor(Color.RED);
         c_bitmap.drawArc(rectf1,
                 begin_angle,
                 angle - begin_angle,
@@ -193,6 +208,17 @@ public class MagicCircle extends AppCompatImageView
         double radians = Math.atan2(y - center_y, x - center_x);
         float angle = (float)radians * 180.0f / (float)Math.PI;
         return angle;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void set_new_size(int new_width, int new_hight) {
+        width = new_width;
+        height = new_hight;
+
+        center_x = width / 2;
+        center_y = height / 2;
+
+        init();
     }
 
     //---------------------------------------------------------------------------------------------

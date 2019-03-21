@@ -106,7 +106,9 @@ public class ColorPicker extends AppCompatImageView
 
         //---
         float correct_x = (getWidth() - bitmap.getWidth()) / 2;
+        float correct_y = (getHeight() - bitmap.getHeight()) / 2;
         x -= correct_x;
+        y -= correct_y;
         //---
 
         if(x > bitmap.getWidth()) {

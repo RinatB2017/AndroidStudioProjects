@@ -252,6 +252,20 @@ public class MainActivity extends AppCompatActivity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
 
+        //---
+        ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
+        cp.set_new_size(400, 400);
+
+        MagicCircle mc1 = (MagicCircle)findViewById(R.id.magic_circle_1);
+        MagicCircle mc2 = (MagicCircle)findViewById(R.id.magic_circle_2);
+        MagicCircle mc3 = (MagicCircle)findViewById(R.id.magic_circle_3);
+        MagicCircle mc4 = (MagicCircle)findViewById(R.id.magic_circle_4);
+        mc1.set_new_size(150, 150);
+        mc2.set_new_size(150, 150);
+        mc3.set_new_size(150, 150);
+        mc4.set_new_size(150, 150);
+        //---
+
         init_tabs();
 
         if (savedInstanceState != null) {
