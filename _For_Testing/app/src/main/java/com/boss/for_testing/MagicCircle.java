@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
@@ -13,26 +14,25 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class ColorPicker extends AppCompatImageView
+public class MagicCircle extends AppCompatImageView
         implements View.OnTouchListener
 {
     Paint mPaint;
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int s = 600;
-    int sw = 150;
+    int s = 200;
 
-    public ColorPicker(Context context) {
+    public MagicCircle(Context context) {
         super(context);
     }
 
-    public ColorPicker(Context context, AttributeSet attrs) {
+    public MagicCircle(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
         init();
     }
 
-    public ColorPicker(Context context, AttributeSet attrs, int defStyle) {
+    public MagicCircle(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -43,25 +43,42 @@ public class ColorPicker extends AppCompatImageView
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
-        mPaint.setStrokeWidth(sw);
+        mPaint.setStrokeWidth(2);
+        mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.STROKE);
 
-        final int[] colors = new int[] { Color.CYAN, Color.MAGENTA, Color.YELLOW };
-        Shader shader = new SweepGradient(s / 2, s / 2, colors, null);
-        mPaint.setShader(shader);
+        //---
+        int fontSize = 60;
+        String text = "Text";
 
-        RectF rectf = new RectF((sw / 2), (sw / 2), s-(sw / 2), s-(sw / 2));
-        c_bitmap.rotate(90, 300, 300);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 2 - (sw / 2), mPaint);
-        //c_bitmap.drawArc(rectf, 20, 320, false, mPaint);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setAntiAlias(true);
+        mPaint.setTextSize(fontSize);
 
-        //mPaint.setStrokeWidth(2);
-        //c_bitmap.drawRect(0, 0, s, s, mPaint);
+        Paint fontPaint;
+        fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fontPaint.setTextSize(fontSize);
+        float width = fontPaint.measureText(text);
 
-        mPaint.reset();
-        mPaint.setColor(Color.BLUE);
-        mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(s / 2, s / 2, s / 5, mPaint);
+        Rect bounds = new Rect();
+        fontPaint.getTextBounds(text, 0, 1, bounds);
+
+        float height = bounds.height();
+
+        c_bitmap.drawText(text,
+                s / 2 - width / 2,
+                s / 2 + height / 2,
+                mPaint);
+        //---
+
+        //c_bitmap.drawCircle(s / 2, s / 2, s / 2 - 1, mPaint);
+        //c_bitmap.drawCircle(s / 2, s / 2, s / 2 - 20, mPaint);
+
+        RectF rectf1 = new RectF(0, 0, s, s);
+        RectF rectf2 = new RectF(20, 20, s-20, s-20);
+        c_bitmap.rotate(90, s / 2, s / 2);
+        c_bitmap.drawArc(rectf1, 20, 320, false, mPaint);
+        c_bitmap.drawArc(rectf2, 20, 320, false, mPaint);
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);

@@ -15,6 +15,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
@@ -353,15 +354,30 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
+    public class UpdateColor implements ColorPickerDialog.OnColorChangedListener {
+        public void colorChanged(int color) {
+            //ShowColor.setBackgroundColor(color);
+            //show the color value
+
+            send_log(Color.RED, "color = " + String.valueOf(color));
+        }
+    }
+
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        send_log(Color.BLACK, "test");
+        ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
+        send_log(Color.RED, "color = " + String.valueOf(cp.get_color()));
 
-        send_log(Color.RED,   "red");
-        send_log(Color.GREEN, "green");
-        send_log(Color.BLUE,  "blue");
+//        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
+//        dlg.show();
 
-        send_log(Color.BLACK, "the end");
+//         send_log(Color.BLACK, "test");
+// 
+//         send_log(Color.RED,   "red");
+//         send_log(Color.GREEN, "green");
+//         send_log(Color.BLUE,  "blue");
+// 
+//         send_log(Color.BLACK, "the end");
     }
 
     //---------------------------------------------------------------------------------------------
