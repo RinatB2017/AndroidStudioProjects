@@ -260,10 +260,16 @@ public class MainActivity extends AppCompatActivity {
         MagicCircle mc2 = (MagicCircle)findViewById(R.id.magic_circle_2);
         MagicCircle mc3 = (MagicCircle)findViewById(R.id.magic_circle_3);
         MagicCircle mc4 = (MagicCircle)findViewById(R.id.magic_circle_4);
+
         mc1.set_new_size(150, 150);
         mc2.set_new_size(150, 150);
         mc3.set_new_size(150, 150);
         mc4.set_new_size(150, 150);
+
+        mc1.set_fontsize(50);
+        mc2.set_fontsize(50);
+        mc3.set_fontsize(50);
+        mc4.set_fontsize(50);
         //---
 
         init_tabs();

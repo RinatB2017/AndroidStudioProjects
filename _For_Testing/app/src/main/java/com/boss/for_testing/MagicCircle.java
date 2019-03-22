@@ -27,13 +27,15 @@ public class MagicCircle extends AppCompatImageView
     int center_y = height / 2;
 
     int radius_1 = width / 2;
-    int radius_2 = width / 2 - 20;
+    int radius_2 = width / 6;
 
     float begin_angle = 20;
     float end_angle   = 340;
 
     float temp_x = 0;
     float temp_y = 0;
+
+    int fontsize = 60;
 
     //---------------------------------------------------------------------------------------------
     public MagicCircle(Context context) {
@@ -59,16 +61,15 @@ public class MagicCircle extends AppCompatImageView
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
         //---
-        int fontSize = 60;
         String text = "Test";
 
         mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
-        mPaint.setTextSize(fontSize);
+        mPaint.setTextSize(fontsize);
 
         Paint fontPaint;
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        fontPaint.setTextSize(fontSize);
+        fontPaint.setTextSize(fontsize);
         float text_width = fontPaint.measureText(text);
 
         Rect bounds = new Rect();
@@ -217,6 +218,13 @@ public class MagicCircle extends AppCompatImageView
 
         center_x = width / 2;
         center_y = height / 2;
+
+        init();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void set_fontsize(int value) {
+        fontsize = value;
 
         init();
     }
