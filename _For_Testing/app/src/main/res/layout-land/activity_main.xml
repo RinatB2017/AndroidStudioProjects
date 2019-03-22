@@ -38,27 +38,6 @@
                     android:text="Button" />
 
                 <!-- -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:entries="@array/colors" />
-
-                    <Button
-                        android:id="@+id/btn_set_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="set_color"
-                        android:text="Color" />
-
-                </LinearLayout>
-
                 <com.boss.for_testing.ColorPicker
                     android:id="@+id/main_view"
                     android:layout_width="wrap_content"
@@ -91,19 +70,7 @@
                         android:layout_weight="1" />
 
                 </LinearLayout>
-
-                <SeekBar
-                    android:id="@+id/sb_test"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:max="0xFF" />
-
                 <!-- -->
-
-                <TextView
-                    android:id="@+id/textViewInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity {
     TabHost tabHost;
     Handler h_print;
 
-    Spinner spinner;
-    Button btn_set_color;
-
     //---
     Button btn_test;
     TextView textViewInfo;
@@ -231,21 +228,20 @@ public class MainActivity extends AppCompatActivity {
         init_log();
 
         btn_test = (Button) findViewById(R.id.btn_test);
-        textViewInfo = (TextView) findViewById(R.id.textViewInfo);
 
         //---
         // Получаем экземпляр элемента Spinner
-        spinner = (Spinner)findViewById(R.id.spinner);
+        //spinner = (Spinner)findViewById(R.id.spinner);
 
         // Настраиваем адаптер
-        ArrayAdapter<?> adapter =
-                ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //ArrayAdapter<?> adapter =
+        //        ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Вызываем адаптер
-        spinner.setAdapter(adapter);
+        //spinner.setAdapter(adapter);
 
-        btn_set_color = (Button)findViewById(R.id.btn_set_color);
+        //btn_set_color = (Button)findViewById(R.id.btn_set_color);
         //---
 
         //TODO временный костыль
@@ -385,11 +381,11 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
-        send_log(Color.RED, "color = " + String.valueOf(cp.get_color()));
+        //ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
+        //send_log(Color.RED, "color = " + String.valueOf(cp.get_color()));
 
-//        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
-//        dlg.show();
+        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
+        dlg.show();
 
 //         send_log(Color.BLACK, "test");
 // 
@@ -401,6 +397,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    /*
     public void set_color(View view) {
         String color_str = spinner.getSelectedItem().toString();
         send_log(Color.BLACK, spinner.getSelectedItem().toString());
@@ -445,6 +442,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+    */
 
     //---------------------------------------------------------------------------------------------
 }

@@ -22,8 +22,8 @@ public class ColorPicker extends AppCompatImageView
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int width  = 600;
-    int height = 600;
+    int width  = 500;
+    int height = 500;
     int sw = width / 4;
     int center_x = width / 2;
     int center_y = height / 2;
@@ -111,6 +111,12 @@ public class ColorPicker extends AppCompatImageView
         y -= correct_y;
         //---
 
+        if(x <= 0) {
+            return false;
+        }
+        if(y <= 0) {
+            return false;
+        }
         if(x > bitmap.getWidth()) {
             return false;
         }
