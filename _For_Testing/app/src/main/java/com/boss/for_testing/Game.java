@@ -92,6 +92,19 @@ public class Game extends AppCompatImageView
         int x = (int)event.getX();
         int y = (int)event.getY();
 
+        //---
+        int correct_x = (getWidth() - bitmap.getWidth()) / 2;
+        int correct_y = (getHeight() - bitmap.getHeight()) / 2;
+        x -= correct_x;
+        y -= correct_y;
+        //---
+
+        if(x <= 0) {
+            return false;
+        }
+        if(y <= 0) {
+            return false;
+        }
         if(x > bitmap.getWidth()) {
             return false;
         }
