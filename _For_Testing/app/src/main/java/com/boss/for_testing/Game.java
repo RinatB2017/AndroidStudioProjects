@@ -17,8 +17,13 @@ public class Game extends AppCompatImageView
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int width  = 15 * 64;
-    int height = 24 * 64;
+    int max_x = 15;
+    int max_y = 24;
+
+    int width_diamond = 64;
+
+    int width  = max_x * width_diamond;
+    int height = max_y * width_diamond;
 
     //---------------------------------------------------------------------------------------------
     public Game(Context context) {
@@ -47,8 +52,8 @@ public class Game extends AppCompatImageView
 
         //c_bitmap.drawRect(0, 0, width, height, mPaint);
 
-        int max_y = height / 32;
-        int max_x = width / 32;
+        //int max_y = height / 32;
+        //int max_x = width / 32;
 
         int color = Color.BLACK;
         int old_color = Color.BLACK;
@@ -70,21 +75,36 @@ public class Game extends AppCompatImageView
                 } while(color == old_color);
                 old_color = color;
                 mPaint.setColor(color);
-                c_bitmap.drawCircle(x * 64 + 32, y * 64 +32, 32, mPaint);
+                c_bitmap.drawCircle(x * width_diamond + width_diamond / 2,
+                        y * width_diamond + width_diamond / 2,
+                        width_diamond / 2, mPaint);
             }
         }
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);
-
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        float x = event.getX();
-        float y = event.getY();
+        int x = (int)event.getX();
+        int y = (int)event.getY();
+
+        int index_x = x / width_diamond;
+        int index_y = y / width_diamond;
+
+        int color = bitmap.getPixel(index_x, index_y);
+
+        if(color == Color.GREEN) {
+            mPaint.setColor(Color.BLACK);
+            c_bitmap.drawCircle(index_x * width_diamond + width_diamond / 2,
+                    index_y * width_diamond + width_diamond / 2,
+                    width_diamond / 2, mPaint);
+            setImageBitmap(bitmap);
+            return true;
+        }
 
         return false;
     }
