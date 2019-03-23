@@ -17,10 +17,10 @@ public class Game extends AppCompatImageView
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int max_x = 15;
-    int max_y = 24;
+    int max_x = 5; //7;
+    int max_y = 8; //10;
 
-    int width_diamond = 64;
+    int width_diamond = 128;
 
     int width  = max_x * width_diamond;
     int height = max_y * width_diamond;
@@ -92,10 +92,17 @@ public class Game extends AppCompatImageView
         int x = (int)event.getX();
         int y = (int)event.getY();
 
+        if(x > bitmap.getWidth()) {
+            return false;
+        }
+        if(y > bitmap.getHeight()) {
+            return false;
+        }
+
         int index_x = x / width_diamond;
         int index_y = y / width_diamond;
 
-        int color = bitmap.getPixel(index_x, index_y);
+        int color = bitmap.getPixel(x, y);
 
         if(color == Color.GREEN) {
             mPaint.setColor(Color.BLACK);
