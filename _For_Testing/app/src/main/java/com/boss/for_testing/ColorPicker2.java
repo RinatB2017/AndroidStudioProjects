@@ -4,48 +4,49 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.RectF;
 import android.graphics.Shader;
-import android.graphics.SweepGradient;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class ColorPicker extends AppCompatImageView
+public class ColorPicker2 extends AppCompatImageView
         implements View.OnTouchListener
 {
     Paint mPaint;
     Canvas c_bitmap;
     Bitmap bitmap;
 
-    int width  = 600;
-    int height = 600;
-    int sw = width / 4;
-    int center_x = width / 2;
+    int width  = 800;
+    int height = 150;
+
+    int spacer = 20;
+
+    int s_width  = height;
+    int s_height = height;
+
+    int center_x = (width - s_width - spacer) / 2;
     int center_y = height / 2;
-    int radius = width / 2;
 
     int color_R = 0;
     int color_B = 0;
     int color_G = 0;
 
     //---------------------------------------------------------------------------------------------
-    public ColorPicker(Context context) {
+    public ColorPicker2(Context context) {
         super(context);
     }
 
     //---------------------------------------------------------------------------------------------
-    public ColorPicker(Context context, AttributeSet attrs) {
+    public ColorPicker2(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
         init();
     }
 
     //---------------------------------------------------------------------------------------------
-    public ColorPicker(Context context, AttributeSet attrs, int defStyle) {
+    public ColorPicker2(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
@@ -57,8 +58,8 @@ public class ColorPicker extends AppCompatImageView
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
         mPaint.setColor(Color.RED);
-        mPaint.setStrokeWidth(sw);
-        mPaint.setStyle(Paint.Style.STROKE);
+        //mPaint.setStrokeWidth(sw);
+        mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         final int[] colors = new int[] {
                 0xFFFF0000,
@@ -82,16 +83,15 @@ public class ColorPicker extends AppCompatImageView
         };
         */
 
-        Shader shader = new SweepGradient(center_x, center_x, colors, null);
+        Shader shader = new LinearGradient(0, 0, width - s_width, height, colors, null, Shader.TileMode.MIRROR);
         mPaint.setShader(shader);
 
-        RectF rectf = new RectF(center_x, center_y, width-center_x, height-center_y);
-        c_bitmap.drawCircle(center_x, center_y, radius - (sw / 2.0f), mPaint);
+        c_bitmap.drawRect(0, 0, width - s_width - spacer, height, mPaint);
 
         mPaint.reset();
-        mPaint.setColor(Color.rgb(color_R, color_G, color_B));
+        mPaint.setColor(Color.RED);
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawRect(width - s_width, 0, width, height, mPaint);
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);
@@ -127,7 +127,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(bitmap.getPixel((int)x, (int)y));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawRect(width - s_width, 0, width, height, mPaint);
 
         setImageBitmap(bitmap);
         return true;
@@ -138,10 +138,14 @@ public class ColorPicker extends AppCompatImageView
         width = new_width;
         height = new_hight;
 
-        center_x = width / 2;
+        width  = new_width;
+        height = new_hight;
+
+        s_width  = height;
+        s_height = height;
+
+        center_x = (width - s_width - spacer) / 2;
         center_y = height / 2;
-        sw = width / 4;
-        radius = width / 2;
 
         init();
     }
@@ -155,9 +159,10 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(Color.rgb(color_R, color_G, color_B));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawRect(width - s_width, 0, width, height, mPaint);
 
         setImageBitmap(bitmap);
+
     }
 
     //---------------------------------------------------------------------------------------------

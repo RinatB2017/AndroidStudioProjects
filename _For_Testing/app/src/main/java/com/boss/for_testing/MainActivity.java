@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String s_log = "s_log";
     private static final String s_current_tab = "s_current_tab";
-    private static final String s_info = "s_info";
 
     TextView tv_log;
 
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     //---
     Button btn_test;
-    TextView textViewInfo;
     //---
 
     //---------------------------------------------------------------------------------------------
@@ -215,7 +213,6 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putString(s_log, tv_log.getText().toString());
         savedInstanceState.putInt(s_current_tab, tabHost.getCurrentTab());
-        savedInstanceState.putString(s_info, textViewInfo.getText().toString());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -276,11 +273,6 @@ public class MainActivity extends AppCompatActivity {
                 if (!temp.isEmpty()) {
                     tv_log.setText(temp);
                 }
-            }
-
-            String info = savedInstanceState.getString(s_info);
-            if(info != null) {
-                textViewInfo.setText(info);
             }
 
             int current_tab = savedInstanceState.getInt(s_current_tab);
