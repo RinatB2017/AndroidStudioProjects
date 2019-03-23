@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <!-- -->
-    <com.boss.for_testing.ColorPicker
+    <com.boss.for_testing.Game
         android:id="@+id/gane_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
