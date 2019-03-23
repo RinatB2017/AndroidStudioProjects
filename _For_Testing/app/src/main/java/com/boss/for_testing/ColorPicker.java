@@ -29,6 +29,8 @@ public class ColorPicker extends AppCompatImageView
     int center_y = height / 2;
     int radius = width / 2;
 
+    int spacer = 20;
+
     int color_R = 0;
     int color_B = 0;
     int color_G = 0;
@@ -91,7 +93,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(Color.rgb(color_R, color_G, color_B));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - spacer, mPaint);
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);
@@ -127,7 +129,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(bitmap.getPixel((int)x, (int)y));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - spacer, mPaint);
 
         setImageBitmap(bitmap);
         return true;
@@ -155,7 +157,7 @@ public class ColorPicker extends AppCompatImageView
         mPaint.reset();
         mPaint.setColor(Color.rgb(color_R, color_G, color_B));
         mPaint.setStyle(Paint.Style.FILL);
-        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - 20, mPaint);
+        c_bitmap.drawCircle(center_x, center_y, width / 2 - sw - spacer, mPaint);
 
         setImageBitmap(bitmap);
     }
