@@ -373,11 +373,11 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        //ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
-        //send_log(Color.RED, "color = " + String.valueOf(cp.get_color()));
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
 
-        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
-        dlg.show();
+//        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
+//        dlg.show();
 
 //         send_log(Color.BLACK, "test");
 // 
