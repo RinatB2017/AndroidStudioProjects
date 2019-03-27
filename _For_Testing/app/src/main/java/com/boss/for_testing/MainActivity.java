@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        Intent intent = new Intent(this, TestActivity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
 
 //        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
