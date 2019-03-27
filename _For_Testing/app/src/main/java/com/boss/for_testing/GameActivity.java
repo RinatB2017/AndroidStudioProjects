@@ -1,34 +1,32 @@
 package com.boss.for_testing;
 
-    import android.content.pm.ActivityInfo;
-    import android.content.pm.PackageManager;
-    import android.content.res.Resources;
-    import android.graphics.Bitmap;
-    import android.graphics.BitmapFactory;
-    import android.graphics.Canvas;
-    import android.graphics.Color;
-    import android.graphics.Paint;
-    import android.graphics.Point;
-    import android.os.Bundle;
-    import android.support.v4.app.ActivityCompat;
-    import android.support.v4.content.ContextCompat;
-    import android.support.v7.app.AppCompatActivity;
-    import android.util.Log;
-    import android.view.Display;
-    import android.view.Menu;
-    import android.view.MenuItem;
-    import android.view.View;
-    import android.view.Window;
-    import android.view.WindowManager;
-    import android.widget.ImageView;
-    import android.widget.LinearLayout;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Display;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-// если на смартфоне стоит Android 6.0, то надо поставить в свойствах app
-// Flawors Target SDK Version API22
-// иначе bluetooth не будет находить устройства
-
-public class GameActivity extends AppCompatActivity {
-
+public class GameActivity extends AppCompatActivity
+        implements View.OnTouchListener
+{
     final String LOG_TAG = "States";
 
     private Paint mPaint;
@@ -39,11 +37,21 @@ public class GameActivity extends AppCompatActivity {
 
     int width  = 0;
     int height = 0;
+    int b_size = 0;
+
+    int b_width  = 0;
+    int b_height = 0;
+
+    int max_x = 0;
+    int max_y = 0;
+
+    byte[][] map;
 
     RBlock rb;
     Bitmap b_red;
     Bitmap b_green;
     Bitmap b_blue;
+    Bitmap b_black;
 
     ImageView main_view;
 
@@ -119,6 +127,7 @@ public class GameActivity extends AppCompatActivity {
 
         main_view = new ImageView(this);
         main_view.setImageBitmap(bitmap);
+        main_view.setOnTouchListener(this);
 
         linLayout = new LinearLayout(this);
 
@@ -129,26 +138,31 @@ public class GameActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     private void test_0() {
-        byte[][] map = {
-                {0, 8, 8, 8, 0},
-                {8, 1, 8, 1, 8},
-                {8, 8, 2, 8, 8},
-                {8, 1, 8, 1, 8},
-                {0, 8, 8, 8, 0}
-        };
-        for(int y=0; y<5; y++) {
-            for(int x=0; x<5; x++) {
+        byte value = 0;
+        byte old_value = 0;
+        for(int y=0; y<max_y; y++) {
+            for(int x=0; x<max_x; x++) {
+                do {
+                    value = (byte) (Math.random() * 3);
+                } while(value == old_value);
+                old_value = value;
+                map[x][y] = value;
+            }
+        }
+
+        for(int y=0; y<max_y; y++) {
+            for(int x=0; x<max_x; x++) {
                 switch (map[x][y]) {
                     case 0:
-                        canvas.drawBitmap(b_red, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_red, x*b_width, y*b_height, null);
                         break;
 
                     case 1:
-                        canvas.drawBitmap(b_green, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_green, x*b_width, y*b_height, null);
                         break;
 
                     case 2:
-                        canvas.drawBitmap(b_blue, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_blue, x*b_width, y*b_height, null);
                         break;
 
                     default:
@@ -160,28 +174,31 @@ public class GameActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     private void test_1() {
+        int b_width  = b_size;
+        int b_height = b_size;
         int color = 0;
-        for(int y=0; y<5; y++) {
-            for(int x=0; x<5; x++) {
+
+        for(int y=0; y<(height / b_height); y++) {
+            for(int x=0; x<(width / b_width); x++) {
                 Bitmap bitmap;
                 switch (color) {
                     case 0:
-                        canvas.drawBitmap(b_red, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_red, x*b_width, y*b_height, null);
                         color++;
                         break;
 
                     case 1:
-                        canvas.drawBitmap(b_green, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_green, x*b_width, y*b_height, null);
                         color++;
                         break;
 
                     case 2:
-                        canvas.drawBitmap(b_blue, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_blue, x*b_width, y*b_height, null);
                         color++;
                         break;
 
                     default:
-                        canvas.drawBitmap(b_red, x*100 + 100, y*100 + 199, null);
+                        canvas.drawBitmap(b_red, x*b_width, y*b_height, null);
                         color = 1;
                         break;
                 }
@@ -215,18 +232,22 @@ public class GameActivity extends AppCompatActivity {
         prepare_screen();
 
         //---
-//        mPaint.setColor(Color.RED);
-//        mPaint.setStyle(Paint.Style.STROKE);
-//        mPaint.setAntiAlias(true);
-
-//        canvas.drawLine(0,  0,      width,  height, mPaint);
-//        canvas.drawLine(0,  height, width,  0,      mPaint);
-
+        b_size = width / 8;
         //---
         rb = new RBlock();
-        b_red   = rb.get_bitmap(Color.RED);
-        b_green = rb.get_bitmap(Color.GREEN);
-        b_blue  = rb.get_bitmap(Color.BLUE);
+        rb.set_new_size(b_size, b_size);
+        b_red   = rb.get_circle(Color.RED);
+        b_green = rb.get_romb(Color.GREEN);
+        b_blue  = rb.get_romb(Color.BLUE);
+        b_black = rb.get_rect(Color.BLACK);
+        //---
+        b_width  = b_size;
+        b_height = b_size;
+
+        max_x = width / b_width;
+        max_y = height / b_height;
+
+        map = new byte[max_x][max_y];
         //---
         test_0();
         //test_1();
@@ -273,6 +294,25 @@ public class GameActivity extends AppCompatActivity {
     {
         super.onDestroy();
         //logging("onDestroy()");
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
+
+        int pos_x = (int)x / b_width;
+        int pos_y = (int)y / b_height;
+
+        if(map[pos_x][pos_y] == 1) {
+            //Log.i(LOG_TAG, "find!");
+            canvas.drawBitmap(b_black, pos_x*b_width, pos_y*b_height, null);
+            main_view.setImageBitmap(bitmap);
+            return true;
+        }
+
+        return false;
     }
 
     //---------------------------------------------------------------------------------------------
