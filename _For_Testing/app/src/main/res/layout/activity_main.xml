@@ -31,12 +31,11 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <Button
+                <com.boss.for_testing.RButton
                     android:id="@+id/btn_test"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="test"
-                    android:text="Button" />
+                    android:onClick="test" />
 
                 <!-- -->
                 <com.boss.for_testing.ColorPicker

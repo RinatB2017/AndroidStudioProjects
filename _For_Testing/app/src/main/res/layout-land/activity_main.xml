@@ -28,62 +28,77 @@
                 android:id="@+id/tab_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_test"
-                    android:layout_width="match_parent"
+                <com.boss.for_testing.ColorPicker
+                    android:id="@+id/main_view"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="test"
-                    android:text="Button" />
-
-                <!-- -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-                    <com.boss.for_testing.ColorPicker
-                        android:id="@+id/main_view"
-                        android:adjustViewBounds="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal" />
-                    <com.boss.for_testing.ColorPicker2
-                        android:id="@+id/main_view2"
-                        android:adjustViewBounds="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal" />
-                </LinearLayout>
-                <!-- -->
+                    android:layout_gravity="center_horizontal" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <com.boss.for_testing.MagicCircle
-                        android:layout_width="wrap_content"
+                    <com.boss.for_testing.RButton
+                        android:id="@+id/btn_test"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:onClick="test" />
 
-                    <com.boss.for_testing.MagicCircle
-                        android:layout_width="wrap_content"
+                    <!-- -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        android:orientation="horizontal">
 
-                    <com.boss.for_testing.MagicCircle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                        <com.boss.for_testing.ColorPicker2
+                            android:id="@+id/main_view2"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal" />
+                    </LinearLayout>
 
-                    <com.boss.for_testing.MagicCircle
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.boss.for_testing.MagicCircle
+                            android:id="@+id/magic_circle_1"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.boss.for_testing.MagicCircle
+                            android:id="@+id/magic_circle_2"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.boss.for_testing.MagicCircle
+                            android:id="@+id/magic_circle_3"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.boss.for_testing.MagicCircle
+                            android:id="@+id/magic_circle_4"
+                            android:adjustViewBounds="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+                    <!-- -->
 
                 </LinearLayout>
-                <!-- -->
 
             </LinearLayout>
 

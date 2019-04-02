@@ -15,8 +15,10 @@
         <attr name="mc_height" format="integer" />
     </declare-styleable>
 
-
     <declare-styleable name="Game">
+    </declare-styleable>
+
+    <declare-styleable name="RButton">
     </declare-styleable>
 
 </resources>
