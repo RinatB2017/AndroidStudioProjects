@@ -376,8 +376,8 @@ public class MainActivity extends AppCompatActivity {
 //        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
 //        dlg.show();
 
-        int x = Mem.getX();
-        int y = Mem.getY();
+        int x = Mem.x;
+        int y = Mem.y;
         send_log(Color.RED, "x " + String.valueOf(x));
         send_log(Color.RED, "y " + String.valueOf(y));
 
