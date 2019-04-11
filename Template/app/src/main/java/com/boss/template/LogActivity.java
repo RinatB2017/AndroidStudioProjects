@@ -6,9 +6,11 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LogActivity extends AppCompatActivity {
     static final String LOG_TAG = "States";
@@ -68,6 +70,14 @@ public class LogActivity extends AppCompatActivity {
                 String text = (String) msg.obj;
                 Log.i(LOG_TAG, text);
                 tv_log.append(text + "\n");
+
+                //---
+                Toast toast = Toast.makeText(getBaseContext(),
+                        text,
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 0);
+                toast.show();
+                //---
             }
         };
     }

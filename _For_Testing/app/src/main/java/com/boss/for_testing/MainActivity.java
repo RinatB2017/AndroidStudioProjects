@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -38,6 +39,7 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
@@ -167,10 +169,16 @@ public class MainActivity extends AppCompatActivity {
                 int color = msg.arg1;
                 Log.i(LOG_TAG, text);
 
-                //tv_log.append(text + "\n");
-
                 String c_text = "<font color=#" + Integer.toHexString(color).substring(2) + ">" + text + "</font><br>";
                 tv_log.append(Html.fromHtml(c_text));
+
+                //---
+                Toast toast = Toast.makeText(getBaseContext(),
+                        text,
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 0);
+                toast.show();
+                //---
             }
         };
     }
