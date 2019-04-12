@@ -1,45 +1,32 @@
 package com.boss.for_testing;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.SweepGradient;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Parcelable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int RECORD_REQUEST_CODE = 101;
@@ -99,62 +86,10 @@ public class MainActivity extends AppCompatActivity {
                 showAbout();
                 break;
 
-            case R.id.add_icon:
-                addShortcut();
-                break;
-
-            case R.id.remove_icon:
-                removeShortcut();
-                break;
-
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    //---------------------------------------------------------------------------------------------
-    private void addShortcut() {
-        send_log(Color.BLACK, "addShortcut");
-
-        requestPermission(Manifest.permission.INSTALL_SHORTCUT, RECORD_REQUEST_CODE);
-
-        //Adding shortcut for MainActivity
-        //on Home screen
-        Intent shortcutIntent = new Intent(getApplicationContext(),
-                MainActivity.class);
-
-        shortcutIntent.setAction(Intent.ACTION_MAIN);
-
-        Intent addIntent = new Intent();
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
-                Intent.ShortcutIconResource.fromContext(getApplicationContext(),
-                        R.mipmap.ic_launcher));
-
-        addIntent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
-        getApplicationContext().sendBroadcast(addIntent);
-    }
-
-    //---------------------------------------------------------------------------------------------
-    private void removeShortcut() {
-        send_log(Color.BLACK, "removeShortcut");
-
-        requestPermission(Manifest.permission.UNINSTALL_SHORTCUT, RECORD_REQUEST_CODE);
-
-        //Deleting shortcut for MainActivity
-        //on Home screen
-        Intent shortcutIntent = new Intent(getApplicationContext(),
-                MainActivity.class);
-        shortcutIntent.setAction(Intent.ACTION_MAIN);
-
-        Intent addIntent = new Intent();
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
-        addIntent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "HelloWorldShortcut");
-
-        addIntent.setAction("com.android.launcher.action.UNINSTALL_SHORTCUT");
-        getApplicationContext().sendBroadcast(addIntent);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -170,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(LOG_TAG, text);
 
                 String c_text = "<font color=#" + Integer.toHexString(color).substring(2) + ">" + text + "</font><br>";
-                tv_log.append(Html.fromHtml(c_text));
+                tv_log.append(Html.fromHtml(c_text, Html.FROM_HTML_MODE_LEGACY));
 
                 //---
                 Toast toast = Toast.makeText(getBaseContext(),
@@ -384,10 +319,23 @@ public class MainActivity extends AppCompatActivity {
 //        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
 //        dlg.show();
 
-        int x = Mem.x;
-        int y = Mem.y;
-        send_log(Color.RED, "x " + String.valueOf(x));
-        send_log(Color.RED, "y " + String.valueOf(y));
+        /*
+        // Get running processes
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningProcesses = manager.getRunningAppProcesses();
+        if (runningProcesses != null && runningProcesses.size() > 0) {
+            // Set data to the list adapter
+            setListAdapter(new ListAdapter(this, runningProcesses));
+        } else {
+            // In case there are no processes running (not a chance :))
+            Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
+        }
+        */
+
+//        int x = Mem.x;
+//        int y = Mem.y;
+//        send_log(Color.RED, "x " + String.valueOf(x));
+//        send_log(Color.RED, "y " + String.valueOf(y));
 
 //         send_log(Color.BLACK, "test");
 // 
