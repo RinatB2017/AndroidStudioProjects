@@ -316,9 +316,6 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-//        ColorPickerDialog dlg = new ColorPickerDialog(MainActivity.this, new UpdateColor(), Color.GREEN);
-//        dlg.show();
-
         /*
         // Get running processes
         ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
@@ -332,67 +329,41 @@ public class MainActivity extends AppCompatActivity {
         }
         */
 
-//        int x = Mem.x;
-//        int y = Mem.y;
-//        send_log(Color.RED, "x " + String.valueOf(x));
-//        send_log(Color.RED, "y " + String.valueOf(y));
+        B b_class = new B();
+        A a_class = new A(b_class);
 
-//         send_log(Color.BLACK, "test");
-// 
-//         send_log(Color.RED,   "red");
-//         send_log(Color.GREEN, "green");
-//         send_log(Color.BLUE,  "blue");
-// 
-//         send_log(Color.BLACK, "the end");
+        b_class.set_x(666);
+        send_log(Color.RED, String.valueOf(a_class.get_x()));
+
+        b_class.set_x(777);
+        send_log(Color.RED, String.valueOf(a_class.get_x()));
     }
+
 
     //---------------------------------------------------------------------------------------------
-    /*
-    public void set_color(View view) {
-        String color_str = spinner.getSelectedItem().toString();
-        send_log(Color.BLACK, spinner.getSelectedItem().toString());
-        switch (color_str)
-        {
-            case "BLACK":
-                btn_set_color.setBackgroundColor(Color.BLACK);
-                break;
-            case "DKGRAY":
-                btn_set_color.setBackgroundColor(Color.DKGRAY);
-                break;
-            case "GRAY":
-                btn_set_color.setBackgroundColor(Color.GRAY);
-                break;
-            case "LTGRAY":
-                btn_set_color.setBackgroundColor(Color.LTGRAY);
-                break;
-            case "WHITE":
-                btn_set_color.setBackgroundColor(Color.WHITE);
-                break;
-            case "RED":
-                btn_set_color.setBackgroundColor(Color.RED);
-                break;
-            case "GREEN":
-                btn_set_color.setBackgroundColor(Color.GREEN);
-                break;
-            case "BLUE":
-                btn_set_color.setBackgroundColor(Color.BLUE);
-                break;
-            case "YELLOW":
-                btn_set_color.setBackgroundColor(Color.YELLOW);
-                break;
-            case "CYAN":
-                btn_set_color.setBackgroundColor(Color.CYAN);
-                break;
-            case "MAGENTA":
-                btn_set_color.setBackgroundColor(Color.MAGENTA);
-                break;
+    class A {
+        private B b_class;
+        A(B b) {
+            b_class = b;
+        }
 
-            default:
-                send_log(Color.RED, "unknown color [" + color_str + "]");
-                break;
+        public void set_x(int value) {
+            b_class.set_x(value);
+        }
+        public int get_x() {
+            return b_class.get_x();
         }
     }
-    */
+
+    class B {
+        private int x = 0;
+        public void set_x(int value) {
+            x = value;
+        }
+        public int get_x() {
+            return x;
+        }
+    }
 
     //---------------------------------------------------------------------------------------------
 }
