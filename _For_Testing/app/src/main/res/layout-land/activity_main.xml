@@ -42,59 +42,14 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.boss.for_testing.RButton
+                    <Button
                         android:id="@+id/btn_test"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/test"
                         android:onClick="test" />
 
-                    <!-- -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.boss.for_testing.ColorPicker2
-                            android:id="@+id/main_view2"
-                            android:adjustViewBounds="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <com.boss.for_testing.MagicCircle
-                            android:id="@+id/magic_circle_1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <com.boss.for_testing.MagicCircle
-                            android:id="@+id/magic_circle_2"
-                            android:adjustViewBounds="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <com.boss.for_testing.MagicCircle
-                            android:id="@+id/magic_circle_3"
-                            android:adjustViewBounds="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                        <com.boss.for_testing.MagicCircle
-                            android:id="@+id/magic_circle_4"
-                            android:adjustViewBounds="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1" />
-
-                    </LinearLayout>
+                   <!-- -->
                     <!-- -->
 
                 </LinearLayout>

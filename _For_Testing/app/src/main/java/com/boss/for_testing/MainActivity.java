@@ -1,10 +1,5 @@
 package com.boss.for_testing;
 
-import android.Manifest;
-import android.app.ActivityManager;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Handler;
@@ -80,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_clear_log:
                 tv_log.setText("");
-                break;
-
-            case R.id.about:
-                showAbout();
                 break;
 
             default:
@@ -170,42 +161,9 @@ public class MainActivity extends AppCompatActivity {
         btn_test = (Button) findViewById(R.id.btn_test);
 
         //---
-        // Получаем экземпляр элемента Spinner
-        //spinner = (Spinner)findViewById(R.id.spinner);
-
-        // Настраиваем адаптер
-        //ArrayAdapter<?> adapter =
-        //        ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Вызываем адаптер
-        //spinner.setAdapter(adapter);
-
-        //btn_set_color = (Button)findViewById(R.id.btn_set_color);
-        //---
 
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        //---
-
-        //---
-        ColorPicker cp = (ColorPicker)findViewById(R.id.main_view);
-        cp.set_new_size(400, 400);
-
-        MagicCircle mc1 = (MagicCircle)findViewById(R.id.magic_circle_1);
-        MagicCircle mc2 = (MagicCircle)findViewById(R.id.magic_circle_2);
-        MagicCircle mc3 = (MagicCircle)findViewById(R.id.magic_circle_3);
-        MagicCircle mc4 = (MagicCircle)findViewById(R.id.magic_circle_4);
-
-        mc1.set_new_size(150, 150);
-        mc2.set_new_size(150, 150);
-        mc3.set_new_size(150, 150);
-        mc4.set_new_size(150, 150);
-
-        mc1.set_fontsize(50);
-        mc2.set_fontsize(50);
-        mc3.set_fontsize(50);
-        mc4.set_fontsize(50);
         //---
 
         init_tabs();
@@ -279,43 +237,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    void showAbout() {
-        // Inflate the about message contents
-        View messageView = getLayoutInflater().inflate(R.layout.about, null, false);
-
-        // When linking text, force to always use default color. This works
-        // around a pressed color state bug.
-        TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
-        int defaultColor = textView.getTextColors().getDefaultColor();
-        textView.setTextColor(defaultColor);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //builder.setIcon(R.drawable.app_icon);
-        builder.setIcon(R.mipmap.ic_launcher);
-        builder.setTitle(R.string.app_name);
-        builder.setView(messageView);
-        builder.setCancelable(false);
-        builder.setNegativeButton("ОК",
-                new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-        builder.create();
-        builder.show();
-    }
-
-    public class UpdateColor implements ColorPickerDialog.OnColorChangedListener {
-        public void colorChanged(int color) {
-            //ShowColor.setBackgroundColor(color);
-            //show the color value
-
-            send_log(Color.RED, "color = " + String.valueOf(color));
-        }
-    }
-
-    //---------------------------------------------------------------------------------------------
     public void test(View view) {
+        send_log(Color.RED, "test");
+
         /*
         // Get running processes
         ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
@@ -328,41 +252,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
         }
         */
-
-        B b_class = new B();
-        A a_class = new A(b_class);
-
-        b_class.set_x(666);
-        send_log(Color.RED, String.valueOf(a_class.get_x()));
-
-        b_class.set_x(777);
-        send_log(Color.RED, String.valueOf(a_class.get_x()));
-    }
-
-
-    //---------------------------------------------------------------------------------------------
-    class A {
-        private B b_class;
-        A(B b) {
-            b_class = b;
-        }
-
-        public void set_x(int value) {
-            b_class.set_x(value);
-        }
-        public int get_x() {
-            return b_class.get_x();
-        }
-    }
-
-    class B {
-        private int x = 0;
-        public void set_x(int value) {
-            x = value;
-        }
-        public int get_x() {
-            return x;
-        }
     }
 
     //---------------------------------------------------------------------------------------------
