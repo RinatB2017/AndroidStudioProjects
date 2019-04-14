@@ -2,6 +2,7 @@ package com.boss.for_testing;
 
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -15,12 +16,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -252,6 +256,26 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
         }
         */
+    }
+
+    public void btn1_click(View view) {
+//        send_log(Color.RED, "1");
+        try {
+            // получаем входной поток
+            InputStream ims = getAssets().open("splash_screen.png");
+            // загружаем как Drawable
+            Drawable d = Drawable.createFromStream(ims, null);
+            // выводим картинку в ImageView
+            ImageView mImage = (ImageView)findViewById(R.id.asset_image);
+            mImage.setImageDrawable(d);
+        }
+        catch(IOException ex) {
+            send_log(Color.RED, ex.getMessage());
+        }
+    }
+
+    public void btn2_click(View view) {
+        send_log(Color.RED, "2");
     }
 
     //---------------------------------------------------------------------------------------------
