@@ -1,8 +1,12 @@
 package com.boss.for_testing;
 
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -41,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     //---
     Button btn_test;
+
+    SoundPool soundPool;
+    int explosionId = -1;
     //---
 
     //---------------------------------------------------------------------------------------------
@@ -186,6 +193,19 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             getIntent().putExtras(bundle);
         }
+
+        //---
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
+
+        try {
+            AssetManager assetManager = getAssets();
+            AssetFileDescriptor descriptor = assetManager.openFd("health.wav");
+            explosionId = soundPool.load(descriptor, 1);
+        } catch (IOException e) {
+            send_log(Color.RED, e.getMessage());
+        }
+        //---
     }
 
     //---------------------------------------------------------------------------------------------
@@ -242,7 +262,11 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        send_log(Color.RED, "test");
+        //send_log(Color.RED, "test");
+
+        if (explosionId != -1) {
+            soundPool.play(explosionId, 1, 1, 0, 0, 1);
+        }
 
         /*
         // Get running processes
@@ -260,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn1_click(View view) {
 //        send_log(Color.RED, "1");
+
+        /*
         try {
             // получаем входной поток
             InputStream ims = getAssets().open("splash_screen.png");
@@ -272,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
         catch(IOException ex) {
             send_log(Color.RED, ex.getMessage());
         }
+        */
     }
 
     public void btn2_click(View view) {
