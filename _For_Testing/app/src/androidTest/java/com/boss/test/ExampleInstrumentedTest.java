@@ -74,8 +74,5 @@ public class ExampleInstrumentedTest {
         btn.setText("XXX");
 
         onView(withId(R.id.btn_test)).check(matches(withText("XXX")));
-
-        SeekBar sb = (SeekBar)activity.findViewById(R.id.sb_test);
-        assertEquals(sb.getMax(), 0xFF);
     }
 }

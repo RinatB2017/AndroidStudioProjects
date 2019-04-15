@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.ActivityCompat;
@@ -32,11 +33,11 @@ import java.io.InputStream;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int RECORD_REQUEST_CODE = 101;
-    static final String LOG_TAG = "States";
+    //private final int RECORD_REQUEST_CODE = 101;
+    private String LOG_TAG = "States";
 
-    private static final String s_log = "s_log";
-    private static final String s_current_tab = "s_current_tab";
+    private final String s_log = "s_log";
+    private final String s_current_tab = "s_current_tab";
 
     TextView tv_log;
 
@@ -196,7 +197,13 @@ public class MainActivity extends AppCompatActivity {
 
         //---
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(10)
+                    .build();
+        } else {
+            soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 1);
+        }
 
         try {
             AssetManager assetManager = getAssets();
@@ -262,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
-        //send_log(Color.RED, "test");
+        send_log(Color.RED, "test");
 
         if (explosionId != -1) {
             soundPool.play(explosionId, 1, 1, 0, 0, 1);
@@ -283,7 +290,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btn1_click(View view) {
-//        send_log(Color.RED, "1");
+        send_log(Color.RED, "1");
+        //throw new RuntimeException("Усё пропало!");
 
         /*
         try {
