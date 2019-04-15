@@ -293,6 +293,8 @@ public class MainActivity extends AppCompatActivity {
         send_log(Color.RED, "1");
         //throw new RuntimeException("Усё пропало!");
 
+        Setting.set_x(5);
+
         /*
         try {
             // получаем входной поток
@@ -311,6 +313,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void btn2_click(View view) {
         send_log(Color.RED, "2");
+
+        send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
     }
 
     //---------------------------------------------------------------------------------------------
