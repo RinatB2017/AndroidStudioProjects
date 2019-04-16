@@ -17,9 +17,11 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +29,8 @@ import android.widget.TabHost;
 import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -267,13 +271,86 @@ public class MainActivity extends AppCompatActivity {
         //send_log("onDestroy()");
     }
 
+
+    //---------------------------------------------------------------------------------------------
+    private void parseWithXmlPullParser() {
+        try {
+            XmlPullParser xmlPullParser = getResources().getXml(R.xml.config_store);
+            while (xmlPullParser.getEventType() != XmlPullParser.END_DOCUMENT) {
+
+                switch (xmlPullParser.getEventType()) {
+                    case XmlPullParser.START_DOCUMENT: {
+                        if (BuildConfig.DEBUG) {
+                            Log.d(LOG_TAG, "START_DOCUMENT");
+                        }
+                        break;
+                    }
+                    // начало тега
+                    case XmlPullParser.START_TAG: {
+                        if (BuildConfig.DEBUG) {
+                            Log.d(LOG_TAG, "START_TAG: имя тега = "
+                                    + xmlPullParser.getName()
+                                    + ", уровень = "
+                                    + xmlPullParser.getDepth()
+                                    + ", число атрибутов = "
+                                    + xmlPullParser.getAttributeCount());
+                        }
+
+                        if (xmlPullParser.getName().equals("string")) {
+                            if (xmlPullParser.getAttributeValue(null, "name").equals("SSID")) {
+                                Log.d(LOG_TAG, xmlPullParser.nextText());
+                                break;
+                            }
+
+                            if (xmlPullParser.getAttributeValue(null, "name").equals("PreSharedKey")) {
+                                Log.d(LOG_TAG, xmlPullParser.nextText());
+                                break;
+                            }
+                        }
+
+                        if (xmlPullParser.getName().equals("boolean")) {
+                            if (xmlPullParser.getAttributeValue(null, "name").equals("HiddenSSID")) {
+                                Log.d(LOG_TAG, xmlPullParser.getAttributeValue(null, "value"));
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    // конец тега
+                    case XmlPullParser.END_TAG:
+                        if (BuildConfig.DEBUG) {
+                            Log.d("LOG_TAG", "END_TAG: имя тега = " + xmlPullParser.getName());
+                        }
+
+                        break;
+                    // содержимое тега
+                    case XmlPullParser.TEXT:
+                        if (BuildConfig.DEBUG) {
+                            Log.d("LOG_TAG", "текст = " + xmlPullParser.getText());
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+                xmlPullParser.next();
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log(Color.RED, "test");
 
+        parseWithXmlPullParser();
+
+        /*
         if (explosionId != -1) {
             soundPool.play(explosionId, 1, 1, 0, 0, 1);
         }
+        */
 
         /*
         // Get running processes
