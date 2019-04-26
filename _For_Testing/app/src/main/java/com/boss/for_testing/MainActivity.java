@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 int color = msg.arg1;
                 Log.i(LOG_TAG, text);
 
-                if (android.os.Build.VERSION.SDK_INT >= 28) {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     String c_text = "<font color=#" + Integer.toHexString(color).substring(2) + ">" + text + "</font><br>";
                     tv_log.append(Html.fromHtml(c_text, Html.FROM_HTML_MODE_LEGACY));
                 } else {
