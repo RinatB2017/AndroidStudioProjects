@@ -1,5 +1,6 @@
 package com.boss.for_testing;
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -10,10 +11,12 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
@@ -348,7 +351,23 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log(Color.RED, "test");
 
-        parseWithXmlPullParser();
+        String android_id = Settings.Secure.getString(this.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        send_log(Color.RED, "android_id: " + android_id);
+
+        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+        if(telephonyManager != null) {
+            String imei = "none";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                imei = telephonyManager.getImei();
+            } else {
+                imei = telephonyManager.getDeviceId();
+            }
+            send_log(Color.RED, "IMEI: " + imei);
+        }
+
+        //parseWithXmlPullParser();
 
         /*
         if (explosionId != -1) {
