@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 public class Client extends AsyncTask<Void, Void, Void> {
 
-	String dstAddress;
-	int dstPort;
-	String response = "";
-	TextView textResponse;
+	private String dstAddress;
+	private int dstPort;
+	private String response = "";
+	private TextView textResponse;
 
 	Client(String addr, int port,TextView textResponse) {
 		dstAddress = addr;
@@ -29,8 +29,7 @@ public class Client extends AsyncTask<Void, Void, Void> {
 		try {
 			socket = new Socket(dstAddress, dstPort);
 
-			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
-					1024);
+			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
 			byte[] buffer = new byte[1024];
 
 			int bytesRead;
@@ -70,5 +69,4 @@ public class Client extends AsyncTask<Void, Void, Void> {
 		textResponse.setText(response);
 		super.onPostExecute(result);
 	}
-
 }
