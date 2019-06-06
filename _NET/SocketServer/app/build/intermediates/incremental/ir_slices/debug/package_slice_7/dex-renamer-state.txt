@@ -1,4 +1,4 @@
-#Thu Jun 06 16:01:30 MSK 2019
+#Thu Jun 06 20:52:59 MSK 2019
 base.0=/home/boss/Programming/_GitHub/AndroidStudioProjects/_NET/SocketServer/app/build/intermediates/transforms/dexMerger/debug/7
 path.0=classes.dex
 renamed.0=classes.dex

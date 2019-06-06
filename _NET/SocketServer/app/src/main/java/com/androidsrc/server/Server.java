@@ -11,9 +11,9 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class Server {
-	MainActivity activity;
-	ServerSocket serverSocket;
-	String message = "";
+	private MainActivity activity;
+	private ServerSocket serverSocket;
+	private String message = "";
 	static final int socketServerPORT = 8080;
 
 	public Server(MainActivity activity) {
@@ -138,7 +138,8 @@ public class Server {
 
 					if (inetAddress.isSiteLocalAddress()) {
 						ip += "Server running at : "
-								+ inetAddress.getHostAddress();
+								+ inetAddress.getHostAddress()
+								+ "\n";
 					}
 				}
 			}
