@@ -1,6 +1,7 @@
 package com.boss.image;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -22,6 +23,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btn_test = (Button)findViewById(R.id.btn_test);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                GifAnimationDrawable gif;
+                ImageView ivGif = (ImageView) findViewById(R.id.imageView);
+
+                try {
+                    gif = new GifAnimationDrawable(getResources().openRawResource(R.raw.download));
+                    gif.setOneShot(false);
+
+                    ivGif.setImageDrawable(gif);
+                    gif.setVisible(true, true);
+                } catch (Resources.NotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
