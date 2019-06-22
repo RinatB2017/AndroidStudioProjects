@@ -1,5 +1,6 @@
 package com.boss.image;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -20,16 +21,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.IOException;
+import java.util.logging.LogManager;
 
 public class MainActivity extends AppCompatActivity {
 
     static final String LOG_TAG = "States";
     static final int GALLERY_REQUEST = 1;
+    static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        context = this;
 
         Button btn_test = (Button)findViewById(R.id.btn_test);
         btn_test.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+//                MessageBox.info(context, "1", "2");
+//                AlertDialog btn = MessageBox.question(context, "Question", "What?");
+//                Log.i(LOG_TAG, "1");
             }
         });
 
@@ -87,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             if(false) {
                                 String message = "width  = " + w + "\n" +
                                         "height = " + h;
-                                show_message("Info", message);
+                                MessageBox.info(getApplicationContext(), "Info", message);
                             }
 
                             Bitmap b_dst = create_bitmap(bitmap);
@@ -95,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                                 imageView.setImageBitmap(b_dst);
                             }
                         } else {
-                            show_message("Error", "Bad file");
+                            MessageBox.info(getApplicationContext(), "Error", "Bad file");
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -135,20 +143,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return b_dest;
-    }
-
-    private void show_message(String title, String message) {
-        AlertDialog.Builder ad;
-        ad = new AlertDialog.Builder(this);
-        ad.setTitle(title);     // заголовок
-        ad.setMessage(message); // сообщение
-        ad.setIcon(R.drawable.ic_launcher_background);
-        ad.setCancelable(true);
-        ad.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-                dialog.cancel();
-            }
-        });
-        ad.show();
     }
 }
