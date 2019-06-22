@@ -2,4 +2,6 @@
 <resources>
     <declare-styleable name="RButton">
     </declare-styleable>
+    <declare-styleable name="Display">
+    </declare-styleable>
 </resources>
