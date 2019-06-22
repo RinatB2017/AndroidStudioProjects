@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 public class Display extends AppCompatImageView
         implements View.OnTouchListener {
     Paint mPaint;
@@ -24,6 +26,14 @@ public class Display extends AppCompatImageView
     int width  = max_x * size;
     int height = max_y * size;
 
+    ArrayList<Display_color> colors;
+
+    //---------------------------------------------------------------------------------------------
+    public class Display_color {
+        int x;
+        int y;
+        int color;
+    }
     //---------------------------------------------------------------------------------------------
     public Display(Context context) {
         super(context);
@@ -44,6 +54,18 @@ public class Display extends AppCompatImageView
     public void init() {
         bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
+        colors = new ArrayList<Display_color>();
+        for(int y=0; y<max_y; y++) {
+            for(int x=0; x<max_x; x++) {
+                Display_color dc = new Display_color();
+                dc.x = x;
+                dc.y = y;
+                dc.color = Color.BLACK;
+
+                colors.add(dc);
+            }
+        }
+
         c_bitmap = new Canvas(bitmap);
         mPaint = new Paint();
         mPaint.setColor(Color.BLACK);
@@ -63,6 +85,36 @@ public class Display extends AppCompatImageView
 
         setImageBitmap(bitmap);
         setOnTouchListener(this);
+    }
+    //---------------------------------------------------------------------------------------------
+    public boolean set_color(int x, int y, int color) {
+        if(x < 0 || x > max_x) return false;
+        if(y < 0 || y > max_y) return false;
+
+        for (Display_color dc: colors) {
+            if(x == dc.x && y == dc.y) {
+                dc.color = color;
+                return true;
+            }
+        }
+        return false;
+    }
+    //---------------------------------------------------------------------------------------------
+    public void redraw() {
+        for (Display_color dc: colors) {
+            int x = dc.x;
+            int y = dc.y;
+            int color = dc.color;
+
+            if(color == Color.RED) {
+                color = Color.GREEN;
+            }
+
+            mPaint.setColor(color);
+            mPaint.setStyle(Paint.Style.FILL);
+            c_bitmap.drawRect(x*size, y*size, x*size+size, y*size+size, mPaint);
+        }
+        setImageBitmap(bitmap);
     }
     //---------------------------------------------------------------------------------------------
     @Override

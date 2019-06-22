@@ -184,6 +184,12 @@ public class MainActivity extends AppCompatActivity {
         btn_test = (Button) findViewById(R.id.btn_test);
 
         //---
+        Display display = (Display) findViewById(R.id.display);
+        for(int n=0; n<10; n++) {
+            display.set_color(n, n, Color.RED);
+        }
+        display.redraw();
+        //---
 
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
