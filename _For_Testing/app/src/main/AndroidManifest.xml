@@ -4,6 +4,8 @@
     package="com.boss.for_testing">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.TELEPHONY_SERVICE"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
 
     <application
         android:allowBackup="true"

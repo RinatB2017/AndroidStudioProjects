@@ -1,11 +1,11 @@
 package com.boss.for_testing;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
@@ -20,13 +20,10 @@ import android.telephony.TelephonyManager;
 import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
@@ -36,7 +33,7 @@ import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -357,6 +354,25 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log(Color.RED, "test");
 
+        clear_cache();
+    }
+
+    public void get_running_processes() {
+        /*
+        // Get running processes
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningProcesses = manager.getRunningAppProcesses();
+        if (runningProcesses != null && runningProcesses.size() > 0) {
+            // Set data to the list adapter
+            setListAdapter(new ListAdapter(this, runningProcesses));
+        } else {
+            // In case there are no processes running (not a chance :))
+            Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
+        }
+        */
+    }
+
+    public void get_imei() {
         String android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
@@ -372,27 +388,6 @@ public class MainActivity extends AppCompatActivity {
             }
             send_log(Color.RED, "IMEI: " + imei);
         }
-
-        //parseWithXmlPullParser();
-
-        /*
-        if (explosionId != -1) {
-            soundPool.play(explosionId, 1, 1, 0, 0, 1);
-        }
-        */
-
-        /*
-        // Get running processes
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> runningProcesses = manager.getRunningAppProcesses();
-        if (runningProcesses != null && runningProcesses.size() > 0) {
-            // Set data to the list adapter
-            setListAdapter(new ListAdapter(this, runningProcesses));
-        } else {
-            // In case there are no processes running (not a chance :))
-            Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
-        }
-        */
     }
 
     public void btn1_click(View view) {
@@ -421,6 +416,25 @@ public class MainActivity extends AppCompatActivity {
         send_log(Color.RED, "2");
 
         send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
+    }
+
+    public void clear_cache() {
+        // http://qaru.site/questions/248377/android-clear-cache-of-all-apps
+        PackageManager  pm = getPackageManager();
+        // Get all methods on the PackageManager
+        Method[] methods = pm.getClass().getDeclaredMethods();
+        for (Method m : methods) {
+            if (m.getName().equals("freeStorage")) {
+                // Found the method I want to use
+                try {
+                    long desiredFreeStorage = 8 * 1024 * 1024 * 1024; // Request for 8GB of free space
+                    m.invoke(pm, desiredFreeStorage , null);
+                } catch (Exception e) {
+                    // Method invocation failed. Could be a permission problem
+                }
+                break;
+            }
+        }
     }
 
     //---------------------------------------------------------------------------------------------
