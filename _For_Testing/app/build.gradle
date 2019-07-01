@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storePassword 'q12345'
+            keyPassword 'q12345'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.boss.for_testing"
