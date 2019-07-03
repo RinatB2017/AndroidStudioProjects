@@ -6,6 +6,10 @@ android {
             storePassword 'q12345'
             keyPassword 'q12345'
         }
+        release {
+            storePassword 'q12345'
+            keyPassword 'q12345'
+        }
     }
     compileSdkVersion 28
     defaultConfig {
@@ -15,6 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
