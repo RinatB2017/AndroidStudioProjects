@@ -1,16 +1,21 @@
 package com.boss.for_testing;
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,6 +43,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //private final int RECORD_REQUEST_CODE = 101;
+    private static final int REQUEST_GALLERY = 0;
+
     private String LOG_TAG = "States";
 
     private final String s_log = "s_log";
@@ -231,6 +238,41 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // if the result is capturing Image
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            try {
+                Uri selectedImageURI = data.getData();
+                send_log(Color.RED, getRealPathFromURI(selectedImageURI, this)); //TODO
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public String getRealPathFromURI(Uri contentURI, Activity context) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        @SuppressWarnings("deprecation")
+        Cursor cursor = context.managedQuery(contentURI, projection, null,
+                null, null);
+        if (cursor == null)
+            return null;
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        if (cursor.moveToFirst()) {
+            String s = cursor.getString(column_index);
+            // cursor.close();
+            return s;
+        }
+        // cursor.close();
+        return null;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    @Override
     protected void onStart() {
         super.onStart();
         //send_log("onStart()");
@@ -354,7 +396,11 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log(Color.RED, "test");
 
-        clear_cache();
+        //clear_cache();
+
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
     }
 
     public void get_running_processes() {
