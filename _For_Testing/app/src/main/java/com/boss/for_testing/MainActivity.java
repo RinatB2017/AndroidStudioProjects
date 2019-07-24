@@ -39,6 +39,7 @@ import org.xmlpull.v1.XmlPullParser;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -393,14 +394,40 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    class BT_exception extends Exception
+    {
+        // Parameterless Constructor
+        public BT_exception() {}
+
+        // Constructor that accepts a message
+        public BT_exception(String message)
+        {
+            super(message);
+        }
+    }
+
+    public void test_exception(int x) throws BT_exception {
+        if(x == 1)  throw new BT_exception("e 1");
+        if(x == 2)  throw new BT_exception("e 2");
+        if(x == 3)  throw new BT_exception("e 3");
+        send_log(Color.BLACK, "X = " + String.valueOf(x));
+    }
+
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log(Color.RED, "test");
 
         //clear_cache();
 
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
+        try {
+            test_exception(2);
+        } catch (BT_exception e) {
+            send_log(Color.RED, e.getMessage());
+        }
+
+        //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        //intent.setType("image/*");
+        //startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
     }
 
     public void get_running_processes() {

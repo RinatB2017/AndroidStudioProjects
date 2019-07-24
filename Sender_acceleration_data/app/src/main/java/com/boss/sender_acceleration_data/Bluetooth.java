@@ -53,6 +53,7 @@ public class Bluetooth {
     ModBus modbus;
 
     byte[] buffer = new byte[128];  // buffer store for the stream
+    int bytes = 0; // bytes returned from read()
 
     //----------------------------------------------------------------------------------------
     private void block_interface(boolean state) {
@@ -60,7 +61,7 @@ public class Bluetooth {
     }
 
     //----------------------------------------------------------------------------------------
-    public Bluetooth(Context context, TextView log) {
+    public Bluetooth(Context context, TextView log) throws BT_exception {
         this.context = context;
         this.tv_log = log;
         handler = new Handler() {
@@ -79,8 +80,8 @@ public class Bluetooth {
         modbus = new ModBus();
 
         if (bluetooth == null) {
-            send_log(context.getString(R.string.bluetooth_not_found));
-            return;
+            //send_log(context.getString(R.string.bluetooth_not_found));
+            throw new BT_exception(context.getString(R.string.bluetooth_not_found));
         }
         if (!bluetooth.isEnabled()) {
             // Bluetooth выключен. Предложим пользователю включить его.
@@ -120,7 +121,7 @@ public class Bluetooth {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void device_connect() {
+    public void device_connect() throws BT_exception {
         send_log("connect");
         Runnable runnable = new Runnable() {
             public void run() {
@@ -130,16 +131,16 @@ public class Bluetooth {
                 }
                 if (!bluetooth.isEnabled()) {
                     send_log(context.getString(R.string.bluetooth_off));
-                    block_interface(true);
                     return;
                 }
 
-                boolean ok = connect_remote_device(BluetoothName.get_mac(context.getApplicationContext()));
-                if (ok)
-                    send_log(context.getString(R.string.connection_on));
-                else
+                try {
+                    boolean ok = connect_remote_device(BluetoothName.get_mac(context.getApplicationContext()));
+                    if (ok)
+                        send_log(context.getString(R.string.connection_on));
+                } catch (BT_exception r) {
                     send_log(context.getString(R.string.connection_fail));
-                block_interface(!ok);
+                }
             }
         };
         Thread thread = new Thread(runnable);
@@ -158,11 +159,10 @@ public class Bluetooth {
                 if (mmSocket.isConnected()) {
                     try {
                         mmSocket.close();
-                        send_log(context.getString(R.string.connection_breaks));
-                        block_interface(true);
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        send_log(e.getMessage());
                     }
+                    send_log(context.getString(R.string.connection_breaks));
                 }
             }
         };
@@ -171,10 +171,9 @@ public class Bluetooth {
     }
 
     //---------------------------------------------------------------------------------------------
-    public boolean connect_remote_device(String MAC_address) {
+    public boolean connect_remote_device(String MAC_address) throws BT_exception {
         if (MAC_address.isEmpty()) {
-            send_log("MAC_address is empty!");
-            return false;
+            throw new BT_exception("MAC_address is empty!");
         }
 
         r_device = bluetooth.getRemoteDevice(MAC_address);
@@ -184,17 +183,13 @@ public class Bluetooth {
             Method m = r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class});
             tmp = (BluetoothSocket) m.invoke(r_device, 1);
         } catch (IOException e) {
-            send_log("create ERROR: " + e.getMessage());
-            return false;
+            throw new BT_exception("create ERROR: " + e.getMessage());
         } catch (NoSuchMethodException e) {
-            send_log("create ERROR: " + e.getMessage());
-            return false;
+            throw new BT_exception("create ERROR: " + e.getMessage());
         } catch (IllegalAccessException e) {
-            send_log("create ERROR: " + e.getMessage());
-            return false;
+            throw new BT_exception("create ERROR: " + e.getMessage());
         } catch (InvocationTargetException e) {
-            send_log("create ERROR: " + e.getMessage());
-            return false;
+            throw new BT_exception("create ERROR: " + e.getMessage());
         }
         //---
         mmSocket = tmp;
@@ -205,8 +200,7 @@ public class Bluetooth {
                 mmSocket = (BluetoothSocket) r_device.getClass().getMethod("createRfcommSocket", new Class[]{int.class}).invoke(r_device, 1);
                 mmSocket.connect();
             } catch (Exception e2) {
-                send_log("Stream ERROR: Couldn't establish Bluetooth connection!");
-                return false;
+                throw new BT_exception("Stream ERROR: Couldn't establish Bluetooth connection!");
             }
         }
         //---
@@ -214,8 +208,7 @@ public class Bluetooth {
             tmpIn = mmSocket.getInputStream();
             tmpOut = mmSocket.getOutputStream();
         } catch (IOException e) {
-            send_log("Stream ERROR: " + e.getMessage());
-            return false;
+            throw new BT_exception("Stream ERROR: " + e.getMessage());
         }
         //---
         inputStream = tmpIn;
@@ -224,31 +217,30 @@ public class Bluetooth {
     }
 
     //---------------------------------------------------------------------------------------------
-    public boolean send_data(String message) {
+    public boolean send_data(String message) throws BT_exception {
         if (bluetooth == null) {
-            send_log(context.getString(R.string.bluetooth_not_found));
-            return false;
+            throw new BT_exception(context.getString(R.string.bluetooth_not_found));
         }
         if (!bluetooth.isEnabled()) {
-            send_log(context.getString(R.string.bluetooth_off));
-            block_interface(true);
-            return false;
+            throw new BT_exception(context.getString(R.string.bluetooth_off));
         }
         if (mmSocket == null) {
-            return false;
+            throw new BT_exception("mmSocket == null");
         }
         if (!mmSocket.isConnected()) {
-            return false;
+            throw new BT_exception("!mmSocket.isConnected()");
         }
 
-        int bytes = 0; // bytes returned from read()
         int bytesAvailableCount = 0;
 
         if (outputStream == null) {
-            send_log("outputStream not created!");
-            return false;
+            throw new BT_exception("outputStream not created!");
         }
         try {
+            for(int n=0; n<128; n++) {
+                buffer[n] = 0;
+            }
+            bytes = 0;
             outputStream.write(message.getBytes());
             sleep(1000); //FIXME костыль
             do {
@@ -259,13 +251,16 @@ public class Bluetooth {
                 }
             } while (bytesAvailableCount > 0);
         } catch (IOException e) {
-            send_log("send_data ERROR: " + e.getMessage());
-            block_interface(true);
-            return false;
+            throw new BT_exception("send_data ERROR: " + e.getMessage());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return true;
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public int get_cnt_result_bytes() {
+        return bytes;
     }
 
     //---------------------------------------------------------------------------------------------

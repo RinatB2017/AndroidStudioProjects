@@ -23,7 +23,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     Handler handler;
     Timer timer;
 
+    ToggleButton btn_bt;
+
     //----------------------------------------------------------------------------------------
     public void send_log(String text) {
         if (text == null) {
@@ -67,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings_scan:
-                bt.device_connect();
-                break;
-
-            case R.id.action_settings_disconnect:
-                bt.device_disconnect();
-                break;
+//            case R.id.action_settings_scan:
+//                bt.device_connect();
+//                break;
+//
+//            case R.id.action_settings_disconnect:
+//                bt.device_disconnect();
+//                break;
 
             case R.id.action_settings_options:
                 Intent intent = new Intent(this, OptionsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -133,13 +137,46 @@ public class MainActivity extends AppCompatActivity {
 
         requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
 
-        bt = new Bluetooth(MainActivity.this, tv_log);
+        try {
+            bt = new Bluetooth(MainActivity.this, tv_log);
+        } catch(BT_exception e) {
+            send_log(e.getMessage());
+        }
+
+        //Инициализируем элемент Toggle Button:
+        btn_bt = (ToggleButton) findViewById(R.id.bt_switcher);
+
+        //Настраиваем слушателя изменения состояния переключателя:
+        btn_bt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    try {
+                        bt.device_connect();
+                        send_log("BT Включен!");
+                    } catch (BT_exception e) {
+                        send_log(e.getMessage());
+                    }
+                }
+                else {
+                    bt.device_disconnect();
+                    send_log("BT Выключен!");
+                }
+            }
+        });
+        btn_bt.setChecked(bt.is_enabled());
     }
 
     //---------------------------------------------------------------------------------------------
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (bt.is_enabled()) {
+            if(bt.is_connected()) {
+                bt.device_disconnect();
+            }
+        }
+
         sensorManager.registerListener(listener, sensorAccel,
                 SensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(listener, sensorLinAccel,
@@ -191,7 +228,9 @@ public class MainActivity extends AppCompatActivity {
 
     //---------------------------------------------------------------------------------------------
     public void show_answer(byte[] buffer) {
-        send_log("show_answer: " + buffer.toString());
+        if(bt.get_cnt_result_bytes() > 0) {
+            send_log("show_answer: " + buffer.toString());
+        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -276,13 +315,19 @@ public class MainActivity extends AppCompatActivity {
                 temp_str += format2(valuesMagnet);
                 temp_str += "\n";
 
-                boolean ok = bt.send_data(temp_str);
-                if (ok) {
-                    //send_log("Данные переданы.");
-                    byte[] res = bt.get_result();
-                    show_answer(res);
-                } else {
-                    send_log("Ошибка соединения.");
+                send_log("send_data");
+                boolean ok = false;
+                try {
+                    ok = bt.send_data(temp_str);
+                    if (ok) {
+                        //send_log("Данные переданы.");
+                        byte[] res = bt.get_result();
+                        show_answer(res);
+                    } else {
+                        send_log("Ошибка соединения.");
+                    }
+                } catch (BT_exception e) {
+                    send_log(e.getMessage());
                 }
             }
         };
