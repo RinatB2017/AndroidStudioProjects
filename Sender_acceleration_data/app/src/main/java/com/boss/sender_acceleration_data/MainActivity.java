@@ -127,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //TODO нужен только портрет (иы же меряем акселерометры)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //---
+
         tvText = (TextView) findViewById(R.id.tvText);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         sensorAccel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -315,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
                 temp_str += format2(valuesMagnet);
                 temp_str += "\n";
 
-                send_log("send_data");
+                //send_log("send_data");
                 boolean ok = false;
                 try {
                     ok = bt.send_data(temp_str);
