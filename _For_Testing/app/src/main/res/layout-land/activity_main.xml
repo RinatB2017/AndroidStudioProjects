@@ -38,28 +38,6 @@
                     android:onClick="test" />
 
                 <!-- -->
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.boss.for_testing.Display
-                        android:id="@+id/display"
-                        android:adjustViewBounds="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </HorizontalScrollView>
-
-                <fragment
-                    android:id="@+id/fragment1"
-                    android:name="com.boss.for_testing.Fragment_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <fragment
-                    android:id="@+id/fragment2"
-                    android:name="com.boss.for_testing.Fragment_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
                 <!-- -->
 
             </LinearLayout>

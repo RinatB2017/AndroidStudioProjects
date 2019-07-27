@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
@@ -187,14 +188,6 @@ public class MainActivity extends AppCompatActivity {
         init_log();
 
         btn_test = (Button) findViewById(R.id.btn_test);
-
-        //---
-        Display display = (Display) findViewById(R.id.display);
-        for(int n=0; n<10; n++) {
-            display.set_color(n, n, Color.RED);
-        }
-        display.redraw();
-        //---
 
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -419,11 +412,16 @@ public class MainActivity extends AppCompatActivity {
 
         //clear_cache();
 
+        /*
         try {
             test_exception(2);
         } catch (BT_exception e) {
             send_log(Color.RED, e.getMessage());
         }
+        */
+
+        File file = getFilesDir();
+        send_log(Color.BLACK, file.getPath());
 
         //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         //intent.setType("image/*");
