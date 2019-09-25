@@ -1,9 +1,11 @@
 package com.boss.for_testing;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -41,10 +43,12 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     //private final int RECORD_REQUEST_CODE = 101;
+    private final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 101;
     private static final int REQUEST_GALLERY = 0;
 
     private String LOG_TAG = "States";
@@ -423,9 +427,60 @@ public class MainActivity extends AppCompatActivity {
         File file = getFilesDir();
         send_log(Color.BLACK, file.getPath());
 
+//        //---
+//        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED) {
+//
+//            // Should we show an explanation?
+//            if (shouldShowRequestPermissionRationale(
+//                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+//                // Explain to the user why we need to read the contacts
+//            }
+//
+//            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+//                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+//
+//            // MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE is an
+//            // app-defined int constant that should be quite unique
+//
+//            return;
+//        }
+//        //---
+//        scan_file("/data/app");
+
+        final PackageManager pm = getPackageManager();
+        //get a list of installed apps.
+        List<ApplicationInfo> packages =  pm.getInstalledApplications(PackageManager.GET_META_DATA);
+
+        for (ApplicationInfo packageInfo : packages) {
+            send_log(Color.BLACK, "Installed package: " + packageInfo.packageName);
+            send_log(Color.BLACK, "Apk file path: " + packageInfo.sourceDir);
+        }
+
         //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         //intent.setType("image/*");
         //startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
+    }
+
+    private void scan_file(String pathname)
+    {
+        send_log(Color.BLACK, "PATH " + pathname);
+
+        List<String> paths = new ArrayList<String>();
+        File directory = new File(pathname);
+
+        File[] files = directory.listFiles();
+        if(files == null)
+        {
+            send_log(Color.RED, "array is empty");
+            return;
+        }
+
+        send_log(Color.BLACK, "Found " + String.valueOf(files.length) + " files");
+        for (int i = 0; i < files.length; ++i)
+        {
+            send_log(Color.BLACK, files[i].getAbsolutePath());
+        }
     }
 
     public void get_running_processes() {
