@@ -3,6 +3,8 @@ package com.boss.test_texttospeech;
 // Если этот код работает, его написал Александр Климов,
 // а если нет, то не знаю, кто его писал.
 
+// https://habr.com/ru/post/224685/
+
 import java.util.Locale;
 
 import android.app.Activity;
