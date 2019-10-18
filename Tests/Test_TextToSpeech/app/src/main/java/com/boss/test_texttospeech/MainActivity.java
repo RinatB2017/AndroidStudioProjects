@@ -13,12 +13,14 @@ import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements
         TextToSpeech.OnInitListener {
 
     TextView logView;
+    EditText e_text;
     private Button mButton;
     private TextToSpeech mTTS;
 
@@ -35,6 +37,9 @@ public class MainActivity extends Activity implements
         logView = (TextView)findViewById(R.id.logView);
         mTTS = new TextToSpeech(this, this);
 
+        e_text = (EditText)findViewById(R.id.editText);
+        e_text.setText("А Васька слушает да ест");
+
         mButton = (Button) findViewById(R.id.button1);
         mButton.setEnabled(false);
 
@@ -42,7 +47,7 @@ public class MainActivity extends Activity implements
 
             @Override
             public void onClick(View v) {
-                String text = "А Васька слушает да ест";
+                String text = e_text.getText().toString();
                 logging(text);
                 int res = mTTS.speak(text, TextToSpeech.QUEUE_FLUSH, null);
                 logging("res = " + res);
