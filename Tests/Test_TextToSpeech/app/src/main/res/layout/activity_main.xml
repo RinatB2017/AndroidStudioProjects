@@ -8,6 +8,11 @@
     android:orientation="vertical">
 
 
+    <SeekBar
+        android:id="@+id/volume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
