@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Test_TextToSpeech</string>
+    <string name="button">Speech</string>
 </resources>
