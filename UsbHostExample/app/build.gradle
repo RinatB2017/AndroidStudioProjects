@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        debug {
+            storePassword 'q12345'
+            keyPassword 'q12345'
+        }
+    }
+    compileSdkVersion 29
+//    buildToolsVersion "28.0.3"
+
+    defaultConfig {
+        applicationId "ru.learn2prog.usbhostexample"
+        minSdkVersion 14
+        targetSdkVersion 29
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:support-v4:28.0.0'
+}
