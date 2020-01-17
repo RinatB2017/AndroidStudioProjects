@@ -61,7 +61,7 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] /home/boss/.gradle/
 	android:label
 		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:13:9-41
 	android:icon
-		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:12:9-45
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:12:9-43
 	android:allowBackup
 		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:11:9-35
 	android:theme
