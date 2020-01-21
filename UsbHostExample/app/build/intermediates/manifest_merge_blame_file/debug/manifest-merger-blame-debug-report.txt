@@ -25,42 +25,41 @@
 17-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:12:9-43
 18        android:label="@string/app_name"
 18-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:13:9-41
-19        android:testOnly="true"
-20        android:theme="@style/AppTheme" >
-20-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:14:9-40
-21        <activity
-21-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:15:9-29:20
-22            android:name="ru.learn2prog.usbhostexample.MainActivity"
-22-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:16:13-69
-23            android:label="@string/app_name" >
-23-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:17:13-45
-24            <intent-filter>
-24-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:18:13-22:29
-25                <action android:name="android.intent.action.MAIN" />
-25-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:19:17-69
-25-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:19:25-66
-26
-27                <category android:name="android.intent.category.DEFAULT" />
-27-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:20:17-76
-27-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:20:27-73
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:21:17-77
-28-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:21:27-74
-29            </intent-filter>
-30            <intent-filter>
-30-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:24:13-26:29
-31                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-31-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:25:17-90
-31-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:25:25-87
-32            </intent-filter>
-33
-34            <meta-data
-34-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:27:13-28:57
-35                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-35-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:27:24-86
-36                android:resource="@xml/device_filter" />
-36-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:28:17-54
-37        </activity>
-38    </application>
-39
-40</manifest>
+19        android:theme="@style/AppTheme" >
+19-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:14:9-40
+20        <activity
+20-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:15:9-29:20
+21            android:name="ru.learn2prog.usbhostexample.MainActivity"
+21-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:16:13-69
+22            android:label="@string/app_name" >
+22-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:17:13-45
+23            <intent-filter>
+23-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:18:13-22:29
+24                <action android:name="android.intent.action.MAIN" />
+24-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:19:17-69
+24-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:19:25-66
+25
+26                <category android:name="android.intent.category.DEFAULT" />
+26-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:20:17-76
+26-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:20:27-73
+27                <category android:name="android.intent.category.LAUNCHER" />
+27-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:21:17-77
+27-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:21:27-74
+28            </intent-filter>
+29            <intent-filter>
+29-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:24:13-26:29
+30                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+30-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:25:17-90
+30-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:25:25-87
+31            </intent-filter>
+32
+33            <meta-data
+33-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:27:13-28:57
+34                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+34-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:27:24-86
+35                android:resource="@xml/device_filter" />
+35-->/home/boss/Programming/_GitHub/AndroidStudioProjects/UsbHostExample/app/src/main/AndroidManifest.xml:28:17-54
+36        </activity>
+37    </application>
+38
+39</manifest>
