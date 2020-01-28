@@ -416,6 +416,14 @@ public class MainActivity extends AppCompatActivity {
 
         //clear_cache();
 
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com"));
+//        startActivity(intent);
+
+        String[] names = getResources().getStringArray(R.array.urls);
+        for(int i = 0; i < names.length; i++) {
+            send_log(Color.RED, "Name[" + i + "]: "+ names[i] + "\n");
+        }
+
         /*
         try {
             test_exception(2);
@@ -424,8 +432,8 @@ public class MainActivity extends AppCompatActivity {
         }
         */
 
-        File file = getFilesDir();
-        send_log(Color.BLACK, file.getPath());
+//        File file = getFilesDir();
+//        send_log(Color.BLACK, file.getPath());
 
 //        //---
 //        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -448,14 +456,14 @@ public class MainActivity extends AppCompatActivity {
 //        //---
 //        scan_file("/data/app");
 
-        final PackageManager pm = getPackageManager();
-        //get a list of installed apps.
-        List<ApplicationInfo> packages =  pm.getInstalledApplications(PackageManager.GET_META_DATA);
-
-        for (ApplicationInfo packageInfo : packages) {
-            send_log(Color.BLACK, "Installed package: " + packageInfo.packageName);
-            send_log(Color.BLACK, "Apk file path: " + packageInfo.sourceDir);
-        }
+//        final PackageManager pm = getPackageManager();
+//        //get a list of installed apps.
+//        List<ApplicationInfo> packages =  pm.getInstalledApplications(PackageManager.GET_META_DATA);
+//
+//        for (ApplicationInfo packageInfo : packages) {
+//            send_log(Color.BLACK, "Installed package: " + packageInfo.packageName);
+//            send_log(Color.BLACK, "Apk file path: " + packageInfo.sourceDir);
+//        }
 
         //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         //intent.setType("image/*");
