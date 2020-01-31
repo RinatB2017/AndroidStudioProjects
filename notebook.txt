@@ -29,3 +29,35 @@ void send_email(String text) {
     }
 }
 //---------------------------------------------------------------------------------------------
+public void test(View view) throws IOException {
+    // Find all available drivers from attached devices.
+    UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
+    List<UsbSerialDriver> availableDrivers = UsbSerialProber.getDefaultProber().findAllDrivers(manager);
+    if (availableDrivers.isEmpty()) {
+        return;
+    }
+
+    // Open a connection to the first available driver.
+    UsbSerialDriver driver = availableDrivers.get(0);
+    UsbDeviceConnection connection = manager.openDevice(driver.getDevice());
+    if (connection == null) {
+        // add UsbManager.requestPermission(driver.getDevice(), ..) handling here
+        return;
+    }
+
+    UsbSerialPort port = driver.getPorts().get(0); // Most devices have just one port (port 0)
+    port.open(connection);
+    port.setParameters(115200, 8, UsbSerialPort.STOPBITS_1, UsbSerialPort.PARITY_NONE);
+
+    String temp = "test";
+    final byte[] request = temp.getBytes();
+    final byte[] response = new byte[100];
+
+    port.write(request, WRITE_WAIT_MILLIS);
+    int len = port.read(response, READ_WAIT_MILLIS);
+
+    Toast.makeText(this, String.format("read %d bytes",Integer.valueOf(len)), Toast.LENGTH_SHORT).show();
+
+    port.close();
+}
+//---------------------------------------------------------------------------------------------

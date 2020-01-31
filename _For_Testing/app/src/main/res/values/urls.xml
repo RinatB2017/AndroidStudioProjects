@@ -1,19 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <array name="urls2">
-        <array name="url1">
-            <item name="icon">i1</item>
-            <item name="url">u1</item>
-        </array>
-        <array name="url2">
-            <item name="icon">i2</item>
-            <item name="url">u2</item>
-        </array>
-        <array name="url3">
-            <item name="icon">i3</item>
-            <item name="url">u3</item>
-        </array>
-    </array>
+<!--    <array name="urls2">-->
+<!--        <array name="url1">-->
+<!--            <item name="icon">i1</item>-->
+<!--            <item name="url">u1</item>-->
+<!--        </array>-->
+<!--        <array name="url2">-->
+<!--            <item name="icon">i2</item>-->
+<!--            <item name="url">u2</item>-->
+<!--        </array>-->
+<!--        <array name="url3">-->
+<!--            <item name="icon">i3</item>-->
+<!--            <item name="url">u3</item>-->
+<!--        </array>-->
+<!--    </array>-->
 
     <array name="icons">
         <item name="icon">i1</item>
