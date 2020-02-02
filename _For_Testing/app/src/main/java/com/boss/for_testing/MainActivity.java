@@ -416,14 +416,6 @@ public class MainActivity extends AppCompatActivity {
 
         //clear_cache();
 
-//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://developer.android.com"));
-//        startActivity(intent);
-
-        String[] names = getResources().getStringArray(R.array.urls);
-        for(int i = 0; i < names.length; i++) {
-            send_log(Color.RED, "Name[" + i + "]: "+ names[i] + "\n");
-        }
-
         /*
         try {
             test_exception(2);
