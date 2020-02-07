@@ -40,7 +40,8 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".FileActivity"></activity>
+        <activity android:name=".FileActivity">
+        </activity>
 
     </application>
 
