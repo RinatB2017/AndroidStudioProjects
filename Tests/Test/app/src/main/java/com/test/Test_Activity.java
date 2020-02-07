@@ -1,12 +1,10 @@
 package com.test;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import com.test.R;
 
 public class Test_Activity extends AppCompatActivity {
 
