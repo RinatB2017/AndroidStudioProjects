@@ -42,11 +42,6 @@ public class MainActivity extends AppCompatActivity {
     TextView tv_log;
     Handler h_print;
 
-    //private static final int RECORD_REQUEST_CODE = 101;
-
-    //String networkSSID = "SoftAP";
-    //String networkPass = "12345678";
-
     //---------------------------------------------------------------------------------------------
     void init_log() {
         tv_log = (TextView) findViewById(R.id.logView);
@@ -113,46 +108,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Проверяем включен ли WiFi, если нет то включаем
         enableWifi();
-
-        //wifiReciever = new WifiScanReceiver();
-        //registerReceiver(wifiReciever, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-
-        //requestPermission(Manifest.permission.ACCESS_WIFI_STATE, RECORD_REQUEST_CODE);
-        //requestPermission(Manifest.permission.CHANGE_WIFI_STATE, RECORD_REQUEST_CODE);
-
-        /*
-        wifiManager.startScan();
-        List<ScanResult> lv = wifiManager.getScanResults();
-
-        ArrayList<String> l_pass = new ArrayList<>();
-        l_pass.add("0000000");
-        l_pass.add("1111111");
-        l_pass.add("2222222");
-        l_pass.add("3333333");
-        l_pass.add("4444444");
-        l_pass.add("5555555");
-        l_pass.add("6666666");
-        l_pass.add("7777777");
-        l_pass.add("8888888");
-        l_pass.add("9999999");
-
-        if(!lv.isEmpty()) {
-            logging("Found " + lv.size());
-            for(int i = 0; i < lv.size(); i++) {
-                logging(lv.get(i).SSID);
-                boolean ok = false;
-                String ssid = lv.get(i).SSID;
-                for (int n = 0; n < l_pass.size(); n++) {
-                    ok = myConnect(ssid, l_pass.get(n));
-                    if (ok) {
-                        logging("FOUND: SSID = " + lv.get(i).SSID + " pass " + l_pass.get(n));
-                    }
-                }
-            }
-        }
-        */
-
-        //myConnect();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -251,7 +206,8 @@ public class MainActivity extends AppCompatActivity {
 
         WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         //remember id
-        int netId = wifiManager.addNetwork(wifiConfig);
+        int netId;
+        netId = wifiManager.addNetwork(wifiConfig);
         boolean result = false;
         if(netId > 0) {
             send_log(Color.BLACK, "netId = " + netId);
