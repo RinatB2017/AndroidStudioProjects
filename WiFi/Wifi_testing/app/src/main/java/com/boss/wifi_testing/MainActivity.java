@@ -12,8 +12,14 @@ import android.net.wifi.WifiManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     WifiScanReceiver wifiReciever;
 
     TextView tv_log;
+    Handler h_print;
 
     //private static final int RECORD_REQUEST_CODE = 101;
 
@@ -41,9 +48,44 @@ public class MainActivity extends AppCompatActivity {
     //String networkPass = "12345678";
 
     //---------------------------------------------------------------------------------------------
-    public void logging(String text) {
-        Log.i(LOG_TAG, text);
-        tv_log.append(text + "\n");
+    void init_log() {
+        tv_log = (TextView) findViewById(R.id.logView);
+        tv_log.setTextColor(Color.BLACK);
+
+        h_print = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                String text = (String) msg.obj;
+                int color = msg.arg1;
+                Log.i(LOG_TAG, text);
+
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    String c_text = "<font color=#" + Integer.toHexString(color).substring(2) + ">" + text + "</font><br>";
+                    tv_log.append(Html.fromHtml(c_text, Html.FROM_HTML_MODE_LEGACY));
+                } else {
+                    tv_log.append(text + "\n");
+                }
+
+                //---
+                Toast toast = Toast.makeText(getBaseContext(),
+                        text,
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.BOTTOM, 0, 0);
+                toast.show();
+                //---
+            }
+        };
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void send_log(int color, String text) {
+        if (text == null) {
+            return;
+        }
+        Message msg = new Message();
+        msg.arg1 = color;
+        msg.obj = text;
+        h_print.sendMessage(msg);
     }
 
     //---------------------------------------------------------------------------------------------
@@ -64,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_log = (TextView) findViewById(R.id.logView);
-        tv_log.setTextColor(Color.BLACK);
+        init_log();
 
         lv=(ListView)findViewById(R.id.listView);
         wifiManager=(WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -151,15 +192,15 @@ public class MainActivity extends AppCompatActivity {
                 l_pass.add("9999999");
 
                 if(!lv.isEmpty()) {
-                    logging("Found " + lv.size());
+                    send_log(Color.BLACK, "Found " + lv.size());
                     for(int i = 0; i < lv.size(); i++) {
-                        logging(lv.get(i).SSID);
+                        send_log(Color.BLACK, lv.get(i).SSID);
                         boolean ok = false;
                         String ssid = lv.get(i).SSID;
                         for (int n = 0; n < l_pass.size(); n++) {
                             ok = myConnect(ssid, l_pass.get(n));
                             if (ok) {
-                                logging("FOUND: SSID = " + lv.get(i).SSID + " pass " + l_pass.get(n));
+                                send_log(Color.BLACK, "FOUND: SSID = " + lv.get(i).SSID + " pass " + l_pass.get(n));
                             }
                         }
                     }
@@ -179,12 +220,12 @@ public class MainActivity extends AppCompatActivity {
             wifis = new String[wifiScanList.size()];
 
             if(wifiScanList.size() > 0)
-                logging("Found " + wifiScanList.size() + " networks");
+                send_log(Color.BLACK, "Found " + wifiScanList.size() + " networks");
             else
-                logging("NOT FOUND");
+                send_log(Color.RED, "NOT FOUND");
 
             for(int i = 0; i < wifiScanList.size(); i++) {
-                logging(wifiScanList.get(i).SSID);
+                send_log(Color.BLACK, wifiScanList.get(i).SSID);
                 //wifis[i] = ((wifiScanList.get(i)).toString());
             }
             //lv.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,wifis));
@@ -213,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
         int netId = wifiManager.addNetwork(wifiConfig);
         boolean result = false;
         if(netId > 0) {
-            logging("netId = " + netId);
+            send_log(Color.BLACK, "netId = " + netId);
             wifiManager.disconnect();
             result = wifiManager.enableNetwork(netId, true);
             wifiManager.reconnect();

@@ -1,7 +1,9 @@
 package com.boss.wifiscanner;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -9,6 +11,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,10 +30,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int RECORD_REQUEST_CODE = 101;
+
     private Element[] nets;
     private WifiManager wifiManager;
     private List<ScanResult> wifiList;
 
+    protected void requestPermission(String permissionType, int requestCode) {
+        int permission = ContextCompat.checkSelfPermission(this,
+                permissionType);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{permissionType},
+                    requestCode );
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 detectWifi();
                 Snackbar.make(view, "Сканирование...", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
 
+        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, RECORD_REQUEST_CODE);
     }
 
     public void detectWifi(){
