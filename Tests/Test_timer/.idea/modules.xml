@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/Test_timer/Test_timer.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/Test_timer/Test_timer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Test_timer-app.iml" filepath="$PROJECT_DIR$/app/Test_timer-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tests-Test_timer.iml" filepath="$PROJECT_DIR$/Tests-Test_timer.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/Test_timer/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Lessons/Test_timer/app/app.iml" />
     </modules>
   </component>

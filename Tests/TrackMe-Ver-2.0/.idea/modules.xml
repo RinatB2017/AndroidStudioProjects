@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Tests-TrackMe-Ver-2.0.iml" filepath="$PROJECT_DIR$/Tests-TrackMe-Ver-2.0.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/TrackMe-Ver-2.0.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/TrackMe-Ver-2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/TrackMe-Ver-2.0-app.iml" filepath="$PROJECT_DIR$/app/TrackMe-Ver-2.0-app.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/TrackMe-Ver-2.0/app/app.iml" />
     </modules>
   </component>

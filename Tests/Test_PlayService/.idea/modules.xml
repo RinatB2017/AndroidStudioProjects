@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_PlayService/Test_PlayService.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_PlayService/Test_PlayService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Test_PlayService-app.iml" filepath="$PROJECT_DIR$/app/Test_PlayService-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tests-Test_PlayService.iml" filepath="$PROJECT_DIR$/Tests-Test_PlayService.iml" />
       <module fileurl="file://$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_PlayService/app/app.iml" filepath="$USER_HOME$/HDD/Programming/AndroidStudioProjects/Tests/Test_PlayService/app/app.iml" />
     </modules>
   </component>

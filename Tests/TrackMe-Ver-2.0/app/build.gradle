@@ -1,13 +1,19 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 17
-    buildToolsVersion "26.0.2"
+    signingConfigs {
+        debug {
+            storePassword 'q12345'
+            keyPassword 'q12345'
+        }
+    }
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.example.gps_test2"
         minSdkVersion 11
-        targetSdkVersion 16
+        targetSdkVersion 29
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {

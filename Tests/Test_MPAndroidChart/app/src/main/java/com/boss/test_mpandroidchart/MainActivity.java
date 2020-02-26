@@ -28,16 +28,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void test(View view) {
-        ArrayList<Entry> values = new ArrayList<>();
+        ArrayList<Entry> values1 = new ArrayList<>();
+        ArrayList<Entry> values2 = new ArrayList<>();
 
         // increment by 1 hour
         for (float x = 0; x < 100; x++)
         {
-            values.add(new Entry(x, x)); // add one entry per hour
+            values1.add(new Entry(x, x)); // add one entry per hour
+        }
+        for (float x = 0; x < 100; x++)
+        {
+            values2.add(new Entry(x, x-100)); // add one entry per hour
         }
 
         // create a dataset and give it a type
-        LineDataSet set1 = new LineDataSet(values, "DataSet 1");
+        LineDataSet set1 = new LineDataSet(values1, "DataSet 1");
         set1.setAxisDependency(YAxis.AxisDependency.LEFT);
         set1.setColor(ColorTemplate.getHoloBlue());
         set1.setValueTextColor(ColorTemplate.getHoloBlue());
@@ -49,8 +54,22 @@ public class MainActivity extends AppCompatActivity {
         set1.setHighLightColor(Color.rgb(244, 117, 117));
         set1.setDrawCircleHole(false);
 
+        // create a dataset and give it a type
+        LineDataSet set2 = new LineDataSet(values2, "DataSet 2");
+        set2.setAxisDependency(YAxis.AxisDependency.LEFT);
+//        set2.setColor(ColorTemplate.getHoloBlue());
+        set2.setColor(Color.RED);
+        set2.setValueTextColor(ColorTemplate.getHoloBlue());
+        set2.setLineWidth(1.5f);
+        set2.setDrawCircles(false);
+        set2.setDrawValues(false);
+        set2.setFillAlpha(65);
+        set2.setFillColor(ColorTemplate.getHoloBlue());
+        set2.setHighLightColor(Color.rgb(244, 117, 117));
+        set2.setDrawCircleHole(false);
+
         // create a data object with the data sets
-        LineData data = new LineData(set1);
+        LineData data = new LineData(set1, set2);
         data.setValueTextColor(Color.WHITE);
         data.setValueTextSize(9f);
 

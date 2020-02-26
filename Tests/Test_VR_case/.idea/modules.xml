@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_VR_case/Test_VR_case.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_VR_case/Test_VR_case.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Test_VR_case-app.iml" filepath="$PROJECT_DIR$/app/Test_VR_case-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tests-Test_VR_case.iml" filepath="$PROJECT_DIR$/Tests-Test_VR_case.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_VR_case/app/app.iml" filepath="$PROJECT_DIR$/../../../_GitHub/AndroidStudioProjects/Tests/Test_VR_case/app/app.iml" />
     </modules>
   </component>

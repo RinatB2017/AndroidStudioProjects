@@ -2,7 +2,7 @@ package com.boss.test_styles;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.support.v4.content.AsyncTaskLoader;
+import androidx.loader.content.AsyncTaskLoader;
 
 public class StubLoader extends AsyncTaskLoader<Integer> {
 
