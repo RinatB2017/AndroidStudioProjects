@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
         for (float x = 0; x < 100; x++)
         {
-            values2.add(new Entry(x, x-100)); // add one entry per hour
+            values2.add(new Entry(x, (int)(Math.round(Math.random() * 100))));
         }
 
         // create a dataset and give it a type
