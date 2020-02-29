@@ -12,6 +12,6 @@
     <option name="id" value="Android" />
   </component>
   <component name="TerminalProjectOptionsProvider">
-    <option name="myStartingDirectory" value="$PROJECT_DIR$/../../../AndroidStudioProjects" />
+    <option name="myStartingDirectory" value="$PROJECT_DIR$/../.." />
   </component>
 </project>
