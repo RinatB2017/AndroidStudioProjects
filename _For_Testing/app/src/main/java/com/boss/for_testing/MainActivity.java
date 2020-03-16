@@ -1,6 +1,8 @@
 package com.boss.for_testing;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -40,6 +42,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -180,6 +183,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    private void setRepeatTask() {
+        Intent alarmIntent = new Intent(this, TestClass.class);
+        PendingIntent pendingIntent = PendingIntent.getService(
+                this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 14);
+        calendar.set(Calendar.MINUTE, 52);
+        calendar.set(Calendar.SECOND, 0);
+
+        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, // Повторять каждый час
+                pendingIntent);
+    }
+
+    //---------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -211,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //---
+        /*
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             soundPool = new SoundPool.Builder()
@@ -227,7 +249,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             send_log(Color.RED, e.getMessage());
         }
+        */
         //---
+        //setRepeatTask();
     }
 
     //---------------------------------------------------------------------------------------------
@@ -409,6 +433,9 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log(Color.RED, "test");
+
+        Intent alarmIntent = new Intent(MainActivity.this, TestClass.class);
+        startActivity(alarmIntent);
 
         //clear_cache();
 
