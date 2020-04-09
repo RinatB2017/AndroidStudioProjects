@@ -7,4 +7,7 @@
 
     <string name="test">Test</string>
 
+    <string name="shortcut_short_label">For_testing</string>
+    <string name="shortcut_long_label">For_testing</string>
+    <string name="disabled_message">disabled_message</string>
 </resources>

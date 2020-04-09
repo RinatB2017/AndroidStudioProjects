@@ -14,12 +14,12 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.boss.for_testing"
-        minSdkVersion 23
+        minSdkVersion 25
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
