@@ -20,6 +20,9 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.pm.ShortcutInfoCompat;
+import android.support.v4.content.pm.ShortcutManagerCompat;
+import android.support.v4.graphics.drawable.IconCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
@@ -183,22 +186,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
-    private void setRepeatTask() {
-        Intent alarmIntent = new Intent(this, TestClass.class);
-        PendingIntent pendingIntent = PendingIntent.getService(
-                this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//    private void setRepeatTask() {
+//        Intent alarmIntent = new Intent(this, TestClass.class);
+//        PendingIntent pendingIntent = PendingIntent.getService(
+//                this, 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.setTimeInMillis(System.currentTimeMillis());
+//        calendar.set(Calendar.HOUR_OF_DAY, 14);
+//        calendar.set(Calendar.MINUTE, 52);
+//        calendar.set(Calendar.SECOND, 0);
+//
+//        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+//                calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, // Повторять каждый час
+//                pendingIntent);
+//    }
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 52);
-        calendar.set(Calendar.SECOND, 0);
-
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, // Повторять каждый час
-                pendingIntent);
-    }
+//    public static void addShortcutToHomeScreen(Context context)
+//    {
+//        if (ShortcutManagerCompat.isRequestPinShortcutSupported(context))
+//        {
+//            ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, "#1")
+//                    .setIntent(new Intent(context, MainActivity.class).setAction(Intent.ACTION_MAIN)) // !!! intent's action must be set on oreo
+//                    .setShortLabel("Test")
+//                    .setIcon(IconCompat.createWithResource(context, R.mipmap.ic_launcher))
+//                    .build();
+//            ShortcutManagerCompat.requestPinShortcut(context, shortcutInfo, null);
+//        }
+//        else
+//        {
+//            // Shortcut is not supported by your launcher
+//        }
+//    }
 
     //---------------------------------------------------------------------------------------------
     @Override
@@ -343,261 +363,154 @@ public class MainActivity extends AppCompatActivity {
 
 
     //---------------------------------------------------------------------------------------------
-    private void parseWithXmlPullParser() {
-        try {
-            XmlPullParser xmlPullParser = getResources().getXml(R.xml.config_store);
-            while (xmlPullParser.getEventType() != XmlPullParser.END_DOCUMENT) {
-
-                switch (xmlPullParser.getEventType()) {
-                    case XmlPullParser.START_DOCUMENT: {
-                        if (BuildConfig.DEBUG) {
-                            Log.d(LOG_TAG, "START_DOCUMENT");
-                        }
-                        break;
-                    }
-                    // начало тега
-                    case XmlPullParser.START_TAG: {
-                        if (BuildConfig.DEBUG) {
-                            Log.d(LOG_TAG, "START_TAG: имя тега = "
-                                    + xmlPullParser.getName()
-                                    + ", уровень = "
-                                    + xmlPullParser.getDepth()
-                                    + ", число атрибутов = "
-                                    + xmlPullParser.getAttributeCount());
-                        }
-
-                        if (xmlPullParser.getName().equals("string")) {
-                            if (xmlPullParser.getAttributeValue(null, "name").equals("SSID")) {
-                                Log.d(LOG_TAG, xmlPullParser.nextText());
-                                break;
-                            }
-
-                            if (xmlPullParser.getAttributeValue(null, "name").equals("PreSharedKey")) {
-                                Log.d(LOG_TAG, xmlPullParser.nextText());
-                                break;
-                            }
-                        }
-
-                        if (xmlPullParser.getName().equals("boolean")) {
-                            if (xmlPullParser.getAttributeValue(null, "name").equals("HiddenSSID")) {
-                                Log.d(LOG_TAG, xmlPullParser.getAttributeValue(null, "value"));
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                    // конец тега
-                    case XmlPullParser.END_TAG:
-                        if (BuildConfig.DEBUG) {
-                            Log.d("LOG_TAG", "END_TAG: имя тега = " + xmlPullParser.getName());
-                        }
-
-                        break;
-                    // содержимое тега
-                    case XmlPullParser.TEXT:
-                        if (BuildConfig.DEBUG) {
-                            Log.d("LOG_TAG", "текст = " + xmlPullParser.getText());
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-                xmlPullParser.next();
-            }
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
-    }
+//    private void parseWithXmlPullParser() {
+//        try {
+//            XmlPullParser xmlPullParser = getResources().getXml(R.xml.config_store);
+//            while (xmlPullParser.getEventType() != XmlPullParser.END_DOCUMENT) {
+//
+//                switch (xmlPullParser.getEventType()) {
+//                    case XmlPullParser.START_DOCUMENT: {
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d(LOG_TAG, "START_DOCUMENT");
+//                        }
+//                        break;
+//                    }
+//                    // начало тега
+//                    case XmlPullParser.START_TAG: {
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d(LOG_TAG, "START_TAG: имя тега = "
+//                                    + xmlPullParser.getName()
+//                                    + ", уровень = "
+//                                    + xmlPullParser.getDepth()
+//                                    + ", число атрибутов = "
+//                                    + xmlPullParser.getAttributeCount());
+//                        }
+//
+//                        if (xmlPullParser.getName().equals("string")) {
+//                            if (xmlPullParser.getAttributeValue(null, "name").equals("SSID")) {
+//                                Log.d(LOG_TAG, xmlPullParser.nextText());
+//                                break;
+//                            }
+//
+//                            if (xmlPullParser.getAttributeValue(null, "name").equals("PreSharedKey")) {
+//                                Log.d(LOG_TAG, xmlPullParser.nextText());
+//                                break;
+//                            }
+//                        }
+//
+//                        if (xmlPullParser.getName().equals("boolean")) {
+//                            if (xmlPullParser.getAttributeValue(null, "name").equals("HiddenSSID")) {
+//                                Log.d(LOG_TAG, xmlPullParser.getAttributeValue(null, "value"));
+//                                break;
+//                            }
+//                        }
+//                        break;
+//                    }
+//                    // конец тега
+//                    case XmlPullParser.END_TAG:
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d("LOG_TAG", "END_TAG: имя тега = " + xmlPullParser.getName());
+//                        }
+//
+//                        break;
+//                    // содержимое тега
+//                    case XmlPullParser.TEXT:
+//                        if (BuildConfig.DEBUG) {
+//                            Log.d("LOG_TAG", "текст = " + xmlPullParser.getText());
+//                        }
+//                        break;
+//
+//                    default:
+//                        break;
+//                }
+//                xmlPullParser.next();
+//            }
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     //---------------------------------------------------------------------------------------------
-    class BT_exception extends Exception
-    {
-        // Parameterless Constructor
-        public BT_exception() {}
-
-        // Constructor that accepts a message
-        public BT_exception(String message)
-        {
-            super(message);
-        }
-    }
-
-    public void test_exception(int x) throws BT_exception {
-        if(x == 1)  throw new BT_exception("e 1");
-        if(x == 2)  throw new BT_exception("e 2");
-        if(x == 3)  throw new BT_exception("e 3");
-        send_log(Color.BLACK, "X = " + String.valueOf(x));
-    }
+//    class BT_exception extends Exception
+//    {
+//        // Parameterless Constructor
+//        public BT_exception() {}
+//
+//        // Constructor that accepts a message
+//        public BT_exception(String message)
+//        {
+//            super(message);
+//        }
+//    }
+//
+//    public void test_exception(int x) throws BT_exception {
+//        if(x == 1)  throw new BT_exception("e 1");
+//        if(x == 2)  throw new BT_exception("e 2");
+//        if(x == 3)  throw new BT_exception("e 3");
+//        send_log(Color.BLACK, "X = " + String.valueOf(x));
+//    }
 
     //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log(Color.RED, "test");
 
-        Intent alarmIntent = new Intent(MainActivity.this, TestClass.class);
-        startActivity(alarmIntent);
+        //Intent alarmIntent = new Intent(MainActivity.this, TestClass.class);
+        //startActivity(alarmIntent);
 
-        //clear_cache();
+        //addShortcutToHomeScreen(this);
+    }
 
-        //---
-/*
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://www.google.com";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        send_log(Color.BLACK, "Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                send_log(Color.BLACK, "That didn't work!");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
- */
-
-/*
-        // Instantiate the cache
-        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
-
-        // Set up the network to use HttpURLConnection as the HTTP client.
-        Network network = new BasicNetwork(new HurlStack());
-
-        // Instantiate the RequestQueue with the cache and network.
-        requestQueue = new RequestQueue(cache, network);
-
-        // Start the queue
-        requestQueue.start();
-
-        String url ="http://www.example.com";
-
-        // Formulate the request and handle the response.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Do something with the response
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // Handle error
-                    }
-                });
-
-        // Add the request to the RequestQueue.
-        requestQueue.add(stringRequest);
-*/
-        //---
-
-        /*
-        try {
-            test_exception(2);
-        } catch (BT_exception e) {
-            send_log(Color.RED, e.getMessage());
-        }
-        */
-
-//        File file = getFilesDir();
-//        send_log(Color.BLACK, file.getPath());
-
-//        //---
-//        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-//                != PackageManager.PERMISSION_GRANTED) {
+//    private void scan_file(String pathname)
+//    {
+//        send_log(Color.BLACK, "PATH " + pathname);
 //
-//            // Should we show an explanation?
-//            if (shouldShowRequestPermissionRationale(
-//                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-//                // Explain to the user why we need to read the contacts
-//            }
+//        List<String> paths = new ArrayList<String>();
+//        File directory = new File(pathname);
 //
-//            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-//                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-//
-//            // MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE is an
-//            // app-defined int constant that should be quite unique
-//
+//        File[] files = directory.listFiles();
+//        if(files == null)
+//        {
+//            send_log(Color.RED, "array is empty");
 //            return;
 //        }
-//        //---
-//        scan_file("/data/app");
-
-//        final PackageManager pm = getPackageManager();
-//        //get a list of installed apps.
-//        List<ApplicationInfo> packages =  pm.getInstalledApplications(PackageManager.GET_META_DATA);
 //
-//        for (ApplicationInfo packageInfo : packages) {
-//            send_log(Color.BLACK, "Installed package: " + packageInfo.packageName);
-//            send_log(Color.BLACK, "Apk file path: " + packageInfo.sourceDir);
+//        send_log(Color.BLACK, "Found " + String.valueOf(files.length) + " files");
+//        for (int i = 0; i < files.length; ++i)
+//        {
+//            send_log(Color.BLACK, files[i].getAbsolutePath());
 //        }
+//    }
 
-        //Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        //intent.setType("image/*");
-        //startActivityForResult(Intent.createChooser(intent, "Select File"), REQUEST_GALLERY);
-    }
+//    public void get_running_processes() {
+//        // Get running processes
+//        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+//        List<ActivityManager.RunningAppProcessInfo> runningProcesses = manager.getRunningAppProcesses();
+//        if (runningProcesses != null && runningProcesses.size() > 0) {
+//            // Set data to the list adapter
+//            setListAdapter(new ListAdapter(this, runningProcesses));
+//        } else {
+//            // In case there are no processes running (not a chance :))
+//            Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
+//        }
+//    }
 
-    private void scan_file(String pathname)
-    {
-        send_log(Color.BLACK, "PATH " + pathname);
-
-        List<String> paths = new ArrayList<String>();
-        File directory = new File(pathname);
-
-        File[] files = directory.listFiles();
-        if(files == null)
-        {
-            send_log(Color.RED, "array is empty");
-            return;
-        }
-
-        send_log(Color.BLACK, "Found " + String.valueOf(files.length) + " files");
-        for (int i = 0; i < files.length; ++i)
-        {
-            send_log(Color.BLACK, files[i].getAbsolutePath());
-        }
-    }
-
-    public void get_running_processes() {
-        /*
-        // Get running processes
-        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> runningProcesses = manager.getRunningAppProcesses();
-        if (runningProcesses != null && runningProcesses.size() > 0) {
-            // Set data to the list adapter
-            setListAdapter(new ListAdapter(this, runningProcesses));
-        } else {
-            // In case there are no processes running (not a chance :))
-            Toast.makeText(getApplicationContext(), "No application is running", Toast.LENGTH_LONG).show();
-        }
-        */
-    }
-
-    public void get_imei() {
-        String android_id = Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-
-        send_log(Color.RED, "android_id: " + android_id);
-
-        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        if(telephonyManager != null) {
-            String imei = "none";
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                imei = telephonyManager.getImei();
-            } else {
-                imei = telephonyManager.getDeviceId();
-            }
-            send_log(Color.RED, "IMEI: " + imei);
-        }
-    }
+//    public void get_imei() {
+//        String android_id = Settings.Secure.getString(this.getContentResolver(),
+//                Settings.Secure.ANDROID_ID);
+//
+//        send_log(Color.RED, "android_id: " + android_id);
+//
+//        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+//        if(telephonyManager != null) {
+//            String imei = "none";
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                imei = telephonyManager.getImei();
+//            } else {
+//                imei = telephonyManager.getDeviceId();
+//            }
+//            send_log(Color.RED, "IMEI: " + imei);
+//        }
+//    }
 
     public void btn1_click(View view) {
         send_log(Color.RED, "1");
@@ -627,24 +540,24 @@ public class MainActivity extends AppCompatActivity {
         send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
     }
 
-    public void clear_cache() {
-        // http://qaru.site/questions/248377/android-clear-cache-of-all-apps
-        PackageManager  pm = getPackageManager();
-        // Get all methods on the PackageManager
-        Method[] methods = pm.getClass().getDeclaredMethods();
-        for (Method m : methods) {
-            if (m.getName().equals("freeStorage")) {
-                // Found the method I want to use
-                try {
-                    long desiredFreeStorage = 8 * 1024 * 1024 * 1024; // Request for 8GB of free space
-                    m.invoke(pm, desiredFreeStorage , null);
-                } catch (Exception e) {
-                    // Method invocation failed. Could be a permission problem
-                }
-                break;
-            }
-        }
-    }
+//    public void clear_cache() {
+//        // http://qaru.site/questions/248377/android-clear-cache-of-all-apps
+//        PackageManager  pm = getPackageManager();
+//        // Get all methods on the PackageManager
+//        Method[] methods = pm.getClass().getDeclaredMethods();
+//        for (Method m : methods) {
+//            if (m.getName().equals("freeStorage")) {
+//                // Found the method I want to use
+//                try {
+//                    long desiredFreeStorage = 8 * 1024 * 1024 * 1024; // Request for 8GB of free space
+//                    m.invoke(pm, desiredFreeStorage , null);
+//                } catch (Exception e) {
+//                    // Method invocation failed. Could be a permission problem
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     //---------------------------------------------------------------------------------------------
 }
