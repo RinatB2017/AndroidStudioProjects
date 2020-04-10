@@ -5,6 +5,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
@@ -16,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -69,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     SoundPool soundPool;
     int explosionId = -1;
     //---
+
+    SharedPreferences appPreferences;
+    boolean isFirstRun = false;
 
     //---------------------------------------------------------------------------------------------
     protected void requestPermission(String permissionType, int requestCode) {
@@ -203,8 +208,26 @@ public class MainActivity extends AppCompatActivity {
 //                pendingIntent);
 //    }
 
-//    public static void addShortcutToHomeScreen(Context context)
-//    {
+    public static void addShortcutToHomeScreen(Context context)
+    {
+            // Create an explict intent it will be used to call Our application by click on the short cut
+            Intent shortcutIntent = new Intent(context,MainActivity.class);
+            shortcutIntent.setAction(Intent.ACTION_MAIN);
+
+            // Create an implicit intent and assign Shortcut Application Name, Icon
+            Intent intent = new Intent();
+            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Tricing");
+            /* If shortcut name is equal to the applicaion name then use
+            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.app_name));
+            */
+            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+                    Intent.ShortcutIconResource.fromContext(context,
+                            R.mipmap.ic_launcher));
+//            intent.putExtra("duplicate", false); //Avoid duplicate
+            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+            context.sendBroadcast(intent);
+
 //        if (ShortcutManagerCompat.isRequestPinShortcutSupported(context))
 //        {
 //            ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, "#1")
@@ -218,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
 //        {
 //            // Shortcut is not supported by your launcher
 //        }
-//    }
+    }
 
     //---------------------------------------------------------------------------------------------
     @Override
@@ -272,6 +295,37 @@ public class MainActivity extends AppCompatActivity {
         */
         //---
         //setRepeatTask();
+
+        // Get preference value to check the app run first time.
+//        appPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        isFirstRun = appPreferences.getBoolean("isFirstRun",false);
+
+//        if (isFirstRun==false)
+//        {
+//
+//            // Create an explict intent it will be used to call Our application by click on the short cut
+//            Intent shortcutIntent = new Intent(getApplicationContext(),MainActivity.class);
+//            shortcutIntent.setAction(Intent.ACTION_MAIN);
+//
+//            // Create an implicit intent and assign Shortcut Application Name, Icon
+//            Intent intent = new Intent();
+//            intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+//            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "Tricing");
+//            /* If shortcut name is equal to the applicaion name then use
+//            intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, getString(R.string.app_name));
+//            */
+//            intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE,
+//                    Intent.ShortcutIconResource.fromContext(getApplicationContext(),
+//                            R.mipmap.ic_launcher));
+//            intent.putExtra("duplicate", false); //Avoid duplicate
+//            intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+//            getApplicationContext().sendBroadcast(intent);
+
+            // Set preference  as true
+//            SharedPreferences.Editor editor = appPreferences.edit();
+//            editor.putBoolean("isFirstRun", true);
+//            editor.commit();
+//        }
     }
 
     //---------------------------------------------------------------------------------------------
@@ -457,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
         //Intent alarmIntent = new Intent(MainActivity.this, TestClass.class);
         //startActivity(alarmIntent);
 
-        //addShortcutToHomeScreen(this);
+        addShortcutToHomeScreen(this);
     }
 
 //    private void scan_file(String pathname)
