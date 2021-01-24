@@ -11,6 +11,8 @@ android {
 
     defaultConfig {
         applicationId "org.opencv"
+        targetSdkVersion 30
+        minSdkVersion 23
     }
 
     buildTypes {
