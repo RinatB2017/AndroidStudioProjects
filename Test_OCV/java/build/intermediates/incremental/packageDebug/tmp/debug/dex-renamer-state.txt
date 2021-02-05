@@ -1,4 +1,0 @@
-#Sun Jan 24 21:45:01 MSK 2021
-base.0=/home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/build/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

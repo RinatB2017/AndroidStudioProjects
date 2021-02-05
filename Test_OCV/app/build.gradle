@@ -4,7 +4,7 @@ plugins {
 
 android {
     signingConfigs {
-        debug {
+        release {
             storePassword 'q12345'
             keyPassword 'q12345'
         }
@@ -19,7 +19,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
