@@ -11,6 +11,7 @@ android {
 
     defaultConfig {
         applicationId "org.opencv"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
