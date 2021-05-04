@@ -13,6 +13,12 @@ uses-sdk
 INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
 INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
+INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
+		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
+		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml
 		ADDED from /home/boss/Programming/_GitHub/AndroidStudioProjects/Test_OCV/java/src/main/AndroidManifest.xml

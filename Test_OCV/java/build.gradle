@@ -12,6 +12,7 @@ android {
     defaultConfig {
         applicationId "org.opencv"
         signingConfig signingConfigs.release
+        targetSdkVersion 30
     }
 
     buildTypes {
