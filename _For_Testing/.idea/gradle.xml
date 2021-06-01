@@ -10,8 +10,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$USER_HOME$/HDD/_GitHub/AndroidStudioProjects/_For_Testing" />
+            <option value="$USER_HOME$/HDD/_GitHub/AndroidStudioProjects/_For_Testing/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
