@@ -1,12 +1,18 @@
 package com.boss.for_testing;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -27,11 +33,16 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public class MainActivity extends AppCompatActivity {
     private String LOG_TAG = "States";
 
     private final String s_log = "s_log";
     private final String s_current_tab = "s_current_tab";
+
+    private static final int RECORD_REQUEST_CODE = 101;
 
     TextView tv_log;
 
@@ -171,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
 
+        requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
+
         init_tabs();
 
         if (savedInstanceState != null) {
@@ -277,8 +290,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //---------------------------------------------------------------------------------------------
+    /*
+    надо не забыть в манифесте нужные права выставить
+    звтем в OnCreate
+        requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
+    */
+    public void save_wallpaper() {
+        WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
+        Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+
+        Bitmap bitmap = ((BitmapDrawable) wallpaperDrawable).getBitmap();
+
+        try {
+            String filename = "my_wallpaper.png";
+            File sd = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+
+            File dest = new File(sd, filename);
+            send_log(Color.RED, dest.toString());
+            send_log(Color.RED, filename);
+
+            FileOutputStream out = new FileOutputStream(dest);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------
     public void test(View view) {
         send_log(Color.RED, "test");
+
+        save_wallpaper();
     }
 
     public void btn1_click(View view) {
