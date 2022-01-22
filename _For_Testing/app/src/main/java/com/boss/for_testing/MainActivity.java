@@ -1,8 +1,12 @@
 package com.boss.for_testing;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.WallpaperManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -35,9 +39,15 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private String LOG_TAG = "States";
+
+    public static final int REQUEST_CODE = (int) new Date().getTime();
 
     private final String s_log = "s_log";
     private final String s_current_tab = "s_current_tab";
@@ -322,7 +332,17 @@ public class MainActivity extends AppCompatActivity {
     public void test(View view) {
         send_log(Color.RED, "test");
 
-        save_wallpaper();
+        Date date = Calendar.getInstance().getTime();
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        String filename = dateFormat.format(date) + ".jpg";
+        send_log(Color.RED, filename);
+
+        //startService(new Intent(this, MyService.class));
+
+        // https://stackoverflow.com/questions/9177212/creating-background-service-in-android
+        scheduleAlarm();
+
+        //save_wallpaper();
     }
 
     public void btn1_click(View view) {
@@ -337,5 +357,19 @@ public class MainActivity extends AppCompatActivity {
         send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
     }
 
+    public void scheduleAlarm()
+    {
+        // Construct an intent that will execute the AlarmReceiver
+        Intent intent = new Intent(getApplicationContext(), AlmasReceiver.class);
+        // Create a PendingIntent to be triggered when the alarm goes off
+        final PendingIntent pIntent = PendingIntent.getBroadcast(
+                this, REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // Setup periodic alarm every every half hour from this point onwards
+        long firstMillis = System.currentTimeMillis(); // alarm is set right away
+        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
+        // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, (long) (1000 * 10), pIntent);
+    }
     //---------------------------------------------------------------------------------------------
 }
