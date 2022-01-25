@@ -16,15 +16,17 @@
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+        </service>
 
         <service
             android:name=".AlmasService"
-            android:exported="false"/>
+            android:exported="false">
+        </service>
 
         <receiver
             android:name=".AlmasReceiver"
-            android:process=":remote" >
+            android:process=":remote">
         </receiver>
 
         <activity

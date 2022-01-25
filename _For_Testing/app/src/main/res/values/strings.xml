@@ -10,4 +10,6 @@
     <string name="shortcut_short_label">For_testing</string>
     <string name="shortcut_long_label">For_testing</string>
     <string name="disabled_message">disabled_message</string>
+    <string name="text_btn_1">1</string>
+    <string name="text_btn_2">2</string>
 </resources>

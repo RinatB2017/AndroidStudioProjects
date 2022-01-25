@@ -10,12 +10,6 @@
         android:id="@+id/btn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1"
-        android:onClick="btn1_click" />
-
-    <ImageView
-        android:id="@+id/asset_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:text="@string/text_btn_1" />
 
 </LinearLayout>

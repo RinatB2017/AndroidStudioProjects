@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
 import androidx.core.app.ActivityCompat;
@@ -44,7 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
     private String LOG_TAG = "States";
 
     public static final int REQUEST_CODE = (int) new Date().getTime();
@@ -62,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
     //---
     Button btn_test;
     //---
+
+    public class MessageReceiver extends BroadcastReceiver {
+        public MessageReceiver() {
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            send_log(Color.RED, intent.getStringExtra("test"));
+        }
+    }
+    MessageReceiver receiver;
 
     //---------------------------------------------------------------------------------------------
     protected void requestPermission(String permissionType, int requestCode) {
@@ -112,9 +125,9 @@ public class MainActivity extends AppCompatActivity {
         tv_log = (TextView) findViewById(R.id.logView);
         tv_log.setTextColor(Color.BLACK);
 
-        h_print = new Handler() {
+        h_print = new Handler(Looper.getMainLooper(), new Handler.Callback() {
             @Override
-            public void handleMessage(Message msg) {
+            public boolean handleMessage(Message msg) {
                 String text = (String) msg.obj;
                 int color = msg.arg1;
                 Log.i(LOG_TAG, text);
@@ -133,8 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 toast.setGravity(Gravity.BOTTOM, 0, 0);
                 toast.show();
                 //---
+                return true;
             }
-        };
+        });
     }
 
     //---------------------------------------------------------------------------------------------
@@ -191,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
         //TODO временный костыль
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
+
+        receiver = new MessageReceiver();
 
         requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
@@ -345,17 +361,17 @@ public class MainActivity extends AppCompatActivity {
         //save_wallpaper();
     }
 
-    public void btn1_click(View view) {
-        send_log(Color.RED, "1");
-
-        Setting.set_x(5);
-    }
-
-    public void btn2_click(View view) {
-        send_log(Color.RED, "2");
-
-        send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
-    }
+//    public void btn1_click(View view) {
+//        send_log(Color.RED, "1");
+//
+//        Setting.set_x(5);
+//    }
+//
+//    public void btn2_click(View view) {
+//        send_log(Color.RED, "2");
+//
+//        send_log(Color.RED, "x = " + String.valueOf(Setting.get_x()));
+//    }
 
     public void scheduleAlarm()
     {
