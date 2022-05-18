@@ -1,4 +1,0 @@
-#Thu Jun 06 16:08:30 MSK 2019
-base.0=/home/boss/Programming/_GitHub/AndroidStudioProjects/_NET/SocketClient/app/build/intermediates/transforms/dexMerger/debug/1
-path.0=classes.dex
-renamed.0=classes.dex
