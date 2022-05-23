@@ -7,6 +7,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
+import android.content.ContentProviderOperation;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +24,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -43,6 +47,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -210,6 +215,9 @@ public class MainActivity extends AppCompatActivity  {
 
         requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
 
+        requestPermission(Manifest.permission.READ_CONTACTS, RECORD_REQUEST_CODE);
+        requestPermission(Manifest.permission.WRITE_CONTACTS, RECORD_REQUEST_CODE);
+
         init_tabs();
 
         if (savedInstanceState != null) {
@@ -348,15 +356,46 @@ public class MainActivity extends AppCompatActivity  {
     public void test(View view) {
         send_log(Color.RED, "test");
 
-        Date date = Calendar.getInstance().getTime();
-        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String filename = dateFormat.format(date) + ".jpg";
-        send_log(Color.RED, filename);
+        //---
+        // https://habr.com/ru/post/130148/
+        // добавление нового контакта
+        ArrayList<ContentProviderOperation> op = new ArrayList<ContentProviderOperation>();
+
+        /* Добавляем пустой контакт */
+        op.add(ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
+                .build());
+        /* Добавляем данные имени */
+        op.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, "Robert Smith")
+                .build());
+        /* Добавляем данные телефона */
+        op.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+                .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+                .withValue(ContactsContract.Data.MIMETYPE, ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                .withValue(ContactsContract.CommonDataKinds.Phone.NUMBER, "11-22-33")
+                .withValue(ContactsContract.CommonDataKinds.Phone.TYPE, ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE)
+                .build());
+
+        try {
+            getContentResolver().applyBatch(ContactsContract.AUTHORITY, op);
+        } catch (Exception e) {
+            Log.e("Exception: ", e.getMessage());
+        }
+        //---
+
+        //Date date = Calendar.getInstance().getTime();
+        //@SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        //String filename = dateFormat.format(date) + ".jpg";
+        //send_log(Color.RED, filename);
 
         //startService(new Intent(this, MyService.class));
 
         // https://stackoverflow.com/questions/9177212/creating-background-service-in-android
-        scheduleAlarm();
+        //scheduleAlarm();
 
         //save_wallpaper();
     }
