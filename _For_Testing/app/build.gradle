@@ -3,12 +3,12 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         debug {
-            storePassword 'q12345'
-            keyPassword 'q12345'
+            //storePassword 'q12345'
+            //keyPassword 'q12345'
         }
         release {
-            storePassword 'q12345'
-            keyPassword 'q12345'
+            //storePassword 'q12345'
+            //keyPassword 'q12345'
         }
     }
     defaultConfig {
@@ -31,7 +31,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    compileSdkVersion 31
+    compileSdkVersion 32
 }
 
 allprojects {
