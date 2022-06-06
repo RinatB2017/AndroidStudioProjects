@@ -1,19 +1,18 @@
 package com.boss.for_testing;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.WallpaperManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentProviderOperation;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -45,14 +44,11 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity  {
-    private String LOG_TAG = "States";
+    private final String LOG_TAG = "States";
 
     public static final int REQUEST_CODE = (int) new Date().getTime();
 
@@ -68,6 +64,9 @@ public class MainActivity extends AppCompatActivity  {
 
     //---
     Button btn_test;
+
+    SQLiteDatabase database;
+    DBHelper dbHelper;
     //---
 
     public class MessageReceiver extends BroadcastReceiver {
@@ -220,6 +219,8 @@ public class MainActivity extends AppCompatActivity  {
 
         init_tabs();
 
+        dbHelper = new DBHelper(this);
+
         if (savedInstanceState != null) {
             String temp = savedInstanceState.getString(s_log);
             if (temp != null) {
@@ -245,7 +246,7 @@ public class MainActivity extends AppCompatActivity  {
         if (resultCode == RESULT_OK) {
             try {
                 Uri selectedImageURI = data.getData();
-                send_log(Color.RED, getRealPathFromURI(selectedImageURI, this)); //TODO
+                send_log(Color.RED, getRealPathFromURI(selectedImageURI, this));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -353,9 +354,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     //---------------------------------------------------------------------------------------------
-    public void test(View view) {
-        send_log(Color.RED, "test");
-
+    void create_new_contact() {
         //---
         // https://habr.com/ru/post/130148/
         // добавление нового контакта
@@ -386,6 +385,52 @@ public class MainActivity extends AppCompatActivity  {
             Log.e("Exception: ", e.getMessage());
         }
         //---
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void add_sql_data(String name, String email) {
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DBHelper.KEY_NAME, name);
+        contentValues.put(DBHelper.KEY_MAIL, email);
+
+        database.insert(DBHelper.TABLE_CONTACTS, null, contentValues);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void read_sql_data() {
+        Cursor cursor = database.query(DBHelper.TABLE_CONTACTS, null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
+            int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
+            int emailIndex = cursor.getColumnIndex(DBHelper.KEY_MAIL);
+            do {
+                send_log(Color.RED,
+                        "ID = " + cursor.getInt(idIndex) +
+                        ", name = " + cursor.getString(nameIndex) +
+                        ", email = " + cursor.getString(emailIndex));
+            } while (cursor.moveToNext());
+        } else
+            send_log(Color.RED,"0 rows");
+
+        cursor.close();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void check_sql() {
+        database = dbHelper.getWritableDatabase();
+
+        //add_sql_data("Name", "Email");
+        read_sql_data();
+    }
+
+    //---------------------------------------------------------------------------------------------
+    public void test(View view) {
+        send_log(Color.RED, "test");
+
+        //TODO test
+        check_sql();
 
         //Date date = Calendar.getInstance().getTime();
         //@SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
