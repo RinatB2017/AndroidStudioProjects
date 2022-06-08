@@ -65,8 +65,13 @@ public class MainActivity extends AppCompatActivity  {
     //---
     Button btn_test;
 
+    public static final String TABLE_CONTACTS = "contacts";
+
+    public static final String KEY_ID = "_id";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_MAIL = "mail";
+
     SQLiteDatabase database;
-    DBHelper dbHelper;
     //---
 
     public class MessageReceiver extends BroadcastReceiver {
@@ -210,6 +215,8 @@ public class MainActivity extends AppCompatActivity  {
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //---
 
+        database = getBaseContext().openOrCreateDatabase("app.db", MODE_PRIVATE, null);
+
         receiver = new MessageReceiver();
 
         requestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, RECORD_REQUEST_CODE);
@@ -218,8 +225,6 @@ public class MainActivity extends AppCompatActivity  {
         requestPermission(Manifest.permission.WRITE_CONTACTS, RECORD_REQUEST_CODE);
 
         init_tabs();
-
-        dbHelper = new DBHelper(this);
 
         if (savedInstanceState != null) {
             String temp = savedInstanceState.getString(s_log);
@@ -388,23 +393,26 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     //---------------------------------------------------------------------------------------------
+    // https://www.fandroid.info/urok-34-rabota-s-bazami-dannyh-sqlite-v-android/
+    // https://metanit.com/java/android/14.5.php
+
     void add_sql_data(String name, String email) {
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(DBHelper.KEY_NAME, name);
-        contentValues.put(DBHelper.KEY_MAIL, email);
+        contentValues.put(KEY_NAME, name);
+        contentValues.put(KEY_MAIL, email);
 
-        database.insert(DBHelper.TABLE_CONTACTS, null, contentValues);
+        database.insert(TABLE_CONTACTS, null, contentValues);
     }
 
     //---------------------------------------------------------------------------------------------
-    void read_sql_data() {
-        Cursor cursor = database.query(DBHelper.TABLE_CONTACTS, null, null, null, null, null, null);
+    void read_sql_data(String table_name) {
+        Cursor cursor = database.query(table_name, null, null, null, null, null, null);
 
         if (cursor.moveToFirst()) {
-            int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID);
-            int nameIndex = cursor.getColumnIndex(DBHelper.KEY_NAME);
-            int emailIndex = cursor.getColumnIndex(DBHelper.KEY_MAIL);
+            int idIndex = cursor.getColumnIndex(KEY_ID);
+            int nameIndex = cursor.getColumnIndex(KEY_NAME);
+            int emailIndex = cursor.getColumnIndex(KEY_MAIL);
             do {
                 send_log(Color.RED,
                         "ID = " + cursor.getInt(idIndex) +
@@ -418,11 +426,33 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     //---------------------------------------------------------------------------------------------
-    void check_sql() {
-        database = dbHelper.getWritableDatabase();
+    void test_sql(SQLiteDatabase db, String table_name) {
+        String KEY_ID = "_id";
+        String KEY_NAME = "name";
+        String KEY_MAIL = "mail";
 
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + table_name + "(" + KEY_ID
+                + " integer primary key," + KEY_NAME + " text," + KEY_MAIL + " text" + ")");
+
+        //---
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(KEY_NAME, "XXX name");
+        contentValues.put(KEY_MAIL, "XXX email");
+
+        db.insert(table_name, null, contentValues);
+        //---
+
+        read_sql_data(table_name);
+    }
+
+    //---------------------------------------------------------------------------------------------
+    void check_sql() {
         //add_sql_data("Name", "Email");
-        read_sql_data();
+        //read_sql_data();
+
+        test_sql(database, "XXX");
+        //test_sql(database, "YYY");
     }
 
     //---------------------------------------------------------------------------------------------
